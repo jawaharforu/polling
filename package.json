@@ -17,6 +17,14 @@
   },
   "homepage": "https://github.com/jawaharforu/polling#readme",
   "dependencies": {
-    "npm": "^5.7.1"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.8",
+    "npm": "^5.7.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
   }
 }
