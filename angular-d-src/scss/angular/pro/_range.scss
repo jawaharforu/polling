@@ -1,0 +1,43 @@
+.range-field {
+    position: relative;
+    .track {
+		position: absolute;
+		right: 8px;
+		left: 8px;
+		.range-cloud {
+			  height: 30px;
+			  width: 30px;
+			  top: -25px;
+			  background-color: #4285F4;
+			  position: absolute;
+			  color: white;
+			  border-radius: 50%;
+			  font-size: 12px;
+			  transform: translateX(-50%);
+			&:after {
+			    content: '';
+			    position: absolute;
+			    bottom: 0;
+			    left: 50%;
+			    transform: translate(-50%, 70%);
+			    width: 0;
+			    height: 0;
+			    border-style: solid;
+			    border-width: 7px 7px 0 7px;
+			    border-color: #4285F4 transparent transparent transparent;
+			}
+			&.hidden {
+			    display: none;
+			}
+			&.visible {
+			    display: block;
+			}
+			.text-transform {
+			    position: absolute;
+			    top: 50%;
+			    left: 50%;
+			    transform: translate(-50%, -50%);
+			}
+		}
+	}	
+}

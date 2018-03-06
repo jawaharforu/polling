@@ -1,0 +1,352 @@
+// Navbars pro
+.navbar {
+  .nav-item {
+    &.avatar {
+      padding: 0;
+      &.active {
+        background-color: transparent !important;
+      }
+      .dropdown-toggle {
+        padding: 0;
+        img {
+          height: $navbar-avatar-height;
+        }
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.double-nav {
+  z-index: 100;
+  color: $white;
+  @media (max-width: $medium-screen) {
+    padding-top: $navbar-double-small-padding;
+    padding-bottom: $navbar-double-small-padding;
+  }
+  @media all and (min-width: 992px) {
+    logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center !important;
+      align-self: center !important;
+      width: 100% !important;
+    }
+    .navbar-brand {
+      img {
+        margin-top: 2px;
+      }
+    }
+  }
+  .container {
+    @media (max-width: 768px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  a {
+    color: $white;
+    font-size: $navbar-double-font-size;
+  }
+  .breadcrumb-dn {
+    // margin-top: $navbar-double-small-padding;
+    p {
+      margin: 0;
+      padding-top: 0;
+      padding-left: $navbar-breadcrumb-dn-padding;
+    }
+    @media (max-width: 993px) {
+      display: none;
+    }
+  }
+  .button-collapse {
+    position: absolute;
+    left: $navbar-button-collapse-left;
+    font-size: $navbar-button-collapse-font-size;
+    @media (min-width: $sidenav-breakpoint) {
+      display: none;
+    }
+    @media all and (max-width: 599px) {
+      margin-top: -6px;
+    }
+    @media (max-width: $sidenav-breakpoint) {
+      display: block;
+      position: absolute;
+      left: 10px;
+      top: 25%;
+      font-size: $navbar-button-collapse-fs-sm; 
+      margin-top: -2px !important;
+      margin-right: $navbar-button-collapse-mx;
+      margin-left: $navbar-button-collapse-mx;
+    }
+    @media all and (min-width: 600px) and (max-width: 993px) {
+      position: absolute;
+      top: 15px;
+      margin-top: 0;
+    }
+    @media all and (min-width: 994px) {
+      margin-top: 0;
+    }
+  }
+  .button-collapse-non-fixed {
+    position: absolute; // top: $navbar-button-collapse-top;
+    left: $navbar-button-collapse-left;
+    font-size: $navbar-button-collapse-font-size;
+    @media (min-width: $sidenav-breakpoint) {
+      display: none;
+    }
+    @media all and (max-width: 599px) {
+      margin-top: -6px;
+    }
+    @media (max-width: $sidenav-breakpoint) {
+      display: block;
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      font-size: $navbar-button-collapse-fs-sm; // margin-top: $navbar-button-collapse-mt;
+      margin-right: $navbar-button-collapse-mx;
+      margin-left: $navbar-button-collapse-mx;
+    }
+    @media all and (min-width: 600px) and (max-width: 993px) {
+      position: absolute;
+      top: 10px;
+      margin-top: 5px;
+    }
+  }
+  .button-collapse-non-fixed.hidden-nav>i {
+    @media all and (min-width: 600px) and (max-width: 993px) {
+      position: absolute;
+      top: 5px !important;
+      margin-top: -5px !important;
+    }
+  }
+  .hidden-nav-button-collapse {
+    @media all and (min-width: 600px) and (max-width: 993px) {
+      position: absolute;
+      top: 25%;
+      margin-top: -3px;
+    }
+    @media all and (min-width: 994px) {
+      margin-top: -3px;
+    }
+  }
+  .hidden-nav {
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: $navbar-button-collapse-left;
+    font-size: $navbar-button-collapse-font-size;
+    margin-left: $navbar-button-collapse-mx;
+  } //material dropdown
+  .dropdown {
+    .dropdown-menu {
+      margin-left: -68px;
+      display: none;
+      position: absolute;
+      transform: translate3d(6px, 49px, 0px);
+      top: 0px;
+      left: 0px;
+      will-change: transform;
+    }
+  }
+}
+
+//Fix for double nav only for IE10+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .ie-hidden-double-nav {
+    box-sizing: content-box;
+    max-height: 40.5px;
+  }
+  .breadcrumbs {
+    margin-left: 25px !important;
+    margin-top: 2px;
+    img {
+      margin-left: 20px;
+    }
+  }
+  .ie-double-nav {
+    position: absolute;
+    top: 30%;
+    right: 0; // margin-top: 4px;
+  }
+  .nav-link {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .button-collapse-non-fixed,
+  .button-collapse {
+    position: absolute;
+    top: 30% !important;
+  }
+  .hidden-nav-button-collapse {
+    position: absolute;
+  }
+  @media all and (max-width: 599px) {
+    .ie-double-nav {
+      margin-top: -4px;
+    }
+    .ie-hidden-double-nav {
+      .ie-double-nav {
+        margin-top: 0px;
+      }
+    }
+    .button-collapse,
+    .button-collapse-non-fixed {
+      top: 5px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+  @media all and (min-width: 600px) and (max-width: 992px) {
+    .button-collapse-non-fixed {
+      margin-top: -4px !important;
+    }
+    .button-collapse {
+      margin-top: -6px !important;
+    }
+    .ie-double-nav {
+      margin-top: 0 !important;
+    }
+    .hidden-nav-button-collapse i {
+      margin-top: 10px !important;
+    }
+    .breadcrumbs p {
+      margin-top: -8px !important;
+    }
+  }
+  @media all and (min-width: 993px) and (max-width: 1441px) {
+    .button-collapse-non-fixed,
+    .button-collapse {
+      margin-top: -6px !important;
+    }
+    .breadcrumbs>p {
+      margin-top: -2px !important;
+    }
+    .navbar-brand>img {
+      margin-top: -2px;
+    }
+    .breadcrumbs-non-fixed p {
+      margin-top: 2px !important;
+    }
+    .hidden-nav-button-collapse {
+      position: absolute !important;
+      margin-left: 10px !important;
+    }
+  }
+  @media all and (min-width: 1441px) {
+    .hidden-nav-button-collapse {
+      position: absolute !important;
+      margin-left: 10px !important;
+    }
+    .button-collapse-non-fixed {
+      margin-top: -5px;
+    }
+    .breadcrumbs>.navbar-brand {
+      img {
+        margin-top: -2px;
+      }
+    }
+  }
+}
+
+// EDGE
+@supports (-ms-ime-align: auto) {
+  .ie-hidden-double-nav {
+    box-sizing: content-box;
+    max-height: 40.5px;
+  }
+  .breadcrumbs {
+    margin-left: 25px !important;
+    margin-top: 2px;
+    img {
+      margin-left: 20px;
+    }
+  }
+  .ie-double-nav {
+    position: absolute;
+    top: 30%;
+    right: 0; // margin-top: 4px;
+  }
+  .nav-link {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .button-collapse-non-fixed,
+  .button-collapse {
+    position: absolute;
+    top: 30% !important;
+  }
+  .hidden-nav-button-collapse {
+    position: absolute;
+  }
+  @media all and (max-width: 599px) {
+    .ie-double-nav {
+      margin-top: -4px;
+    }
+    .ie-hidden-double-nav {
+      .ie-double-nav {
+        margin-top: 0px;
+      }
+    }
+    .button-collapse,
+    .button-collapse-non-fixed {
+      top: 5px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+  @media all and (min-width: 600px) and (max-width: 992px) {
+    .button-collapse-non-fixed {
+      margin-top: -4px !important;
+    }
+    .button-collapse {
+      margin-top: -6px !important;
+    }
+    .ie-double-nav {
+      margin-top: 0 !important;
+    }
+    .hidden-nav-button-collapse i {
+      margin-top: 10px !important;
+    }
+    .breadcrumbs p {
+      margin-top: -8px !important;
+    }
+  }
+  @media all and (min-width: 993px) and (max-width: 1441px) {
+    .button-collapse-non-fixed,
+    .button-collapse {
+      margin-top: -6px !important;
+    }
+    .breadcrumbs>p {
+      margin-top: -2px !important;
+    }
+    .breadcrumbs > .navbar-brand>img {
+      margin-top: -2px;
+    }
+    .breadcrumbs-non-fixed p {
+      margin-top: 2px !important;
+    }
+    .hidden-nav-button-collapse {
+      position: absolute !important;
+      margin-left: 10px !important;
+    }
+  }
+  @media all and (min-width: 1441px) {
+    .hidden-nav-button-collapse {
+      position: absolute !important;
+      margin-left: 10px !important;
+    }
+
+    .button-collapse-non-fixed {
+      margin-top: -5px;
+    }
+    .breadcrumbs>.navbar-brand {
+      img {
+        margin-top: -2px;
+      }
+    }
+  }
+}

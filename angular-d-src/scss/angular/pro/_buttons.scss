@@ -1,0 +1,49 @@
+// Button tags
+.waves-input-wrapper {
+    display: inline-block;
+}
+
+// Flat button
+.btn {
+    &.btn-flat {
+        color: inherit!important;
+    }
+}
+
+.btn-flat {
+    background: transparent;
+    color: inherit!important;
+    position: relative;
+    padding: 8px 30px;
+    border: none;
+    margin: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    &:focus,
+    &:hover {
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+//Fixed buttons
+.fixed-action-btn {
+    .fixed_collapse{
+        left: 0;
+        right: 0;
+        text-align: center;
+        position: absolute;
+        bottom: 70px;
+        margin: 0;
+    }
+}
+
+.btn {
+    &.btn-floating {
+        position: fixed;
+    }
+}

@@ -1,0 +1,22 @@
+<div class="container-fluid"> 
+  <div class="row">
+    <div class="{{ listGetClass }}">
+      <ul class="nav {{ buttonClass }}" [ngClass]="classMap" (click)="$event.preventDefault()">
+        <li *ngFor="let tabz of tabs;let i = index" [ngClass]="['nav-item', tabz.customClass || '']" [class.active]="tabz.active" [class.disabled]="tabz.disabled" (click)="click($event, i)">
+          <a #tabEl href="javascript:void(0);" class="nav-link waves-light" [class.active]="tabz.active" [class.disabled]="tabz.disabled">
+            <span [mdbNgTransclude]="tabz.headingRef" [innerHTML]="tabz.heading"></span>
+            <span *ngIf="tabz.removable">
+              <span (click)="$event.preventDefault(); removeTab(tabz);" class="glyphicon glyphicon-remove-circle">
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="{{ tabsGetClass }}">
+      <div class="tab-content {{ contentClass }}">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+/***************
+  Input group
+***************/
+.input-group {
+  .input-group-addon {
+    background-color: #e0e0e0;
+    [type="checkbox"] + label {
+      padding-left: 18px;
+      height: 13px;
+    }
+    [type="radio"] + label {
+      padding-left: 24px; 
+      height: 13px;
+    }
+    // Style Placeholders
+    @include placeholder {
+      padding-left: 1rem;
+    }
+  }
+
+
+  .input-group-prepend, .input-group-append {
+    background-color: #e0e0e0;
+    [type="checkbox"] + label {
+      top: 25%;
+      padding-left: 18px;
+      height: 13px;
+    }
+    [type="radio"] + label {
+      top: 25%;
+      padding-left: 24px; 
+      height: 13px;
+    }
+    // Style Placeholders
+    @include placeholder {
+      padding-left: 1rem;
+    }
+  }
+  span {
+    z-index: 10;
+  }
+  .form-control {
+    margin-top: 3px;
+    padding-top: 14px;
+    padding-bottom: 7px;
+    padding-left: 1.2rem;
+        
+  }
+}

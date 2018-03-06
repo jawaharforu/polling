@@ -1,0 +1,41 @@
+<div class="completer-holder md-form" mdbCompleter>
+  
+  <input #mdbInput [attr.id]="inputId.length > 0 ? inputId : null" type="search" class="completer-input form-control mdb-autocomplete" mdbInput [ngClass]="inputClass" 
+    [(ngModel)]="searchStr" (ngModelChange)="onChange($event)" [attr.name]="inputName" [placeholder]="placeholder"
+    [attr.maxlength]="maxChars" [tabindex]="fieldTabindex" [disabled]="disableInput" 
+    [clearSelected]="clearSelected" [clearUnselected]="clearUnselected"
+    [overrideSuggested]="overrideSuggested" [openOnFocus]="openOnFocus" [fillHighlighted]="fillHighlighted" 
+    (blur)="onBlur()" (focus)="onFocus()" (keyup)="onKeyup($event)" (keydown)="onKeydown($event)"
+    autocomplete="off" autocorrect="off" autocapitalize="off" />
+  <label [ngClass]="{'active': focused}">{{ label }}</label>
+  <div class="completer-dropdown-holder"
+    *mdbList="dataService;
+      minSearchLength: minSearchLength;
+      pause: pause;
+      autoMatch: autoMatch;
+      initialValue: initialValue;
+      autoHighlight: autoHighlight;
+      let items = results;
+      let searchActive = searching;
+      let isInitialized = searchInitialized;
+      let isOpen = isOpen;">
+    <div class="completer-dropdown" mdbDropdown *ngIf="isInitialized && isOpen && ((items.length > 0 || displayNoResults) || (searchActive && displaySearching))">
+      <div *ngIf="searchActive && displaySearching" class="completer-searching">{{_textSearching}}</div>
+      <div *ngIf="!searchActive && (!items || items.length === 0)" class="completer-no-results">{{_textNoResults}}</div>
+      <div class="completer-row-wrapper" *ngFor="let item of items; let rowIndex=index">
+        <div class="completer-row" [mdbRow]="rowIndex" [dataItem]="item">
+          <div *ngIf="item.image || item.image === ''" class="completer-image-holder">
+            <img *ngIf="item.image != ''" src="{{item.image}}" class="completer-image" />
+            <div *ngIf="item.image === ''" class="completer-image-default"></div>
+          </div>
+          <div class="completer-item-text" [ngClass]="{'completer-item-text-image': item.image || item.image === '' }">
+            <mdb-completer-list-item class="completer-title" [text]="item.title" [matchClass]="matchClass" [searchStr]="searchStr" [type]="'title'"></mdb-completer-list-item>
+            <mdb-completer-list-item *ngIf="item.description && item.description != ''" class="completer-description" [text]="item.description"
+              [matchClass]="matchClass" [searchStr]="searchStr" [type]="'description'">
+            </mdb-completer-list-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div>
+  <div class="md-form">
+    <label class="active">{{ label }}</label>
+    <input [placeholder]="placeholder" [value]="endHours" type="text" class="form-control timepicker" (click)="openBtnClicked()" [(ngModel)]="endHours">
+  </div>
+  <div class="clockpicker picker" [hidden]="!showClock" [ngClass]="{'picker--opened': showClock, 'darktheme': darktheme}">
+    <div class="picker__holder">
+      <div class="picker__frame">
+        <div class="picker__wrap">
+          <div class="picker__box">
+            <div class="picker__date-display">
+              <div class="clockpicker-display">
+                <div class="clockpicker-display-column">
+                  <span class="clockpicker-span-hours text-primary" [ngClass]="{'text-primary': showHours}" (click)="showHoursClock()">
+                    {{ selectedHours.h }}</span>:<span class="clockpicker-span-minutes" [ngClass]="{'text-primary': !showHours}"
+                      (click)="showMinutesClock()">{{selectedHours.m }}</span>
+                </div>
+                <div class="clockpicker-display-column clockpicker-display-am-pm" *ngIf="twelvehour">
+                  <div class="clockpicker-span-am-pm">{{ selectedHours.ampm }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="picker__calendar-container">
+              <div class="clockpicker-plate" #plate>
+                  <div class="clockpicker-canvas">
+                  <svg class="clockpicker-svg" width="270" height="270" #svg>
+                      <g transform="translate(135,135)" #g>
+                      <line x1="0" y1="0" x2="77.94228634059948" y2="-45.00000000000001" #hand></line>
+                      <circle class="clockpicker-canvas-fg" r="5" cx="95.26279441628824" cy="-55.000000000000014" #fg></circle>
+                      <circle class="clockpicker-canvas-bg" r="20" cx="95.26279441628824" cy="-55.000000000000014" #bg></circle>
+                      <circle class="clockpicker-canvas-bearing" cx="0" cy="0" r="2" #bearing></circle>
+                      </g>
+                  </svg>
+                  </div>
+                  <div class="clockpicker-dial clockpicker-hours" #hoursPlate [ngClass]="{'clockpicker-dial-out': !showHours}" [ngStyle]="{'visibility': !showHours ? 'hidden' : 'visible'}">
+                  <div *ngFor="let tick of hoursTicks" class="clockpicker-tick" style="font-size: 140%;" [ngStyle]="{'left': tick.left+'px', 'top': tick.top+'px'}"
+                      id="{{ tick.hour }}">
+                      {{ tick.hour }}
+                  </div>
+                  </div>
+                  <div class="clockpicker-dial clockpicker-minutes" #minutesPlate [ngClass]="{'clockpicker-dial-out': showHours}" [ngStyle]="{'visibility': showHours ? 'hidden' : 'visible'}">
+                  <div *ngFor="let tick of minutesTicks" class="clockpicker-tick" style="font-size: 120%;" [ngStyle]="{'left': tick.left+'px', 'top': tick.top+'px'}">
+                      {{ tick.min }}
+                  </div>
+                  </div>
+              </div>
+              <div class="clockpicker-am-pm-block" *ngIf="twelvehour">
+                <button type="button" class="btn-floating btn-flat clockpicker-button am-button" [ngClass]="{'active': selectedHours.ampm=='AM'}"
+                  (click)="setAmPm('AM')">
+                  AM
+                </button>
+                <button type="button" class="btn-floating btn-flat clockpicker-button pm-button" [ngClass]="{'active': selectedHours.ampm=='PM'}"
+                  (click)="setAmPm('PM')">
+                  PM
+                </button>
+              </div>
+            </div>
+            <div class="picker__footer">
+              <button type="button" *ngIf="buttonLabel" class="btn-flat clockpicker-button" (click)="closeBtnClicked()">
+                {{buttonLabel}}
+              </button>
+              <button type="button" *ngIf="!buttonLabel" class="btn-flat clockpicker-button" (click)="closeBtnClicked()">
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

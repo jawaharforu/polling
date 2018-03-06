@@ -1,0 +1,1 @@
+https://www.npmjs.com/package/ng2-spinning-preloader

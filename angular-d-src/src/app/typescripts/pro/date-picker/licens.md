@@ -1,0 +1,1 @@
+https://github.com/kekeh/mydatepicker/blob/master/LICENSE

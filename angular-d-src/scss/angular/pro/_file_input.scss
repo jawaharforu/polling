@@ -1,0 +1,68 @@
+.file-field {
+    display: flex;
+    flex-direction: row;
+    .file-path-wrapper {
+        overflow: visible;
+        display: flex;
+        flex-grow: 1;
+        &:after {
+        content: "";
+        clear: both;
+        }
+    }
+    input.file-path {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        outline: none;
+        height: 2.1rem;
+        width: 100%;
+        font-size: 1rem;
+        box-shadow: none;
+        box-sizing: content-box;
+        transition: all .3s;
+    }
+    .btn {
+        position: relative;
+        display: flex;
+        float: none;
+        &:hover {
+        cursor: pointer;
+        } 
+
+        input[type="file"] {
+            height: 100%;
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+    span {
+        cursor: pointer;
+    }
+    input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 1px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        &::-ms-value {
+            display: none;
+        }
+        &::-ms-browse {
+            width: 100%;
+        }
+    }
+}
+
+.btn-file {
+    padding-top: 1px;
+}

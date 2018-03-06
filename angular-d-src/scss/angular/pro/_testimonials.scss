@@ -1,0 +1,88 @@
+.testimonial-carousel {
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        display: none;
+    }
+
+    .carousel-control {
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.6);
+        &.left {
+            left: 6%;
+            width: auto;
+        }
+        &.right {
+            right: 6%;
+            width: auto;
+        }
+    }
+    
+    .carousel-indicators {
+        display: none;
+    }
+
+    &.carousel-multi-item {
+        .carousel-indicators {
+            display: flex;
+        }
+    }
+
+    .carousel-control-next, .carousel-control-prev {
+        opacity: 1;
+        height: 120px;
+        &:hover {
+            &::before {
+                color: #000;
+                transition: 0.4s;
+            }
+        }
+    }
+
+    .carousel-control-prev {
+        -webkit-transform: translateY(-35%);
+        transform: translateY(-35%);
+        left: 6%;
+        width: auto;
+        top: 50%;
+        display: flex;
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.6) !important;
+        &::before {
+            content: '\2039';
+            font-size: 5rem;
+            color: rgba(0, 0, 0, 0.6);
+            transition: 0.4s;
+        }
+    }
+
+    .carousel-control-next {
+        -webkit-transform: translateY(-35%);
+        transform: translateY(-35%);
+        right: 6%;
+        width: auto;
+        top: 50%;
+        display: flex;
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.6) !important;
+        &::before {
+            content: '\203a';
+            font-size: 5rem;
+            color: rgba(0, 0, 0, 0.6);
+            transition: 0.4s;
+        }
+    }
+}
+
+
+.carousel-multi-item.testimonial-carousel .controls-top .btn-floating {
+    background: #01579b;
+    width: 36.15px;
+    height: 36.15px;
+    i {
+        font-size: .96154rem;
+        line-height: 36.15px;
+    }
+}
+
+.carousel-multi-item.testimonial-carousel .carousel-indicators li {
+    background-color: #01579b;
+}

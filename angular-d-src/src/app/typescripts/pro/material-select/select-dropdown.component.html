@@ -1,0 +1,34 @@
+<div class="dropdown-content" [ngStyle]="{'top.px': top, 'left.px': left, 'width.px': width}">
+
+  <div class="filter" *ngIf="!multiple && filterEnabled">
+    <input
+    #filterInput
+    autocomplete="on"
+    [placeholder]="placeholder"
+    (click)="onSingleFilterClick($event)"
+    (input)="onSingleFilterInput($event)"
+    (keydown)="onSingleFilterKeydown($event)">
+  </div>
+
+  <div class="options" #optionsList>
+    <ul class="select-dropdown" [ngClass]="{'multiple-select-dropdown': multiple}"
+    (wheel)="onOptionsWheel($event)">
+      <li *ngFor="let option of optionList.filtered"
+        [ngClass]="{'active': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'optgroup': option.group}"
+        [ngStyle]="getOptionStyle(option)"
+        (click)="onOptionClick(option)"
+        (mouseover)="onOptionMouseover(option)">
+        <img class="rounded-circle" [src]="option.icon" *ngIf="option.icon !== ''">
+        <span class="select-option" *ngIf="!multiple">{{option.label}}</span>
+        <span class="filtrable" *ngIf="multiple">
+          <input type="checkbox" [checked]="option.selected">
+          <label></label>
+          {{option.label}}
+        </span>
+      </li>
+      <li *ngIf="!optionList.hasShown" class="message disabled">
+        <span>{{notFoundMsg}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

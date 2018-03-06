@@ -1,0 +1,65 @@
+#toast-container > :hover {
+	transition: .45s;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	opacity: 1 !important;
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	filter: alpha(opacity=100);
+	cursor: pointer;
+}
+
+
+#toast-container > mdb-toast-component {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin: 0 0 6px;
+	padding: 15px 15px 15px 50px;
+	width: 300px;
+	background-position: 15px center;
+	background-repeat: no-repeat;
+	@extend .z-depth-1;
+	@extend .white-text;
+	opacity: 0.8;
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	filter: alpha(opacity=80);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	color: #FFFFFF !important;
+}
+#toast-container.toast-top-center > mdb-toast-component,
+#toast-container.toast-bottom-center > mdb-toast-component {
+	width: 300px;
+	margin: auto;
+}
+#toast-container.toast-top-full-width > mdb-toast-component,
+#toast-container.toast-bottom-full-width > mdb-toast-component {
+	width: 96%;
+	margin: auto;
+}
+
+/*Responsive Design*/
+@media all and (max-width: 240px) {
+	#toast-container > mdb-toast-component { 
+		padding: 8px 8px 8px 50px;
+		width: 11em;
+	}
+	#toast-container .toast-close-button {
+		right: -0.2em;
+		top: -0.2em;
+	}
+}
+@media all and (min-width: 241px) and (max-width: 480px) {
+	#toast-container > mdb-toast-component {
+		padding: 8px 8px 8px 50px;
+		width: 18em;
+	}
+	#toast-container .toast-close-button {
+		right: -0.2em;
+		top: -0.2em;
+	}
+}
+@media all and (min-width: 481px) and (max-width: 768px) {
+	#toast-container > mdb-toast-component {
+		padding: 15px 15px 15px 50px;
+		width: 25em;
+	}
+}

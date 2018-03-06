@@ -1,0 +1,85 @@
+<!-- Line 27: Deleted (focus)="onFocusInput($event)" for better use in Firefox. If other strange problems will occur, please paste it in line 27. -->
+<div class="mydp picker" [ngClass]="{'picker--opened': showSelector}" [ngStyle]="{'width': opts.width}">
+  <div class="md-form">
+    <label *ngIf="label.length > 0" 
+        [ngClass]="{
+          'active': checkActive(),
+          'disabled': opts.componentDisabled
+        }">{{ label }}</label>
+    <input 
+      type="text" 
+      class="form-control mydp-date" 
+      [attr.aria-label]="opts.ariaLabelInputField" 
+      (click)="openBtnClicked()" 
+      [attr.maxlength]="opts.dateFormat.length" 
+      [ngClass]="{
+        'selectiondisabled': opts.componentDisabled,
+        'disabled': opts.componentDisabled
+      }"
+      placeholder="{{ placeholder }}" 
+      [ngModel]="selectionDayTxt" 
+      (ngModelChange)="onUserDateInput($event)" 
+      [value]="selectionDayTxt" 
+      [ngStyle]="{
+        'height': opts.height, 
+        'font-size': opts.selectionTxtFontSize
+      }"
+      
+      (blur)="onBlurInput($event)" 
+      [disabled]="opts.componentDisabled" 
+      autocomplete="off">
+  </div>
+<div class="selector picker__holder selectorarrow selectorarrowleft selectorarrowright" #divFocus [ngClass]="{'alignselectorright': opts.alignSelectorRight}" tabindex="0">
+  <div class="picker__frame picker__box">
+    <div class="picker__header">
+      <div class="picker__date-display">
+        <div class="picker__weekday-display">
+          {{ weekText(getWeekday(tmp)) }}
+        </div>
+        <div class="picker__month-display">
+          <div>{{ monthText(tmp.month) }}</div>
+        </div>
+        <div class="picker__day-display">
+          <div>{{ tmp.day }}</div>
+        </div>
+        <div class="picker__year-display">
+          <div>{{ tmp.year }}</div>
+        </div>
+      </div>
+      <select class="picker__select--year" [(ngModel)]="visibleMonth.year" (ngModelChange)="onUserYearInput($event)" role="menu" aria-label="Year selector">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+      <select class="picker__select--month" [(ngModel)]="visibleMonth.monthTxt" (ngModelChange)="onUserMonthInput($event)" role="menu" aria-label="Month selector">
+        <option *ngFor="let month of months" [value]="month.short">{{ month.label }}</option>
+      </select>
+      <button class="picker__nav--prev" data-nav="-1" type="button" aria-controls="date-picker-example_table" title="Previous month" (click)="prevMonth()" [disabled]="prevMonthDisabled" [ngClass]="{'headerbtnenabled': !prevMonthDisabled, 'headerbtndisabled': prevMonthDisabled}"></button>
+      <button class="picker__nav--next" data-nav="1" type="button" aria-controls="date-picker-example_table" title="Next month" (click)="nextMonth()" [disabled]="nextMonthDisabled" [ngClass]="{'headerbtnenabled': !nextMonthDisabled, 'headerbtndisabled': nextMonthDisabled}"></button>
+    </div>
+    <table class="picker__table">
+      <thead><tr><th class="picker__weekday weekdaytitleweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">#</th><th class="picker__weekday" scope="col" *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let w of dates">
+          <td class="picker__day daycellweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">{{w.weekNbr}}</td>
+          <td class="picker__day" *ngFor="let d of w.week" [ngClass]="{'picker__day--infocus':d.cmo===currMonthId&&!d.disabled, 'disabled': d.disabled, 'tablesingleday': d.cmo===currMonthId&&!d.disabled}">
+            <div *ngIf="d.markedDate.marked" class="markdate" [ngStyle]="{'background-color': d.markedDate.color}"></div>
+            <div class="picker__day" [ngClass]="{'picker__day--infocus':d.cmo===currMonthId,'picker__day--outfocus': (d.cmo===nextMonthId || d.cmo===prevMonthId), 'picker__day--today':d.currDay&&opts.markCurrentDay, 'picker__day--selected picker__day--highlighted':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===currMonthId}" (click)="!d.disabled&&cellClicked(d);$event.stopPropagation()" (keydown)="cellKeyDown($event, d)" tabindex="0">
+              {{d.dateObj.day}}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="picker__footer">
+      <button type="button"  *ngIf="opts.showTodayBtn"  class="picker__button--today" (click)="todayClicked()" role="button" [attr.aria-label]="opts.todayBtnTxt">
+        {{opts.todayBtnTxt}}
+      </button>
+      <button type="button" *ngIf="opts.showClearDateBtn" class="picker__button--clear" (click)="removeBtnClicked()" role="button" [attr.aria-label]="opts.clearBtnTxt">
+        {{opts.clearBtnTxt}}
+      </button>
+      <button type="button" [ngClass]="{'ml-auto': !opts.showTodayBtn}" class="picker__button--close" (click)="showSelector = false; removeInlineStyle();" role="button" [attr.aria-label]="opts.closeBtnTxt">
+        {{opts.closeBtnTxt}}
+      </button>
+    </div>
+  </div>
+</div>
+</div>

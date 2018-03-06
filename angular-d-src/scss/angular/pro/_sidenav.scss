@@ -1,0 +1,830 @@
+#sidenav-overlay {
+    transition: 0.5s;
+}
+
+.side-nav {
+    transition: 0.5s;
+    background-color: #2c2f34;
+
+    .sidenav-bg {
+        position: fixed;
+    }
+
+    &.side-nav-light {
+        background-color: #e5e5e5;
+        .collapsible .card .card-header a h5 {
+            color: #555;
+        }
+        .collapsible .card .card-header a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .collapsible .card.active .card-header a {
+            h5 {
+                color: #4285F4;
+                i {
+                    color: #4285f4;
+                }
+            }
+            background-color: transparent;
+        }
+        .collapsible .card-body li a {
+            color: #555;
+            background-color: rgba(0, 0, 0, .1);
+            &:hover { 
+                background-color: rgba(0,0,0,.15);
+            }
+        }
+        a {
+            color: #555;
+            font-weight: 400;
+            .fa {
+                color: #555;
+            }
+        }
+        input[type=text] {
+            border-bottom-color: rgba(153,153,153,.3);
+            color: #555!important;
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: #555!important;;
+            }
+            &::-moz-placeholder { /* Firefox 19+ */
+                color: #555!important;;
+            }
+            &:-ms-input-placeholder { /* IE 10+ */
+                color: #555!important;;
+            }
+            &:-moz-placeholder { /* Firefox 18- */
+                color: #555!important;;
+            }
+        }
+    }
+    
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+    &::-webkit-scrollbar-button {
+        &:start:decrement, &:end:increment {
+            display: block;
+            height: 0;
+            background-color: transparent;
+        }
+    }
+    &::-webkit-scrollbar-track-piece {
+        background-color: transparent;
+        border-radius: 0;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:vertical {
+        height: 50px;
+        background-color: #999;
+        border-radius: 4px;
+        }
+
+    
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #4285f4;
+        box-shadow: 0 1px 0 0 #4285f4;
+    }
+
+    .collapsible {
+        .no-collase {
+            .rotate-icon {
+                display: none;
+            }
+        }
+        .card {
+            background-color: transparent;
+            border-bottom: 0 !important;
+            .card-header {
+                padding: 0 !important;
+                a {
+                    transition: all 0.3s;
+                    height: 40px;
+                    line-height: 40px;
+                    border-radius: 2px;
+                    padding: 0;
+                    &:hover {
+                        background-color: rgba(255,255,255,.15);
+                    }
+                    h5 {
+                        padding-left: 20px;
+                        font-size: 0.8rem;
+                        line-height: 40px;
+                        font-weight: 300;
+                        position: relative;
+                        color: #fff;
+                    }
+                    .fa {
+                        font-size: .8rem;
+                        margin-right: 13px;
+                        padding: 0;
+                    }
+                    .rotate-icon {
+                        top: 13px;
+                        margin-right: 20px;
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        background-color: rgba(255,255,255,.15);
+                        h5 {
+                            font-weight: 300;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            padding: 0 !important;
+            li {
+                a {
+                    background-color: rgba(0, 0, 0, .15);
+                    padding-left: 30px;
+                    font-size: 0.8rem;
+                    line-height: 32px;
+                    height: 32px;
+                    padding-left: 47px;
+                    font-weight: 300;
+                    color: #fff;
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+                &:first-of-type {
+                    border-top: 0 !important;
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}
+
+.white-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #4285f4;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #424242;
+                    }
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.05); 
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #4285F4;
+                            .fa {
+                                color: #4285F4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #424242;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #4285F4;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.black-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #2AD1A3;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.05); 
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #2AD1A3;
+                            .fa {
+                                color: #2AD1A3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #2AD1A3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cyan-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #ffa742;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #ffa742;
+        box-shadow: 0 1px 0 0 #ffa742;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(29,65,82,.8); 
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(29,65,82,.8); 
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #ffa742;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mdb-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #33b5e5;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #33b5e5;
+        box-shadow: 0 1px 0 0 #33b5e5;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(72,198,255,.8);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(72,198,255,.8); 
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #33b5e5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.deep-purple-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #d0637c;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #d0637c;
+        box-shadow: 0 1px 0 0 #d0637c;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(176,139,240,.5);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(176,139,240,.5); 
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #d0637c;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navy-blue-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #40c6c6;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #40c6c6;
+        box-shadow: 0 1px 0 0 #40c6c6;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(37,207,207,.8);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(37,207,207,.8);
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #40c6c6;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pink-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #ffb0e6;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #ffb0e6;
+        box-shadow: 0 1px 0 0 #ffb0e6;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(0,0,0,.4);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(0,0,0,.4);
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #ffb0e6;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.grey-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #afdffc;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #afdffc;
+        box-shadow: 0 1px 0 0 #afdffc;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(0,0,0,.4);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(0,0,0,.4);
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #afdffc;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.indigo-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #ff89ac;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #ff89ac;
+        box-shadow: 0 1px 0 0 #ff89ac;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(250,80,121,.8);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(250,80,121,.8);
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #ff89ac;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.light-blue-skin .side-nav {
+    form.search-form > div {
+        overflow-x: hidden;
+    }
+    .sidenav-bg {
+        position: fixed;
+    }
+    .social {
+        a {
+            .fa {
+                transition: 0.3s;
+            }
+            &:hover {
+                .fa {
+                    color: #aadeff;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #aadeff;
+        box-shadow: 0 1px 0 0 #aadeff;
+    }
+
+    .collapsible {
+        .card {
+            .card-header {
+                a {
+                    h5 {
+                        color: #fff;
+                    }
+                    &:hover {
+                        background-color: rgba(29,54,86,.6);
+                    }
+                }
+            }
+            &.active {
+                .card-header {
+                    a {
+                        h5 {
+                            color: #fff;
+                            background-color: rgba(29,54,86,.6);
+                            .fa {
+                                color: #fff;
+                            }
+                        }
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body {
+            li {
+                a {
+                    color: #fff;
+                    background-color: rgba(0,0,0,.15);
+                    &:hover {
+                        color: #aadeff;
+                    }
+                }
+            }
+        }
+    }
+}

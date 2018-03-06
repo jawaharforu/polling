@@ -1,0 +1,56 @@
+// ACCORDION
+.accordion {
+    .sb-item-body {
+        transition: 0.5s;
+        overflow: hidden;
+    }
+    .card {
+        border-bottom: 1px solid #eee;
+        box-shadow: none;
+        .card-header {
+            color: #0275d8;
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border-bottom: 0;
+            a {
+                .rotate-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .fa-angle-down {
+            float: right;
+        }
+        .card-body {
+            padding-top: .25rem;
+        }
+
+        &.is-collapsed {
+            .card-header {
+               a {
+                   .rotate-icon {
+                       transform: rotate(0deg);
+                   }
+               }
+            }
+        }
+    }
+}
+
+// Collapsible body
+.collapsible-body {
+    display: none;
+}
+.card {
+    position: relative;
+    .card-body {
+        -webkit-box-flex: 1;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+}
+.fa-angle-down.rotate-icon {
+    transition: all 150ms ease-in 0s;
+}
+
+

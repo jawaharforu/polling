@@ -1,0 +1,58 @@
+// General
+.nav-tabs {
+  overflow-y: hidden;
+  .nav-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    margin-bottom : 0;
+    a {
+      width:100%;
+    }
+  }
+}
+
+
+// Vertical Tab
+mdb-tabset {
+  .white {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 4px 15px 0 rgba(0, 0, 0, 0) !important;
+    li {
+      margin: 0 1em !important;
+      .nav-link.active {
+        transition: all 0.4s !important;
+      }
+      .nav-link {
+        color: #666;
+        &:hover {
+          background-color: $rgba-grey-light;
+        }
+      }
+    }
+    .active {
+      color: #fff !important;
+      @extend .z-depth-1;
+    }
+    .active:hover {
+      @extend .z-depth-1-half;
+    }  
+  }
+  .margin li {
+    margin: 0.5em !important;
+  }
+}
+
+// Classic Tab
+
+.classic-tabs {
+    overflow-y: hidden;
+    .nav.classic-tabs {
+        margin: 0 5px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .tab-content {
+        margin: 0 5px 5px 5px;
+        padding-top: 0;
+    }
+}

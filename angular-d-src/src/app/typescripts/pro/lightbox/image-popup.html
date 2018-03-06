@@ -1,0 +1,30 @@
+<div class="ng-gallery mdb-lightbox {{ type }}" *ngIf="showRepeat"> 
+  <figure class="col-md-4" *ngFor ="let i of modalImages; let index = index">
+    <img src="{{ !i.thumb ? i.img : i.thumb }}" class="ng-thumb" (click)="openGallery(index)" alt="Image {{ index + 1 }}" />
+  </figure>
+</div>
+<div  tabindex="0" class="ng-overlay" [class.hide_lightbox]="opened == false">
+  <div class="top-bar" style='z-index: 100000'>
+    <span class="info-text">{{ currentImageIndex + 1 }}/{{ modalImages.length }}</span>    
+    <a class="close-popup" (click)="closeGallery()" (click)="toggleRestart()"></a>
+    <a *ngIf="!is_iPhone_or_iPod" class="fullscreen-toogle" [class.toggled]='fullscreen' (click)="fullScreen()"></a>
+    <a class="zoom-toogle" [class.zoom]='zoom' (click)="toggleZoomed()" *ngIf="!isMobile"></a>
+  </div>
+  <div class="ng-gallery-content">
+    <!--<img *ngIf="!loading" src="{{imgSrc}}" (mousedown)="checkEvent($event)" (mouseup)="setZoom($event)" [class.zoom]='zoom' [class.smooth]='smooth' class="effect" (swipeleft)="swipe($event, $event.type)" (swiperight)="swipe($event, $event.type)"/>-->
+    <img *ngIf="!loading" src="{{imgSrc}}" [class.smooth]='smooth' class="effect" (swipeleft)="swipe($event, $event.type)" (swiperight)="swipe($event, $event.type)" (click)="toggleZoomed()" [@zoomState]="zoomed" [@restartState]="restart"/>
+
+    <div class="uil-ring-css" *ngIf="loading">
+      <div></div>
+    </div>  
+    <a class="nav-left" *ngIf="modalImages.length >1 && !isMobile" (click)="prevImage()" >
+      <span></span>
+    </a>
+    <a class="nav-right" *ngIf="modalImages.length >1 && !isMobile" (click)="nextImage()">
+      <span></span>
+    </a>
+  </div>
+</div>
+<div *ngIf="openModalWindow">
+  <mdb-image-modal [modalImages]="images" [imagePointer]="imagePointer" (cancelEvent)="cancelImageModel()"></mdb-image-modal>
+</div>

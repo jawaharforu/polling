@@ -1,0 +1,12 @@
+doublenavbar {
+    .side-nav, #sidenav-overlay {
+        transition: 0.2s;
+    }
+}
+
+
+doublenavbar {
+    links, navlinks {
+        display: flex;
+    }
+}

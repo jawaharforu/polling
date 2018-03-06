@@ -1,0 +1,40 @@
+/***********
+File Input
+***********/
+
+.file-field {
+  position: relative;
+  .file-path-wrapper {
+    overflow: hidden;
+    padding-left: 10px;
+    height: 2.5rem;
+  }
+  input.file-path {
+    width: 100%;
+    height: 2.1rem;
+  }
+  .btn {
+    float: left;
+  }
+  span {
+    cursor: pointer;
+  }
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+}
+
+.btn-file {
+  padding-top: 1px;
+}

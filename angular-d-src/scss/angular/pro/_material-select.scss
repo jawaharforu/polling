@@ -1,0 +1,398 @@
+/*ng-select*/
+mdb-select {
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  * {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    outline: none;
+  }
+  > div {
+    border: transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+    &.disabled {
+      background-color: #eee;
+      color: #aaa;
+      cursor: default;
+      pointer-events: none;
+      background-color: transparent;
+      > div.single > div {
+        &.placeholder, &.clear, &.toggle {
+          color: rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+    > div {
+      &.single {
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: 0;
+        line-height: 2rem;
+        width: 100%;
+        font-size: 1rem;
+        margin: 0 0;
+        padding: 5px 0;
+        display: block;
+        user-select: none;
+        > div {
+          &.value {
+            flex: 1;
+            line-height: 2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #292b2c;
+            padding: 0;
+            padding-bottom: 5px;
+          }
+          &.placeholder {
+            flex: 1;
+            line-height: 2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #292b2c;
+            padding: 0;
+            color: black;
+            padding-bottom: 5px;
+          }
+          &.clear, &.toggle {
+            float: right;
+            color: black;
+            line-height: 2rem;
+            text-align: center;
+            width: 30px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+          }
+          &.clear:hover, &.toggle:hover {
+            background-color: #ececec;
+          }
+          &.clear, &.toggle:hover {
+            background-color: transparent;
+          }
+          &.clear {
+            font-size: 18px;
+          }
+          &.toggle {
+            font-size: 14px;
+            z-index: -1;
+          }
+        }
+      }
+      &.multiple {
+        display: flex;
+        flex-flow: row wrap;
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: 0;
+        line-height: 2rem;
+        width: 100%;
+        font-size: 1rem;
+        margin: 0 0;
+        padding: 5px 0 7px 0;
+        display: block;
+        user-select: none;
+        min-height: 30px;
+        > div.toggle {
+          float: right;
+          color: black;
+          // line-height: 30px;
+          text-align: center;
+          width: 30px;
+          position: absolute;
+          right: 0;
+          top: 0px;
+          font-size: 14px;
+        }
+        > div.option {
+          cursor: default;
+          display: inline-block;
+          flex-shrink: 0;
+          line-height: 2rem;
+          span.deselect-option {
+            color: #aaa;
+            cursor: pointer;
+            height: 20px;
+            line-height: 2rem;
+            background-color: transparent;
+            border: 0;
+            border-radius: 0;
+            color: #292b2c;
+            font-size: 1rem;
+            margin: 0;
+            padding: 0;
+            &:hover {
+              color: #555;
+            }
+          }
+          &:first-child span {
+            display: none;
+          }
+        }
+        // display: flex;
+        input {
+          background-color: transparent;
+          border: none;
+          height: 30px;
+          line-height: 2rem;
+          padding: 0;
+          &:focus {
+            outline: none;
+          }
+        }
+      } 
+    }
+  }
+  label {
+    color: rgba(0, 0, 0, 0.38);
+    display: block;
+    font-size: .8rem;
+    padding: 4px 0;
+  }
+  mdb-select-dropdown {
+    box-sizing: border-box;
+    font-family: Sans-Serif;
+    color: #4285f4;
+    font-size: 19.2px;
+    * {
+      box-sizing: border-box;
+      font-family: Sans-Serif;
+    }
+    > div {
+      background-color: #fff;
+      outline: transparent;
+      border: 0;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      border-top: none;
+      box-sizing: border-box;
+      position: absolute;
+      z-index: 1;
+      .filter {
+        padding: 3px;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        input {
+          outline: 1px solid transparent;
+          border: 1px solid transparent;
+          box-sizing: border-box;
+          padding: 4px;
+          width: 100%;
+          &:focus {
+            outline: 1px solid transparent;
+            border: 1px solid transparent;
+          }
+        }
+      }
+      .options {
+        max-height: 185px;
+        overflow-y: auto;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            padding: 4px 8px;
+            cursor: pointer;
+            user-select: none;
+          }
+          .selected {
+            background-color: #eee;
+          }
+          .highlighted {
+            background-color: #eee;
+            color: #4285F4;
+          }
+          .disabled {
+            background-color: #fff;
+            color: #9e9e9e;
+            cursor: default;
+            pointer-events: none;
+          }
+        }
+        &::-webkit-scrollbar {
+          width: 4px;
+          height: 4px;
+        }
+        &::-webkit-scrollbar-button {
+          &:start:decrement, &:end:increment {
+            display: block;
+            height: 0;
+            background-color: transparent;
+          }
+        }
+        &::-webkit-scrollbar-track-piece {
+          background-color: transparent;
+          border-radius: 0;
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:vertical {
+          height: 50px;
+          background-color: #999;
+          border-radius: 4px;
+        }
+      }
+    }
+    .dropdown-content {
+      background-color: #fff;
+      margin: 0;
+      width: 100%;
+      display: block;
+      min-width: 100px;
+      max-height: 650px;
+      overflow-y: hidden;
+      opacity: 1;
+      position: absolute;
+      z-index: 999;
+      will-change: width,height;
+      li > {
+        a, span {
+          color: #4285F4;
+        }
+      }
+      li {
+        &.disabled {
+          color: rgba(0, 0, 0, 0.3);
+          background-color: transparent !important;
+          > span {
+            color: rgba(0, 0, 0, 0.3);
+            background-color: transparent !important;
+          }
+        }
+        &.optgroup {
+          color: rgba(0, 0, 0, 0.3);
+          background-color: transparent !important;
+          border-top: 1px solid #eee;
+          &:first-child {
+            border-top: 0;
+          }
+          > span {
+            color: rgba(0, 0, 0, 0.4) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    font-size: 0.9rem;
+}
+
+
+.dropdown-primary.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $primary-color;
+        color: #fff;
+    }
+}
+
+.dropdown-danger.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $danger-color-dark;
+        color: #fff;
+    }
+}
+.dropdown-default.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $default-color;
+        color: #fff;
+    }
+}
+.dropdown-secondary.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $secondary-color;
+        color: #fff;
+    }
+}
+.dropdown-success.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $success-color;
+        color: #fff;
+    }
+}
+.dropdown-info.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $info-color;
+        color: #fff;
+    }
+}
+.dropdown-warning.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $warning-color;
+        color: #fff;
+    }
+}
+.dropdown-ins.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $unique-color;
+        color: #fff;
+    }
+}
+.dropdown-dark.colorful-select .dropdown-content li {
+    &.active, &.selected {
+        background-color: transparent;
+    }
+    &.active span, &.selected span {
+        background-color: $elegant-color;
+        color: #fff;
+    }
+}
+
+mdb-select+label {
+    position: absolute;
+    top: -14px;
+    font-size: .8rem;
+    left: 15px;
+}
+
+//select animation
+mdb-select{
+  mdb-select-dropdown{ 
+    display: block;
+    transition: 0.55s;
+    opacity: 0;
+  }
+
+  .fadeInSelect { 
+      opacity: 1;
+  }
+}  

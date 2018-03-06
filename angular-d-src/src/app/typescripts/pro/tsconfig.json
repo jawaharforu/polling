@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+  "outDir": "../../../../dist/angular-bootstrap-md/pro",
+  "target": "es5",
+  "module": "es2015",
+  "moduleResolution": "node",
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true,
+  "removeComments": true,
+  "sourceMap": true,
+  "inlineSources": true,
+  "noEmitHelpers": false,
+  "noImplicitAny": true,
+  "declaration": true,
+  "skipLibCheck": false,
+  "stripInternal": true,
+  "allowSyntheticDefaultImports": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "noImplicitReturns": false,
+  "listFiles": false,
+  "noLib": false,
+  "lib": ["dom", "es6"]
+  },
+  "exclude": [
+  "node_modules"
+  ],
+  "files": [
+  "./index.ts"
+  ],
+  "angularCompilerOptions": {
+  "genDir": "../temp/factories",
+  "strictMetadataEmit": false,
+  "skipTemplateCodegen": true
+  }
+}

@@ -1,0 +1,107 @@
+.picker__select--month, .picker__select--year {
+    display: inline-block !important;
+    height: 2em;
+    padding: 0;
+    margin-left: .25em;
+    margin-right: .25em;
+}
+
+.picker {
+  z-index: 99999;
+  font-size: 15px;
+  text-align: left;
+  line-height: 1.2;
+  color: #000000;
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.picker__box .picker__table td.picker__day div.picker__day {
+    border-radius: 50%;
+}
+
+.clockpicker-am-pm-block {
+    button {
+        color: #fff !important;
+    }
+}
+
+.mydp {
+  line-height: 1.1;
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+}
+
+.picker__nav--prev,
+.picker__nav--next {
+    position: absolute;
+    padding: .5em 1.55em;
+    width: 1em;
+    height: 1em;
+    box-sizing: content-box;
+    bottom: 0;
+    border: 0;
+    background: transparent;
+}
+
+.picker__nav--prev {
+    left: -1em;
+    padding-right: 1.25em;
+}
+
+.picker__nav--next {
+    right: -1em;
+    padding-left: 1.25em;
+}
+
+.picker__header {
+    overflow: hidden;
+}
+
+.picker__box .picker__table {
+    td.picker__day {
+        padding: 0;
+        position: relative;
+        &.disabled {
+            color: #ccc;
+            background: #eee;
+        }
+        div.picker__day {
+            color: #595959;
+            letter-spacing: -.3;
+            padding: .75rem 0;
+            font-weight: 400;
+            border: 1px solid transparent;
+            outline: none;
+            transition: 0.3s;
+            &:hover {
+                cursor: pointer;
+                color: #000;
+                font-weight: 500;
+            }
+
+            &.picker__day--today {
+                color: #4285f4;
+            }
+        }
+    }
+}
+
+.mydp .markdate {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
+}
+
+@media (max-height: 35.875em) {
+    .picker--opened .picker__holder {
+        overflow-y: scroll;
+    }
+}

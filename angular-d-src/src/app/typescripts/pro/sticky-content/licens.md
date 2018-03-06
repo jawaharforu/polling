@@ -1,0 +1,1 @@
+https://github.com/ng2-ui/sticky/blob/master/LICENSE.md
