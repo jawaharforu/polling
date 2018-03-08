@@ -18,6 +18,7 @@ router.post('/category', (req, res, next) => {
     let newCategory = new Category({
         name: req.body.name 
     }); 
+    
     Category.addCategory(newCategory, (err, category) => {
         if(err){
             res.json({success: false, msg: 'Failed to add Category'});

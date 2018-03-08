@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,13 @@ import { ManageCategoryComponent } from './manage-category/manage-category.compo
     ToastModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MDBBootstrapModulePro.forRoot(),
+    FlashMessagesModule.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader],
+  providers: [MDBSpinningPreloader, CategoryService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })
