@@ -16,6 +16,10 @@ const PollSchema = mongoose.Schema({
         type: Boolean,
         require: true
     },
+    trending: {
+        type: Boolean,
+        require: true
+    },
     categoryid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',

@@ -21,6 +21,7 @@ const app = express();
 
 const users = require('./routes/users');
 const categorty = require('./routes/categories');
+const poll = require('./routes/polls');
  
 // Poer number
 const port = 3000; 
@@ -41,6 +42,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/categories', categorty);
+app.use('/api/polls', poll);
 
 // Index router
 app.get('/', (req, res) => {

@@ -16,7 +16,8 @@ router.get('/categories', (req, res, next) => {
 // Add category
 router.post('/category', (req, res, next) => {
     let newCategory = new Category({
-        name: req.body.name 
+        name: req.body.name,
+        status: false
     }); 
     
     Category.addCategory(newCategory, (err, category) => {
@@ -37,20 +38,23 @@ router.delete('/category/:categoryid', (req, res, next) => {
                 if(err) throw err;
                 res.json({success: true, msg: 'Category deleted successfully', data: category});
             });
-            
         }
     });
 });
 // Update category
 router.put('/category/:categoryid', (req, res, next) => {
     let updatedCategory = {
-        name: req.body.name
+        name: req.body.name,
+        status: req.body.status,
     }; 
     Category.updateCategory(req.params.categoryid, updatedCategory, (err, result) => {
         if(err){
             res.json({success: false, msg: 'Failed to Update Category'});
         }else{
-            res.json({success: true, msg: 'Category Updated successfully'});
+            Category.find(function(err, category){
+                if(err) throw err;
+                res.json({success: true, msg: 'Category Updated successfully', data: category});
+            });
         }
     });
 });

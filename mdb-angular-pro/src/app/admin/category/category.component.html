@@ -1,3 +1,81 @@
-<p>
-  category works!
-</p>
+<div class="card mt-5">
+    <div class="card-body">
+            <form (submit)="addCategory()">
+                <p class="h5 text-center mb-4">Add New Category</p>
+                
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" [(ngModel)]="categoty" name="categoty" id="orangeForm-name" class="form-control" mdbActive>
+                    <label for="orangeForm-name">Category Name</label>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success waves-light" mdbRippleRadius>Create</button>
+                </div>               
+            </form>
+    </div>
+</div>
+<div class="card mt-5 mb-5">
+    <div class="card-body">
+
+        <!--Table-->
+        <table class="table table-hover table-responsive-md table-fixed">
+
+            <!--Table head-->
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+                <tr *ngFor="let c of categotylist; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{c.name}}</td>
+                    <td><div class="form-group">
+                        <input type="checkbox" class="filled-in" id="checkbox{{c._id}}" [checked]="c.status" (change)="updateStatus($event.target.checked,c)">
+                        <label for="checkbox{{c._id}}"></label>
+                    </div></td> 
+                    <td>
+                        <button type="button" (click)="showModal(c)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
+                        &nbsp;
+                        <button type="button" (click)="deleteCategory(c._id)" class="btn btn-danger waves-light" mdbRippleRadius>Delete <i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                </tr>
+            </tbody>
+            <!--Table body-->
+
+        </table>
+        <!--Table-->
+    </div>
+</div>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess">
+  <div class="modal-dialog modal-notify modal-info">
+      <div class="modal-content">
+          <div class="modal-header">
+              <p class="heading lead">Modal Success</p>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                  <span aria-hidden="true" class="white-text">×</span>
+              </button>
+          </div>
+          <form>
+          <div class="modal-body">
+              <div class="md-form">
+                  <i class="fa fa-user prefix grey-text"></i>
+                  <input type="text" [(ngModel)]="updatecategoty" name="updatecategoty" id="orangeForm-name" class="form-control" mdbActive>
+                  <input type="hidden" [(ngModel)]="updatecategotyid" name = "updatecategotyid" />
+                  <label for="orangeForm-name">Category Name</label>
+              </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <a type="button" (click)="updateCategory(updatecategotyid)" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
+            <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

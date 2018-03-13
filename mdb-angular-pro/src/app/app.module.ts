@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutes } from './app.routing';
 import { AdminComponent } from './admin/admin.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { CategoryService } from './services/category.service';
+import { PollCreateComponent } from './admin/poll-create/poll-create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     CategoryComponent,
     HomeComponent,
     AdminComponent,
-    NavBarComponent
+    NavBarComponent,
+    PollCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -35,12 +39,13 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ToastModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MDBBootstrapModulePro.forRoot(),
+    FlashMessagesModule.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader],
+  providers: [MDBSpinningPreloader, CategoryService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

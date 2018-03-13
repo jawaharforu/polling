@@ -8,6 +8,9 @@ const CategorySchema = mongoose.Schema({
         type: String,
         require: true
     },
+    status: {
+        type: Boolean
+    },
     createdon: {
         type: Date,
         default: Date.now
@@ -30,7 +33,8 @@ module.exports.getCategoryById = function(categoryid, callback){
 
 module.exports.getCategoryByName = function(name, callback){
     const query = {
-        name: name
+        name: name,
+        status: status
     }
     Category.findOne(query, callback);
 };

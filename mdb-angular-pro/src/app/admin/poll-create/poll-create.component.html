@@ -1,0 +1,75 @@
+<div class="card mt-5 mb-5">
+    <div class="card-body">          
+      <form>
+          <p class="h5 text-center mb-4">Create Poll</p>
+          <!--First row-->
+          <div class="row">
+
+              <div class="col-md-6">
+                  <div class="md-form">
+                      <input mdbActive type="text" class="form-control" id="pollname" name="pollname" mdbActive [(ngModel)]="pollname">
+                      <label for="pollname">Poll Question</label>
+                  </div>
+              </div>
+
+              <div class="col-md-6">
+                  <div class="md-form">     
+                      <mdb-select [(ngModel)]="selectedPollType" name="selectedPollType" [options]="pollType" placeholder="Type of Selection" class="colorful-select dropdown-primary"></mdb-select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <!--First column-->
+              <div class="col-md-6">
+                  <div class="md-form">
+                      <div class="switch">
+                          <label>
+                              Status Off
+                            <input [(ngModel)]="pollStatus" name="pollStatus" type="checkbox">
+                            <span class="lever"></span>
+                            Status On
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+              <!--Second column-->
+              <div class="col-md-6">
+                  <div class="md-form">
+                      <div class="switch">
+                          <label>
+                              Trending Off
+                              <input [(ngModel)]="pollTrending" name="pollTrending" type="checkbox">
+                            <span class="lever"></span>
+                            Trending On
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+
+              <div class="col-md-6">
+                  <div class="md-form">     
+                      <mdb-select [(ngModel)]="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category" class="colorful-select dropdown-primary"></mdb-select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+
+              <div class="col-md-12">
+                  <div class="md-form" *ngFor="let o of optionCount">  
+                      <i (click)="optionCount.splice(o, 1)" class="fa fa-remove prefix grey-text"></i>   
+                      <input mdbActive type="text" class="form-control" id="pollOption" name="pollOption" mdbActive [(ngModel)]="pollOption[o]">
+                  </div>
+                  <button type="button" (click)="optionCount.push(optionCount.length)" class="btn btn-success waves-light" mdbRippleRadius>Add New</button>
+              </div>
+          </div>
+
+      </form>
+        
+    </div>
+</div>
