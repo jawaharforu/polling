@@ -2,7 +2,7 @@ import { ToastModule } from './typescripts/pro/alerts/toast/toast.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { MDBBootstrapModule } from './typescripts/free';
@@ -19,6 +19,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { CategoryService } from './services/category.service';
 import { PollCreateComponent } from './admin/poll-create/poll-create.component';
+import { PollService } from './services/poll.service';
+import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { PollCreateComponent } from './admin/poll-create/poll-create.component';
     HomeComponent,
     AdminComponent,
     NavBarComponent,
-    PollCreateComponent
+    PollCreateComponent,
+    PollManageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(AppRoutes),
     ToastModule.forRoot(),
@@ -45,7 +49,7 @@ import { PollCreateComponent } from './admin/poll-create/poll-create.component';
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader, CategoryService],
+  providers: [MDBSpinningPreloader, CategoryService, PollService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

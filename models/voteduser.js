@@ -12,6 +12,12 @@ const Voteduser = mongoose.Schema({
     email: {
         type: String
     },
+    ip: {
+        type: String
+    },
+    userdetail: {
+        type: Array
+    },
     createdon: {
         type: Date,
         default: Date.now

@@ -16,10 +16,6 @@ const PollSchema = mongoose.Schema({
         type: Boolean,
         require: true
     },
-    trending: {
-        type: Boolean,
-        require: true
-    },
     categoryid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
@@ -62,6 +58,25 @@ module.exports.getPollById = function(pollid, callback) {
         { 
             $match: {
                 '_id': mongoose.Types.ObjectId(pollid)
+            }
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        }
+    ], callback);
+};
+
+module.exports.getPollByStatus = function(callback) {
+    //Poll.findById(pollid, callback);
+    Poll.aggregate([
+        { 
+            $match: {
+                'status': true
             }
         },
         {

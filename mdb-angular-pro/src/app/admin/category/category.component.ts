@@ -51,7 +51,7 @@ export class CategoryComponent implements OnInit {
   }
 
   deleteCategory(categoryid) {
-    this.categoryService.deleteProduct(categoryid)
+    this.categoryService.deleteCategory(categoryid)
     .subscribe(data => {
       if (data.success) {
         this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
@@ -63,7 +63,7 @@ export class CategoryComponent implements OnInit {
   }
 
   updateFunction(categoryid, updateCategory) {
-    this.categoryService.updateProduct(categoryid, updateCategory)
+    this.categoryService.updateCategory(categoryid, updateCategory)
       .subscribe(data => {
         if (data.success) {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });

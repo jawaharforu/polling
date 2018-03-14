@@ -28,8 +28,7 @@ router.post('/poll', (req, res, next) => {
         type: req.body.type,
         status: req.body.status,
         categoryid: req.body.categoryid,
-        options: req.body.options,
-        trending: req.body.trending
+        options: req.body.options
     }); 
     Poll.addPoll(newPoll, (err, poll) => {
         if(err){
@@ -46,14 +45,16 @@ router.put('/poll/:pollid', (req, res, next) => {
         type: req.body.type,
         status: req.body.status,
         categoryid: req.body.categoryid,
-        options: req.body.options,
-        trending: req.body.trending
+        options: req.body.options
     };
     Poll.updatePoll(req.params.pollid, updatePoll, (err, result) => {
         if(err){
             res.json({success: false, msg: 'Failed to Update Poll'});
         }else{
-            res.json({success: true, msg: 'Poll Updated successfully'});
+            Poll.getAllPolls((err, poll) => {
+                if(err) throw err;
+                res.json({success: true, msg: 'Poll Updated successfully', data: poll});
+            });
         }
     });
 });
@@ -61,7 +62,18 @@ router.put('/poll/:pollid', (req, res, next) => {
 router.delete('/poll/:pollid', (req, res, next) => {
     Poll.deletePoll(req.params.pollid, (err, poll) => {
         if(err) throw err;
-        res.json({success: true, msg: 'Poll deleted successfully', data: poll});
+        Poll.getAllPolls((err, poll) => {
+            if(err) throw err;
+            res.json({success: true, msg: 'Poll deleted successfully', data: poll});
+        });
+    });
+});
+
+// By status
+router.get('/pollstatus', (req, res, next) => {
+    Poll.getPollByStatus( (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, data: poll});
     });
 });
 

@@ -22,13 +22,13 @@ export class CategoryService {
     return this.http.post(this.link + 'api/categories/category', newCategory, {headers: headers})
     .map(res => res.json());
   }
-  updateProduct(categoryid, updateCategory) {
+  updateCategory(categoryid, updateCategory) {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.put(this.link + 'api/categories/category/' + categoryid, updateCategory, {headers: headers})
     .map(res => res.json());
   }
-  deleteProduct(categoryid) {
+  deleteCategory(categoryid) {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.delete(this.link + 'api/categories/category/' + categoryid, {headers: headers})
