@@ -8,6 +8,10 @@
                     <input type="text" [(ngModel)]="categoty" name="categoty" id="orangeForm-name" class="form-control" mdbActive>
                     <label for="orangeForm-name">Category Name</label>
                 </div>
+                <div class="md-form">
+                    <textarea mdbActive type="text" id="form76" name="categotycontent" [(ngModel)]="categotycontent" class="md-textarea"></textarea>
+                    <label for="form76">Basic textarea</label>
+                </div>
                 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success waves-light" mdbRippleRadius>Create</button>
@@ -69,6 +73,10 @@
                   <input type="text" [(ngModel)]="updatecategoty" name="updatecategoty" id="orangeForm-name" class="form-control" mdbActive>
                   <input type="hidden" [(ngModel)]="updatecategotyid" name = "updatecategotyid" />
                   <label for="orangeForm-name">Category Name</label>
+              </div>
+              <div class="md-form">
+                <textarea mdbActive type="text" id="form76" [(ngModel)]="updatecategotycontent" class="md-textarea" name="updatecategotycontent"></textarea>
+                <label for="form76">Basic textarea</label>
               </div>
           </div>
           <div class="modal-footer justify-content-center">

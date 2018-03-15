@@ -19,6 +19,26 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <div class="switch">
+                        <label>
+                            Trending Off
+                            <input formControlName="trending" name="trending" type="checkbox">
+                            <span class="lever"></span>
+                            Trending On
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="switch">
+                        <label>
+                            Display in Home Off
+                            <input formControlName="displayhome" name="displayhome" type="checkbox">
+                            <span class="lever"></span>
+                            Display in Home On
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
                 </div>
                 <label>Poll Options *</label>

@@ -19,6 +19,7 @@ export class PollManageComponent implements OnInit {
   pollCategoryid: String;
   categotylist: Array<any>;
   pollCreateForm: FormGroup;
+  updatePolls: any;
 
   constructor(
     private _flashMessagesService: FlashMessagesService,
@@ -40,6 +41,8 @@ export class PollManageComponent implements OnInit {
       pollname: this._fb.control(null),
       selectedPollType: this._fb.control(null),
       pollStatus: this._fb.control(false),
+      trending: this._fb.control(false),
+      displayhome: this._fb.control(false),
       pollCategoryid: this._fb.control(null),
       pollOption: this._fb.array([]),
       updatepollid: this._fb.control(null)
@@ -100,6 +103,8 @@ export class PollManageComponent implements OnInit {
       name: this.pollCreateForm.value.pollname,
       type: this.pollCreateForm.value.selectedPollType,
       status: this.pollCreateForm.value.pollStatus,
+      trending: this.pollCreateForm.value.trending,
+      home: this.pollCreateForm.value.displayhome,
       categoryid: this.pollCreateForm.value.pollCategoryid,
       options: this.pollCreateForm.value.pollOption
     };
@@ -112,15 +117,54 @@ export class PollManageComponent implements OnInit {
     this.hideModal();
   }
 
-  updateStatus(event,p) {
-    const updatePoll = {
-      name: p.name,
-      type: p.type,
-      status: event,
-      categoryid: p.categoryid,
-      options: p.options
-    };
-    this.updateFunction(p._id, updatePoll);
+  updateStatus(event, p, updateto) {
+    switch (updateto) {
+      case 'status':
+        this.updatePolls = {
+          name: p.name,
+          type: p.type,
+          status: event,
+          trending: p.trending,
+          home: p.home,
+          categoryid: p.categoryid,
+          options: p.options
+        };
+        break;
+      case 'trending':
+        this.updatePolls = {
+          name: p.name,
+          type: p.type,
+          status: p.status,
+          trending: event,
+          home: p.home,
+          categoryid: p.categoryid,
+          options: p.options
+        };
+        break;
+      case 'home':
+        this.updatePolls = {
+          name: p.name,
+          type: p.type,
+          status: p.status,
+          trending: p.trending,
+          home: event,
+          categoryid: p.categoryid,
+          options: p.options
+        };
+        break;
+      default:
+        this.updatePolls = {
+          name: p.name,
+          type: p.type,
+          status: p.status,
+          trending: p.trending,
+          home: p.home,
+          categoryid: p.categoryid,
+          options: p.options
+        };
+    }
+
+    this.updateFunction(p._id, this.updatePolls);
   }
 
   public showModal(p): void {
@@ -131,6 +175,8 @@ export class PollManageComponent implements OnInit {
           pollname: p.name,
           selectedPollType: p.type,
           pollStatus: p.status,
+          trending: p.trending,
+          displayhome: p.home,
           pollCategoryid: p.categoryid,
           pollOption: p.options,
           updatepollid: p._id

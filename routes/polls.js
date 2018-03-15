@@ -28,7 +28,9 @@ router.post('/poll', (req, res, next) => {
         type: req.body.type,
         status: req.body.status,
         categoryid: req.body.categoryid,
-        options: req.body.options
+        options: req.body.options,
+        trending: req.body.trending,
+        home: req.body.home
     }); 
     Poll.addPoll(newPoll, (err, poll) => {
         if(err){
@@ -45,7 +47,9 @@ router.put('/poll/:pollid', (req, res, next) => {
         type: req.body.type,
         status: req.body.status,
         categoryid: req.body.categoryid,
-        options: req.body.options
+        options: req.body.options,
+        trending: req.body.trending,
+        home: req.body.home
     };
     Poll.updatePoll(req.params.pollid, updatePoll, (err, result) => {
         if(err){
@@ -72,6 +76,13 @@ router.delete('/poll/:pollid', (req, res, next) => {
 // By status
 router.get('/pollstatus', (req, res, next) => {
     Poll.getPollByStatus( (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, data: poll});
+    });
+});
+
+router.get('/pollstatushome', (req, res, next) => {
+    Poll.getPollByStatusHome( (err, poll) => {
         if(err) throw err;
         res.json({success: true, data: poll});
     });

@@ -11,6 +11,8 @@
                     <th>Category</th>
                     <th>Poll</th>
                     <th>Status</th>
+                    <th>Trending</th>
+                    <th>Display in Home</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -23,9 +25,17 @@
                     <td>{{p.categoryname[0].name}}</td>
                     <td>{{p.name}}</td>
                     <td><div class="form-check checkbox-warning-filled">
-                        <input type="checkbox" class="filled-in" id="checkbox{{p._id}}" [checked]="p.status" (change)="updateStatus($event.target.checked,p)">
-                        <label for="checkbox{{p._id}}"></label>
-                    </div></td> 
+                        <input type="checkbox" class="filled-in" id="statuscheckbox{{p._id}}" [checked]="p.status" (change)="updateStatus($event.target.checked,p,'status')">
+                        <label for="statuscheckbox{{p._id}}"></label>
+                    </div></td>
+                    <td><div class="form-check checkbox-warning-filled">
+                        <input type="checkbox" class="filled-in" id="trendingcheckbox{{p._id}}" [checked]="p.trending" (change)="updateStatus($event.target.checked,p,'trending')">
+                        <label for="trendingcheckbox{{p._id}}"></label>
+                    </div></td>
+                    <td><div class="form-check checkbox-warning-filled">
+                        <input type="checkbox" class="filled-in" id="homecheckbox{{p._id}}" [checked]="p.home" (change)="updateStatus($event.target.checked,p,'home')">
+                        <label for="homecheckbox{{p._id}}"></label>
+                    </div></td>  
                     <td>
                         <button type="button" (click)="showModal(p)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
                         &nbsp;
@@ -65,6 +75,26 @@
                           </label>
                       </div>
                   </div>
+                  <div class="form-group row">
+                    <div class="switch">
+                        <label>
+                            Trending Off
+                            <input formControlName="trending" name="trending" type="checkbox">
+                            <span class="lever"></span>
+                            Trending On
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="switch">
+                        <label>
+                            Display in Home Off
+                            <input formControlName="displayhome" name="displayhome" type="checkbox">
+                            <span class="lever"></span>
+                            Display in Home On
+                        </label>
+                    </div>
+                </div>
                   <div class="form-group row">
                       <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
                   </div>

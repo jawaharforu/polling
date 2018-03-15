@@ -41,6 +41,8 @@ export class PollCreateComponent implements OnInit {
       pollname: this._fb.control(null),
       selectedPollType: this._fb.control(null),
       pollStatus: this._fb.control(false),
+      trending: this._fb.control(false),
+      displayhome: this._fb.control(false),
       pollCategoryid: this._fb.control(null),
       pollOption: this._fb.array([this.initItemRows()])
     });
@@ -67,6 +69,8 @@ export class PollCreateComponent implements OnInit {
       name: this.pollCreateForm.value.pollname,
       type: this.pollCreateForm.value.selectedPollType,
       status: this.pollCreateForm.value.pollStatus,
+      trending: this.pollCreateForm.value.trending,
+      home: this.pollCreateForm.value.displayhome,
       categoryid: this.pollCreateForm.value.pollCategoryid,
       options: this.pollCreateForm.value.pollOption,
     };

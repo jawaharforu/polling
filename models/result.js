@@ -3,7 +3,7 @@ const config = require('../config/database');
 const Poll = require('./poll');
 const Voteduser = require('./voteduser');
 
-const Result = mongoose.Schema({
+const ResultSchema = mongoose.Schema({
     pollid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Poll',
@@ -26,3 +26,17 @@ const Result = mongoose.Schema({
         default: Date.now
     }
 });
+
+const Result = module.exports = mongoose.model('Result', ResultSchema);
+
+module.exports.addResult = function(newResult, callback){
+    newVoted.save(callback);
+};
+
+module.exports.deleteResult = function(resultid, callback){
+    Category.remove({_id: resultid}, callback);
+} ;
+
+module.exports.updateResult = function(resultid, updateResult, callback){
+    Category.update({_id: resultid},updateResult, callback);
+} ;

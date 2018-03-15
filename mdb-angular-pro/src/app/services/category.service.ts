@@ -16,6 +16,12 @@ export class CategoryService {
     return this.http.get(this.link + 'api/categories/categories', {headers: headers})
     .map(res => res.json());
   }
+  getCategoryStatus() {
+    const headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/categories/categoriesstatus', {headers: headers})
+    .map(res => res.json());
+  }
   addCategory(newCategory) {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');

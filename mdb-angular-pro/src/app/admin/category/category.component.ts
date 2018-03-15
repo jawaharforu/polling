@@ -15,6 +15,8 @@ export class CategoryComponent implements OnInit {
   updatecategoty: String;
   updatecategotyid: String;
   categorystatus: Boolean;
+  updatecategotycontent: String;
+  categotycontent: String;
 
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -32,7 +34,8 @@ export class CategoryComponent implements OnInit {
 
   addCategory() {
     const newCategory = {
-      name: this.categoty
+      name: this.categoty,
+      content: this.categotycontent
     };
     if (newCategory.name === undefined || newCategory.name === '') {
       this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -43,6 +46,7 @@ export class CategoryComponent implements OnInit {
         if (data.success) {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
           this.categoty = '';
+          this.categotycontent = '';
           this.categotylist.push(data.data);
         } else {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
@@ -79,6 +83,7 @@ export class CategoryComponent implements OnInit {
   updateCategory(categoryid) {
     const updateCategory = {
       name: this.updatecategoty,
+      content: this.updatecategotycontent,
       status: this.categorystatus
     };
     if (updateCategory.name === undefined || updateCategory.name === '') {
@@ -89,9 +94,10 @@ export class CategoryComponent implements OnInit {
     this.hideModal();
   }
 
-  updateStatus(event,x) {
+  updateStatus(event, x) {
     const updateCategory = {
       name: x.name,
+      content: x.content,
       status: event
     };
     this.updateFunction(x._id, updateCategory);
@@ -99,7 +105,8 @@ export class CategoryComponent implements OnInit {
 
   public showModal(c): void {
     this.updatecategoty = c.name;
-    this.updatecategotyid = c._id
+    this.updatecategotyid = c._id;
+    this.updatecategotycontent = c.content;
     this.categorystatus = c.status;
     this.isModalShown = true;
   }

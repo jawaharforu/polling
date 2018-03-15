@@ -1,0 +1,19 @@
+<div class="bg-img">
+	<section>
+			
+		<div class="container">
+			
+			<div class="card-deck diff-industry">
+  
+			<div *ngFor="let c of categotylist" class="card diff-industry">
+            <img src="img/{{c.name | lowercase}}.png" alt="youth">
+          <div class="card-body">
+            <h5 class="card-title">{{c.name}}</h5>  
+          </div>
+			</div>
+			</div>
+			
+		</div>
+		
+	</section>
+	</div>

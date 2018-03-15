@@ -1,16 +1,97 @@
-<div class="card m-5" *ngFor="let p of pollList">
-  <div class="card-body">
-    <h4 class="text-center mb-4">{{p.categoryname[0].name}}</h4>
-    <p class="h5 text-center mb-4">{{p.name}}</p>
-    <form class="form-inline" (submit)="putVote(p._id)">
-        <div class="form-check" *ngFor="let o of p.options; let i = index">
-            <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[p._id]" id="{{p._id+i}}">
-            <label class="form-check-label" for="{{p._id+i}}">{{o.itemname}}</label>
-        </div>
-        <button class="btn purple-gradient btn-rounded" type="submit">Purple</button>
-    </form>
-  </div>
-</div>
-
-
-        
+<app-nav-bar></app-nav-bar>
+<app-category-nav></app-category-nav>
+	<section>
+		<div class="content-middle">
+			<div class="text container">
+				<h4>WELCOME TO THE SED UT PERSPICIATIS UNDE OMNI</h4>
+				<h1>Leap into electronic typesetting</h1>
+				<h1>The Standard chunck of lorem ipsum</h1>
+			</div>
+			<div class="polls-tab">
+				<div class="polls-tab-img"></div>
+				<div class="container">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs nav-justified indigo" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#panel5" role="tab">FEATURES POLL</a>
+					</li>
+				</ul>
+				<!-- Tab panels -->
+				<div class="tab-content">
+					<!--Panel 1-->
+					<div class="tab-pane fade in show active" id="panel5" role="tabpanel">
+						<br>
+						<p>{{pollList[0].name}}</p>
+						<div>
+                <div>
+                      <form class="form-inline" (submit)="putVote(pollList[0]._id)">
+                          <div class="form-check" *ngFor="let o of pollList[0].options; let i = index">
+                              <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[pollList[0]._id]" id="{{pollList[0]._id+i}}">
+                              <label class="form-check-label" for="{{pollList[0]._id+i}}">{{o.itemname}}</label>
+                          </div>
+                          <button class="btn purple-gradient btn-rounded" type="submit">VOTE</button>
+                      </form>
+                  </div>
+						</div>
+						<div class="share-vote">
+							<ul class="share-vote-icons"><span>Share Your Vote</span>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-google-plus"></i></a></li>
+                              <li class="last_icon"><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                           </ul>
+						</div>
+					</div>
+					<!--/.Panel 1-->
+					<!--Panel 2-->
+					<div class="tab-pane fade" id="panel6" role="tabpanel">
+						<br>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+					</div>
+					<!--/.Panel 2-->
+					
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	
+	<section>
+		<div class="bigger-impact">
+			<div class="bigger-impact-img"></div>
+			<div class="container">
+				<div class="imp-season">
+					<p>{{pollList[1].name}}</p>
+					<div class="impact-img">
+              <form class="form-inline" (submit)="putVote(pollList[1]._id)">
+                  <div class="form-check" *ngFor="let o of pollList[1].options; let i = index">
+                      <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[pollList[1]._id]" id="{{pollList[1]._id+i}}">
+                      <label class="form-check-label" for="{{pollList[1]._id+i}}">{{o.itemname}}</label>
+                  </div>
+                  <button class="btn purple-gradient btn-rounded" type="submit">VOTE</button>
+              </form>
+					</div>
+						<div class="share-vote">
+							<ul class="share-vote-icons"><span>Share Your Vote</span>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fa fa-google-plus"></i></a></li>
+                              <li class="last_icon"><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                           </ul>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="impact-view-more">
+			<div class="container">
+				<div class="view-more-view">
+					<h2>Standard Chunk Of Lorem Ipsum Used Popular belief, Lorem Ipsum</h2>
+					<button type="button" class="btn">View more</button>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</section>
+<app-category-content></app-category-content>	
+<app-footer></app-footer>
+		

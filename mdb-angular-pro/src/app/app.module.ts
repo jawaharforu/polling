@@ -21,6 +21,11 @@ import { CategoryService } from './services/category.service';
 import { PollCreateComponent } from './admin/poll-create/poll-create.component';
 import { PollService } from './services/poll.service';
 import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
+import { CategoryNavComponent } from './category-nav/category-nav.component';
+import { FooterComponent } from './footer/footer.component';
+import { CategoryContentComponent } from './category-content/category-content.component';
+import { TruncateModule } from 'ng2-truncate';
+import { NewlinePipe } from './pipes/newline.pipe';
 
 @NgModule({
   declarations: [
@@ -31,9 +36,14 @@ import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
     AdminComponent,
     NavBarComponent,
     PollCreateComponent,
-    PollManageComponent
+    PollManageComponent,
+    CategoryNavComponent,
+    FooterComponent,
+    CategoryContentComponent,
+    NewlinePipe
   ],
   imports: [
+    TruncateModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

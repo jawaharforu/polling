@@ -8,6 +8,9 @@ const CategorySchema = mongoose.Schema({
         type: String,
         require: true
     },
+    content: {
+        type: String
+    },
     status: {
         type: Boolean
     },
@@ -33,10 +36,16 @@ module.exports.getCategoryById = function(categoryid, callback){
 
 module.exports.getCategoryByName = function(name, callback){
     const query = {
-        name: name,
-        status: status
+        name: name
     }
     Category.findOne(query, callback);
+};
+
+module.exports.getCategoryByStatus = function(callback){
+    const query = {
+        status: true
+    }
+    Category.find(query, callback);
 };
 
 module.exports.deleteCategory = function(categoryid, callback){

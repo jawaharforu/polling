@@ -40,7 +40,12 @@ export class PollService {
     return this.http.get(this.link + 'api/polls/pollstatus', {headers: headers})
     .map(res => res.json());
   }
-
+  getPollByStatusHome() {
+    const headers = new Headers(); 
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/polls/pollstatushome', {headers: headers})
+    .map(res => res.json());
+  }
   // Get IP Adress using http://freegeoip.net/json/?callback
   getIpAddress() {
     const headers = new Headers();

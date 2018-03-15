@@ -17,6 +17,7 @@ router.get('/categories', (req, res, next) => {
 router.post('/category', (req, res, next) => {
     let newCategory = new Category({
         name: req.body.name,
+        content: req.body.content,
         status: false
     }); 
     
@@ -46,6 +47,7 @@ router.put('/category/:categoryid', (req, res, next) => {
     let updatedCategory = {
         name: req.body.name,
         status: req.body.status,
+        content: req.body.content
     }; 
     Category.updateCategory(req.params.categoryid, updatedCategory, (err, result) => {
         if(err){
@@ -56,6 +58,13 @@ router.put('/category/:categoryid', (req, res, next) => {
                 res.json({success: true, msg: 'Category Updated successfully', data: category});
             });
         }
+    });
+});
+
+router.get('/categoriesstatus', (req, res, next) => {
+    Category.getCategoryByStatus((err, category) => {
+        if(err) throw err;
+        res.json({success: true, data: category});
     });
 });
 

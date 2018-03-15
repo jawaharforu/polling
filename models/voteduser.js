@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
-const Voteduser = mongoose.Schema({
+const VoteduserSchema = mongoose.Schema({
     name: {
-        type: String,
-        require: true
+        type: String
     },
     mobile: {
         type: Number
@@ -27,3 +26,17 @@ const Voteduser = mongoose.Schema({
         default: Date.now
     }
 });
+
+const Voteduser = module.exports = mongoose.model('Voteduser', VoteduserSchema);
+
+module.exports.addVoteduser = function(newVoted, callback){
+    newVoted.save(callback);
+};
+
+module.exports.deleteVoteduser = function(voteduserid, callback){
+    Category.remove({_id: voteduserid}, callback);
+} ;
+
+module.exports.updateVoteduser = function(voteduserid, updateVoted, callback){
+    Category.update({_id: voteduserid},updateVoted, callback);
+} ;
