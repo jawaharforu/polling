@@ -30,13 +30,13 @@ const ResultSchema = mongoose.Schema({
 const Result = module.exports = mongoose.model('Result', ResultSchema);
 
 module.exports.addResult = function(newResult, callback){
-    newVoted.save(callback);
+    newResult.save(callback);
 };
 
 module.exports.deleteResult = function(resultid, callback){
-    Category.remove({_id: resultid}, callback);
+    Result.remove({_id: resultid}, callback);
 } ;
 
 module.exports.updateResult = function(resultid, updateResult, callback){
-    Category.update({_id: resultid},updateResult, callback);
+    Result.update({_id: resultid},updateResult, callback);
 } ;

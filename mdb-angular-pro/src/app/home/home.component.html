@@ -19,20 +19,17 @@
 				<!-- Tab panels -->
 				<div class="tab-content">
 					<!--Panel 1-->
-					<div class="tab-pane fade in show active" id="panel5" role="tabpanel">
+					<div *ngFor="let p of pollList; let i = index">
+					<div class="tab-pane fade in show active" id="panel5" role="tabpanel" *ngIf="i==0">
 						<br>
-						<p>{{pollList[0].name}}</p>
-						<div>
-                <div>
-                      <form class="form-inline" (submit)="putVote(pollList[0]._id)">
-                          <div class="form-check" *ngFor="let o of pollList[0].options; let i = index">
-                              <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[pollList[0]._id]" id="{{pollList[0]._id+i}}">
-                              <label class="form-check-label" for="{{pollList[0]._id+i}}">{{o.itemname}}</label>
-                          </div>
-                          <button class="btn purple-gradient btn-rounded" type="submit">VOTE</button>
-                      </form>
-                  </div>
-						</div>
+						<p>{{p.name}}</p>
+							<form class="form-inline" (submit)="putVote(p._id,0)" >
+								<div class="form-check" *ngFor="let o of p.options; let i = index">
+									<input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[p._id]" id="{{p._id+i}}">
+									<label class="form-check-label" for="{{p._id+i}}">{{o.itemname}}</label>
+								</div>
+									<button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[0][p._id]">VOTE</button>
+							</form>
 						<div class="share-vote">
 							<ul class="share-vote-icons"><span>Share Your Vote</span>
                               <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
@@ -42,6 +39,7 @@
                            </ul>
 						</div>
 					</div>
+				</div>
 					<!--/.Panel 1-->
 					<!--Panel 2-->
 					<div class="tab-pane fade" id="panel6" role="tabpanel">
@@ -59,16 +57,17 @@
 	<section>
 		<div class="bigger-impact">
 			<div class="bigger-impact-img"></div>
-			<div class="container">
+			<div *ngFor="let p of pollList; let i = index">
+			<div class="container" *ngIf="i==1">
 				<div class="imp-season">
-					<p>{{pollList[1].name}}</p>
+					<p>{{p.name}}</p>
 					<div class="impact-img">
-              <form class="form-inline" (submit)="putVote(pollList[1]._id)">
-                  <div class="form-check" *ngFor="let o of pollList[1].options; let i = index">
-                      <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[pollList[1]._id]" id="{{pollList[1]._id+i}}">
-                      <label class="form-check-label" for="{{pollList[1]._id+i}}">{{o.itemname}}</label>
+              <form class="form-inline" (submit)="putVote(p._id,1)">
+                  <div class="form-check" *ngFor="let o of p.options; let i = index">
+                      <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[p._id]" id="{{p._id+i}}">
+                      <label class="form-check-label" for="{{p._id+i}}">{{o.itemname}}</label>
                   </div>
-                  <button class="btn purple-gradient btn-rounded" type="submit">VOTE</button>
+                  <button class="btn purple-gradient btn-rounded" *ngIf="voteBtn[1][p._id]" type="submit">VOTE</button>
               </form>
 					</div>
 						<div class="share-vote">
@@ -82,6 +81,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 		<div class="impact-view-more">
 			<div class="container">
 				<div class="view-more-view">
@@ -94,4 +94,5 @@
 	</section>
 <app-category-content></app-category-content>	
 <app-footer></app-footer>
+
 		

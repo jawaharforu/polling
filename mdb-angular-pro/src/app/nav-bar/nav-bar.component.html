@@ -27,11 +27,8 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Contact Us</a>
         </li>
-        <li class="nav-item login">
-            <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item signin">
-            <a class="nav-link" href="#">Sign Up</a>
+        <li class="nav-item">
+            <a class="nav-link" (click)="showModal()">Login</a>
         </li>
     </ul>
     <!-- Links -->
@@ -44,3 +41,17 @@
 <!--/.Navbar-->
 
 </header>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<app-login></app-login>
+				</div>
+			</div>
+		</div>
+	</div>

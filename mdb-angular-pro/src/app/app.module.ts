@@ -26,6 +26,11 @@ import { FooterComponent } from './footer/footer.component';
 import { CategoryContentComponent } from './category-content/category-content.component';
 import { TruncateModule } from 'ng2-truncate';
 import { NewlinePipe } from './pipes/newline.pipe';
+import { VoteduserService } from './services/voteduser.service';
+import { ResultService } from './services/result.service';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,8 @@ import { NewlinePipe } from './pipes/newline.pipe';
     CategoryNavComponent,
     FooterComponent,
     CategoryContentComponent,
-    NewlinePipe
+    NewlinePipe,
+    LoginComponent
   ],
   imports: [
     TruncateModule,
@@ -59,7 +65,7 @@ import { NewlinePipe } from './pipes/newline.pipe';
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader, CategoryService, PollService],
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

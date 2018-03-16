@@ -51,3 +51,5 @@ router.delete('/voteduser/:vodeduserid', (req, res, next) => {
         res.json({success: true, msg: 'Voteduser deleted successfully'});
     });
 });
+
+module.exports = router;

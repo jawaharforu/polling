@@ -12,7 +12,7 @@ const UserSchema = mongoose.Schema({
         require: true
     },
     mobile: {
-        type: Number,
+        type: String,
         require: true
     },
     password: {
@@ -60,8 +60,14 @@ module.exports.deleteUser = function(uid, callback){
     User.remove({_id: uid}, callback);
 } ;
 
-module.exports.updateUser = function(uid, updatedProduct, callback){
-    User.update({_id: uid},updatedProduct, callback);
+module.exports.updateUser = function(uid, updatedProduct, callback){ 
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(updatedProduct.password, salt, (err, hash) => {
+            if(err) throw err;
+            updatedProduct.password = hash; 
+            User.update({_id: uid},updatedProduct, callback);
+        });
+    });
 } ;
 
 module.exports.ComparePassword = function(candidatePassword, hash, callback){

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NewlinePipe implements PipeTransform {
 
-  transform(value: string, args: string[]): any {
+  transform(value: string): any {
     return value.replace(/(?:\r\n|\r|\n)/g, '<br />');
   }
 

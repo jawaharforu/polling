@@ -52,3 +52,5 @@ router.delete('/result/:resultid', (req, res, next) => {
         res.json({success: true, msg: 'Result deleted successfully'});
     });
 });
+
+module.exports = router;

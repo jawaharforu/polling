@@ -4,6 +4,7 @@ import { CategoryComponent } from './admin/category/category.component';
 import { AdminComponent } from './admin/admin.component';
 import { PollCreateComponent } from './admin/poll-create/poll-create.component';
 import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const AppRoutes: Routes = [
     {
@@ -29,7 +30,8 @@ export const AppRoutes: Routes = [
                 component: PollManageComponent,
                 outlet: 'adminchild'
             }
-        ]
+        ],
+        canActivate: [AuthGuard]
     },
 
 ];

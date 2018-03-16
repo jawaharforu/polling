@@ -34,9 +34,9 @@ module.exports.addVoteduser = function(newVoted, callback){
 };
 
 module.exports.deleteVoteduser = function(voteduserid, callback){
-    Category.remove({_id: voteduserid}, callback);
+    Voteduser.remove({_id: voteduserid}, callback);
 } ;
 
 module.exports.updateVoteduser = function(voteduserid, updateVoted, callback){
-    Category.update({_id: voteduserid},updateVoted, callback);
+    Voteduser.update({_id: voteduserid},updateVoted, callback);
 } ;

@@ -20,7 +20,7 @@ router.post('/register', (req, res, next) => {
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        mobile: req.body.username,
+        mobile: req.body.mobile,
         password: req.body.password,
         role: req.body.role
     });
@@ -93,7 +93,7 @@ router.put('/user/:uid', (req, res, next) => {
     let updatedUser = {
         name: req.body.name,
         email: req.body.email,
-        mobile: req.body.username,
+        mobile: req.body.mobile,
         password: req.body.password,
         role: req.body.role
     };
