@@ -22,6 +22,12 @@ const PollSchema = mongoose.Schema({
     home: {
         type: Boolean,
     },
+    fromdate: {
+        type: Date
+    },
+    todate: {
+        type: Date
+    },
     categoryid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',

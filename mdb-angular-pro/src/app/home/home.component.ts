@@ -19,6 +19,24 @@ export class HomeComponent implements OnInit {
   voteBtn: any[] = [];
   voted: any;
 
+  // chart start
+  public chartType:string = 'bar';
+        
+    public chartDatasets:Array<any> = [
+        {data: [65], label: 'My First dataset'},
+        {data: [28], label: 'My Second dataset'},
+        {data: [40], label: 'My Third dataset'}
+    ];
+
+    public chartLabels:Array<any> = ['Jan'];
+
+    
+
+    public chartOptions: any = { 
+        responsive: true
+    };
+
+    // chart end
 
   constructor(
     private pollService: PollService,
@@ -81,6 +99,14 @@ export class HomeComponent implements OnInit {
         this.voted = data.data;
       });
     });
+  }
+
+  public chartClicked(e: any): void { 
+         
+  } 
+  
+  public chartHovered(e: any): void {
+       
   }
 
   

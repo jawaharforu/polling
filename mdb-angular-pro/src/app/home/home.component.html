@@ -30,6 +30,18 @@
 								</div>
 									<button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[0][p._id]">VOTE</button>
 							</form>
+							<div style="display: block">
+									<canvas mdbChart 
+										[chartType]="chartType"
+										[datasets]="chartDatasets" 
+										[labels]="chartLabels"
+										[colors]="chartColors"
+										[options]="chartOptions"
+										[legend]="true"
+										(chartHover)="chartHovered($event)" 
+										(chartClick)="chartClicked($event)">
+									</canvas>
+								</div>
 						<div class="share-vote">
 							<ul class="share-vote-icons"><span>Share Your Vote</span>
                               <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
@@ -40,6 +52,9 @@
 						</div>
 					</div>
 				</div>
+				
+
+			
 					<!--/.Panel 1-->
 					<!--Panel 2-->
 					<div class="tab-pane fade" id="panel6" role="tabpanel">

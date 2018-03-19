@@ -30,7 +30,9 @@ router.post('/poll', (req, res, next) => {
         categoryid: req.body.categoryid,
         options: req.body.options,
         trending: req.body.trending,
-        home: req.body.home
+        home: req.body.home,
+        fromdate: req.body.fromdate,
+        todate: req.body.todate
     }); 
     Poll.addPoll(newPoll, (err, poll) => {
         if(err){
@@ -49,7 +51,9 @@ router.put('/poll/:pollid', (req, res, next) => {
         categoryid: req.body.categoryid,
         options: req.body.options,
         trending: req.body.trending,
-        home: req.body.home
+        home: req.body.home,
+        fromdate: req.body.fromdate,
+        todate: req.body.todate
     };
     Poll.updatePoll(req.params.pollid, updatePoll, (err, result) => {
         if(err){

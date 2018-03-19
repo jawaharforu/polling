@@ -4,6 +4,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { CategoryService } from '../../services/category.service';
 import { PollService } from '../../services/poll.service';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { IMyOptions } from '../../typescripts/pro/date-picker/index';
 
 @Component({
   selector: 'app-poll-create',
@@ -16,6 +17,9 @@ export class PollCreateComponent implements OnInit {
   pollCategoryid: String;
   categotylist: Array<any>;
   pollCreateForm: FormGroup;
+  public myDatePickerOptions: IMyOptions = {
+
+  };
 
   constructor(
     private _flashMessagesService: FlashMessagesService,
@@ -43,6 +47,8 @@ export class PollCreateComponent implements OnInit {
       pollStatus: this._fb.control(false),
       trending: this._fb.control(false),
       displayhome: this._fb.control(false),
+      pollFromDate: this._fb.control(null),
+      pollToDate: this._fb.control(null),
       pollCategoryid: this._fb.control(null),
       pollOption: this._fb.array([this.initItemRows()])
     });
@@ -73,6 +79,8 @@ export class PollCreateComponent implements OnInit {
       home: this.pollCreateForm.value.displayhome,
       categoryid: this.pollCreateForm.value.pollCategoryid,
       options: this.pollCreateForm.value.pollOption,
+      fromdate: this.pollCreateForm.value.pollFromDate,
+      todate: this.pollCreateForm.value.pollToDate
     };
     if (newPoll.name.length === 0 || newPoll.options[0].itemname === '' || newPoll.type.length === 0 || newPoll.categoryid.length === 0) {
       this._flashMessagesService.show('Please Fill All Mandatory Fields!', { cssClass: 'alert-danger', timeout: 3000 });
