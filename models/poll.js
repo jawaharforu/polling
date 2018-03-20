@@ -36,6 +36,9 @@ const PollSchema = mongoose.Schema({
     options: {
         type: Array
     },
+    image: {
+        type: String
+    },
     userid: {
         type: Array
     },

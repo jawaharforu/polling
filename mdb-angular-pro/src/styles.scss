@@ -144,9 +144,21 @@ ul.share-vote-icons {
     color: rgba(0, 0, 0, 0.68) !important;
     font-weight: bold;
 }
+.polls-tab a.nav-link.active:after{
+    position: absolute;
+    left: 0px;
+    border-bottom: 2px solid red;    
+    width:50px;
+    height: 2px;
+    bottom:0px;
+}
+.polls-tab ul.nav.nav-tabs{
+    box-shadow: none !important;
+}
 .polls-tab li.nav-item:nth-child(1) {
-    text-align: right;
-    border-right: 3px solid red;
+    position: relative;
+    text-align: center;
+    
 }
 .polls-tab li.nav-item:nth-child(2) {
     text-align: left;

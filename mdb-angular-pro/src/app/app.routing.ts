@@ -5,11 +5,16 @@ import { AdminComponent } from './admin/admin.component';
 import { PollCreateComponent } from './admin/poll-create/poll-create.component';
 import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 export const AppRoutes: Routes = [
     {
         path: '',
         component: HomeComponent
+    },
+    {
+        path: 'category/:slug',
+        component: CategoryPageComponent
     },
     {
         path: 'admin',

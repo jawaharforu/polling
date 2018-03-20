@@ -17,6 +17,12 @@ export class CategoryComponent implements OnInit {
   categorystatus: Boolean;
   updatecategotycontent: String;
   categotycontent: String;
+  title: String;
+  description: String;
+  keywords: String;
+  updatetitle: String;
+  updatedescription: String;
+  updatekeywords: String;
 
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -47,6 +53,9 @@ export class CategoryComponent implements OnInit {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
           this.categoty = '';
           this.categotycontent = '';
+          this.title = '';
+          this.description = '';
+          this.keywords = '';
           this.categotylist.push(data.data);
         } else {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
@@ -73,6 +82,9 @@ export class CategoryComponent implements OnInit {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
           this.updatecategoty = '';
           this.updatecategotyid = '';
+          this.updatetitle = '';
+          this.updatedescription = '';
+          this.updatekeywords = '';
           this.categotylist = data.data;
         } else {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
@@ -84,7 +96,10 @@ export class CategoryComponent implements OnInit {
     const updateCategory = {
       name: this.updatecategoty,
       content: this.updatecategotycontent,
-      status: this.categorystatus
+      status: this.categorystatus,
+      title: this.title,
+      description: this.description,
+      keywords: this.keywords
     };
     if (updateCategory.name === undefined || updateCategory.name === '') {
       this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -98,7 +113,10 @@ export class CategoryComponent implements OnInit {
     const updateCategory = {
       name: x.name,
       content: x.content,
-      status: event
+      status: event,
+      title: x.title,
+      description: x.description,
+      keywords: x.keywords
     };
     this.updateFunction(x._id, updateCategory);
   }

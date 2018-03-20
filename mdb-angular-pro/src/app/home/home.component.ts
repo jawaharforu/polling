@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PollService } from '../services/poll.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { VoteduserService } from '../services/voteduser.service';
 import { ResultService } from '../services/result.service';
-
+import { ModalDirective } from '../typescripts/free';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +18,13 @@ export class HomeComponent implements OnInit {
   voterid: String;
   voteBtn: any[] = [];
   voted: any;
+  @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
+  public isModalShown: Boolean = true;
 
   // chart start
-  public chartType:string = 'bar';
+  public chartType: String = 'bar';
         
-    public chartDatasets:Array<any> = [
+    public chartDatasets: Array<any> = [
         {data: [65], label: 'My First dataset'},
         {data: [28], label: 'My Second dataset'},
         {data: [40], label: 'My Third dataset'}
@@ -97,18 +99,21 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.voteBtn[i][pollId] = false;
         this.voted = data.data;
+        this.isModalShown = true;
       });
     });
   }
 
-  public chartClicked(e: any): void { 
-         
-  } 
-  
-  public chartHovered(e: any): void {
-       
+  public showModal(): void {
+      this.isModalShown = true;
   }
 
-  
+  public hideModal(): void {
+      this.autoShownModal.hide();
+  }
+
+  public onHidden(): void {
+      this.isModalShown = false;
+  }
 
 }

@@ -14,6 +14,18 @@ const CategorySchema = mongoose.Schema({
     status: {
         type: Boolean
     },
+    title: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    keywords: {
+        type: String
+    },
+    slug: {
+        type: String
+    },
     createdon: {
         type: Date,
         default: Date.now
@@ -34,9 +46,9 @@ module.exports.getCategoryById = function(categoryid, callback){
     Category.findById(categoryid, callback);
 };
 
-module.exports.getCategoryByName = function(name, callback){
+module.exports.getCategoryByName = function(slug, callback){
     const query = {
-        name: name
+        slug: slug
     }
     Category.findOne(query, callback);
 };

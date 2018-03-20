@@ -3,14 +3,14 @@
 			<div class="container padding-left">
 				<div class="row">
 
-					<div class="col-md-6 col-sm-6 img-des mb-2" *ngFor="let c of categotylist">
+					<div class="col-md-6 col-sm-6 img-des mb-2" *ngFor="let c of categotylist" >
 						<div class="left-img">
 							<img id="loading" src="img/icon_1.png" alt="icon_1">
 						</div>
 						<div class="discription">
 							<h3>{{c.name}}</h3>
 							<p [innerHtml]="c.content | newline | words : 20"></p>
-							<button type="button" class="btn cnt-btm">View more</button>
+							<button type="button" class="btn cnt-btm" (click)="categoryPage(c)">View more</button>
 						</div>
 					</div>
 

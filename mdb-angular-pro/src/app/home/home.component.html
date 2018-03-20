@@ -13,7 +13,7 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs nav-justified indigo" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#panel5" role="tab">FEATURES POLL</a>
+						<a class="nav-link active" data-toggle="tab" href="#panel5" role="tab">FEATURED POLL</a>
 					</li>
 				</ul>
 				<!-- Tab panels -->
@@ -30,18 +30,6 @@
 								</div>
 									<button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[0][p._id]">VOTE</button>
 							</form>
-							<div style="display: block">
-									<canvas mdbChart 
-										[chartType]="chartType"
-										[datasets]="chartDatasets" 
-										[labels]="chartLabels"
-										[colors]="chartColors"
-										[options]="chartOptions"
-										[legend]="true"
-										(chartHover)="chartHovered($event)" 
-										(chartClick)="chartClicked($event)">
-									</canvas>
-								</div>
 						<div class="share-vote">
 							<ul class="share-vote-icons"><span>Share Your Vote</span>
                               <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
@@ -109,5 +97,31 @@
 	</section>
 <app-category-content></app-category-content>	
 <app-footer></app-footer>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Auto shown modal</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: block">
+					<canvas mdbChart 
+						[chartType]="chartType"
+						[datasets]="chartDatasets" 
+						[labels]="chartLabels"
+						[colors]="chartColors"
+						[options]="chartOptions"
+						[legend]="true"
+						(chartHover)="chartHovered($event)" 
+						(chartClick)="chartClicked($event)">
+					</canvas>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 		

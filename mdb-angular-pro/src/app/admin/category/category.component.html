@@ -10,7 +10,19 @@
                 </div>
                 <div class="md-form">
                     <textarea mdbActive type="text" id="form76" name="categotycontent" [(ngModel)]="categotycontent" class="md-textarea"></textarea>
-                    <label for="form76">Basic textarea</label>
+                    <label for="form76">Content</label>
+                </div>
+                <div class="md-form">
+                    <input type="text" [(ngModel)]="title" name="title" id="orangeForm-title" class="form-control" mdbActive>
+                    <label for="orangeForm-title">Meta Title</label>
+                </div>
+                <div class="md-form">
+                    <textarea mdbActive type="text" id="form78" name="description" [(ngModel)]="description" class="md-textarea"></textarea>
+                    <label for="form78">Meta Description</label>
+                </div>
+                <div class="md-form">
+                    <textarea mdbActive type="text" id="form79" name="keywords" [(ngModel)]="keywords" class="md-textarea"></textarea>
+                    <label for="form79">Meta Keywords</label>
                 </div>
                 
                 <div class="text-center">
@@ -78,6 +90,18 @@
                 <textarea mdbActive type="text" id="form76" [(ngModel)]="updatecategotycontent" class="md-textarea" name="updatecategotycontent"></textarea>
                 <label for="form76">Basic textarea</label>
               </div>
+              <div class="md-form">
+                <input type="text" [(ngModel)]="updatetitle" name="updatetitle" id="orangeForm-title" class="form-control" mdbActive>
+                <label for="orangeForm-title">Meta Title</label>
+            </div>
+            <div class="md-form">
+                <textarea mdbActive type="text" id="form78" name="updatedescription" [(ngModel)]="updatedescription" class="md-textarea"></textarea>
+                <label for="form78">Meta Description</label>
+            </div>
+            <div class="md-form">
+                <textarea mdbActive type="text" id="form79" name="updatekeywords" [(ngModel)]="updatekeywords" class="md-textarea"></textarea>
+                <label for="form79">Meta Keywords</label>
+            </div>
           </div>
           <div class="modal-footer justify-content-center">
             <a type="button" (click)="updateCategory(updatecategotyid)" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>

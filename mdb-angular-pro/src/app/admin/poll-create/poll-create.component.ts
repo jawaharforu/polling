@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { CategoryService } from '../../services/category.service';
@@ -20,6 +20,7 @@ export class PollCreateComponent implements OnInit {
   public myDatePickerOptions: IMyOptions = {
 
   };
+  @ViewChild('fileInput') fileInput;
 
   constructor(
     private _flashMessagesService: FlashMessagesService,
@@ -96,4 +97,16 @@ export class PollCreateComponent implements OnInit {
         }
     });
   }
+
+  addFile(): void {
+    const fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+        const fileToUpload = fi.files[0];
+        this.pollService
+            .upload(fileToUpload)
+            .subscribe(res => {
+                console.log(res);
+            });
+    }
+}
 }

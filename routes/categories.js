@@ -15,10 +15,15 @@ router.get('/categories', (req, res, next) => {
 });
 // Add category
 router.post('/category', (req, res, next) => {
+    let slugtitle = req.body.name;
     let newCategory = new Category({
         name: req.body.name,
         content: req.body.content,
-        status: false
+        status: false,
+        title: req.body.title,
+        description: req.body.description,
+        keywords: req.body.keywords,
+        slug: slugtitle.split(' ').join('_').toLowerCase()
     }); 
     
     Category.addCategory(newCategory, (err, category) => {
@@ -44,10 +49,15 @@ router.delete('/category/:categoryid', (req, res, next) => {
 });
 // Update category
 router.put('/category/:categoryid', (req, res, next) => {
+    let slugtitle = req.body.name;
     let updatedCategory = {
         name: req.body.name,
         status: req.body.status,
-        content: req.body.content
+        content: req.body.content,
+        title: req.body.title,
+        description: req.body.description,
+        keywords: req.body.keywords,
+        slug: slugtitle.split(' ').join('_').toLowerCase()
     }; 
     Category.updateCategory(req.params.categoryid, updatedCategory, (err, result) => {
         if(err){
@@ -68,4 +78,11 @@ router.get('/categoriesstatus', (req, res, next) => {
     });
 });
 
-module.exports = router;
+router.get('/categoriesslug/:slug', (req, res, next) => {
+    Category.getCategoryByName(req.params.slug, (err, category) => {
+        if(err) throw err;
+        res.json({success: true, data: category});
+    });
+});
+
+module.exports = router; 

@@ -31,6 +31,7 @@ import { ResultService } from './services/result.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AuthGuard } from './guards/auth.guard';
     FooterComponent,
     CategoryContentComponent,
     NewlinePipe,
-    LoginComponent
+    LoginComponent,
+    CategoryPageComponent
   ],
   imports: [
     TruncateModule,

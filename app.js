@@ -5,6 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const multer = require('multer');
 
 //Database connect
 mongoose.connect(config.database);
@@ -52,7 +53,26 @@ app.use('/api/results', result);
 app.get('/', (req, res) => {
     res.send('Invalied Endpoing');
 });
-
+// upload
+const upload = multer({
+    dest: 'mdb-angular-pro/src/img/',
+    storage: multer.diskStorage({
+      filename: (req, file, cb) => {
+        let ext = path.extname(file.originalname);
+        cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
+      }
+    })
+  });
+   
+  app.post('/upload', upload.any(), (req, res) => {
+    res.json(req.files.map(file => {
+      let ext = path.extname(file.originalname);
+      return {
+        originalName: file.originalname,
+        filename: file.filename
+      }
+    }));
+  });
 // Start server
 app.listen(port, () => {
     console.log("Server started on port " + port);

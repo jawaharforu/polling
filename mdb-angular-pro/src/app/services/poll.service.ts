@@ -58,4 +58,12 @@ export class PollService {
     .map(response => response || {});
   }
 
+  upload(fileToUpload: any) {
+    const input = new FormData();
+    input.append('file', fileToUpload);
+
+    return this.http
+        .post(this.link + 'upload', input);
+}
+
 }
