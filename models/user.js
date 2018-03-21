@@ -23,6 +23,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    superadmin: {
+        type: Number,
+        default: 0
+    },
     createdon: {
         type: Date,
         default: Date.now
@@ -46,6 +50,13 @@ module.exports.getUserByMobile = function(mobile, callback){
     User.findOne(query, callback);
 };
 
+module.exports.getAllUser = function(callback){
+    const query = {
+        superadmin: 0
+    }
+    User.find(query, callback);
+};
+
 module.exports.addUser = function(newUser, callback){
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -61,13 +72,7 @@ module.exports.deleteUser = function(uid, callback){
 } ;
 
 module.exports.updateUser = function(uid, updatedProduct, callback){ 
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(updatedProduct.password, salt, (err, hash) => {
-            if(err) throw err;
-            updatedProduct.password = hash; 
-            User.update({_id: uid},updatedProduct, callback);
-        });
-    });
+    User.update({_id: uid},updatedProduct, callback);
 } ;
 
 module.exports.ComparePassword = function(candidatePassword, hash, callback){

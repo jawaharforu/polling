@@ -6,6 +6,8 @@ import { PollCreateComponent } from './admin/poll-create/poll-create.component';
 import { PollManageComponent } from './admin/poll-manage/poll-manage.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { UserCreateComponent } from './admin/user-create/user-create.component';
+import { UserManageComponent } from './admin/user-manage/user-manage.component';
 
 export const AppRoutes: Routes = [
     {
@@ -33,6 +35,16 @@ export const AppRoutes: Routes = [
             {
                 path: 'pollmanage',
                 component: PollManageComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'usercreate',
+                component: UserCreateComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'usermanage',
+                component: UserManageComponent,
                 outlet: 'adminchild'
             }
         ],

@@ -1,121 +1,136 @@
 <div class="card mt-5 mb-5">
-    <div class="card-body">
-
-        <!--Table-->
-        <table class="table table-hover table-responsive-md table-fixed">
-
-            <!--Table head-->
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Category</th>
-                    <th>Poll</th>
-                    <th>Status</th>
-                    <th>Trending</th>
-                    <th>Display in Home</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <!--Table head-->
-
-            <!--Table body-->
-            <tbody>
-                <tr *ngFor="let p of pollList; let i = index">
-                    <td scope="row">{{i+1}}</td>
-                    <td>{{p.categoryname[0].name}}</td>
-                    <td>{{p.name}}</td>
-                    <td><div class="form-check checkbox-warning-filled">
-                        <input type="checkbox" class="filled-in" id="statuscheckbox{{p._id}}" [checked]="p.status" (change)="updateStatus($event.target.checked,p,'status')">
-                        <label for="statuscheckbox{{p._id}}"></label>
-                    </div></td>
-                    <td><div class="form-check checkbox-warning-filled">
-                        <input type="checkbox" class="filled-in" id="trendingcheckbox{{p._id}}" [checked]="p.trending" (change)="updateStatus($event.target.checked,p,'trending')">
-                        <label for="trendingcheckbox{{p._id}}"></label>
-                    </div></td>
-                    <td><div class="form-check checkbox-warning-filled">
-                        <input type="checkbox" class="filled-in" id="homecheckbox{{p._id}}" [checked]="p.home" (change)="updateStatus($event.target.checked,p,'home')">
-                        <label for="homecheckbox{{p._id}}"></label>
-                    </div></td>  
-                    <td>
-                        <button type="button" (click)="showModal(p)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
-                        &nbsp;
-                        <button type="button" (click)="deletePoll(p._id)" class="btn btn-danger waves-light" mdbRippleRadius>Delete <i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-                </tr>
-            </tbody>
-            <!--Table body-->
-
-        </table>
-        <!--Table-->
+        <div class="card-body">
+    
+            <!--Table-->
+            <table class="table table-hover table-responsive-md table-fixed">
+    
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Poll</th>
+                        <th>Status</th>
+                        <th>Trending</th>
+                        <th>Display in Home</th>
+                        <th>Result Publish</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+    
+                <!--Table body-->
+                <tbody>
+                    <tr *ngFor="let p of pollList; let i = index">
+                        <td scope="row">{{i+1}}</td>
+                        <td>{{p.categoryname[0].name}}</td>
+                        <td>{{p.name}}</td>
+                        <td><div class="form-check checkbox-warning-filled">
+                            <input type="checkbox" class="filled-in" id="statuscheckbox{{p._id}}" [checked]="p.status" (change)="updateStatus($event.target.checked,p,'status')">
+                            <label for="statuscheckbox{{p._id}}"></label>
+                        </div></td>
+                        <td><div class="form-check checkbox-warning-filled">
+                            <input type="checkbox" class="filled-in" id="trendingcheckbox{{p._id}}" [checked]="p.trending" (change)="updateStatus($event.target.checked,p,'trending')">
+                            <label for="trendingcheckbox{{p._id}}"></label>
+                        </div></td>
+                        <td><div class="form-check checkbox-warning-filled">
+                            <input type="checkbox" class="filled-in" id="homecheckbox{{p._id}}" [checked]="p.home" (change)="updateStatus($event.target.checked,p,'home')">
+                            <label for="homecheckbox{{p._id}}"></label>
+                        </div></td> 
+                        <td><div class="form-check checkbox-warning-filled">
+                            <input type="checkbox" class="filled-in" id="resultcheckbox{{p._id}}" [checked]="p.result" (change)="updateStatus($event.target.checked,p,'result')">
+                            <label for="resultcheckbox{{p._id}}"></label>
+                        </div></td> 
+                        <td>
+                            <button type="button" (click)="showModal(p)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
+                            &nbsp;
+                            <button type="button" (click)="deletePoll(p._id)" class="btn btn-danger waves-light" mdbRippleRadius>Delete <i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+                    </tr>
+                </tbody>
+                <!--Table body-->
+    
+            </table>
+            <!--Table-->
+        </div>
     </div>
-</div>
-<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess">
-  <div class="modal-dialog modal-notify modal-info modal-lg">
-      <div class="modal-content">
-          <div class="modal-header">
-              <p class="heading lead">Update Poll</p>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
-                  <span aria-hidden="true" class="white-text">×</span>
-              </button>
-          </div>
-          <form [formGroup]="pollCreateForm">
-          <div class="modal-body">
-                  <div class="form-group row">
-                      <input type="text" class="form-control" placeholder="Poll Question *" formControlName="pollname" name="pollname">
-                  </div>
-                  <div class="form-group row">
-                      <mdb-select formControlName="selectedPollType" name="selectedPollType" [options]="pollType" placeholder="Type of Selection *" class="colorful-select dropdown-primary"></mdb-select>
-                  </div>
-                  <div class="form-group row">
-                      <div class="switch">
-                          <label>
-                              Status Off
-                              <input formControlName="pollStatus" name="pollStatus" type="checkbox">
-                              <span class="lever"></span>
-                              Status On
-                          </label>
+    <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess" style="overflow: auto;">
+      <div class="modal-dialog modal-notify modal-info modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <p class="heading lead">Update Poll</p>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                      <span aria-hidden="true" class="white-text">×</span>
+                  </button>
+              </div>
+              <form [formGroup]="pollCreateForm">
+              <div class="modal-body">
+                      <div class="form-group row">
+                          <input type="text" class="form-control" placeholder="Poll Question *" formControlName="pollname" name="pollname">
                       </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="switch">
-                        <label>
-                            Trending Off
-                            <input formControlName="trending" name="trending" type="checkbox">
-                            <span class="lever"></span>
-                            Trending On
-                        </label>
+                      <div class="file-field">
+                        <div class="file-path-wrapper">
+                            <img [src]="imageUrl" width="200" height="200">
+                        </div>
+                        <div class="btn btn-primary btn-sm waves-light" mdbRippleRadius>
+                            <span>Choose file</span>
+                            <input type="file" (change)="fileEvent($event)">
+                        </div>
+                        
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="switch">
-                        <label>
-                            Display in Home Off
-                            <input formControlName="displayhome" name="displayhome" type="checkbox">
-                            <span class="lever"></span>
-                            Display in Home On
-                        </label>
-                    </div>
-                </div>
-                  <div class="form-group row">
-                      <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
-                  </div>
-                  <label>Poll Options *</label>
-                  <div formArrayName="pollOption">
-                      <div *ngFor="let itemrow of pollCreateForm.controls.pollOption.controls; let i=index"  [formGroupName]="i">
-                          <div class="form-group">
-                              <i *ngIf="pollCreateForm.controls.pollOption.controls.length > 1" (click)="deleteRow(i)" class="fa fa-remove prefix grey-text"></i> 
-                              <input formControlName="itemname" placeholder="Option {{ i + 1 }}" class="form-control">
+                      <div class="form-group row">
+                          <mdb-select formControlName="selectedPollType" name="selectedPollType" [options]="pollType" placeholder="Type of Selection *" class="colorful-select dropdown-primary"></mdb-select>
+                      </div>
+                      <div class="form-group row">
+                          <div class="switch">
+                              <label>
+                                  Status Off
+                                  <input formControlName="pollStatus" name="pollStatus" type="checkbox">
+                                  <span class="lever"></span>
+                                  Status On
+                              </label>
                           </div>
                       </div>
-                      <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
-                  </div>
-                  <input type="hidden" formControlName="updatepollid" name = "updatepollid" />
+                      <div class="form-group row">
+                        <div class="switch">
+                            <label>
+                                Trending Off
+                                <input formControlName="trending" name="trending" type="checkbox">
+                                <span class="lever"></span>
+                                Trending On
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="switch">
+                            <label>
+                                Display in Home Off
+                                <input formControlName="displayhome" name="displayhome" type="checkbox">
+                                <span class="lever"></span>
+                                Display in Home On
+                            </label>
+                        </div>
+                    </div>
+                      <div class="form-group row">
+                          <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
+                      </div>
+                      <label>Poll Options *</label>
+                      <div formArrayName="pollOption">
+                          <div *ngFor="let itemrow of pollCreateForm.controls.pollOption.controls; let i=index"  [formGroupName]="i">
+                              <div class="form-group">
+                                  <i *ngIf="pollCreateForm.controls.pollOption.controls.length > 1" (click)="deleteRow(i)" class="fa fa-remove prefix grey-text"></i> 
+                                  <input formControlName="itemname" placeholder="Option {{ i + 1 }}" class="form-control">
+                              </div>
+                          </div>
+                          <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
+                      </div>
+                      <input type="hidden" formControlName="updatepollid" name = "updatepollid" />
+              </div>
+              <div class="modal-footer justify-content-center">
+                <a type="button" (click)="updatePoll()" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
+              </div>
+            </form>
           </div>
-          <div class="modal-footer justify-content-center">
-            <a type="button" (click)="updatePoll()" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
-            <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
-          </div>
-        </form>
       </div>
-  </div>
-</div>
-  
+    </div>
+      

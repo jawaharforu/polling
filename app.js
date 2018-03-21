@@ -6,6 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const multer = require('multer');
+var fs = require('fs');
 
 //Database connect
 mongoose.connect(config.database);
@@ -36,7 +37,9 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Body parser middleware
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -54,8 +57,9 @@ app.get('/', (req, res) => {
     res.send('Invalied Endpoing');
 });
 // upload
+/*
 const upload = multer({
-    dest: 'mdb-angular-pro/src/img/',
+    dest: 'uploads/',
     storage: multer.diskStorage({
       filename: (req, file, cb) => {
         let ext = path.extname(file.originalname);
@@ -73,6 +77,79 @@ const upload = multer({
       }
     }));
   });
+  */
+ /*
+  var DIR = './uploads/';
+  var upload = multer({dest: DIR});
+  app.use(multer({
+    dest: DIR,
+    rename: function (fieldname, filename) {
+      return filename + Date.now();
+    },
+    onFileUploadStart: function (file) {
+      console.log(file.originalname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file) {
+      console.log(file.fieldname + ' uploaded to  ' + file.path);
+    }
+  }));
+  app.post('/upload', function (req, res) {
+    upload(req, res, function (err) {
+      if (err) {
+        return res.end(err.toString());
+      }
+   
+      res.end('File is uploaded');
+    });
+  });
+  */
+ /*
+ // Set The Storage Engine
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
+  filename: function(req, file, cb){
+    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+// Init Upload
+const upload = multer({
+  storage: storage,
+  limits:{fileSize: 1000000},
+  fileFilter: function(req, file, cb){
+    checkFileType(file, cb);
+  }
+}).single('myImage');
+
+// Check File Type
+function checkFileType(file, cb){
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if(mimetype && extname){
+    return cb(null,true);
+  } else {
+    cb('Error: Images Only!');
+  }
+}
+ app.post('/upload', (req, res) => {
+   console.log(req);
+  upload(req, res, (err) => {
+    if(err){
+      res.json({success: true, data: 'error out'});
+    } else {
+      if(req.file == undefined){
+        res.json({success: true, data: 'error in'});
+      } else {
+        res.json({success: true, data: 'success in'}); 
+      }
+    }
+  });
+});
+*/
 // Start server
 app.listen(port, () => {
     console.log("Server started on port " + port);

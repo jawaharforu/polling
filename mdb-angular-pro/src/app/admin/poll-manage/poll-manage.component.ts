@@ -20,7 +20,7 @@ export class PollManageComponent implements OnInit {
   categotylist: Array<any>;
   pollCreateForm: FormGroup;
   updatePolls: any;
-
+  imageUrl: String;
   constructor(
     private _flashMessagesService: FlashMessagesService,
     private categoryService: CategoryService,
@@ -106,7 +106,8 @@ export class PollManageComponent implements OnInit {
       trending: this.pollCreateForm.value.trending,
       home: this.pollCreateForm.value.displayhome,
       categoryid: this.pollCreateForm.value.pollCategoryid,
-      options: this.pollCreateForm.value.pollOption
+      options: this.pollCreateForm.value.pollOption,
+      image: this.imageUrl
     };
     if (updatePoll.name.length === 0 || updatePoll.options[0].itemname === ''
     || updatePoll.type.length === 0 || updatePoll.categoryid.length === 0) {
@@ -127,7 +128,9 @@ export class PollManageComponent implements OnInit {
           trending: p.trending,
           home: p.home,
           categoryid: p.categoryid,
-          options: p.options
+          options: p.options,
+          image: this.imageUrl,
+          result: p.result
         };
         break;
       case 'trending':
@@ -138,7 +141,9 @@ export class PollManageComponent implements OnInit {
           trending: event,
           home: p.home,
           categoryid: p.categoryid,
-          options: p.options
+          options: p.options,
+          image: this.imageUrl,
+          result: p.result
         };
         break;
       case 'home':
@@ -149,7 +154,22 @@ export class PollManageComponent implements OnInit {
           trending: p.trending,
           home: event,
           categoryid: p.categoryid,
-          options: p.options
+          options: p.options,
+          image: this.imageUrl,
+          result: p.result
+        };
+        break;
+      case 'result':
+        this.updatePolls = {
+          name: p.name,
+          type: p.type,
+          status: p.status,
+          trending: p.trending,
+          home: p.home,
+          categoryid: p.categoryid,
+          options: p.options,
+          image: this.imageUrl,
+          result: event
         };
         break;
       default:
@@ -160,7 +180,8 @@ export class PollManageComponent implements OnInit {
           trending: p.trending,
           home: p.home,
           categoryid: p.categoryid,
-          options: p.options
+          options: p.options,
+          image: this.imageUrl
         };
     }
 
@@ -168,9 +189,20 @@ export class PollManageComponent implements OnInit {
   }
 
   public showModal(p): void {
+    this.pollCreateForm = this._fb.group({
+      pollname: this._fb.control(null),
+      selectedPollType: this._fb.control(null),
+      pollStatus: this._fb.control(false),
+      trending: this._fb.control(false),
+      displayhome: this._fb.control(false),
+      pollCategoryid: this._fb.control(null),
+      pollOption: this._fb.array([]),
+      updatepollid: this._fb.control(null)
+    });
     for (let i = 1; i <= p.options.length; i++) {
       this.addNewRow();
       if (i === p.options.length) {
+        this.imageUrl = p.image;
         this.pollCreateForm.setValue({
           pollname: p.name,
           selectedPollType: p.type,
@@ -192,6 +224,21 @@ export class PollManageComponent implements OnInit {
 
   public onHidden(): void {
       this.isModalShown = false;
+  }
+
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => {
+        const url = event.target.result;
+        this.imageUrl = url;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+  fileEvent(e) {
+    this.readUrl(e);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { CategoryService } from '../../services/category.service';
@@ -17,10 +17,12 @@ export class PollCreateComponent implements OnInit {
   pollCategoryid: String;
   categotylist: Array<any>;
   pollCreateForm: FormGroup;
+  imageUrl: String;
+  imageurlstatus = false;
+
   public myDatePickerOptions: IMyOptions = {
 
   };
-  @ViewChild('fileInput') fileInput;
 
   constructor(
     private _flashMessagesService: FlashMessagesService,
@@ -51,6 +53,7 @@ export class PollCreateComponent implements OnInit {
       pollFromDate: this._fb.control(null),
       pollToDate: this._fb.control(null),
       pollCategoryid: this._fb.control(null),
+      pollImage: this._fb.control(null),
       pollOption: this._fb.array([this.initItemRows()])
     });
   }
@@ -72,6 +75,11 @@ export class PollCreateComponent implements OnInit {
   }
 
   addPoll() {
+    if (this.imageUrl !== '') {
+      this.imageUrl = this.imageUrl;
+    } else {
+      this.imageUrl = this.imageUrl;
+    }
     const newPoll = {
       name: this.pollCreateForm.value.pollname,
       type: this.pollCreateForm.value.selectedPollType,
@@ -81,7 +89,8 @@ export class PollCreateComponent implements OnInit {
       categoryid: this.pollCreateForm.value.pollCategoryid,
       options: this.pollCreateForm.value.pollOption,
       fromdate: this.pollCreateForm.value.pollFromDate,
-      todate: this.pollCreateForm.value.pollToDate
+      todate: this.pollCreateForm.value.pollToDate,
+      image: this.imageUrl
     };
     if (newPoll.name.length === 0 || newPoll.options[0].itemname === '' || newPoll.type.length === 0 || newPoll.categoryid.length === 0) {
       this._flashMessagesService.show('Please Fill All Mandatory Fields!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -98,15 +107,19 @@ export class PollCreateComponent implements OnInit {
     });
   }
 
-  addFile(): void {
-    const fi = this.fileInput.nativeElement;
-    if (fi.files && fi.files[0]) {
-        const fileToUpload = fi.files[0];
-        this.pollService
-            .upload(fileToUpload)
-            .subscribe(res => {
-                console.log(res);
-            });
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => {
+        const url = event.target.result;
+        this.imageUrl = url;
+        this.imageurlstatus = true;
+      }
+      reader.readAsDataURL(event.target.files[0]);
     }
-}
+  }
+  fileEvent(e) {
+    this.readUrl(e);
+  }
 }

@@ -1,0 +1,79 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+
+      <!--Table-->
+      <table class="table table-hover table-responsive-md table-fixed">
+
+          <!--Table head-->
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+              <tr *ngFor="let u of userList; let i = index">
+                  <td scope="row">{{i+1}}</td>
+                  <td>{{u.name}}</td>
+                  <td>{{u.mobile}}</td> 
+                  <td>{{u.email}}</td>
+                  <td>
+                      <button type="button" (click)="showModal(u)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
+                      &nbsp;
+                      <button type="button" (click)="deletePoll(u._id)" class="btn btn-danger waves-light" mdbRippleRadius>Delete <i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+              </tr>
+          </tbody>
+          <!--Table body-->
+
+      </table>
+      <!--Table-->
+  </div>
+</div>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess" style="overflow: auto;">
+<div class="modal-dialog modal-notify modal-info modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="heading lead">Update User</p>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                <span aria-hidden="true" class="white-text">×</span>
+            </button>
+        </div>
+        <form [formGroup]="userCreateForm">
+        <div class="modal-body">
+          <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input formControlName="name" name="name" type="text" id="orangeForm-name" class="form-control" mdbActive>
+            <label for="orangeForm-name">User name*</label>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-mobile prefix grey-text"></i>
+            <input formControlName="mobile" name="mobile" type="text" id="orangeForm-mobile" class="form-control" mdbActive>
+            <label for="orangeForm-mobile">User mobile*</label>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input formControlName="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+            <label for="orangeForm-email">User email*</label>
+        </div>
+    
+        <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input formControlName="password" name="password" type="password" id="orangeForm-pass" class="form-control" mdbActive>
+            <label for="orangeForm-pass">User password*</label>
+        </div>       
+        <input type="hidden" formControlName="userid" name = "userid" />
+        </div>
+        <div class="modal-footer justify-content-center">
+          <a type="button" (click)="updateUser()" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
+          <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
+        </div>
+      </form>
+    </div>
+</div>
+</div>

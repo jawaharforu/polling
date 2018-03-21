@@ -1,0 +1,35 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body pl-5 pr-5">          
+    <form [formGroup]="userCreateForm" (submit)="addUser()">
+      <p class="h5 text-center mb-4">Sign up</p>
+  
+      <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input formControlName="name" name="name" type="text" id="orangeForm-name" class="form-control" mdbActive>
+          <label for="orangeForm-name">User name*</label>
+      </div>
+      <div class="md-form">
+          <i class="fa fa-mobile prefix grey-text"></i>
+          <input formControlName="mobile" name="mobile" type="text" id="orangeForm-mobile" class="form-control" mdbActive>
+          <label for="orangeForm-mobile">User mobile*</label>
+      </div>
+      <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input formControlName="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+          <label for="orangeForm-email">User email*</label>
+      </div>
+  
+      <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input formControlName="password" name="password" type="password" id="orangeForm-pass" class="form-control" mdbActive>
+          <label for="orangeForm-pass">User password*</label>
+      </div>
+  
+      <div class="text-center">
+          <button type="submit" class="btn btn-deep-orange waves-light" mdbRippleRadius>Creat</button>
+      </div>
+  
+    </form>
+  </div>
+
+</div>

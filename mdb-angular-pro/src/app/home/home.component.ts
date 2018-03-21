@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   voteBtn: any[] = [];
   voted: any;
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
-  public isModalShown: Boolean = true;
+  public isModalShown: Boolean = false;
 
   // chart start
   public chartType: String = 'bar';
@@ -37,6 +37,14 @@ export class HomeComponent implements OnInit {
     public chartOptions: any = { 
         responsive: true
     };
+
+    public chartClicked(e: any): void { 
+         
+    } 
+    
+    public chartHovered(e: any): void {
+         
+    }
 
     // chart end
 

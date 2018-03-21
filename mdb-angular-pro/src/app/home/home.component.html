@@ -1,5 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <app-category-nav></app-category-nav>
+
+
 	<section>
 		<div class="content-middle">
 			<div class="text container">
@@ -55,9 +57,7 @@
 			</div>
 			</div>
 		</div>
-	</section>
-	
-	<section>
+
 		<div class="bigger-impact">
 			<div class="bigger-impact-img"></div>
 			<div *ngFor="let p of pollList; let i = index">
@@ -94,7 +94,15 @@
 				<hr>
 			</div>
 		</div>
+
+
 	</section>
+	
+	<section>
+		
+	</section>
+
+
 <app-category-content></app-category-content>	
 <app-footer></app-footer>
 <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

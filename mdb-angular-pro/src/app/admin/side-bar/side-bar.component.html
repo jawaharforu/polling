@@ -50,10 +50,10 @@
                           <mdb-item-body>
                               <ul>
                                   <li>
-                                      <a href="#" class="waves-effect" mdbRippleRadius>Creare User</a>
+                                      <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['usercreate']}}]" mdbRippleRadius>Creare User</a>
                                   </li>
                                   <li>
-                                      <a href="#" class="waves-effect" mdbRippleRadius>Manage Users</a>
+                                      <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['usermanage']}}]" mdbRippleRadius>Manage Users</a>
                                   </li>
                               </ul>
                           </mdb-item-body>

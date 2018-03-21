@@ -32,6 +32,10 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { UserCreateComponent } from './admin/user-create/user-create.component';
+import { UserManageComponent } from './admin/user-manage/user-manage.component';
+import { UserService } from './services/user.service';
+import { ValidationService } from './services/validation.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ import { CategoryPageComponent } from './category-page/category-page.component';
     CategoryContentComponent,
     NewlinePipe,
     LoginComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    UserCreateComponent,
+    UserManageComponent
   ],
   imports: [
     TruncateModule,
@@ -67,7 +73,7 @@ import { CategoryPageComponent } from './category-page/category-page.component';
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard],
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

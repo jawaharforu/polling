@@ -8,7 +8,7 @@ const User = require('../models/user');
 
 // Get all user
 router.get('/users', (req, res, next) => {
-    User.find(function(err, user){
+    User.getAllUser((err, user) => {
         if(err) throw err;
         res.json({success: true, data: user});
     });
@@ -94,14 +94,16 @@ router.put('/user/:uid', (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         mobile: req.body.mobile,
-        password: req.body.password,
         role: req.body.role
     };
     User.updateUser(req.params.uid, updatedUser, (err, result) => {
         if(err){
             res.json({success: false, msg: 'Failed to Update Product'});
         }else{
-            res.json({success: true, msg: 'Product Updated successfully'});
+            User.getAllUser((err, user) => {
+                if(err) throw err;
+                res.json({success: true, msg: 'User Updated successfully', data: user});
+            });
         }
     });
 });
