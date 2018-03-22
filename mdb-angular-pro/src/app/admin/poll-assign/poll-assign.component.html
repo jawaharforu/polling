@@ -1,0 +1,42 @@
+<div class="example z-depth-5">
+    <ul *ngIf="userDetail">
+      <li>{{userDetail.name}}</li>
+      <li>{{userDetail.mobile}}</li>
+      <li>{{userDetail.email}}</li>
+    </ul>
+</div>
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+
+      <!--Table-->
+      <table class="table table-hover table-responsive-md table-fixed">
+
+          <!--Table head-->
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Category</th>
+                  <th>Poll</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+              <tr *ngFor="let p of pollList; let i = index">
+                <td scope="row">{{i+1}}</td>
+                <td>{{p.categoryname[0].name}}</td>
+                <td>{{p.name}}</td>
+                <td>
+                  <input class="form-check-input" (change)="assignTo($event.target.checked,p._id)" type="checkbox" id="checkbox_{{p._id}}" [checked] = "isSelected(p._id)">
+                  <label class="form-check-label" for="checkbox_{{p._id}}"></label>
+                </td>
+              </tr>
+          </tbody>
+          <!--Table body-->
+
+      </table>
+      <!--Table-->
+  </div>
+</div>

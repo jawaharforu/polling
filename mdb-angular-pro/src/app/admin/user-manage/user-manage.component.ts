@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalDirective } from '../../typescripts/free';
 import { ValidationService } from '../../services/validation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-manage',
@@ -21,7 +22,8 @@ export class UserManageComponent implements OnInit {
     private _flashMessagesService: FlashMessagesService,
     private userService: UserService,
     private validationService: ValidationService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -96,5 +98,8 @@ export class UserManageComponent implements OnInit {
     }
     this.updateFunction(userid, user);
     this.hideModal();
+  }
+  pollassign(uid) {
+    this.router.navigate(['/admin', {outlets: {'adminchild': ['pollassign' , uid]}}]);
   }
 }

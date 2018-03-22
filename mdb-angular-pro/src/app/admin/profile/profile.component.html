@@ -1,0 +1,69 @@
+<div class="card mt-5 mb-5">
+    <div class="card-body pl-5 pr-5">          
+      <form [formGroup]="userCreateForm">
+        <p class="h5 text-center mb-4">Profile</p>
+    
+        <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input formControlName="name" name="name" type="text" id="orangeForm-name" class="form-control" mdbActive>
+            <label for="orangeForm-name">User name*</label>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-mobile prefix grey-text"></i>
+            <input formControlName="mobile" name="mobile" type="text" id="orangeForm-mobile" class="form-control" mdbActive>
+            <label for="orangeForm-mobile">User mobile*</label>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input formControlName="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+            <label for="orangeForm-email">User email*</label>
+        </div>
+    
+        <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <label for="orangeForm-password"><a (click)="showModal()">Change password</a></label>
+        </div>
+    
+        <div class="text-center">
+            <button type="button" (click)="updateUser()" class="btn btn-deep-orange waves-light" mdbRippleRadius>Update</button>
+        </div>
+    
+      </form>
+    </div>
+  
+  </div>
+  <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess" style="overflow: auto;">
+      <div class="modal-dialog modal-notify modal-info modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <p class="heading lead">Change Password</p>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                      <span aria-hidden="true" class="white-text">×</span>
+                  </button>
+              </div>
+              <form>
+              <div class="modal-body">
+                  <div class="md-form">
+                      <i class="fa fa-lock prefix grey-text"></i>
+                      <input  name="passwordold" [(ngModel)]="passwordold" type="password" id="passwordold" class="form-control" mdbActive>
+                      <label for="passwordold">Old Password</label>
+                  </div>
+                  <div class="md-form">
+                      <i class="fa fa-lock prefix grey-text"></i>
+                      <input  name="passwordnew" type="password" [(ngModel)]="passwordnew" id="passwordnew" class="form-control" mdbActive>
+                      <label for="passwordnew">New Password</label>
+                  </div>
+                  <div class="md-form">
+                      <i class="fa fa-lock prefix grey-text"></i>
+                      <input  name="passwordre" type="password" [(ngModel)]="passwordre" id="passwordre" class="form-control" mdbActive>
+                      <label for="passwordre">Confirm Password</label>
+                  </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <a type="button" (click)="updateUserPassword()" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
+              </div>
+            </form>
+          </div>
+      </div>
+      </div>

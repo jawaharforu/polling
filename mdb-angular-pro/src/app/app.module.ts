@@ -1,4 +1,4 @@
-import { ToastModule } from './typescripts/pro/alerts/toast/toast.module';
+import { ToastModule } from './typescripts/pro/alerts';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -36,6 +36,10 @@ import { UserCreateComponent } from './admin/user-create/user-create.component';
 import { UserManageComponent } from './admin/user-manage/user-manage.component';
 import { UserService } from './services/user.service';
 import { ValidationService } from './services/validation.service';
+import { PollAssignComponent } from './admin/poll-assign/poll-assign.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +58,10 @@ import { ValidationService } from './services/validation.service';
     LoginComponent,
     CategoryPageComponent,
     UserCreateComponent,
-    UserManageComponent
+    UserManageComponent,
+    PollAssignComponent,
+    ProfileComponent,
+    AllowedpollsComponent
   ],
   imports: [
     TruncateModule,
@@ -68,6 +75,7 @@ import { ValidationService } from './services/validation.service';
     MDBBootstrapModule.forRoot(),
     MDBBootstrapModulePro.forRoot(),
     FlashMessagesModule.forRoot(),
+    ToastModule.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
       apiKey: 'Your_api_key'

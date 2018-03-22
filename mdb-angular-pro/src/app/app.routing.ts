@@ -8,6 +8,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { UserCreateComponent } from './admin/user-create/user-create.component';
 import { UserManageComponent } from './admin/user-manage/user-manage.component';
+import { PollAssignComponent } from './admin/poll-assign/poll-assign.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.component';
 
 export const AppRoutes: Routes = [
     {
@@ -45,6 +48,21 @@ export const AppRoutes: Routes = [
             {
                 path: 'usermanage',
                 component: UserManageComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'pollassign/:id',
+                component: PollAssignComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'allowedpolls',
+                component: AllowedpollsComponent,
                 outlet: 'adminchild'
             }
         ],

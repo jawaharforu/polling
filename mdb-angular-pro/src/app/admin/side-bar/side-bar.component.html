@@ -60,6 +60,33 @@
                   </mdb-item>
                   </mdb-squeezebox>
               </ul>
+
+              <ul class="collapsible collapsible-accordion">
+                    <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
+                      <mdb-item>
+                        <mdb-item-head mdbRippleRadius>
+                            <i class="fa fa-chevron-right"></i> Profile</mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['profile']}}]" mdbRippleRadius>Manage Profile</a>
+                                    </li>
+                                </ul>
+                            </mdb-item-body>
+                    </mdb-item>
+                    <mdb-item>
+                        <mdb-item-head mdbRippleRadius>
+                            <i class="fa fa-chevron-right"></i> Poll</mdb-item-head>
+                            <mdb-item-body>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['allowedpolls']}}]" mdbRippleRadius>Poll</a>
+                                    </li>
+                                </ul>
+                            </mdb-item-body>
+                        </mdb-item>
+                    </mdb-squeezebox>
+                </ul>
           </li>
           <!--/. Side navigation links -->
       </links>

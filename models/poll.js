@@ -42,9 +42,6 @@ const PollSchema = mongoose.Schema({
     result: {
         type: Boolean,
     },
-    userid: {
-        type: Array
-    },
     createdon: {
         type: Date,
         default: Date.now

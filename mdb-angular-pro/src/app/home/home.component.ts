@@ -23,27 +23,27 @@ export class HomeComponent implements OnInit {
 
   // chart start
   public chartType: String = 'bar';
-        
+
     public chartDatasets: Array<any> = [
         {data: [65], label: 'My First dataset'},
         {data: [28], label: 'My Second dataset'},
         {data: [40], label: 'My Third dataset'}
     ];
 
-    public chartLabels:Array<any> = ['Jan'];
+    public chartLabels: Array<any> = ['Jan'];
 
-    
 
-    public chartOptions: any = { 
+
+    public chartOptions: any = {
         responsive: true
     };
 
-    public chartClicked(e: any): void { 
-         
-    } 
-    
-    public chartHovered(e: any): void {
-         
+    public chartClicked(): void {
+
+    }
+
+    public chartHovered(): void {
+
     }
 
     // chart end
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     this.pollService.getIpAddress()
     .subscribe(data => {
       this.jsonval = data;
-    }); 
+    });
     this.pollService.getPollByStatusHome()
     .subscribe(data => {
       let i = 1;

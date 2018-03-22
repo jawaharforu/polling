@@ -70,3 +70,4 @@ https://ipapi.co/
 https://www.npmjs.com/package/ng2-uploader
 https://mdbootstrap.com/support/get-response-from-file-upload/
 https://nehalist.io/uploading-files-in-angular2/
+https://www.concretepage.com/angular-2/angular-2-4-child-routes-and-relative-navigation-example

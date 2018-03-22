@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
+const Poll = require('./poll');
 
 // User Schema
 const UserSchema = mongoose.Schema({
@@ -27,6 +28,10 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    polls : [{ 
+        type : mongoose.Schema.Types.ObjectId, 
+        ref: 'Poll' 
+    }],
     createdon: {
         type: Date,
         default: Date.now
@@ -81,3 +86,13 @@ module.exports.ComparePassword = function(candidatePassword, hash, callback){
         callback(null, isMatch);
     });
 };
+
+module.exports.updateUserPassword = function(uid, updatedProduct, callback){ 
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(updatedProduct.password, salt, (err, hash) => {
+            if(err) throw err;
+            updatedProduct.password = hash; 
+            User.update({_id: uid},updatedProduct, callback);
+        });
+    });
+} ;

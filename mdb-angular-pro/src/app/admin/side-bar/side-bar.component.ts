@@ -9,12 +9,16 @@ import { Router } from '@angular/router';
 })
 export class SideBarComponent implements OnInit {
 
+  user: any;
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user'));
+   }
 
   ngOnInit() {
+    
   }
 
   onLogoutClick() {
