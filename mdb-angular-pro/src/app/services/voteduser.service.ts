@@ -17,4 +17,11 @@ export class VoteduserService {
     .map(res => res.json());
   }
 
+  updateVoteduser(voterid, updateVoteduser) {
+    const headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.put(this.link + 'api/votedusers/voteduser/' + voterid, updateVoteduser, {headers: headers})
+    .map(res => res.json());
+  }
+
 }

@@ -52,4 +52,15 @@ export class UserService {
     return this.http.put(this.link + 'api/users/userpassword/' + userid, updateUser, {headers: headers})
     .map(res => res.json());
   }
+  getUserWithPoll(uid) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.link + 'api/users/userpoll/' + uid, {headers: headers})
+      .map(res => res.json());
+  }
+  getLoggedInUser() {
+    return new Promise((resolve) => {
+      resolve(JSON.parse(localStorage.getItem('user')));
+    });
+  }
 }

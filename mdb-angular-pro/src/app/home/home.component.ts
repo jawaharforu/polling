@@ -4,6 +4,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { VoteduserService } from '../services/voteduser.service';
 import { ResultService } from '../services/result.service';
 import { ModalDirective } from '../typescripts/free';
+import {ToastService} from '../typescripts/pro/alerts';
+import { ValidationService } from '../services/validation.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +20,13 @@ export class HomeComponent implements OnInit {
   voterid: String;
   voteBtn: any[] = [];
   voted: any;
+  mobile: String;
+  email: String;
+  mobilenum: String;
+
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
   public isModalShown: Boolean = false;
+  public isModalForUser: Boolean = false;
 
   // chart start
   public chartType: String = 'bar';
@@ -53,7 +60,9 @@ export class HomeComponent implements OnInit {
     private voteduserService: VoteduserService,
     private resultService: ResultService,
     meta: Meta,
-    title: Title
+    title: Title,
+    private toast: ToastService,
+    private validationService: ValidationService,
   ) {
     title.setTitle('NATION PULSE');
 
@@ -85,6 +94,8 @@ export class HomeComponent implements OnInit {
   }
 
   putVote(pollId, i) {
+    this.isModalForUser = true;
+    return false;
     if (this.polloption[pollId] === undefined) {
       alert('Select Option');
       return false;
@@ -107,7 +118,7 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.voteBtn[i][pollId] = false;
         this.voted = data.data;
-        this.isModalShown = true;
+        this.isModalForUser = true;
       });
     });
   }
@@ -124,4 +135,34 @@ export class HomeComponent implements OnInit {
       this.isModalShown = false;
   }
 
+  public onHiddenuser(): void {
+    this.isModalForUser = false;
+  }
+
+  updateVoter() {
+    const updateVoteduser = {
+      name: '',
+      mobile: this.mobile,
+      email: this.email
+    }
+    if (this.mobile === undefined || this.email === undefined) {
+      this.toast.error('All Fields Required');
+      return false;
+    }
+    if (!this.validationService.validateEmail(updateVoteduser.email)) {
+      this.toast.error('Invalid Email');
+      return false;
+    }
+    const mobilemsg = this.validationService.validateMobile(updateVoteduser.mobile);
+    if (mobilemsg !== true) {
+      this.toast.error(mobilemsg);
+      return false;
+    }
+    this.voteduserService.updateVoteduser(this.voterid, updateVoteduser)
+    .subscribe(data => {
+      if (data.success) {
+          this.mobilenum = this.mobile;
+      }
+    });
+  }
 }

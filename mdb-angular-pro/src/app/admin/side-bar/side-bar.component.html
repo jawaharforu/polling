@@ -16,7 +16,7 @@
       <links>
           <!-- Side navigation links -->
           <li>
-              <ul class="collapsible collapsible-accordion">
+              <ul class="collapsible collapsible-accordion" *ngIf="user.role=='admin'">
                   <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
                       <!-- Collapsible link -->
                       <mdb-item>
@@ -74,7 +74,7 @@
                                 </ul>
                             </mdb-item-body>
                     </mdb-item>
-                    <mdb-item>
+                    <mdb-item *ngIf="user.role=='paid'">
                         <mdb-item-head mdbRippleRadius>
                             <i class="fa fa-chevron-right"></i> Poll</mdb-item-head>
                             <mdb-item-body>

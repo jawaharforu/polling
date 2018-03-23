@@ -168,4 +168,11 @@ router.put('/userpassword/:uid', (req, res, next) => {
         }
     });
 });
+
+router.get('/userpoll/:uid', (req, res, next) => {
+    User.getUserWithPoll(req.params.uid, (err, user) => {
+        if(err) throw err;
+        res.json({success: true, data: user});
+    });
+});
 module.exports = router;

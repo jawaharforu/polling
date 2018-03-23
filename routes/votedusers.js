@@ -10,7 +10,8 @@ const Voteduser = require('../models/voteduser');
 router.post('/voteduser', (req, res, next) => {
     let newVoted = new Voteduser({
         ip: req.body.ip,
-        userdetail: req.body.userdetail
+        userdetail: req.body.userdetail,
+        mobile: ''
     });
     Voteduser.addVoteduser(newVoted, (err, voteduser) => {
         if(err){

@@ -1,3 +1,34 @@
-<p>
-  allowedpolls works!
-</p>
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+
+      <!--Table-->
+      <table class="table table-hover table-responsive-md table-fixed">
+
+          <!--Table head-->
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Category</th>
+                  <th>Poll</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody *ngIf="userdata">
+              <tr *ngFor="let p of userdata; let i = index">
+                  <td scope="row">{{i+1}}</td>
+                  <td>{{p.categoryname.name}}</td>
+                  <td>{{p.pollname.name}}</td> 
+                  <td>
+                      
+                  </td>
+              </tr>
+          </tbody>
+          <!--Table body-->
+
+      </table>
+      <!--Table-->
+  </div>
+</div>

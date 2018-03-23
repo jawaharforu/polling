@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
 const Poll = require('./poll');
+const Category = require('./category');
 
 // User Schema
 const UserSchema = mongoose.Schema({
@@ -95,4 +96,39 @@ module.exports.updateUserPassword = function(uid, updatedProduct, callback){
             User.update({_id: uid},updatedProduct, callback);
         });
     });
-} ;
+};
+
+module.exports.getUserWithPoll = function(uid, callback){
+    /*
+    const query = {
+        _id: uid
+    }
+    User.find(query, callback).populate('polls').populate('polls.categoryid');
+    */
+    User.aggregate([
+        { 
+            $match: {
+                '_id': mongoose.Types.ObjectId(uid)
+            }
+        },
+        {
+            $lookup: {
+                from: 'polls',
+                localField: 'polls',
+                foreignField: '_id',
+                as: 'pollname'
+            }  
+        },
+        {
+            $unwind:"$pollname"
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'pollname.categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        }
+    ], callback);
+};
