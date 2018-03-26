@@ -11,6 +11,7 @@ import { UserManageComponent } from './admin/user-manage/user-manage.component';
 import { PollAssignComponent } from './admin/poll-assign/poll-assign.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.component';
+import { PollResultComponent } from './admin/poll-result/poll-result.component';
 
 export const AppRoutes: Routes = [
     {
@@ -63,6 +64,11 @@ export const AppRoutes: Routes = [
             {
                 path: 'allowedpolls',
                 component: AllowedpollsComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'pollresult/:id',
+                component: PollResultComponent,
                 outlet: 'adminchild'
             }
         ],

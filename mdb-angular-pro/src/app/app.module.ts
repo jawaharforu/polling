@@ -39,6 +39,9 @@ import { ValidationService } from './services/validation.service';
 import { PollAssignComponent } from './admin/poll-assign/poll-assign.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.component';
+import { CeiboShare } from 'ng2-social-share';
+import { PollResultComponent } from './admin/poll-result/poll-result.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 
 @NgModule({
@@ -61,11 +64,14 @@ import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.compone
     UserManageComponent,
     PollAssignComponent,
     ProfileComponent,
-    AllowedpollsComponent
+    AllowedpollsComponent,
+    CeiboShare,
+    PollResultComponent
   ],
   imports: [
     TruncateModule,
     BrowserModule,
+    Ng2GoogleChartsModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

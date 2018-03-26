@@ -16,6 +16,12 @@ export class PollService {
     return this.http.get(this.link + 'api/polls/polls', {headers: headers})
     .map(res => res.json());
   }
+  getPollById(pid) {
+    const headers = new Headers(); 
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/polls/poll/' + pid, {headers: headers})
+    .map(res => res.json());
+  }
   addPoll(newPoll) {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
@@ -64,6 +70,6 @@ export class PollService {
 
     return this.http
         .post(this.link + 'upload', input);
-}
+  }
 
 }

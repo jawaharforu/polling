@@ -40,3 +40,22 @@ module.exports.deleteResult = function(resultid, callback){
 module.exports.updateResult = function(resultid, updateResult, callback){
     Result.update({_id: resultid},updateResult, callback);
 } ;
+
+module.exports.getResult = function(pollid, callback){
+    Result.aggregate(
+        [
+           {$match: {
+               'pollid': mongoose.Types.ObjectId(pollid)
+           }},
+           {$group: {
+                _id: '$votedto', 
+                userid: {$addToSet: '$_id'}
+            }},
+            {$project: {
+                _id: 0, 
+                option: '$_id', 
+                voteCount: {$size: '$userid'}
+            }}
+        ]
+     , callback);
+}

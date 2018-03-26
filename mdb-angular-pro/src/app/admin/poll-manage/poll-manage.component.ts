@@ -4,6 +4,7 @@ import { CategoryService } from '../../services/category.service';
 import { PollService } from '../../services/poll.service';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { ModalDirective } from '../../typescripts/free';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poll-manage',
@@ -25,7 +26,8 @@ export class PollManageComponent implements OnInit {
     private _flashMessagesService: FlashMessagesService,
     private categoryService: CategoryService,
     private pollService: PollService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -129,7 +131,7 @@ export class PollManageComponent implements OnInit {
           home: p.home,
           categoryid: p.categoryid,
           options: p.options,
-          image: this.imageUrl,
+          image: p.image,
           result: p.result
         };
         break;
@@ -142,7 +144,7 @@ export class PollManageComponent implements OnInit {
           home: p.home,
           categoryid: p.categoryid,
           options: p.options,
-          image: this.imageUrl,
+          image: p.image,
           result: p.result
         };
         break;
@@ -155,7 +157,7 @@ export class PollManageComponent implements OnInit {
           home: event,
           categoryid: p.categoryid,
           options: p.options,
-          image: this.imageUrl,
+          image: p.image,
           result: p.result
         };
         break;
@@ -168,7 +170,7 @@ export class PollManageComponent implements OnInit {
           home: p.home,
           categoryid: p.categoryid,
           options: p.options,
-          image: this.imageUrl,
+          image: p.image,
           result: event
         };
         break;
@@ -181,7 +183,7 @@ export class PollManageComponent implements OnInit {
           home: p.home,
           categoryid: p.categoryid,
           options: p.options,
-          image: this.imageUrl
+          image: p.image
         };
     }
 
@@ -239,6 +241,9 @@ export class PollManageComponent implements OnInit {
   }
   fileEvent(e) {
     this.readUrl(e);
+  }
+  pollResult(pid) {
+    this.router.navigate(['/admin', {outlets: {'adminchild': ['pollresult' , pid]}}]);
   }
 
 }

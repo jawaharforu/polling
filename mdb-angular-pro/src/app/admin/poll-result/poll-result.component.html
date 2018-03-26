@@ -1,0 +1,24 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body" *ngIf="pollData">
+      <h3>{{pollData[0].categoryname[0].name}}</h3>
+      <h4>{{pollData[0].name}}</h4>
+      <p>Total Voted: {{totalPoll}}</p>
+  </div>
+</div>
+<div class="card mt-5 mb-5">
+  <div class="card-body">      
+    <div style="display: block" *ngIf="piechart">
+      <canvas mdbChart 
+          [chartType]="chartType"
+          [data]="chartData" 
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)" 
+          (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>       
+  </div>
+</div>
+  

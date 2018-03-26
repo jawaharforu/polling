@@ -23,10 +23,10 @@ router.post('/voteduser', (req, res, next) => {
 });
 
 // update voter
-router.put('./voteduser/:vodeduserid', (req, res, next) => {
+router.put('/voteduser/:vodeduserid', (req, res, next) => {
     let updateVoted = {
         name: req.body.name,
-        mobile: req.body.mobile,
+        mobile: req.body.mobile, 
         email: req.body.email
     };
     Voteduser.updateVoteduser(req.params.vodeduserid, updateVoted, (err, voteduser) => {

@@ -17,7 +17,10 @@ router.post('/result', (req, res, next) => {
         if(err){
             res.json({success: false, msg: 'Failed to add Result'});
         }else{
-            res.json({success: true, msg: 'Result Add', data: result});
+            Result.getResult(req.body.pollid, (err, poll) => {
+                if(err) throw err;
+                res.json({success: true, msg: 'Result', data: poll});
+            });
         }
     });
 });
@@ -53,4 +56,10 @@ router.delete('/result/:resultid', (req, res, next) => {
     });
 });
 
+router.get('/getresult/:pollid', (req, res, next) => {
+    Result.getResult(req.params.pollid, (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, msg: 'Result', data: poll});
+    });
+});
 module.exports = router;

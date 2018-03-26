@@ -22,7 +22,7 @@
                   <td>{{p.categoryname.name}}</td>
                   <td>{{p.pollname.name}}</td> 
                   <td>
-                      
+                        <button type="button" (click)="pollResult(p._id)" class="btn btn-success waves-light" mdbRippleRadius>Poll Result <i class="fa fa-pie-chart fa-lg" aria-hidden="true"></i></button>
                   </td>
               </tr>
           </tbody>

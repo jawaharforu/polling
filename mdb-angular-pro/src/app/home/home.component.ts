@@ -7,7 +7,8 @@ import { ModalDirective } from '../typescripts/free';
 import {ToastService} from '../typescripts/pro/alerts';
 import { ValidationService } from '../services/validation.service';
 
-@Component({
+
+@Component({ 
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -23,38 +24,50 @@ export class HomeComponent implements OnInit {
   mobile: String;
   email: String;
   mobilenum: String;
+  piechart: Boolean = false;
 
-  @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
+  @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
   public isModalForUser: Boolean = false;
-
+  public repoUrl = window.location.protocol + '//' + window.location.host;
   // chart start
+  pieChartData =  {
+    chartType: 'PieChart',
+    dataTable: [
+      ['Task', 'Hours per Day'],
+      ['Work',     11],
+      ['Eat',      2],
+      ['Commute',  2],
+      ['Watch TV', 2],
+      ['Sleep',    7]
+    ],
+    options: {'title': 'Tasks'},
+  };
+  chartDisplay: Boolean = true;
+
   public chartType: String = 'bar';
 
-    public chartDatasets: Array<any> = [
-        {data: [65], label: 'My First dataset'},
-        {data: [28], label: 'My Second dataset'},
-        {data: [40], label: 'My Third dataset'}
-    ];
+  public chartDatasets: Array<any> = [
+    {data: [65], label: 'My First dataset'},
+    {data: [28], label: 'My Second dataset'}
+];
 
-    public chartLabels: Array<any> = ['Jan'];
+  public chartLabels: Array<any> = ['Result'];
 
+  public chartColors: Array<any> = [];
 
+  public chartOptions: any = {
+      responsive: true
+  };
 
-    public chartOptions: any = {
-        responsive: true
-    };
+  public chartClicked(): void {
 
-    public chartClicked(): void {
+  }
 
-    }
+  public chartHovered(): void {
 
-    public chartHovered(): void {
-
-    }
-
-    // chart end
-
+  }
+  // chart end
   constructor(
     private pollService: PollService,
     private voteduserService: VoteduserService,
@@ -93,9 +106,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  putVote(pollId, i) {
-    this.isModalForUser = true;
-    return false;
+  putVote(pollId, i, p) {
+
     if (this.polloption[pollId] === undefined) {
       alert('Select Option');
       return false;
@@ -118,7 +130,16 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.voteBtn[i][pollId] = false;
         this.voted = data.data;
-        this.isModalForUser = true;
+        console.log(data);
+        let j = 1;
+        for (const prop of data.data) {
+          this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
+          if (j === data.data.length) {
+            this.isModalForUser = true;
+            this.chartDisplay = p.result
+          }
+          j++;
+        }
       });
     });
   }
@@ -162,6 +183,7 @@ export class HomeComponent implements OnInit {
     .subscribe(data => {
       if (data.success) {
           this.mobilenum = this.mobile;
+          this.isModalShown = true;
       }
     });
   }
