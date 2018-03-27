@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, state } from '@angular/core';
 import { PollService } from '../services/poll.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { VoteduserService } from '../services/voteduser.service';
@@ -23,8 +23,11 @@ export class HomeComponent implements OnInit {
   voted: any;
   mobile: String;
   email: String;
-  mobilenum: String;
+  mobilenum: String = '';
   piechart: Boolean = false;
+  ipdetail: any;
+  state: any;
+  region: any;
 
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -47,10 +50,7 @@ export class HomeComponent implements OnInit {
 
   public chartType: String = 'bar';
 
-  public chartDatasets: Array<any> = [
-    {data: [65], label: 'My First dataset'},
-    {data: [28], label: 'My Second dataset'}
-];
+  public chartDatasets: Array<any> = [];
 
   public chartLabels: Array<any> = ['Result'];
 
@@ -90,6 +90,14 @@ export class HomeComponent implements OnInit {
     this.pollService.getIpAddress()
     .subscribe(data => {
       this.jsonval = data;
+      const getip = JSON.parse(this.jsonval._body);
+      this.pollService.getIpDetail(getip.query)
+      .subscribe(data => {
+        this.ipdetail = data;
+        const reg = this.ipdetail._body.split(';');
+        this.state = reg[2];
+        this.region = reg[3];
+      });
     });
     this.pollService.getPollByStatusHome()
     .subscribe(data => {
@@ -114,9 +122,25 @@ export class HomeComponent implements OnInit {
     }
 
     const jsonip = JSON.parse(this.jsonval._body);
-    const newVoteduser = {
-      ip: jsonip.query,
-      userdetail: jsonip
+
+    if (this.mobilenum === '') {
+      const newVoteduser = {
+        ip: jsonip.query,
+        userdetail: jsonip,
+        mobile: '',
+        fullderail: this.ipdetail._body,
+        state: this.state,
+        region: this.region,
+      }
+    } else {
+      const newVoteduser = {
+        ip: jsonip.query,
+        userdetail: jsonip,
+        mobile: this.mobilenum,
+        fullderail: this.ipdetail._body,
+        state: this.state,
+        region: this.region,
+      }
     }
     this.voteduserService.addVoteduser(newVoteduser)
     .subscribe(data => {
@@ -124,13 +148,14 @@ export class HomeComponent implements OnInit {
       const newResult = {
         pollid: pollId,
         voteduserid: this.voterid,
-        votedto: this.polloption[pollId]
+        votedto: this.polloption[pollId],
+        state: this.state,
+        region: this.region
       }
       this.resultService.addResult(newResult)
       .subscribe(data => {
         this.voteBtn[i][pollId] = false;
         this.voted = data.data;
-        console.log(data);
         let j = 1;
         for (const prop of data.data) {
           this.chartDatasets.push({data: [prop.voteCount], label: prop.option});

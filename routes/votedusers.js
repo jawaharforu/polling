@@ -11,8 +11,12 @@ router.post('/voteduser', (req, res, next) => {
     let newVoted = new Voteduser({
         ip: req.body.ip,
         userdetail: req.body.userdetail,
-        mobile: ''
+        fullderail: req.body.fullderail,
+        state: req.body.state,
+        region: req.body.region,
+        mobile: req.body.mobile
     });
+
     Voteduser.addVoteduser(newVoted, (err, voteduser) => {
         if(err){
             res.json({success: false, msg: 'Failed to add Voteduser'});

@@ -17,6 +17,15 @@ const VoteduserSchema = mongoose.Schema({
     userdetail: {
         type: Array
     },
+    fullderail: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    region: {
+        type: String
+    },
     createdon: {
         type: Date,
         default: Date.now
@@ -40,3 +49,10 @@ module.exports.deleteVoteduser = function(voteduserid, callback){
 module.exports.updateVoteduser = function(voteduserid, updateVoted, callback){
     Voteduser.update({_id: voteduserid},updateVoted, callback);
 } ;
+
+module.exports.getUserByMobile = function(mobile, callback){
+    const query = {
+        mobile: mobile
+    }
+    Voteduser.findOne(query, callback);
+};

@@ -17,6 +17,12 @@ const ResultSchema = mongoose.Schema({
     votedto: {
         type: String
     },
+    state: {
+        type: String
+    },
+    region: {
+        type: String
+    },
     createdon: {
         type: Date,
         default: Date.now

@@ -11,7 +11,9 @@ router.post('/result', (req, res, next) => {
     let newResult = new Result({
         pollid: req.body.pollid,
         voteduserid: req.body.voteduserid,
-        votedto: req.body.votedto
+        votedto: req.body.votedto,
+        state: req.body.state,
+        region: req.body.region
     });
     Result.addResult(newResult, (err, result) => {
         if(err){

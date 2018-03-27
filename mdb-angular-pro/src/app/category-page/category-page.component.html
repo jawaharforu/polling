@@ -1,5 +1,5 @@
 <app-nav-bar></app-nav-bar>
-<section>
+<section *ngIf="pollListing">
 		<div class="polls-content">
 			<div class="container">
                 <div class="row">
@@ -11,51 +11,16 @@
 				<div class="trending-polls">
 					<h2>TRENDING <span>POLLS</span></h2>
 					  <div class="row">
-						 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-						 	<div class="trending-polls-content">
+						 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" *ngFor="let p of pollListing">
+							<div></div>
+						 	<div class="trending-polls-content" *ngIf="p.trending">
 								<div class="img-span">
-									<img src="img/image_1.jpg" alt="image_1">
-									<span>Vote: (152)</span>
+									<img width="260" height="203" [src]="p.image" alt="image_1">
+									<span>Vote: ({{p.pollcount.length}})</span>
 								</div>
-								<a href="#"><p>UfM promotes projects with gender mainstreaming policy</p></a>
+								<a (click)="showPoll(p)"><p>{{p.name}}</p></a>
 								<div class="date-time">
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 07 March 2018
-								</div>
-							</div>
-						  </div>
-						 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_2.jpg" alt="image_2">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>EUPOL facilitates gender-based voilence training in palestine</p></a>
-								<div class="date-time">
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 06 March 2018
-								</div>
-							</div> 
-						 </div>
-						 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_3.jpg" alt="image_3">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>Anna Lindh foundation launches the 11th literary contest</p></a>
-								<div class="date-time">
-								<i class="fa fa-clock-o" aria-hidden="true"></i> 05 March 2018
-								</div>
-							</div>
-						 </div>
-						 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_4.jpg" alt="image_4">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>EU high representative Federica Mogherini to visit Ukraine next week</p></a>
-								<div class="date-time">
-								<i class="fa fa-clock-o" aria-hidden="true"></i> 05 March 2018
+									<i class="fa fa-clock-o" aria-hidden="true"></i> {{p.createdon | date}}
 								</div>
 							</div>
 						  </div>
@@ -64,66 +29,80 @@
 			</div> <!-- container -->
 		</div> <!-- polls-content -->
 	</section>
-	<section>
+	<section *ngIf="pollListing">
 		<div class="polls-content-middle">
 			<div class="container">
 				<h2>OTHER <span>POLLS</span></h2>
-					  <div class="row">
-						 <div class="col-md-3 col-sm-6">
-						 	<div class="trending-polls-content">
+					<div class="row">
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" *ngFor="let p of pollListing">
+							<div class="trending-polls-content" *ngIf="!p.trending">
 								<div class="img-span">
-									<img src="img/image_5.jpg" alt="image_5">
-									<span>Vote: (152)</span>
+									<img [src]="p.image" alt="image_1">
+									<span>Vote: ({{p.pollcount.length}})</span>
 								</div>
-								<a href="#"><p>UF supports UN's launch of investigation in syria</p></a>
+								<a (click)="showPoll(p)"><p>{{p.name}}</p></a>
 								<div class="date-time">
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 01 March 2018
+									<i class="fa fa-clock-o" aria-hidden="true"></i> {{p.createdon | date}}
 								</div>
-							</div>
-						  </div>
-						 <div class="col-md-3 col-sm-6">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_6.jpg" alt="image_6">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>How the EU is helping Moldovan women to change their country</p></a>
-								<div class="date-time">
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 27 February 2018
-								</div>
-							</div> 
-						 </div>
-						 <div class="col-md-3 col-sm-6">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_7.jpg" alt="image_7">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>EU to launch business support for entrepreneurs in rural Armenia</p></a>
-								<div class="date-time">
-								<i class="fa fa-clock-o" aria-hidden="true"></i> 27 February 2018
-								</div>
-							</div>
-						 </div>
-						 <div class="col-md-3 col-sm-6">
-						 	<div class="trending-polls-content">
-								<div class="img-span">
-									<img src="img/image_8.jpg" alt="image_8">
-									<span>Vote: (152)</span>
-								</div>
-								<a href="#"><p>Success Story: women of Azerbaijan realise their dreams with the EU's support</p></a>
-								<div class="date-time">
-								<i class="fa fa-clock-o" aria-hidden="true"></i> 026 February 2018
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="load-button">
-					<button type="button" class="btn btn-red">Load More</button>
-				</div>
-				
 			</div> <!-- container -->
 			
 		</div> <!-- polls-content -->
 	</section>
+	<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title pull-left">{{votingPoll.name}}</h4>
+					<button type="button" class="close pull-right" aria-label="Close" (click)="onHidden()">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div *ngIf="resform">
+						<form *ngIf="pollform" class="form-inline" (submit)="putVote(votingPoll._id,0,votingPoll)" >
+							<div class="form-check" *ngFor="let o of votingPoll.options; let i = index">
+								<input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[votingPoll._id]" id="{{votingPoll._id+i}}">
+								<label class="form-check-label" for="{{votingPoll._id+i}}">{{o.itemname}}</label>
+							</div>
+								<button class="btn purple-gradient btn-rounded"  type="submit" >VOTE</button>
+						</form>
+						<form *ngIf="!pollform">
+							<div class="md-form">
+								<i class="fa fa-mobile prefix grey-text"></i>
+								<input  name="mobile" [(ngModel)]="mobile" type="text" id="mobile" class="form-control" mdbActive>
+								<label for="mobile">Mobile</label>
+							</div>
+							<div class="md-form">
+								<i class="fa fa-envelope prefix grey-text"></i>
+								<input [(ngModel)]="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+								<label for="orangeForm-email">Email</label>
+							</div>
+							<div class="text-center">
+								<button type="button" (click)="updateVoter()" class="btn btn-deep-orange waves-light" mdbRippleRadius>Update</button>
+							</div>
+						</form>
+					</div>
+						<div *ngIf="!resform">
+						<div style="display: block" *ngIf="chartDisplay">
+							<canvas mdbChart  
+								[chartType]="chartType"
+								[datasets]="chartDatasets" 
+								[labels]="chartLabels"
+								[colors]="chartColors"
+								[options]="chartOptions"
+								[legend]="true"
+								(chartHover)="chartHovered($event)" 
+								(chartClick)="chartClicked($event)">
+							</canvas>
+						</div>
+							<div *ngIf="!chartDisplay">
+								<p>Result will publich later</p>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>

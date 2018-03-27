@@ -147,8 +147,19 @@ ul.share-vote-icons {
     font-weight: bold;
 }
 .polls-tab li.nav-item:nth-child(1) {
-    text-align: right;
-    border-right: 3px solid red;
+    text-align: center;
+    border: 2px solid #ff7270;
+    border-radius: 25px;    
+}
+.polls-tab li.nav-item:nth-child(1):hover {
+    border-color: #fff;
+    background-color: #ff0000;
+}
+.polls-tab li.nav-item:nth-child(1):hover a {
+    color:#fff !important;
+}
+.polls-tab li.nav-item:nth-child(1) a {
+    font-size: 22px;
 }
 .polls-tab li.nav-item:nth-child(2) {
     text-align: left;
@@ -463,6 +474,18 @@ li.link_li::before {
     -moz-box-shadow: 0 -8px 8px 0 rgba(0, 0, 0, 0.05), 0 -12px 28px 0 rgba(0, 0, 0, 0.05);
     box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 -12px 28px 0 rgba(0, 0, 0, 0.05);
 }
+
+.polls-tab ul.nav.nav-tabs {
+    box-shadow: none;
+    width: 300px;
+    margin: 0 auto;
+}
+
+
+
+
+
+
 
 /*--Mobile Responsive--*/
 @media only screen and (max-width: 767px) {

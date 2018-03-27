@@ -7,6 +7,10 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 const multer = require('multer');
 var fs = require('fs');
+/*
+var ip2loc = require("ip2location-nodejs");
+ip2loc.IP2Location_init('./routes/IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE-SAMPLE.BIN');
+*/
 
 //Database connect
 mongoose.connect(config.database);
@@ -149,6 +153,12 @@ function checkFileType(file, cb){
     }
   });
 });
+*/
+/*
+    const ipresult = ip2loc.IP2Location_get_all('182.76.220.54');
+    for (var key in ipresult) {
+        console.log(key + ": " + ipresult[key]);
+    }
 */
 // Start server
 app.listen(port, () => {

@@ -60,8 +60,9 @@ export class PollService {
   }
   // get ip detail
   getIpDetail(ip) {
-    return this.http.get('http://ip-api.com/json/' + ip)
-    .map(response => response || {});
+    const headers = new Headers();
+    return this.http.get('https://api.ip2location.com/?ip=' + ip + '&key=563A6992E4&package=WS3', {headers: headers})
+    .map(response => response);
   }
 
   upload(fileToUpload: any) {
@@ -70,6 +71,13 @@ export class PollService {
 
     return this.http
         .post(this.link + 'upload', input);
+  }
+
+  getPollByCategory(categoryid) {
+    const headers = new Headers(); 
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/polls/pollcategory/' + categoryid, {headers: headers})
+    .map(res => res.json());
   }
 
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 const Category = require('./category');
+const Result = require('./result');
 // Poll schema
 
 const PollSchema = mongoose.Schema({
@@ -135,3 +136,33 @@ module.exports.updatePoll = function(pollid, updatedPoll, callback) {
 module.exports.deletePoll = function(pollid, callback) {
     Poll.remove({_id: pollid}, callback);
 };
+
+module.exports.getPollByCategory = function(categoryid, callback) {
+    //Poll.findById(pollid, callback);
+    Poll.aggregate([
+        { 
+            $match: {
+                'categoryid': mongoose.Types.ObjectId(categoryid),
+                'status': true
+            }
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        },
+        {
+            $lookup: {
+                from: 'results',
+                localField: '_id',
+                foreignField: 'pollid',
+                as: 'pollcount'
+            }
+        },
+        { $sort: { createdon: -1 } },
+    ], callback);
+};
+
