@@ -143,7 +143,38 @@ module.exports.getPollByCategory = function(categoryid, callback) {
         { 
             $match: {
                 'categoryid': mongoose.Types.ObjectId(categoryid),
-                'status': true
+                'status': true,
+                'trending': true
+            }
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        },
+        {
+            $lookup: {
+                from: 'results',
+                localField: '_id',
+                foreignField: 'pollid',
+                as: 'pollcount'
+            }
+        },
+        { $sort: { createdon: -1 } },
+    ], callback);
+};
+
+module.exports.getPollByCategoryFalse = function(categoryid, callback) {
+    //Poll.findById(pollid, callback);
+    Poll.aggregate([
+        { 
+            $match: {
+                'categoryid': mongoose.Types.ObjectId(categoryid),
+                'status': true,
+                'trending': false
             }
         },
         {

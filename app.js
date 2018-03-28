@@ -30,6 +30,7 @@ const categorty = require('./routes/categories');
 const poll = require('./routes/polls');
 const voteduser = require('./routes/votedusers');
 const result = require('./routes/results');
+const contact = require('./routes/contacts');
  
 // Poer number
 const port = 3000; 
@@ -55,6 +56,7 @@ app.use('/api/categories', categorty);
 app.use('/api/polls', poll);
 app.use('/api/votedusers', voteduser);
 app.use('/api/results', result); 
+app.use('/api/contacts', contact);
 
 // Index router
 app.get('/', (req, res) => {

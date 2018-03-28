@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
@@ -17,6 +17,8 @@ import { ValidationService } from '../services/validation.service';
 export class CategoryPageComponent implements OnInit {
 
   categorySlug: any;
+  @Input()  nav: Boolean;
+  navbar: Boolean;
   pollListing: any;
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -101,7 +103,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.navbar = (this.nav === false) ? false : true;
   }
  
   putVote(pollId, i, p) {
@@ -112,8 +114,9 @@ export class CategoryPageComponent implements OnInit {
     }
 
     const jsonip = JSON.parse(this.jsonval._body);
+    let newVoteduser;
     if (this.mobilenum === '') {
-      const newVoteduser = {
+      newVoteduser = {
         ip: jsonip.query,
         userdetail: jsonip,
         mobile: '',
@@ -122,7 +125,7 @@ export class CategoryPageComponent implements OnInit {
         region: this.region,
       }
     } else {
-      const newVoteduser = {
+      newVoteduser = {
         ip: jsonip.query,
         userdetail: jsonip,
         mobile: this.mobilenum,

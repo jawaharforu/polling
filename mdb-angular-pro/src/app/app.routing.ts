@@ -12,6 +12,13 @@ import { PollAssignComponent } from './admin/poll-assign/poll-assign.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.component';
 import { PollResultComponent } from './admin/poll-result/poll-result.component';
+import { PollComponent } from './poll/poll.component';
+import { NpIntelligenceComponent } from './np-intelligence/np-intelligence.component';
+import { MediaInquiresComponent } from './media-inquires/media-inquires.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
+import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np-intelligence-manage.component';
+import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
 
 export const AppRoutes: Routes = [
     {
@@ -21,6 +28,26 @@ export const AppRoutes: Routes = [
     {
         path: 'category/:slug',
         component: CategoryPageComponent
+    },
+    {
+        path: 'whatwedo',
+        component: WhatWeDoComponent
+    },
+    {
+        path: 'mediainquires',
+        component: MediaInquiresComponent
+    },
+    {
+        path: 'npintelligence',
+        component: NpIntelligenceComponent
+    },
+    {
+        path: 'contactus',
+        component: ContactUsComponent
+    },
+    {
+        path: 'poll/:slug',
+        component: PollComponent
     },
     {
         path: 'admin',
@@ -71,6 +98,16 @@ export const AppRoutes: Routes = [
                 component: PollResultComponent,
                 outlet: 'adminchild'
             }
+            {
+                path: 'npintelligencemanage',
+                component: NpIntelligenceManageComponent,
+                outlet: 'adminchild'
+            },
+            {
+                path: 'contactusmanage',
+                component: ContactUsManageComponent,
+                outlet: 'adminchild'
+            },
         ],
         canActivate: [AuthGuard]
     },

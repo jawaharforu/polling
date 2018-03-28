@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, state } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PollService } from '../services/poll.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { VoteduserService } from '../services/voteduser.service';
@@ -122,9 +122,10 @@ export class HomeComponent implements OnInit {
     }
 
     const jsonip = JSON.parse(this.jsonval._body);
+    let newVoteduser;
 
     if (this.mobilenum === '') {
-      const newVoteduser = {
+      newVoteduser = {
         ip: jsonip.query,
         userdetail: jsonip,
         mobile: '',
@@ -133,14 +134,14 @@ export class HomeComponent implements OnInit {
         region: this.region,
       }
     } else {
-      const newVoteduser = {
+      newVoteduser = {
         ip: jsonip.query,
         userdetail: jsonip,
         mobile: this.mobilenum,
         fullderail: this.ipdetail._body,
         state: this.state,
         region: this.region,
-      }
+      }  
     }
     this.voteduserService.addVoteduser(newVoteduser)
     .subscribe(data => {

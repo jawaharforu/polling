@@ -13,19 +13,25 @@
 
     <!-- Links -->
     <ul class="navbar-nav ml-md-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home
                 <span class="sr-only">(current)</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" routerLink="/whatwedo">What We Do</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Polls</a>
+            <a class="nav-link" routerLink="/mediainquires">Media Inquires</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" routerLink="/npintelligence">NP Intelligence</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/poll/politics">Polls</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/contactus">Contact Us</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" (click)="showModal()">Login</a>

@@ -61,7 +61,7 @@ export class PollService {
   // get ip detail
   getIpDetail(ip) {
     const headers = new Headers();
-    return this.http.get('https://api.ip2location.com/?ip=' + ip + '&key=563A6992E4&package=WS3', {headers: headers})
+    return this.http.get('https://api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', {headers: headers})
     .map(response => response);
   }
 

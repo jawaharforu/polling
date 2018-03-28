@@ -58,6 +58,20 @@
                               </ul>
                           </mdb-item-body>
                   </mdb-item>
+                  <mdb-item>
+                    <mdb-item-head mdbRippleRadius>
+                        <i class="fa fa-chevron-right"></i> Contacts</mdb-item-head>
+                        <mdb-item-body>
+                            <ul>
+                                <li>
+                                    <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['npintelligencemanage']}}]" mdbRippleRadius>Manage Np Intelligence</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="waves-effect" [routerLink]="['/admin', {outlets: {adminchild: ['contactusmanage']}}]" mdbRippleRadius>Manage Contact Us</a>
+                                </li>
+                            </ul>
+                        </mdb-item-body>
+                </mdb-item>
                   </mdb-squeezebox>
               </ul>
 

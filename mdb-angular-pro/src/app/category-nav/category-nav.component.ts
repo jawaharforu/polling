@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class CategoryNavComponent implements OnInit {
 
   categotylist: any;
+  @Input()  type: String;
 
   constructor(
     private categoryService: CategoryService,
@@ -24,7 +25,7 @@ export class CategoryNavComponent implements OnInit {
   }
 
   categoryPage(c) {
-    this.router.navigate(['category/' + c.slug]);
+    this.router.navigate([this.type + '/' + c.slug]);
   }
 
 }

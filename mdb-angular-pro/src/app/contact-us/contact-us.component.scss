@@ -1,0 +1,109 @@
+body{
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    
+}
+.contact_us h2 {
+    font-weight: normal;
+    font-family: "Helvetica Neue";
+    font-size: 35px;
+    text-transform: capitalize;
+}
+.contact_us h4 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 20px;
+    margin: 17px auto;
+    font-weight: 600;
+}
+.contact_us_form {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #eeeff1;
+    padding: 50px 10px;
+}
+.addres h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 0px;
+    color: #717274;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+.addres i {
+    color: #5b5b5b;
+    font-size: 29px;
+    /* border-radius: 50%; */
+    /* border: 1px solid #ccc; */
+    width: 45px;
+    height: 45px;
+    padding: 6px 7px;
+}
+.addres p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: capitalize;
+    color: #717274;
+    padding-left: 50px;
+    font-size: 19px;
+}
+
+.timing h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: 600; */
+    color: #4b6cb1;
+    font-size: 21px;
+    margin: 30px auto 10px;
+
+}
+.timing p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #717274;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+.social_icons {
+    border-bottom: 2px solid #ccc;
+    margin: 50px auto;
+}
+.social_icons p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #717274;
+}
+.social_icons i{
+    color:#3f63af;
+    font-size: 21px;
+    margin-right: 10px;
+}
+.social_icons span{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-right: 20px;
+}
+.contact_us_right_from .form-group i {
+    margin-top: 4px !important;
+    margin-left: 20px;
+}
+.contact_us_right_from input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-left: 17px !important;
+}
+.contact_us_right_from textarea {
+    margin-left: 21px !important;
+}
+.contact_us_right_from label.form-check-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* line-height: 26px !important; */
+    font-style: italic;
+    font-size: 18px;
+}
+.contact_us_right_from .form-check {
+    margin-bottom: 20px;
+}
+button.btn.btn-danger {
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+.main_contact_us{
+    background-image: url("../../img/bg.png");
+    background-position: top left, top right;
+    background-repeat: no-repeat;
+}

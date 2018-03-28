@@ -42,6 +42,15 @@ import { AllowedpollsComponent } from './admin/allowedpolls/allowedpolls.compone
 import { CeiboShare } from 'ng2-social-share';
 import { PollResultComponent } from './admin/poll-result/poll-result.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { PollComponent } from './poll/poll.component';
+import { NpIntelligenceComponent } from './np-intelligence/np-intelligence.component';
+import { MediaInquiresComponent } from './media-inquires/media-inquires.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactService } from './services/contact.service';
+import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np-intelligence-manage.component';
+import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
 
 
 @NgModule({
@@ -66,7 +75,15 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     ProfileComponent,
     AllowedpollsComponent,
     CeiboShare,
-    PollResultComponent
+    PollResultComponent,
+    PollComponent,
+    NpIntelligenceComponent,
+    MediaInquiresComponent,
+    ContactUsComponent,
+    WhatWeDoComponent,
+    ContactFormComponent,
+    NpIntelligenceManageComponent,
+    ContactUsManageComponent
   ],
   imports: [
     TruncateModule,
@@ -87,7 +104,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
       apiKey: 'Your_api_key'
     })
   ],
-  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService],
+  // tslint:disable-next-line:max-line-length
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

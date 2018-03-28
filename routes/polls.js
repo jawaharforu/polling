@@ -97,10 +97,13 @@ router.get('/pollstatushome', (req, res, next) => {
 });
 
 router.get('/pollcategory/:categoryid', (req, res, next) => {
-    Poll.getPollByCategory(req.params.categoryid, (err, poll) => {
+    Poll.getPollByCategory(req.params.categoryid, (err, poll1) => {
         if(err) throw err;
-        res.json({success: true, data: poll});
-    });
+        Poll.getPollByCategoryFalse(req.params.categoryid, (err, poll2) => {
+            if(err) throw err;
+            res.json({success: true, data: {trending: poll1, others: poll2}}); 
+        });
+    }); 
 });
 
 module.exports = router;
