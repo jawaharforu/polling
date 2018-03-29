@@ -62,7 +62,7 @@
 				</div>
 				<div class="modal-body">
 					<div *ngIf="resform">
-						<form *ngIf="pollform" class="form-inline" (submit)="putVote(votingPoll._id,0,votingPoll)" >
+						<form *ngIf="pollform" class="form-inline" (submit)="putVote(votingPoll._id,votingPoll)" >
 							<div class="form-check" *ngFor="let o of votingPoll.options; let i = index">
 								<input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[votingPoll._id]" id="{{votingPoll._id+i}}">
 								<label class="form-check-label" for="{{votingPoll._id+i}}">{{o.itemname}}</label>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { PollService } from '../../services/poll.service';
 import { ResultService } from '../../services/result.service';
+import { ModalDirective } from '../../typescripts/free';
 
 @Component({
   selector: 'app-poll-result',
@@ -13,6 +14,11 @@ export class PollResultComponent implements OnInit {
   pollData: any;
   piechart: Boolean = false;
   totalPoll: String;
+  statewiselist: any;
+  pollId: String;
+  regionwiselist: any;
+  @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
+  public isModalShown: Boolean = false;
   // chart start
   public chartType: String = 'pie';
 
@@ -31,8 +37,8 @@ export class PollResultComponent implements OnInit {
       responsive: true
   };
 
-  public chartClicked(): void {
-
+  public chartClicked(e): void {
+    console.log(e);
   }
 
   public chartHovered(): void {
@@ -46,6 +52,7 @@ export class PollResultComponent implements OnInit {
   ) {
     this.activatedRoute.params.subscribe((params) => {
       const pollid = params['id']
+      this.pollId = pollid;
       this.pollService.getPollById(pollid)
       .subscribe(data => {
         this.pollData = data.data;
@@ -63,12 +70,33 @@ export class PollResultComponent implements OnInit {
           j++;
         }
       });
+      this.resultService.getResultState(pollid)
+      .subscribe(data => {
+        this.statewiselist = data.data
+      });
     });
    }
 
   ngOnInit() {
-    
   }
 
+  getRegionWise(state) {
+    this.showModal(state);
+  }
+  public showModal(state): void {
+    this.resultService.getResultregion(this.pollId, state)
+    .subscribe(data => {
+      this.regionwiselist = data.data;
+      this.isModalShown = true;
+    });
+  }
+
+  public hideModal(): void {
+      this.autoShownModal.hide();
+  }
+
+  public onHidden(): void {
+      this.isModalShown = false;
+  }
 
 }

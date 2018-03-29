@@ -153,19 +153,22 @@ export class HomeComponent implements OnInit {
         state: this.state,
         region: this.region
       }
+      console.log(newResult);
       this.resultService.addResult(newResult)
       .subscribe(data => {
-        this.voteBtn[i][pollId] = false;
-        this.voted = data.data;
-        let j = 1;
-        for (const prop of data.data) {
-          this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
-          if (j === data.data.length) {
-            this.isModalForUser = true;
-            this.chartDisplay = p.result
+        if (data.success === true) {
+          this.voteBtn[i][pollId] = false;
+          this.voted = data.data;
+          let j = 1;
+          for (const prop of data.data) {
+            this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
+            if (j === data.data.length) {
+              this.isModalForUser = true;
+              this.chartDisplay = p.result
+            }
+            j++;
           }
-          j++;
-        }
+        } 
       });
     });
   }
@@ -210,6 +213,7 @@ export class HomeComponent implements OnInit {
       if (data.success) {
           this.mobilenum = this.mobile;
           this.isModalShown = true;
+          this.isModalForUser = false;
       }
     });
   }

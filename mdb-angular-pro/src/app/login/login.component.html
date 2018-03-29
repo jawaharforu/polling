@@ -28,26 +28,49 @@
             <div class="text-center mb-3">
                 <button type="button" (click)="onLoginSubmit()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
             </div>
+            <!--
             <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in with:</p>
 
                 <div class="row my-3 d-flex justify-content-center">
-                    <!--Facebook-->
+
                     <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-facebook blue-text text-center"></i></button>
-                    <!--Twitter-->
                     <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-twitter blue-text"></i></button>
-                    <!--Google +-->
                     <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fa fa-google-plus blue-text"></i></button>
                 </div>
-
+            -->
         </div>
 
         <!--Footer-->
         <div class="modal-footer mx-5 pt-3 mb-1">
-            <p class="font-small grey-text d-flex justify-content-end">Not a member? <a href="#" class="blue-text ml-1"> Sign Up</a></p>
         </div>
 
     </div>
     <!--/Form without header-->
 
 </section>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess">
+        <div class="modal-dialog modal-notify modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="heading lead">Modal Success</p>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <form>
+                <div class="modal-body">
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input [(ngModel)]="email" name="email" type="email" id="materialFormCardEmailEx" class="form-control" mdbActive>
+                        <label for="materialFormCardEmailEx" class="font-weight-light">*Email</label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <a type="button" (click)="updateCategory(updatecategotyid)" class="btn btn-primary-modal waves-light" mdbRippleRadius>Update <i class="fa fa-diamond ml-1"></i></a>
+                  <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancle</a>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
             

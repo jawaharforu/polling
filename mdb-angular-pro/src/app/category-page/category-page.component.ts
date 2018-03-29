@@ -106,7 +106,7 @@ export class CategoryPageComponent implements OnInit {
     this.navbar = (this.nav === false) ? false : true;
   }
  
-  putVote(pollId, i, p) {
+  putVote(pollId, p) {
 
     if (this.polloption[pollId] === undefined) {
       alert('Select Option');

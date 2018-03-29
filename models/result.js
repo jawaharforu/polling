@@ -65,3 +65,66 @@ module.exports.getResult = function(pollid, callback){
         ]
      , callback);
 }
+
+module.exports.getOptionResult = function(pollid, callback){
+    Result.aggregate(
+        [
+            {$match: {
+                'pollid': mongoose.Types.ObjectId(pollid)
+            }},
+            { $group: {
+                 _id: {
+                     "state": "$state",
+                     "votedto": "$votedto"
+                 },
+                 "votecount": { "$sum": 1 }
+             }},
+             { $group: {
+                 _id: "$_id.state",
+                 votedto: { 
+                     "$push": { 
+                         "votedto": "$_id.votedto",
+                         "count": "$votecount"
+                     },
+                 },
+                 "count": { "$sum": "$votecount" }
+             }},
+             { $project: {
+                 "votedto": { "$slice": [ "$votedto", 2 ] },
+                 "count": 1
+             }}
+         ]
+     , callback);
+}
+
+module.exports.getOptionResultState = function(pollid, state, callback){
+    Result.aggregate(
+        [
+            {$match: {
+                'pollid': mongoose.Types.ObjectId(pollid),
+                'state': state
+            }},
+            { $group: {
+                 _id: {
+                     "region": "$region",
+                     "votedto": "$votedto"
+                 },
+                 "votecount": { "$sum": 1 }
+             }},
+             { $group: {
+                 _id: "$_id.region",
+                 votedto: { 
+                     "$push": { 
+                         "votedto": "$_id.votedto",
+                         "count": "$votecount"
+                     },
+                 },
+                 "count": { "$sum": "$votecount" }
+             }},
+             { $project: {
+                 "votedto": { "$slice": [ "$votedto", 2 ] },
+                 "count": 1
+             }}
+         ]
+     , callback);
+}

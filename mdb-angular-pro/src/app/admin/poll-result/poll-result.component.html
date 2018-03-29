@@ -21,4 +21,73 @@
     </div>       
   </div>
 </div>
-  
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+      <table class="table table-hover table-responsive-md table-fixed">
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>State</th>
+                  <th>Total voted</th>
+                  <th>Optionwise</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let r of statewiselist; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{r._id}}</td>
+                  <td>{{r.count}}</td>
+                  <td>
+                    <ul class="list-group">
+                      <li *ngFor="let o of r.votedto" class="list-group-item d-flex justify-content-between align-items-center">
+                          {{o.votedto}}
+                          <span class="badge badge-primary badge-pill">{{o.count}}</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td><button type="button" (click)="getRegionWise(r._id)" class="btn btn-success waves-light" mdbRippleRadius>Get Region Wise <i class="fa fa-pie-chart fa-lg" aria-hidden="true"></i></button></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess" style="overflow: auto;">
+  <div class="modal-dialog modal-notify modal-info modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <p class="heading lead">Update Poll</p>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                  <span aria-hidden="true" class="white-text">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-hover table-responsive-md table-fixed">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>State</th>
+                      <th>Total voted</th>
+                      <th>Optionwise</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let r of regionwiselist; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{r._id}}</td>
+                      <td>{{r.count}}</td>
+                      <td>
+                        <ul class="list-group">
+                          <li *ngFor="let o of r.votedto" class="list-group-item d-flex justify-content-between align-items-center">
+                              {{o.votedto}}
+                              <span class="badge badge-primary badge-pill">{{o.count}}</span>
+                          </li>
+                        </ul>
+                      </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>

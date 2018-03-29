@@ -1,0 +1,41 @@
+
+.main_np_intelligence {
+    background-image: url('/img/bg.png'), url('/img/bg-2.png');
+    background-position: top left, top right;
+    background-repeat: no-repeat;
+}
+.intelligance-bg {
+    background-color: #efeff1;
+    padding: 30px 50px;
+}
+.intelligance-content {
+    text-align: center;
+}
+.intelligance-content h1 {
+    color: #4064b0;
+    font-weight: 800;
+    font-size: 42px;
+}
+.intelligance-content h2 {
+    font-weight: 300;
+    color: #000;
+    font-size: 39px;
+    line-height: 50px;
+}
+.intelligance-content h4 {
+    color: #000;
+    font-size: 21px;
+    margin-bottom: 27px;
+    font-weight: 500;
+}
+.intelligance-bg p {
+    font-size: 21px;
+    text-align: center;
+    font-weight: 400;
+    line-height: 35px;
+    color: #6a6a6f;
+}
+.btn-danger {
+    background-color: #ea0001 !important;
+    border-radius: 5px !important;
+}

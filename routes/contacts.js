@@ -46,28 +46,24 @@ router.post('/contact', (req, res, next) => {
         <h3>Message</h3>
         <p>${req.body.message}</p>
     `;
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
+    const transport = nodemailer.createTransport({
+        service: 'Gmail',
         auth: {
-            xoauth2: xoauth2.createXOAuth2Generator({
-                user: 'jawahar@zolipe.com',
-                clientId: '273772789152-n6pfj9mbs6688lg6e7i4a0r5pgq0684e.apps.googleusercontent.com',
-                clientSecret: 'Mut-sGtm7sxI3kZvDJb4Uuzi',
-                refreshToken: 'X/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-            })
-        }
+            user: 'nationpulseweb@gmail.com',
+            pass: '%$t2DFS6#k$',
+        },
     });
 
     // setup email data with unicode symbols
-    let mailOptions = {
-        from: '"Jawahar" <foo@example.com>', // sender address
-        to: 'jawahar@zolipe.com', // list of receivers
-        subject: 'ContactForm-' + req.body.type, // Subject line
-        html: output // html body
+    const mailOptions = {
+        from: 'nationpulseweb@gmail.com',
+        to: 'nationpulseweb@gmail.com',
+        subject: 'Contact Form - ' + req.body.type,
+        html: output,
     };
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
+    transport.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
         }

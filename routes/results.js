@@ -64,4 +64,18 @@ router.get('/getresult/:pollid', (req, res, next) => {
         res.json({success: true, msg: 'Result', data: poll});
     });
 });
+
+router.get('/getoptionresult/:pollid', (req, res, next) => {
+    Result.getOptionResult(req.params.pollid, (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, msg: 'Result', data: poll});
+    });
+});
+
+router.get('/getoptionresultregion/:pollid/:state', (req, res, next) => {
+    Result.getOptionResultState(req.params.pollid, req.params.state, (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, msg: 'Result', data: poll});
+    });
+});
 module.exports = router;

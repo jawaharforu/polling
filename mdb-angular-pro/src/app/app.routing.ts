@@ -97,7 +97,7 @@ export const AppRoutes: Routes = [
                 path: 'pollresult/:id',
                 component: PollResultComponent,
                 outlet: 'adminchild'
-            }
+            },
             {
                 path: 'npintelligencemanage',
                 component: NpIntelligenceManageComponent,

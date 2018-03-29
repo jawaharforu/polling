@@ -1,6 +1,6 @@
 <header>
     <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark primary-color header-main">
+<nav class="navbar navbar-expand-lg header-main">
 
 <!-- Collapse button -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -9,29 +9,29 @@
 </button>
 <div class="container">
 <!-- Collapsible content -->
+
+<div class="img-logo"><img src="img/nation_pulse_logo_2018.png" alt="nation_pulse_logo"></div>
 <div class="collapse navbar-collapse" id="basicExampleNav">
 
     <!-- Links -->
-    <ul class="navbar-nav ml-md-auto">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/">Home
-                <span class="sr-only">(current)</span>
-            </a>
+    <ul class="navbar-nav ml-md-auto menus-main">
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link"  [routerLink]="['/']">Home</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/whatwedo">What We Do</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/whatwedo']">What We Do</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/mediainquires">Media Inquires</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/mediainquires']">Media Inquires</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/npintelligence">NP Intelligence</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/npintelligence']">NP Intelligence</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/poll/politics">Polls</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/poll/politics']">Polls</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/contactus">Contact Us</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/contactus']">Contact Us</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" (click)="showModal()">Login</a>
@@ -42,7 +42,7 @@
 <!-- Collapsible content -->
 </div>
 </nav>
-    <div class="img-logo"><img src="img/nation_pulse_logo_2018.png" alt="nation_pulse_logo"></div>
+    <div style="display: none;" class="img-logo"><img src="img/nation_pulse_logo_2018.png" alt="nation_pulse_logo"></div>
 
 <!--/.Navbar-->
 

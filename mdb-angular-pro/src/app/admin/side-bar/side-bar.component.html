@@ -7,7 +7,7 @@
           <li>
               <div class="logo-wrapper waves-light">
                   <a href="#">
-                      <img src="http://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center">
+                      <img src="img/nation_pulse_logo_2018.png" class="img-fluid flex-center">
                   </a>
               </div>
           </li>
@@ -119,13 +119,13 @@
       <links>
           <ul class="nav navbar-nav nav-flex-icons ml-auto ">
               <li class="nav-item">
-                  <a class="nav-link waves-light" mdbRippleRadius>
+                  <a class="nav-link waves-light" [routerLink]="['/']" mdbRippleRadius>
                       <i class="fa fa-home"></i>
                       <span class="clearfix d-none d-sm-inline-block">Home</span>
                   </a>
               </li>
               <li class="nav-item dropdown btn-group" dropdown>
-                  <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>Dropdown</a>
+                  <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>{{user.name}}</a>
                   <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                       <a class="dropdown-item" (click)="onLogoutClick()">Sign Out</a>
                   </div>
