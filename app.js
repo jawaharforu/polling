@@ -33,7 +33,8 @@ const result = require('./routes/results');
 const contact = require('./routes/contacts');
  
 // Poer number
-const port = 3000; 
+//const port = 3000; 
+const port = process.env.PORT || 8080;
 
 // COES middleware
 app.use(cors());

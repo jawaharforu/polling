@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class VoteduserService {
 
-  link: String = 'http://localhost:3000/';
+  // link: String = 'http://localhost:3000/';
+  link: String = '';
   constructor(
     private http: Http
   ) { }

@@ -6,7 +6,8 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  link: String = 'http://localhost:3000/';
+  // link: String = 'http://localhost:3000/';
+  link: String = '';
   authToken: any;
   user: any;
 

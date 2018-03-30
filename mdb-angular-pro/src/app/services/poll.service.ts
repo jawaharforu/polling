@@ -5,19 +5,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PollService {
 
-  link: String = 'http://localhost:3000/';
+  // link: String = 'http://localhost:3000/';
+  link: String = '';
   constructor(
     private http: Http
   ) { }
 
   getPoll() {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/polls', {headers: headers})
     .map(res => res.json());
   }
   getPollById(pid) {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/poll/' + pid, {headers: headers})
     .map(res => res.json());
@@ -41,13 +42,13 @@ export class PollService {
     .map(res => res.json());
   }
   getTruePoll() {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/pollstatus', {headers: headers})
     .map(res => res.json());
   }
   getPollByStatusHome() {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/pollstatushome', {headers: headers})
     .map(res => res.json());
@@ -74,7 +75,7 @@ export class PollService {
   }
 
   getPollByCategory(categoryid) {
-    const headers = new Headers(); 
+    const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/pollcategory/' + categoryid, {headers: headers})
     .map(res => res.json());
