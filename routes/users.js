@@ -35,6 +35,26 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+router.post('/adminregister', (req, res, next) => {
+    //res.send('registration');
+    let newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        mobile: req.body.mobile,
+        password: req.body.password,
+        role: 'admin',
+        superadmin: 1
+    });
+
+    User.addUser(newUser, (err, user) => {
+        if(err){
+            res.json({success: false, msg: 'Falied to register new user'});
+        }else{
+            res.json({success: true, msg: 'User registred'});
+        }
+    });
+});
+
 // Authendicate
 router.post('/authendicate', (req, res, next) => {
     //res.send('authendicate');

@@ -126,6 +126,9 @@ export class CategoryComponent implements OnInit {
     this.updatecategotyid = c._id;
     this.updatecategotycontent = c.content;
     this.categorystatus = c.status;
+    this.updatetitle = c.title;
+    this.updatedescription = c.description;
+    this.updatekeywords = c.keywords;
     this.isModalShown = true;
   }
 
