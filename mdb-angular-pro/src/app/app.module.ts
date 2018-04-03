@@ -51,6 +51,9 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactService } from './services/contact.service';
 import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np-intelligence-manage.component';
 import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
+import { LinkService } from './services/link.service';
+import { RunApollComponent } from './run-apoll/run-apoll.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -83,11 +86,13 @@ import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-m
     WhatWeDoComponent,
     ContactFormComponent,
     NpIntelligenceManageComponent,
-    ContactUsManageComponent
+    ContactUsManageComponent,
+    RunApollComponent
   ],
   imports: [
     TruncateModule,
     BrowserModule,
+    DataTablesModule,
     Ng2GoogleChartsModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -105,7 +110,7 @@ import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-m
     })
   ],
   // tslint:disable-next-line:max-line-length
-  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService],
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService, LinkService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

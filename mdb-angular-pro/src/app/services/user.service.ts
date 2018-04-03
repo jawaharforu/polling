@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { LinkService } from './link.service';
 
 @Injectable()
 export class UserService {
 
   // link: String = 'http://localhost:3000/';
-  link: String = '';
+  link: String;
+  authToken: any;
+  user: any;
+
   constructor(
-    private http: Http
-  ) { }
+    private http: Http,
+    private linkService: LinkService
+  ) {
+    this.link = this.linkService.link;
+  }
 
   registerUser(user) {
     const headers = new Headers();

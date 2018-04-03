@@ -153,7 +153,6 @@ export class HomeComponent implements OnInit {
         state: this.state,
         region: this.region
       }
-      console.log(newResult);
       this.resultService.addResult(newResult)
       .subscribe(data => {
         if (data.success === true) {

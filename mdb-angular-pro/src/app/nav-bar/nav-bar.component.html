@@ -22,19 +22,25 @@
             <a class="nav-link" [routerLink]="['/whatwedo']">What We Do</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-            <a class="nav-link" [routerLink]="['/mediainquires']">Media Inquires</a>
+            <a class="nav-link" [routerLink]="['/poll/politics']">Polls</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/npintelligence']">NP Intelligence</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-            <a class="nav-link" [routerLink]="['/poll/politics']">Polls</a>
+            <a class="nav-link" [routerLink]="['/runapoll']">Run a Poll</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/npintelligence']">Previous Polls</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/mediainquires']">Media Inquires</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/contactus']">Contact Us</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="showModal()">Login</a>
+            <a class="nav-link" (click)="showModal()">Sign Up/Login</a>
         </li>
     </ul>
     <!-- Links -->

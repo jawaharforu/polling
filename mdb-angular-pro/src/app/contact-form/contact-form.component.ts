@@ -29,8 +29,20 @@ export class ContactFormComponent implements OnInit {
 
   addContact() {
     // tslint:disable-next-line:max-line-length
-    if (this.name === undefined || this.phone === undefined || this.email === undefined || this.understand === undefined || this.store === undefined) {
-      this._flashMessagesService.show('Please fill all the mandatory fields', { cssClass: 'alert-danger', timeout: 3000 });
+    if (this.name === undefined) {
+      this._flashMessagesService.show('Please fill Full Name fields', { cssClass: 'alert-danger', timeout: 3000 });
+      return false;
+    }
+    if (this.phone === undefined) {
+      this._flashMessagesService.show('Please fill Phone fields', { cssClass: 'alert-danger', timeout: 3000 });
+      return false;
+    }
+    if (this.email === undefined) {
+      this._flashMessagesService.show('Please fill Email fields', { cssClass: 'alert-danger', timeout: 3000 });
+      return false;
+    }
+    if (this.understand === undefined || this.store === undefined) {
+      this._flashMessagesService.show('Please check all the checkbox', { cssClass: 'alert-danger', timeout: 3000 });
       return false;
     }
     const contact = {

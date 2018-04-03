@@ -41,7 +41,10 @@ export class CategoryComponent implements OnInit {
   addCategory() {
     const newCategory = {
       name: this.categoty,
-      content: this.categotycontent
+      content: this.categotycontent,
+      title: this.title,
+      description: this.description,
+      keywords: this.keywords
     };
     if (newCategory.name === undefined || newCategory.name === '') {
       this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -96,10 +99,10 @@ export class CategoryComponent implements OnInit {
     const updateCategory = {
       name: this.updatecategoty,
       content: this.updatecategotycontent,
-      status: this.categorystatus,
-      title: this.title,
-      description: this.description,
-      keywords: this.keywords
+      status: true,
+      title: this.updatetitle,
+      description: this.updatedescription,
+      keywords: this.updatekeywords
     };
     if (updateCategory.name === undefined || updateCategory.name === '') {
       this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });

@@ -231,7 +231,10 @@ var CategoryComponent = /** @class */ (function () {
         var _this = this;
         var newCategory = {
             name: this.categoty,
-            content: this.categotycontent
+            content: this.categotycontent,
+            title: this.title,
+            description: this.description,
+            keywords: this.keywords
         };
         if (newCategory.name === undefined || newCategory.name === '') {
             this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -288,10 +291,10 @@ var CategoryComponent = /** @class */ (function () {
         var updateCategory = {
             name: this.updatecategoty,
             content: this.updatecategotycontent,
-            status: this.categorystatus,
-            title: this.title,
-            description: this.description,
-            keywords: this.keywords
+            status: true,
+            title: this.updatetitle,
+            description: this.updatedescription,
+            keywords: this.updatekeywords
         };
         if (updateCategory.name === undefined || updateCategory.name === '') {
             this._flashMessagesService.show('Category field should not be empty!', { cssClass: 'alert-danger', timeout: 3000 });
@@ -814,7 +817,7 @@ var PollCreateComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/admin/poll-manage/poll-manage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card mt-5 mb-5\">\n        <div class=\"card-body\">\n    \n            <!--Table-->\n            <table class=\"table table-hover table-responsive-md table-fixed\">\n    \n                <!--Table head-->\n                <thead>\n                    <tr>\n                        <th>#</th>\n                        <th>Category</th>\n                        <th>Poll</th>\n                        <th>Status</th>\n                        <th>Trending</th>\n                        <th>Display in Home</th>\n                        <th>Result Publish</th>\n                        <th>Action</th>\n                    </tr>\n                </thead>\n                <!--Table head-->\n    \n                <!--Table body-->\n                <tbody>\n                    <tr *ngFor=\"let p of pollList; let i = index\">\n                        <td scope=\"row\">{{i+1}}</td>\n                        <td>{{p.categoryname[0].name}}</td>\n                        <td>{{p.name}}</td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"statuscheckbox{{p._id}}\" [checked]=\"p.status\" (change)=\"updateStatus($event.target.checked,p,'status')\">\n                            <label for=\"statuscheckbox{{p._id}}\"></label>\n                        </div></td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"trendingcheckbox{{p._id}}\" [checked]=\"p.trending\" (change)=\"updateStatus($event.target.checked,p,'trending')\">\n                            <label for=\"trendingcheckbox{{p._id}}\"></label>\n                        </div></td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"homecheckbox{{p._id}}\" [checked]=\"p.home\" (change)=\"updateStatus($event.target.checked,p,'home')\">\n                            <label for=\"homecheckbox{{p._id}}\"></label>\n                        </div></td> \n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"resultcheckbox{{p._id}}\" [checked]=\"p.result\" (change)=\"updateStatus($event.target.checked,p,'result')\">\n                            <label for=\"resultcheckbox{{p._id}}\"></label>\n                        </div></td> \n                        <td>\n                            <button type=\"button\" (click)=\"showModal(p)\" class=\"btn btn-primary waves-light\" mdbRippleRadius>Edit <i class=\"fa fa-edit fa-lg\" aria-hidden=\"true\"></i></button>\n                            &nbsp;\n                            <button type=\"button\" (click)=\"deletePoll(p._id)\" class=\"btn btn-danger waves-light\" mdbRippleRadius>Delete <i class=\"fa fa-trash fa-lg\" aria-hidden=\"true\"></i></button>\n                            &nbsp;\n                            <button type=\"button\" (click)=\"pollResult(p._id)\" class=\"btn btn-success waves-light\" mdbRippleRadius>Poll Result <i class=\"fa fa-pie-chart fa-lg\" aria-hidden=\"true\"></i></button>\n                        </td>\n                    </tr>\n                </tbody>\n                <!--Table body-->\n    \n            </table>\n            <!--Table-->\n        </div>\n    </div>\n    <div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\" #style=\"mdb-modal\" id=\"centralModalSuccess\" style=\"overflow: auto;\">\n      <div class=\"modal-dialog modal-notify modal-info modal-lg\">\n          <div class=\"modal-content\">\n              <div class=\"modal-header\">\n                  <p class=\"heading lead\">Update Poll</p>\n                  <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\n                      <span aria-hidden=\"true\" class=\"white-text\">×</span>\n                  </button>\n              </div>\n              <form [formGroup]=\"pollCreateForm\">\n              <div class=\"modal-body\">\n                      <div class=\"form-group row\">\n                          <input type=\"text\" class=\"form-control\" placeholder=\"Poll Question *\" formControlName=\"pollname\" name=\"pollname\">\n                      </div>\n                      <div class=\"form-group row\">\n                            <div class=\"\">\n                                    <img [src]=\"imageUrl\" width=\"200\" height=\"200\">\n                                </div>\n                      <div class=\"file-field\">\n                        \n                        <div class=\"btn btn-primary btn-sm waves-light\" mdbRippleRadius>\n                            <span>Choose file</span>\n                            <input type=\"file\" (change)=\"fileEvent($event)\">\n                        </div>\n                        \n                    </div>\n                </div>\n                      <div class=\"form-group row\">\n                          <mdb-select formControlName=\"selectedPollType\" name=\"selectedPollType\" [options]=\"pollType\" placeholder=\"Type of Selection *\" class=\"colorful-select dropdown-primary\"></mdb-select>\n                      </div>\n                      <div class=\"form-group row\">\n                          <div class=\"switch\">\n                              <label>\n                                  Status Off\n                                  <input formControlName=\"pollStatus\" name=\"pollStatus\" type=\"checkbox\">\n                                  <span class=\"lever\"></span>\n                                  Status On\n                              </label>\n                          </div>\n                      </div>\n                      <div class=\"form-group row\">\n                        <div class=\"switch\">\n                            <label>\n                                Trending Off\n                                <input formControlName=\"trending\" name=\"trending\" type=\"checkbox\">\n                                <span class=\"lever\"></span>\n                                Trending On\n                            </label>\n                        </div>\n                    </div>\n                    <div class=\"form-group row\">\n                        <div class=\"switch\">\n                            <label>\n                                Display in Home Off\n                                <input formControlName=\"displayhome\" name=\"displayhome\" type=\"checkbox\">\n                                <span class=\"lever\"></span>\n                                Display in Home On\n                            </label>\n                        </div>\n                    </div>\n                      <div class=\"form-group row\">\n                          <mdb-select formControlName=\"pollCategoryid\" name=\"pollCategoryid\" [options]=\"categotylist\" placeholder=\"Choose Category *\" class=\"colorful-select dropdown-primary\"></mdb-select>\n                      </div>\n                      <label>Poll Options *</label>\n                      <div formArrayName=\"pollOption\">\n                          <div *ngFor=\"let itemrow of pollCreateForm.controls.pollOption.controls; let i=index\"  [formGroupName]=\"i\">\n                              <div class=\"form-group\">\n                                  <i *ngIf=\"pollCreateForm.controls.pollOption.controls.length > 1\" (click)=\"deleteRow(i)\" class=\"fa fa-remove prefix grey-text\"></i> \n                                  <input formControlName=\"itemname\" placeholder=\"Option {{ i + 1 }}\" class=\"form-control\">\n                              </div>\n                          </div>\n                          <button type=\"button\" (click)=\"addNewRow()\" class=\"btn btn-primary\">Add new Row</button>\n                      </div>\n                      <input type=\"hidden\" formControlName=\"updatepollid\" name = \"updatepollid\" />\n              </div>\n              <div class=\"modal-footer justify-content-center\">\n                <a type=\"button\" (click)=\"updatePoll()\" class=\"btn btn-primary-modal waves-light\" mdbRippleRadius>Update <i class=\"fa fa-diamond ml-1\"></i></a>\n                <a type=\"button\" class=\"btn btn-outline-secondary-modal\" data-dismiss=\"modal\" (click)=\"style.hide()\" mdbRippleRadius>Cancle</a>\n              </div>\n            </form>\n          </div>\n      </div>\n    </div>\n      "
+module.exports = "<div class=\"card mt-5 mb-5\">\n        <div class=\"card-body\">\n    \n            <!--Table-->\n            <table *ngIf=\"pollList\" datatable class=\"table table-hover table-responsive-md table-fixed\">\n    \n                <!--Table head-->\n                <thead>\n                    <tr>\n                        <th>#</th>\n                        <th>Category</th>\n                        <th>Poll</th>\n                        <th>Status</th>\n                        <th>Trending</th>\n                        <th>Display in Home</th>\n                        <th>Result Publish</th>\n                        <th>Action</th>\n                    </tr>\n                </thead>\n                <!--Table head-->\n    \n                <!--Table body-->\n                <tbody>\n                    <tr *ngFor=\"let p of pollList; let i = index\">\n                        <td scope=\"row\">{{i+1}}</td>\n                        <td>{{p.categoryname[0].name}}</td>\n                        <td>{{p.name}}</td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"statuscheckbox{{p._id}}\" [checked]=\"p.status\" (change)=\"updateStatus($event.target.checked,p,'status')\">\n                            <label for=\"statuscheckbox{{p._id}}\"></label>\n                        </div></td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"trendingcheckbox{{p._id}}\" [checked]=\"p.trending\" (change)=\"updateStatus($event.target.checked,p,'trending')\">\n                            <label for=\"trendingcheckbox{{p._id}}\"></label>\n                        </div></td>\n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"homecheckbox{{p._id}}\" [checked]=\"p.home\" (change)=\"updateStatus($event.target.checked,p,'home')\">\n                            <label for=\"homecheckbox{{p._id}}\"></label>\n                        </div></td> \n                        <td><div class=\"form-check checkbox-warning-filled\">\n                            <input type=\"checkbox\" class=\"filled-in\" id=\"resultcheckbox{{p._id}}\" [checked]=\"p.result\" (change)=\"updateStatus($event.target.checked,p,'result')\">\n                            <label for=\"resultcheckbox{{p._id}}\"></label>\n                        </div></td> \n                        <td>\n                            <button type=\"button\" (click)=\"showModal(p)\" class=\"btn btn-primary waves-light\" mdbRippleRadius>Edit <i class=\"fa fa-edit fa-lg\" aria-hidden=\"true\"></i></button>\n                            &nbsp;\n                            <button type=\"button\" (click)=\"deletePoll(p._id)\" class=\"btn btn-danger waves-light\" mdbRippleRadius>Delete <i class=\"fa fa-trash fa-lg\" aria-hidden=\"true\"></i></button>\n                            &nbsp;\n                            <button type=\"button\" (click)=\"pollResult(p._id)\" class=\"btn btn-success waves-light\" mdbRippleRadius>Poll Result <i class=\"fa fa-pie-chart fa-lg\" aria-hidden=\"true\"></i></button>\n                        </td>\n                    </tr>\n                </tbody>\n                <!--Table body-->\n    \n            </table>\n            <!--Table-->\n        </div>\n    </div>\n    <div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\" #style=\"mdb-modal\" id=\"centralModalSuccess\" style=\"overflow: auto;\">\n      <div class=\"modal-dialog modal-notify modal-info modal-lg\">\n          <div class=\"modal-content\">\n              <div class=\"modal-header\">\n                  <p class=\"heading lead\">Update Poll</p>\n                  <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\n                      <span aria-hidden=\"true\" class=\"white-text\">×</span>\n                  </button>\n              </div>\n              <form [formGroup]=\"pollCreateForm\">\n              <div class=\"modal-body\">\n                      <div class=\"form-group row\">\n                          <input type=\"text\" class=\"form-control\" placeholder=\"Poll Question *\" formControlName=\"pollname\" name=\"pollname\">\n                      </div>\n                      <div class=\"form-group row\">\n                            <div class=\"\">\n                                    <img [src]=\"imageUrl\" width=\"200\" height=\"200\">\n                                </div>\n                      <div class=\"file-field\">\n                        \n                        <div class=\"btn btn-primary btn-sm waves-light\" mdbRippleRadius>\n                            <span>Choose file</span>\n                            <input type=\"file\" (change)=\"fileEvent($event)\">\n                        </div>\n                        \n                    </div>\n                </div>\n                      <div class=\"form-group row\">\n                          <mdb-select formControlName=\"selectedPollType\" name=\"selectedPollType\" [options]=\"pollType\" placeholder=\"Type of Selection *\" class=\"colorful-select dropdown-primary\"></mdb-select>\n                      </div>\n                      <div class=\"form-group row\">\n                          <div class=\"switch\">\n                              <label>\n                                  Status Off\n                                  <input formControlName=\"pollStatus\" name=\"pollStatus\" type=\"checkbox\">\n                                  <span class=\"lever\"></span>\n                                  Status On\n                              </label>\n                          </div>\n                      </div>\n                      <div class=\"form-group row\">\n                        <div class=\"switch\">\n                            <label>\n                                Trending Off\n                                <input formControlName=\"trending\" name=\"trending\" type=\"checkbox\">\n                                <span class=\"lever\"></span>\n                                Trending On\n                            </label>\n                        </div>\n                    </div>\n                    <div class=\"form-group row\">\n                        <div class=\"switch\">\n                            <label>\n                                Display in Home Off\n                                <input formControlName=\"displayhome\" name=\"displayhome\" type=\"checkbox\">\n                                <span class=\"lever\"></span>\n                                Display in Home On\n                            </label>\n                        </div>\n                    </div>\n                      <div class=\"form-group row\">\n                          <mdb-select formControlName=\"pollCategoryid\" name=\"pollCategoryid\" [options]=\"categotylist\" placeholder=\"Choose Category *\" class=\"colorful-select dropdown-primary\"></mdb-select>\n                      </div>\n                      <label>Poll Options *</label>\n                      <div formArrayName=\"pollOption\">\n                          <div *ngFor=\"let itemrow of pollCreateForm.controls.pollOption.controls; let i=index\"  [formGroupName]=\"i\">\n                              <div class=\"form-group\">\n                                  <i *ngIf=\"pollCreateForm.controls.pollOption.controls.length > 1\" (click)=\"deleteRow(i)\" class=\"fa fa-remove prefix grey-text\"></i> \n                                  <input formControlName=\"itemname\" placeholder=\"Option {{ i + 1 }}\" class=\"form-control\">\n                              </div>\n                          </div>\n                          <button type=\"button\" (click)=\"addNewRow()\" class=\"btn btn-primary\">Add new Row</button>\n                      </div>\n                      <input type=\"hidden\" formControlName=\"updatepollid\" name = \"updatepollid\" />\n              </div>\n              <div class=\"modal-footer justify-content-center\">\n                <a type=\"button\" (click)=\"updatePoll()\" class=\"btn btn-primary-modal waves-light\" mdbRippleRadius>Update <i class=\"fa fa-diamond ml-1\"></i></a>\n                <a type=\"button\" class=\"btn btn-outline-secondary-modal\" data-dismiss=\"modal\" (click)=\"style.hide()\" mdbRippleRadius>Cancle</a>\n              </div>\n            </form>\n          </div>\n      </div>\n    </div>\n      "
 
 /***/ }),
 
@@ -1923,12 +1926,18 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__services_contact_service__ = __webpack_require__("../../../../../src/app/services/contact.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__admin_np_intelligence_manage_np_intelligence_manage_component__ = __webpack_require__("../../../../../src/app/admin/np-intelligence-manage/np-intelligence-manage.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__admin_contact_us_manage_contact_us_manage_component__ = __webpack_require__("../../../../../src/app/admin/contact-us-manage/contact-us-manage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__services_link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__ = __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_angular_datatables__ = __webpack_require__("../../../../angular-datatables/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -2016,11 +2025,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_47__what_we_do_what_we_do_component__["a" /* WhatWeDoComponent */],
                 __WEBPACK_IMPORTED_MODULE_48__contact_form_contact_form_component__["a" /* ContactFormComponent */],
                 __WEBPACK_IMPORTED_MODULE_50__admin_np_intelligence_manage_np_intelligence_manage_component__["a" /* NpIntelligenceManageComponent */],
-                __WEBPACK_IMPORTED_MODULE_51__admin_contact_us_manage_contact_us_manage_component__["a" /* ContactUsManageComponent */]
+                __WEBPACK_IMPORTED_MODULE_51__admin_contact_us_manage_contact_us_manage_component__["a" /* ContactUsManageComponent */],
+                __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__["a" /* RunApollComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_25_ng2_truncate__["a" /* TruncateModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_54_angular_datatables__["a" /* DataTablesModule */],
                 __WEBPACK_IMPORTED_MODULE_42_ng2_google_charts__["a" /* Ng2GoogleChartsModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormsModule */],
@@ -2038,7 +2049,7 @@ var AppModule = /** @class */ (function () {
                 })
             ],
             // tslint:disable-next-line:max-line-length
-            providers: [__WEBPACK_IMPORTED_MODULE_8__typescripts_pro_index__["b" /* MDBSpinningPreloader */], __WEBPACK_IMPORTED_MODULE_18__services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_20__services_poll_service__["a" /* PollService */], __WEBPACK_IMPORTED_MODULE_27__services_voteduser_service__["a" /* VoteduserService */], __WEBPACK_IMPORTED_MODULE_28__services_result_service__["a" /* ResultService */], __WEBPACK_IMPORTED_MODULE_29__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_31__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_35__services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_36__services_validation_service__["a" /* ValidationService */], __WEBPACK_IMPORTED_MODULE_49__services_contact_service__["a" /* ContactService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_8__typescripts_pro_index__["b" /* MDBSpinningPreloader */], __WEBPACK_IMPORTED_MODULE_18__services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_20__services_poll_service__["a" /* PollService */], __WEBPACK_IMPORTED_MODULE_27__services_voteduser_service__["a" /* VoteduserService */], __WEBPACK_IMPORTED_MODULE_28__services_result_service__["a" /* ResultService */], __WEBPACK_IMPORTED_MODULE_29__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_31__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_35__services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_36__services_validation_service__["a" /* ValidationService */], __WEBPACK_IMPORTED_MODULE_49__services_contact_service__["a" /* ContactService */], __WEBPACK_IMPORTED_MODULE_52__services_link_service__["a" /* LinkService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */]],
             schemas: [__WEBPACK_IMPORTED_MODULE_3__angular_core__["NO_ERRORS_SCHEMA"]]
         })
@@ -2075,6 +2086,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__what_we_do_what_we_do_component__ = __webpack_require__("../../../../../src/app/what-we-do/what-we-do.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__admin_np_intelligence_manage_np_intelligence_manage_component__ = __webpack_require__("../../../../../src/app/admin/np-intelligence-manage/np-intelligence-manage.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__admin_contact_us_manage_contact_us_manage_component__ = __webpack_require__("../../../../../src/app/admin/contact-us-manage/contact-us-manage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__run_apoll_run_apoll_component__ = __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.ts");
+
 
 
 
@@ -2107,6 +2120,10 @@ var AppRoutes = [
     {
         path: 'whatwedo',
         component: __WEBPACK_IMPORTED_MODULE_17__what_we_do_what_we_do_component__["a" /* WhatWeDoComponent */]
+    },
+    {
+        path: 'runapoll',
+        component: __WEBPACK_IMPORTED_MODULE_20__run_apoll_run_apoll_component__["a" /* RunApollComponent */]
     },
     {
         path: 'mediainquires',
@@ -2194,7 +2211,7 @@ var AppRoutes = [
 /***/ "../../../../../src/app/category-content/category-content.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n\t\t<div class=\"content-bottom\">\n\t\t\t<div class=\"container padding-left\">\n\t\t\t\t<div class=\"row\">\n\n\t\t\t\t\t<div class=\"col-md-6 col-sm-6 img-des mb-2\" *ngFor=\"let c of categotylist\" >\n\t\t\t\t\t\t<div class=\"left-img\">\n\t\t\t\t\t\t\t<img id=\"loading\" src=\"img/icon_1.png\" alt=\"icon_1\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"discription\">\n\t\t\t\t\t\t\t<h3>{{c.name}}</h3>\n\t\t\t\t\t\t\t<p [innerHtml]=\"c.content | newline | words : 20\"></p>\n\t\t\t\t\t\t\t<button type=\"button\" class=\"btn cnt-btm\" (click)=\"categoryPage(c)\">View more</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</section>"
+module.exports = "<section>\n\t\t<div class=\"content-bottom\">\n\t\t\t<div class=\"container padding-left\">\n\t\t\t\t<div class=\"row\">\n\n\t\t\t\t\t<div class=\"col-md-6 col-sm-6 img-des mb-2\" *ngFor=\"let c of categotylist\" >\n\t\t\t\t\t\t<div class=\"left-img\">\n\t\t\t\t\t\t\t<img id=\"loading\" src=\"img/{{c.slug}}1.png\" alt=\"icon_1\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"discription\">\n\t\t\t\t\t\t\t<h3>{{c.name}}</h3>\n\t\t\t\t\t\t\t<p [innerHtml]=\"c.content | newline | words : 20\"></p>\n\t\t\t\t\t\t\t<button type=\"button\" class=\"btn cnt-btm\" (click)=\"categoryPage(c)\">View more</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</section>"
 
 /***/ }),
 
@@ -2350,7 +2367,7 @@ var CategoryNavComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/category-page/category-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\n<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content\">\n\t\t\t<div class=\"container\">\n                <div class=\"row\">\n                    <div class=\"col col-sm-12\">\n                        <h3>{{categorySlug.name}}</h3>\n                        <p [innerHtml]=\"categorySlug.content | newline\"></p>\n                    </div>\n                </div>\n\t\t\t\t<div class=\"trending-polls\">\n\t\t\t\t\t<h2>TRENDING <span>POLLS</span></h2>\n\t\t\t\t\t  <div class=\"row\">\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.trending\">\n\t\t\t\t\t\t\t<div></div>\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\" *ngIf=\"p.trending\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t  </div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t</div> <!-- polls-content -->\n\t</section>\n\t<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content-middle\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h2>OTHER <span>POLLS</span></h2>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.others\">\n\t\t\t\t\t\t\t<div class=\"trending-polls-content\" *ngIf=\"!p.trending\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t\t\n\t\t</div> <!-- polls-content -->\n\t</section>\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n\t\t<div class=\"modal-dialog\">\n\t\t\t<div class=\"modal-content\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t<div *ngIf=\"resform\">\n\t\t\t\t\t\t<form *ngIf=\"pollform\" class=\"form-inline\" (submit)=\"putVote(votingPoll._id,votingPoll)\" >\n\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of votingPoll.options; let i = index\">\n\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[votingPoll._id]\" id=\"{{votingPoll._id+i}}\">\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{votingPoll._id+i}}\">{{o.itemname}}</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" >VOTE</button>\n\t\t\t\t\t\t</form>\n\t\t\t\t\t\t<form *ngIf=\"!pollform\">\n\t\t\t\t\t\t\t<div class=\"md-form\">\n\t\t\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\n\t\t\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\n\t\t\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"md-form\">\n\t\t\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\n\t\t\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\n\t\t\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"text-center\">\n\t\t\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</form>\n\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"!resform\">\n\t\t\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\n\t\t\t\t\t\t\t<canvas mdbChart  \n\t\t\t\t\t\t\t\t[chartType]=\"chartType\"\n\t\t\t\t\t\t\t\t[datasets]=\"chartDatasets\" \n\t\t\t\t\t\t\t\t[labels]=\"chartLabels\"\n\t\t\t\t\t\t\t\t[colors]=\"chartColors\"\n\t\t\t\t\t\t\t\t[options]=\"chartOptions\"\n\t\t\t\t\t\t\t\t[legend]=\"true\"\n\t\t\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \n\t\t\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\n\t\t\t\t\t\t\t</canvas>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"!chartDisplay\">\n\t\t\t\t\t\t\t\t<p>Result will publich later</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
+module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\n<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content\">\n\t\t\t<div class=\"container\">\n                <div class=\"row\">\n                    <div class=\"col col-sm-12\">\n                        <h3>{{categorySlug.name}}</h3>\n                        <p [innerHtml]=\"categorySlug.content | newline\"></p>\n                    </div>\n                </div>\n\t\t\t\t<div class=\"trending-polls\">\n\t\t\t\t\t<h2>TRENDING <span>POLLS</span></h2>\n\t\t\t\t\t  <div class=\"row\">\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.trending\">\n\t\t\t\t\t\t\t<div></div>\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\" *ngIf=\"p.trending\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t  </div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t</div> <!-- polls-content -->\n\t</section>\n\t<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content-middle\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h2>OTHER <span>POLLS</span></h2>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.others\">\n\t\t\t\t\t\t\t<div class=\"trending-polls-content\" *ngIf=\"!p.trending\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t\t\n\t\t</div> <!-- polls-content -->\n\t</section>\n\t<app-footer></app-footer>\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n\t\t<div class=\"modal-dialog\">\n\t\t\t<div class=\"modal-content\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t<div *ngIf=\"resform\">\n\t\t\t\t\t\t<form *ngIf=\"pollform\" class=\"form-inline\" (submit)=\"putVote(votingPoll._id,votingPoll)\" >\n\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of votingPoll.options; let i = index\">\n\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[votingPoll._id]\" id=\"{{votingPoll._id+i}}\">\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{votingPoll._id+i}}\">{{o.itemname}}</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" >VOTE</button>\n\t\t\t\t\t\t</form>\n\t\t\t\t\t\t<form *ngIf=\"!pollform\">\n\t\t\t\t\t\t\t<div class=\"md-form\">\n\t\t\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\n\t\t\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\n\t\t\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"md-form\">\n\t\t\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\n\t\t\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\n\t\t\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"text-center\">\n\t\t\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</form>\n\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf=\"!resform\">\n\t\t\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\n\t\t\t\t\t\t\t<canvas mdbChart  \n\t\t\t\t\t\t\t\t[chartType]=\"chartType\"\n\t\t\t\t\t\t\t\t[datasets]=\"chartDatasets\" \n\t\t\t\t\t\t\t\t[labels]=\"chartLabels\"\n\t\t\t\t\t\t\t\t[colors]=\"chartColors\"\n\t\t\t\t\t\t\t\t[options]=\"chartOptions\"\n\t\t\t\t\t\t\t\t[legend]=\"true\"\n\t\t\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \n\t\t\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\n\t\t\t\t\t\t\t</canvas>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"!chartDisplay\">\n\t\t\t\t\t\t\t\t<p>Result will publich later</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
 
 /***/ }),
 
@@ -2660,8 +2677,20 @@ var ContactFormComponent = /** @class */ (function () {
     ContactFormComponent.prototype.addContact = function () {
         var _this = this;
         // tslint:disable-next-line:max-line-length
-        if (this.name === undefined || this.phone === undefined || this.email === undefined || this.understand === undefined || this.store === undefined) {
-            this._flashMessagesService.show('Please fill all the mandatory fields', { cssClass: 'alert-danger', timeout: 3000 });
+        if (this.name === undefined) {
+            this._flashMessagesService.show('Please fill Full Name fields', { cssClass: 'alert-danger', timeout: 3000 });
+            return false;
+        }
+        if (this.phone === undefined) {
+            this._flashMessagesService.show('Please fill Phone fields', { cssClass: 'alert-danger', timeout: 3000 });
+            return false;
+        }
+        if (this.email === undefined) {
+            this._flashMessagesService.show('Please fill Email fields', { cssClass: 'alert-danger', timeout: 3000 });
+            return false;
+        }
+        if (this.understand === undefined || this.store === undefined) {
+            this._flashMessagesService.show('Please check all the checkbox', { cssClass: 'alert-danger', timeout: 3000 });
             return false;
         }
         var contact = {
@@ -2714,7 +2743,7 @@ var ContactFormComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/contact-us/contact-us.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\n<div class=\"main_contact_us\">\n<section>\n  <div class=\"content-middle\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-md-12 contact_us\">\n          <h2>Empowering\tLeaders\t&\tOrganizations\tWith\tExtraordinary\tAnalytics\t&\t\n              Advice</h2>\n              <h4>Connect\twith\tus\tto\tlearn\tmore\tabout\thow\twe\tcan\thelp\tyou\tachieve\tyour\tgoals\n                </h4>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<section>\n  <div class=\"content\">\n    <div class=\"container\">\n      <div class=\"row contact_us_form\">\n        <div class=\"col-md-5 \">\n          <div class=\"addres\">\n          <h2><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> phone</h2>\n          <p>+91 8026650545</p>\n<h2><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> mail</h2>\n<p>office@nationpulse.com</p>\n</div>\n<div class=\"timing\">\n  <h2>we are available on phone from</h2>\n  <p>10 a.m. to 6 p.m. (Monday to Friday)</p>\n  <p>10 a.m. to 3 p.m. (Saturday)</p>\n</div>\n<div class=\"social_icons\">    \n    <p><span>Follow us </span><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i>\n      <i class=\"fa fa-twitter\" aria-hidden=\"true\"></i> \n      <i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i>\n      <i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></p>\n  </div>\n\n        </div>\n        <div class=\"col-md-7 contact_us_right_from\">\n          <app-contact-form [type]=\"'contactus'\"></app-contact-form>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n</div>"
+module.exports = "<app-nav-bar></app-nav-bar>\n<div class=\"main_contact_us\">\n<section>\n  <div class=\"content-middle\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-md-12 contact_us\">\n          <h2>Empowering\tLeaders\t&\tOrganizations\tWith\tExtraordinary\tAnalytics\t&\t\n              Advice</h2>\n              <h4>Connect\twith\tus\tto\tlearn\tmore\tabout\thow\twe\tcan\thelp\tyou\tachieve\tyour\tgoals\n                </h4>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<section>\n  <div class=\"content\">\n    <div class=\"container\">\n      <div class=\"row contact_us_form\">\n        <div class=\"col-md-5 \">\n          <div class=\"addres\">\n          <h2><i class=\"fa fa-phone\" aria-hidden=\"true\"></i> phone</h2>\n          <p>+91 8026650545</p>\n<h2><i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i> mail</h2>\n<p>office@nationpulse.com</p>\n</div>\n<div class=\"timing\">\n  <h2>we are available on phone from</h2>\n  <p>10 a.m. to 6 p.m. (Monday to Friday)</p>\n  <p>10 a.m. to 3 p.m. (Saturday)</p>\n</div>\n<div class=\"social_icons\">    \n    <p><span>Follow us </span>\n      <a href=\"https://www.facebook.com/nationpulse\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>    \n      <a href=\"https://twitter.com/NationPulse_In\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></a> \n      <a href=\"#\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i></a>\n      <a href=\"https://www.youtube.com/channel/UCt4BNLkXn37rHtZpxpYYy6A?view_as=subscriber\"><i class=\"fa fa-youtube\" aria-hidden=\"true\"></i></a></p>\n  </div>\n\n        </div>\n        <div class=\"col-md-7 contact_us_right_from\">\n          <app-contact-form [type]=\"'contactus'\"></app-contact-form>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -2786,7 +2815,7 @@ var ContactUsComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<footer>\n\t\t<div class=\"container\">\n\t\t\t<div class=\"footer-content\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"col-12 col-polls-content6 col-sm-6\">\n\t\t\t\t\t\t<p>2018 Nation Pluse, All rights reserved</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"col-12 col-6 col-sm-6\">\n\t\t\t\t\t<div class=\"header-col right header_top\">\n\t\t\t\t\t   <div class=\"header-tools\">\n\t\t\t\t\t\t   <ul class=\"icons\">\n\t\t\t\t\t\t\t\t  <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li class=\"link_li\"><a href=\"#\">Terms</a></li>\n\t\t\t\t\t\t\t\t  <li class=\"link_li\"><a href=\"#\">Privacy</a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"#\">FAQs</a></li>\n\t\t\t\t\t\t   </ul>\n\t\t\t\t\t   </div>\n\t\t\t\t\t\t</div>   <!-- / end .nav-buttons -->\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</footer>"
+module.exports = "<footer>\n\t\t<div class=\"container\">\n\t\t\t<div class=\"footer-content\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"col-12 col-polls-content6 col-sm-6\">\n\t\t\t\t\t\t<p>2018 Nation Pluse, All rights reserved</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"col-12 col-6 col-sm-6\">\n\t\t\t\t\t<div class=\"header-col right header_top\">\n\t\t\t\t\t   <div class=\"header-tools\">\n\t\t\t\t\t\t   <ul class=\"icons\">\n\t\t\t\t\t\t\t\t  <li><a href=\"https://www.facebook.com/nationpulse\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"https://twitter.com/NationPulse_In\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"#\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a href=\"https://www.youtube.com/channel/UCt4BNLkXn37rHtZpxpYYy6A?view_as=subscriber\"><i aria-hidden=\"true\" class=\"fa fa-youtube\"></i></a></li>\n\t\t\t\t\t\t\t\t  <li><a href=\"#\">Privacy Statement</a></li>\n\t\t\t\t\t\t   </ul>\n\t\t\t\t\t   </div>\n\t\t\t\t\t\t</div>   <!-- / end .nav-buttons -->\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</footer>"
 
 /***/ }),
 
@@ -2892,7 +2921,7 @@ var AuthGuard = /** @class */ (function () {
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\r\n<app-category-nav [type]=\"'category'\"></app-category-nav>\r\n\r\n\r\n\t<section>\r\n\t\t<div class=\"content-middle\">\r\n\t\t\t<div class=\"text container\">\r\n\t\t\t\t<h4>WELCOME TO THE SED UT PERSPICIATIS UNDE OMNI</h4>\r\n\t\t\t\t<h1>Leap into electronic typesetting</h1>\r\n\t\t\t\t<h1>The Standard chunck of lorem ipsum</h1>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"polls-tab\">\r\n\t\t\t\t<div class=\"polls-tab-img\"></div>\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t<!-- Nav tabs -->\r\n\t\t\t\t<ul class=\"nav nav-tabs nav-justified indigo\" role=\"tablist\">\r\n\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t<a class=\"nav-link active\" data-toggle=\"tab\" role=\"tab\">FEATURED POLL</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- Tab panels -->\r\n\t\t\t\t<div class=\"tab-repeat\" *ngFor=\"let p of pollList; let i = index\">\r\n\t\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-7\">\r\n\t\t\t\t\t\t<div class=\"tab-content\">\r\n\t\t\t\t\t\t\t<!--Panel 1-->\r\n\t\t\t\t\t\t\t<div class=\"tab-pane fade in show active\" role=\"tabpanel\">\r\n\t\t\t\t\t\t\t\t<br>\r\n\t\t\t\t\t\t\t\t<p>{{p.name}}</p>\r\n\t\t\t\t\t\t\t\t<form class=\"form-inline\" (submit)=\"putVote(p._id,i,p)\" >\r\n\t\t\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of p.options; let i = index\">\r\n\t\t\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[p._id]\" id=\"{{p._id+i}}\">\r\n\t\t\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{p._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" *ngIf=\"voteBtn[i][p._id]\">VOTE</button>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\r\n\t\t\t\t\t\t\t\t<div class=\"share-vote\">\r\n\t\t\t\t\t\t\t\t\t<ul class=\"share-vote-icons\"><span>Share Your Vote</span>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [facebook]=\"{u: repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [twitter]=\"{url:repoUrl, text:'Checkout this awesome Poll site', hashtags:'poll'}\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [googlePlus]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a ceiboShare  [linkedIn]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-linkedin\"></i></a></li>\r\n\t\t\t\t\t\t\t\t   </ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!--/.Panel 1-->\r\n\t\t\t\t\t\t<div class=\"col-md-5\">\r\n\t\t\t\t\t\t\t<div cass=\"polls-image\">\r\n\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"poll\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t<div class=\"impact-view-more\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"view-more-view\">\r\n\t\t\t\t\t<h2>Standard Chunk Of Lorem Ipsum Used Popular belief, Lorem Ipsum</h2>\r\n\t\t\t\t\t<button type=\"button\" [routerLink]=\"['/poll/politics']\" class=\"btn\">View more</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<hr>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t</section>\r\n\t\r\n\t<section>\r\n\t\t\r\n\t</section>\r\n\r\n\r\n<app-category-content></app-category-content>\t\r\n<app-footer></app-footer>\r\n<div *ngIf=\"isModalForUser\" [config]=\"{ show: true }\" (onHidden)=\"onHiddenuser()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n\t\t\t\t<h4 class=\"modal-title pull-left\">Successfully Voted</h4>\r\n\t\t\t\t<p>Please fill the given details to get your polling result</p>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHiddenuser()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title pull-left\">Auto shown modal</h4>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t</canvas>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<google-chart *ngIf=\"piechart\" [data]=\"pieChartData\"></google-chart>       \r\n        \r\n\t\t\r\n"
+module.exports = "<app-nav-bar></app-nav-bar>\r\n<app-category-nav [type]=\"'category'\"></app-category-nav>\r\n\r\n\r\n\t<section>\r\n\t\t<div class=\"content-middle\">\r\n\t\t\t<div class=\"text container\">\r\n\t\t\t\t<h4>Polls, Analytics & intelligence</h4>\r\n\t\t\t\t<h1>Shape your decision-making strategy</h1>\r\n\t\t\t\t<h4>Know Your Voters, Customers, Audiences</h4>\r\n\t\t\t\t<h1> Comprehensive & Critical Intelligence Reports</h1>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"polls-tab\">\r\n\t\t\t\t<div class=\"polls-tab-img\"></div>\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t<!-- Nav tabs -->\r\n\t\t\t\t<ul class=\"nav nav-tabs nav-justified indigo\" role=\"tablist\">\r\n\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t<a class=\"nav-link active\" data-toggle=\"tab\" role=\"tab\">Featured Polls</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- Tab panels -->\r\n\t\t\t\t<div class=\"tab-repeat\" *ngFor=\"let p of pollList; let i = index\">\r\n\t\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-7\">\r\n\t\t\t\t\t\t<div class=\"tab-content\">\r\n\t\t\t\t\t\t\t<!--Panel 1-->\r\n\t\t\t\t\t\t\t<div class=\"tab-pane fade in show active\" role=\"tabpanel\">\r\n\t\t\t\t\t\t\t\t<br>\r\n\t\t\t\t\t\t\t\t<p>{{p.name}}</p>\r\n\t\t\t\t\t\t\t\t<form class=\"form-inline\" (submit)=\"putVote(p._id,i,p)\" >\r\n\t\t\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of p.options; let i = index\">\r\n\t\t\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[p._id]\" id=\"{{p._id+i}}\">\r\n\t\t\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{p._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" *ngIf=\"voteBtn[i][p._id]\">VOTE</button>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\r\n\t\t\t\t\t\t\t\t<div class=\"share-vote\">\r\n\t\t\t\t\t\t\t\t\t<ul class=\"share-vote-icons\"><span>Share Your Vote</span>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [facebook]=\"{u: repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [twitter]=\"{url:repoUrl, text:'Checkout this awesome Poll site', hashtags:'poll'}\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [googlePlus]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a ceiboShare  [linkedIn]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-linkedin\"></i></a></li>\r\n\t\t\t\t\t\t\t\t   </ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!--/.Panel 1-->\r\n\t\t\t\t\t\t<div class=\"col-md-5\">\r\n\t\t\t\t\t\t\t<div cass=\"polls-image\">\r\n\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"poll\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t<div class=\"impact-view-more\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"view-more-view\">\r\n\t\t\t\t\t<h2>Views & Opinions Of The Country’s People\r\n\t\t\t\t\t\tUnderstanding people and what matters most to them in their life</h2>\r\n\t\t\t\t\t<button type=\"button\" [routerLink]=\"['/poll/politics']\" class=\"btn\">View more</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<hr>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t</section>\r\n\t\r\n\t<section>\r\n\t\t\r\n\t</section>\r\n\r\n\r\n<app-category-content></app-category-content>\t\r\n<app-footer></app-footer>\r\n<div *ngIf=\"isModalForUser\" [config]=\"{ show: true }\" (onHidden)=\"onHiddenuser()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n\t\t\t\t<h4 class=\"modal-title pull-left\">Successfully Voted</h4>\r\n\t\t\t\t<p>Please fill the given details to get your polling result</p>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHiddenuser()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title pull-left\">Auto shown modal</h4>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t</canvas>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<google-chart *ngIf=\"piechart\" [data]=\"pieChartData\"></google-chart>       \r\n        \r\n\t\t\r\n"
 
 /***/ }),
 
@@ -3058,7 +3087,6 @@ var HomeComponent = /** @class */ (function () {
                 state: _this.state,
                 region: _this.region
             };
-            console.log(newResult);
             _this.resultService.addResult(newResult)
                 .subscribe(function (data) {
                 if (data.success === true) {
@@ -3242,7 +3270,7 @@ var LoginComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/media-inquires/media-inquires.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\n\n    <div class=\"what-we-do\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-7 content-lft\">\n                    <h3>\n                        Media\tInquires\n                    </h3>\n                    <p>Contact\tNation\tPulse\tfor\tpoll\tdata\tor\tinterviews\n                      </p>\n                    <h4>Journalists\tand\tmedia\tprofessionals:</h4>\n                    <p>We\tare\thappy\tto\tdiscuss\tour\tresearch\tand\ta\tbroad\trange\tof\ttopics\tincluding public\topinion</p>\n                    <p>To\trequest\tan\tinterview\twith Nation\tPulse,\tplease\temail\t<b>mediaquery@nationpulse.in</b></p>\n                    <h4>Data\trequests:</h4>\n                    <p>For\tassistance\twith\tpolling\tor\tsurvey\tdata\trelated\tto Nation\tPulse\t\n                        publishings,\tplease\temail\t<b>dataquery@nationpulse.in</b></p>\n                </div>\n                <div class=\"col-md-5 img-rgt\">\n                   <div class=\"img-rgt-first\"> <img src=\"img/media_2.jpg\" alt=\"what_we_do_2\"></div>\n                    <div class=\"img-rgt-second\"><img src=\"img/media-1.jpg\" alt=\"what_we_do_1\"></div> \n                </div>\n            </div>\n        </div>\n    </div>"
+module.exports = "<app-nav-bar></app-nav-bar>\n\n    <div class=\"what-we-do\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-7 content-lft\">\n                    <h3>\n                        Media\tInquires\n                    </h3>\n                    <p>Contact\tNation\tPulse\tfor\tpoll\tdata\tor\tinterviews\n                      </p>\n                    <h4><b>Journalists\tand\tmedia\tprofessionals:</b></h4>\n                    <p>We\tare\thappy\tto\tdiscuss\tour\tresearch\tand\ta\tbroad\trange\tof\ttopics\tincluding public\topinion</p>\n                    <p>To\trequest\tan\tinterview\twith Nation\tPulse,\tplease\temail\t<b>mediaquery@nationpulse.in</b></p>\n                    <h4><b>Data\trequests:</b></h4>\n                    <p>For\tassistance\twith\tpolling\tor\tsurvey\tdata\trelated\tto Nation\tPulse\t\n                        publishings,\tplease\temail\t<b>dataquery@nationpulse.in</b></p>\n                </div>\n                <div class=\"col-md-5 img-rgt\">\n                   <div class=\"img-rgt-first\"> <img src=\"img/media_2.jpg\" alt=\"what_we_do_2\"></div>\n                    <div class=\"img-rgt-second\"><img src=\"img/media-1.jpg\" alt=\"what_we_do_1\"></div> \n                </div>\n            </div>\n        </div>\n    </div>\n    <app-footer></app-footer>"
 
 /***/ }),
 
@@ -3313,7 +3341,7 @@ var MediaInquiresComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n    <!--Navbar-->\r\n<nav class=\"navbar navbar-expand-lg header-main\">\r\n\r\n<!-- Collapse button -->\r\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#basicExampleNav\" aria-controls=\"basicExampleNav\"\r\n    aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n</button>\r\n<div class=\"container\">\r\n<!-- Collapsible content -->\r\n\r\n<div class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></div>\r\n<div class=\"collapse navbar-collapse\" id=\"basicExampleNav\">\r\n\r\n    <!-- Links -->\r\n    <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n            <a class=\"nav-link\" (click)=\"showModal()\">Login</a>\r\n        </li>\r\n    </ul>\r\n    <!-- Links -->\r\n</div>\r\n<!-- Collapsible content -->\r\n</div>\r\n</nav>\r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
+module.exports = "<header>\r\n    <!--Navbar-->\r\n<nav class=\"navbar navbar-expand-lg header-main\">\r\n\r\n<!-- Collapse button -->\r\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#basicExampleNav\" aria-controls=\"basicExampleNav\"\r\n    aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n</button>\r\n<div class=\"container\">\r\n<!-- Collapsible content -->\r\n\r\n<div class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></div>\r\n<div class=\"collapse navbar-collapse\" id=\"basicExampleNav\">\r\n\r\n    <!-- Links -->\r\n    <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/runapoll']\">Run a Poll</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">Previous Polls</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n        </li>\r\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n            <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n            <a class=\"nav-link\" (click)=\"showModal()\">Sign Up/Login</a>\r\n        </li>\r\n    </ul>\r\n    <!-- Links -->\r\n</div>\r\n<!-- Collapsible content -->\r\n</div>\r\n</nav>\r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
 
 /***/ }),
 
@@ -3390,7 +3418,7 @@ var NavBarComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/np-intelligence/np-intelligence.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\n<div class=\"main_np_intelligence\">\n    <section>\n        <div class=\"content-middle\">\n            <div class=\"container\">\n              <div class=\"row\">\n                <div class=\"col-md-12 intelligance-content\">\n                    <h1>Nation Pulse Intelligence</h1>\n                  <h2>Shape\tyour\tdecision-making\tstrategy\twith\taccess\tto data that\tis\tsourced\tfrom\ta\t\n                    targeted\taudience.\t\n                    </h2>\n                      <h4>We\tgather\tthe\topinions\tof\tvoters,\tcustomers,\tyouth,\taudiences and\tcitizens\ton\ta\twide\trange\t\n                            of\tissues.\n                        </h4>\n        \n                </div>\n                <div class=\"intelligance-bg\">\n                    <p>To\tlearn\tmore\tabout\tthe\tNation\tPulse Polls or\tto\trequest\ta\tquote,\tfill\tout\tthe\tform\tbelow,\t\n                            and\ta\tNation\tPulse representative\twill\tcontact\tyou</p>\n                    <app-contact-form [type]=\"'npintelligence'\"></app-contact-form>\n                </div>\n              </div>\n            </div>\n          </div>\n    </section>\n</div>\n"
+module.exports = "<app-nav-bar></app-nav-bar>\n<div class=\"main_np_intelligence\">\n    <section>\n        <div class=\"content-middle\">\n            <div class=\"container\">\n              <div class=\"row\">\n                <div class=\"col-md-12 intelligance-content\">\n                    <h1>Nation Pulse Intelligence</h1>\n                  <h2>Shape\tyour\tdecision-making\tstrategy\twith\taccess\tto data that\tis\tsourced\tfrom\ta\t\n                    targeted\taudience.\t\n                    </h2>\n                      <h4>We\tgather\tthe\topinions\tof\tvoters,\tcustomers,\tyouth,\taudiences and\tcitizens\ton\ta\twide\trange\t\n                            of\tissues.\n                        </h4>\n        \n                </div>\n                <div class=\"intelligance-bg\">\n                    <p>To\tlearn\tmore\tabout\tthe\tNation\tPulse Polls or\tto\trequest\ta\tquote,\tfill\tout\tthe\tform\tbelow,\t\n                            and\ta\tNation\tPulse representative\twill\tcontact\tyou</p>\n                    <app-contact-form [type]=\"'npintelligence'\"></app-contact-form>\n                </div>\n              </div>\n            </div>\n          </div>\n    </section>\n</div>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -3551,6 +3579,78 @@ var PollComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/run-apoll/run-apoll.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-nav-bar></app-nav-bar>\n\n    <div class=\"what-we-do\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-7 content-lft\">\n                    <h3>\n                      Nation Pulse Polls\n                    </h3>\n                    <p>Go beyond traditional, hit-or-miss campaigns to truly understand your current and potential voters.</p>\n                    <p>With intelligence data such as the voters’ preferred political party, preferred candidate, indepth analytics on what pressing issues are faced on a daily basis, what areas and topics are potential game changers. The Nation Pulse political polls are an ocean of rich information on voter behavior and their leanings in current election seasons.</p>\n                    <p>Contact us for more information on data that could help you strategize a winning campaign.</p>\n                </div>\n                <div class=\"col-md-5 img-rgt\">\n                   <div class=\"img-rgt-first\"> <img src=\"img/what_we_do_2.jpg\" alt=\"what_we_do_2\"></div>\n                    <div class=\"img-rgt-second\"><img src=\"img/what_we_do_1.jpg\" alt=\"what_we_do_1\"></div> \n                </div>\n            </div>\n        </div>\n    </div>\n    <app-footer></app-footer>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/run-apoll/run-apoll.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n  background: #f5f6fa; }\n\n.what-we-do .content-lft h3 {\n  color: #466bbb;\n  font-size: 25px;\n  font-weight: 500; }\n\n.img-rgt-first {\n  margin-left: 144px; }\n\n.col-md-6.img-rgt {\n  position: relative; }\n\n.img-rgt-second {\n  position: absolute;\n  bottom: -60px;\n  left: 10px; }\n\n.what-we-do {\n  padding: 30px 10px 90px; }\n\n.col-md-7.content-lft p {\n  color: #544d4d !important;\n  font-size: 20px;\n  font-weight: 400; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/run-apoll/run-apoll.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RunApollComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var RunApollComponent = /** @class */ (function () {
+    function RunApollComponent(meta, title) {
+        // tslint:disable-next-line:max-line-length
+        title.setTitle('Nation Pulse Polls: Critical Election Data That Will Help Shape Winning Campaign Strategy – Nation Pulse');
+        meta.addTags([
+            { name: 'author', content: 'www.nationpulse.in' },
+            // tslint:disable-next-line:max-line-length
+            { name: 'keywords', content: 'Voter demography in india, voter patterns, election campaigns, winning elections, voter data, constituency wise election data, opinion polls, election polls, election news, election wave, stats, voting patterns in elections, analysis,' },
+            { name: 'description', content: 'In-depth analysis on voter patterns with data sourced from a targeted and wide range of demography that gives invaluable insights to help shape wining election strategies.' }
+        ]);
+    }
+    RunApollComponent.prototype.ngOnInit = function () {
+    };
+    RunApollComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-run-apoll',
+            template: __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["d" /* Meta */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["e" /* Title */]])
+    ], RunApollComponent);
+    return RunApollComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/auth.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3561,6 +3661,7 @@ var PollComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt__ = __webpack_require__("../../../../angular2-jwt/angular2-jwt.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3574,11 +3675,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService(http) {
+    function AuthService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -3606,7 +3708,8 @@ var AuthService = /** @class */ (function () {
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_4__link_service__["a" /* LinkService */]])
     ], AuthService);
     return AuthService;
 }());
@@ -3623,6 +3726,7 @@ var AuthService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3635,11 +3739,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CategoryService = /** @class */ (function () {
-    function CategoryService(http) {
+    function CategoryService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     CategoryService.prototype.getCategory = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -3679,7 +3784,8 @@ var CategoryService = /** @class */ (function () {
     };
     CategoryService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_3__link_service__["a" /* LinkService */]])
     ], CategoryService);
     return CategoryService;
 }());
@@ -3743,6 +3849,37 @@ var ContactService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/link.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var LinkService = /** @class */ (function () {
+    function LinkService() {
+        this.link = 'http://localhost:80/';
+    }
+    LinkService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], LinkService);
+    return LinkService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/poll.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3751,6 +3888,7 @@ var ContactService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3763,11 +3901,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PollService = /** @class */ (function () {
-    function PollService(http) {
+    function PollService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     PollService.prototype.getPoll = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -3837,7 +3976,8 @@ var PollService = /** @class */ (function () {
     };
     PollService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_3__link_service__["a" /* LinkService */]])
     ], PollService);
     return PollService;
 }());
@@ -3854,6 +3994,7 @@ var PollService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3866,11 +4007,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ResultService = /** @class */ (function () {
-    function ResultService(http) {
+    function ResultService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     ResultService.prototype.addResult = function (newResult) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -3898,7 +4040,8 @@ var ResultService = /** @class */ (function () {
     };
     ResultService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_3__link_service__["a" /* LinkService */]])
     ], ResultService);
     return ResultService;
 }());
@@ -3915,6 +4058,7 @@ var ResultService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3927,11 +4071,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UserService = /** @class */ (function () {
-    function UserService(http) {
+    function UserService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     UserService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -3988,7 +4133,8 @@ var UserService = /** @class */ (function () {
     };
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_3__link_service__["a" /* LinkService */]])
     ], UserService);
     return UserService;
 }());
@@ -4061,6 +4207,7 @@ var ValidationService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4073,11 +4220,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var VoteduserService = /** @class */ (function () {
-    function VoteduserService(http) {
+    function VoteduserService(http, linkService) {
         this.http = http;
-        // link: String = 'http://localhost:3000/';
-        this.link = '';
+        this.linkService = linkService;
+        this.link = this.linkService.link;
     }
     VoteduserService.prototype.addVoteduser = function (newVoteduser) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -4093,7 +4241,8 @@ var VoteduserService = /** @class */ (function () {
     };
     VoteduserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_3__link_service__["a" /* LinkService */]])
     ], VoteduserService);
     return VoteduserService;
 }());
@@ -22531,7 +22680,7 @@ var TimePickerModule = /** @class */ (function () {
 /***/ "../../../../../src/app/what-we-do/what-we-do.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\r\n\r\n    <div class=\"what-we-do\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-7 content-lft\">\r\n                    <h3>\r\n                        WHAT WE DO?\r\n                    </h3>\r\n                    <p>Nation\tPulse\tis\tan Unbiased,\tUnflinching,\tUnabashed\tplatform\tfor\tall\tcitizenry\tto\tput\tforth\t\r\n                            their\topinions\ton\ta\trange of\ttopics\tranging\tfrom\tpolitics,\teducation,\tbusiness,\t\r\n                            entertainment\tand\tsports.</p>\r\n                    <p>With\tour\tpolls\twe\tderive\topinions\tand\tanalytics\tthat\tare\thelpful\tto\tleaders\tand\t\r\n                            organizations\tto\tstrategize\ttheir\tsuccess\tstories.</p>\r\n                    <p>Nation\tPulse\tknows\tbest\tabout\tthe\tattitudes\tand\tbehavior\tof\tvoters,\tcustomers,\tyouth,\t\r\n                            audiences,\tand\tcitizens</p>\r\n                    <p>Nation\tPulse’s\tstrength\tis\tunderstanding\tpeople\tand\twhat\tmatters\tmost\tto\tthem\tin\ttheir\tlife</p> \r\n                    <p>That\tstrength\tallows\tus\tto\tcreate\ttransformation\tin\tthe\tnation. Human\tbehavioral\tpatterns\t\r\n                            help us\tin\tbuilding\tbetter\tsocieties that\tare\tinclusive\tand\thappy.\t\r\n                            </p>\r\n                    <p>Make\tbetter\tdecisions\tby\taccessing\tthe\tdata\tfrom\tour\tpolls or\tmake\ta\tcustom\tpoll\twith\tyour\t\r\n                            questions.\t<a routerLink=\"/contactus\">Contact\tus</a> for\tmore\tinformation.</p>\r\n                    <p>Get\tin\ttouch\tto\tlearn\tmore\tabout\thow\twe\tcan\thelp\tyou\tachieve\tyour\tgoals.</p>\r\n                </div>\r\n                <div class=\"col-md-5 img-rgt\">\r\n                   <div class=\"img-rgt-first\"> <img src=\"img/what_we_do_2.jpg\" alt=\"what_we_do_2\"></div>\r\n                    <div class=\"img-rgt-second\"><img src=\"img/what_we_do_1.jpg\" alt=\"what_we_do_1\"></div> \r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>"
+module.exports = "<app-nav-bar></app-nav-bar>\r\n\r\n    <div class=\"what-we-do\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-7 content-lft\">\r\n                    <p>Nation\tPulse\tis\tan Unbiased,\tUnflinching,\tUnabashed\tplatform\tfor\tall\tcitizenry\tto\tput\tforth\t\r\n                            their\topinions\ton\ta\trange of\ttopics\tranging\tfrom\tpolitics,\teducation,\tbusiness,\t\r\n                            entertainment\tand\tsports.</p>\r\n                    <p>With\tour\tpolls\twe\tderive\topinions\tand\tanalytics\tthat\tare\thelpful\tto\tleaders\tand\t\r\n                            organizations\tto\tstrategize\ttheir\tsuccess\tstories.</p>\r\n                    <p>Nation\tPulse\tknows\tbest\tabout\tthe\tattitudes\tand\tbehavior\tof\tvoters,\tcustomers,\tyouth,\t\r\n                            audiences,\tand\tcitizens</p>\r\n                    <p>Nation\tPulse’s\tstrength\tis\tunderstanding\tpeople\tand\twhat\tmatters\tmost\tto\tthem\tin\ttheir\tlife</p> \r\n                    <p>That\tstrength\tallows\tus\tto\tcreate\ttransformation\tin\tthe\tnation. Human\tbehavioral\tpatterns\t\r\n                            help us\tin\tbuilding\tbetter\tsocieties that\tare\tinclusive\tand\thappy.\t\r\n                            </p>\r\n                    <p>Make\tbetter\tdecisions\tby\taccessing\tthe\tdata\tfrom\tour\tpolls or\tmake\ta\tcustom\tpoll\twith\tyour\t\r\n                            questions.\t<a routerLink=\"/contactus\">Contact\tus</a> for\tmore\tinformation.</p>\r\n                    <p>Get\tin\ttouch\tto\tlearn\tmore\tabout\thow\twe\tcan\thelp\tyou\tachieve\tyour\tgoals.</p>\r\n                </div>\r\n                <div class=\"col-md-5 img-rgt\">\r\n                   <div class=\"img-rgt-first\"> <img src=\"img/what_we_do_2.jpg\" alt=\"what_we_do_2\"></div>\r\n                    <div class=\"img-rgt-second\"><img src=\"img/what_we_do_1.jpg\" alt=\"what_we_do_1\"></div> \r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <app-footer></app-footer>"
 
 /***/ }),
 

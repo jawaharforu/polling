@@ -19,6 +19,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
 import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np-intelligence-manage.component';
 import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
+import { RunApollComponent } from './run-apoll/run-apoll.component';
 
 export const AppRoutes: Routes = [
     {
@@ -32,6 +33,10 @@ export const AppRoutes: Routes = [
     {
         path: 'whatwedo',
         component: WhatWeDoComponent
+    },
+    {
+        path: 'runapoll',
+        component: RunApollComponent
     },
     {
         path: 'mediainquires',
