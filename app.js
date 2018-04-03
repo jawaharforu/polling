@@ -1,4 +1,3 @@
-const https = require('https');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -36,17 +35,7 @@ const contact = require('./routes/contacts');
 // Poer number
 //const port = 3000; 
 const port = process.env.PORT || 80;
-var https_options = {
-  key: fs.readFileSync("./nationpulse.in.key"),
-  cert: fs.readFileSync("./nationpulse_in.crt"),
-  ca: [
-          fs.readFileSync('./COMODORSAExtendedValidationSecureServerCA.crt'),
-          fs.readFileSync('./COMODORSAAddTrustCA.crt') 
-       ]
 
-};
- 
-https.createServer(https_options, app).listen(8000);
 // COES middleware
 app.use(cors());
 
@@ -175,8 +164,6 @@ function checkFileType(file, cb){
     }
 */
 // Start server
-/*
 app.listen(port, () => {
     console.log("Server started on port " + port);
 });
-*/
