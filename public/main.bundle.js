@@ -3867,7 +3867,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var LinkService = /** @class */ (function () {
     function LinkService() {
-        this.link = 'http://localhost:80/';
+        // link: String = 'http://localhost:80/';
+        this.link = '';
     }
     LinkService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
