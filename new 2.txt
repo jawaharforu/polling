@@ -40,18 +40,16 @@ var https_options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
   ca: [
-          fs.readFileSync('./AddTrustExternalCARoot.crt'),    
-          fs.readFileSync('./COMODORSAAddTrustCA.crt'),
-          fs.readFileSync('./COMODORSAExtendedValidationSecureServerCA.crt')
+          fs.readFileSync('./COMODORSAExtendedValidationSecureServerCA.crt'),
+          fs.readFileSync('./COMODORSAAddTrustCA.crt') 
        ]
-}; 
+
+};
  
-https.createServer(https_options, app).listen(port, () => {
-  console.log("Server started on port " + port);
-});
+https.createServer(https_options, app).listen(8000);
 // COES middleware
 app.use(cors());
- 
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
