@@ -35,8 +35,8 @@ const contact = require('./routes/contacts');
  
 // Poer number
 //const port = 3000; 
-/*
 const port = process.env.PORT || 80;
+/*
 var https_options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
