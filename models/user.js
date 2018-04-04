@@ -29,6 +29,9 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    status: {
+        type: Boolean
+    },
     polls : [{ 
         type : mongoose.Schema.Types.ObjectId, 
         ref: 'Poll' 
@@ -49,16 +52,22 @@ module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
 };
 
+module.exports.getUserByMobileCheck = function(mobile, email, callback){
+    User.findOne({ $or: [ { mobile: mobile }, { email: email } ] }, callback);
+};
+
 module.exports.getUserByMobile = function(mobile, callback){
     const query = {
-        mobile: mobile
+        mobile: mobile,
+        status: true
     }
     User.findOne(query, callback);
 };
 
 module.exports.getAllUser = function(callback){
     const query = {
-        superadmin: 0
+        superadmin: 0,
+        role: { $in: [ 'admin',  'paid' ] }
     }
     User.find(query, callback);
 };

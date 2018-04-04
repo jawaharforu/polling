@@ -78,7 +78,8 @@ export class UserManageComponent implements OnInit {
       name: this.userCreateForm.value.name,
       email: this.userCreateForm.value.email,
       mobile: this.userCreateForm.value.mobile,
-      role: 'paid'
+      role: 'paid',
+      status: true
     }
     if (!this.validationService.validateRegister(user)) {
       this._flashMessagesService.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
@@ -98,6 +99,17 @@ export class UserManageComponent implements OnInit {
     }
     this.updateFunction(userid, user);
     this.hideModal();
+  }
+
+  updateStatus(event, u) { 
+    const updateuser = {
+      name: u.name,
+      email: u.email,
+      mobile: u.mobile,
+      role: 'paid',
+      status: event
+    }
+    this.updateFunction(u._id, updateuser);
   }
   pollassign(uid) {
     this.router.navigate(['/admin', {outlets: {'adminchild': ['pollassign' , uid]}}]);

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from '../typescripts/free';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,9 +10,15 @@ import { ModalDirective } from '../typescripts/free';
 })
 export class NavBarComponent implements OnInit {
 
-  @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
+  @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   isModalShown: Boolean = false;
-  constructor() { }
+  user: any;
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { 
+    this.user = JSON.parse(localStorage.getItem('user'));
+  }
 
   ngOnInit() {
   }
@@ -25,5 +33,11 @@ export class NavBarComponent implements OnInit {
 
   public onHidden(): void {
       this.isModalShown = false;
+  }
+
+  onLogoutClick() {
+    this.authService.logout();
+    this.router.navigate(['']);
+    return false;
   }
 }

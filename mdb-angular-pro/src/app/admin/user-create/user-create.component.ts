@@ -46,7 +46,7 @@ export class UserCreateComponent implements OnInit {
     }
     // Required Fields
     if (!this.validationService.validateRegister(user)) {
-      this._flashMessagesService.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+      this._flashMessagesService.show('Please fill all fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 

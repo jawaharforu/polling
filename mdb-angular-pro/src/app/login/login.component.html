@@ -2,13 +2,13 @@
 <section class="form-elegant">
 
     <!--Form without header-->
-    <div class="card">
+    <div class="card" *ngIf="show">
 
         <div class="card-body mx-4">
 
             <!--Header-->
             <div class="text-center">
-                <h3 class="dark-grey-text mb-5"><strong>Sign in</strong></h3>
+                <h3 class="dark-grey-text mb-5"><strong>Sign In</strong></h3>
             </div>
             <div class="md-form">
                 <flash-messages></flash-messages>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="text-center mb-3">
-                <button type="button" (click)="onLoginSubmit()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in</button>
+                <button type="button" (click)="onLoginSubmit()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign In</button>
             </div>
             <!--
             <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in with:</p>
@@ -42,6 +42,67 @@
 
         <!--Footer-->
         <div class="modal-footer mx-5 pt-3 mb-1">
+            <p class="font-small grey-text d-flex justify-content-end">Not a member? <a (click)="show = !show" class="blue-text ml-1"> Sign Up</a></p>
+        </div>
+
+    </div>
+    <div class="card" *ngIf="!show">
+
+        <div class="card-body mx-4">
+
+            <!--Header-->
+            <div class="text-center">
+                <h3 class="dark-grey-text mb-5"><strong>Sign Up</strong></h3>
+            </div>
+            <div class="md-form">
+                <flash-messages></flash-messages>
+            </div>
+            <!--Body-->
+            <form [formGroup]="userCreateForm" (submit)="addUser()">
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input formControlName="name" name="name" type="text" id="orangeForm-name" class="form-control" mdbActive>
+                <label for="orangeForm-name">Your name*</label>
+            </div>
+            <div class="md-form">
+                <i class="fa fa-mobile prefix grey-text"></i>
+                <input formControlName="mobile" name="mobile" type="text" id="orangeForm-mobile" class="form-control" mdbActive>
+                <label for="orangeForm-mobile">Your mobile*</label>
+            </div>
+            <div class="md-form">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input formControlName="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+                <label for="orangeForm-email">Your email*</label>
+            </div>
+            <div class="md-form">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input formControlName="password" name="password" type="password" id="orangeForm-pass" class="form-control" mdbActive>
+                <label for="orangeForm-pass">Your password*</label>
+            </div>
+            <div class="md-form">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input  name="passwordre" type="password" formControlName="passwordre" id="passwordre" class="form-control" mdbActive>
+                <label for="passwordre">Confirm Password</label>
+            </div>
+            <div class="text-center mb-3">
+                <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign Up</button>
+            </div>
+        </form>
+            <!--
+            <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in with:</p>
+
+                <div class="row my-3 d-flex justify-content-center">
+
+                    <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-facebook blue-text text-center"></i></button>
+                    <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-twitter blue-text"></i></button>
+                    <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fa fa-google-plus blue-text"></i></button>
+                </div>
+            -->
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer mx-5 pt-3 mb-1">
+            <p class="font-small grey-text d-flex justify-content-end">Already a member? <a (click)="show = !show" class="blue-text ml-1"> Sign In</a></p>
         </div>
 
     </div>

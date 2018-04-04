@@ -30,7 +30,7 @@
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/runapoll']">Run a Poll</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+        <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/npintelligence']">Previous Polls</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
@@ -39,8 +39,11 @@
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/contactus']">Contact Us</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!authService.loggedIn()">
             <a class="nav-link" (click)="showModal()">Sign Up/Login</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.loggedIn()">
+            <a class="nav-link" (click)="onLogoutClick()">Log Out</a>
         </li>
     </ul>
     <!-- Links -->

@@ -23,16 +23,22 @@ router.post('/register', (req, res, next) => {
         email: req.body.email,
         mobile: req.body.mobile,
         password: req.body.password,
-        role: req.body.role
+        role: req.body.role,
+        status: true
     });
-
-    User.addUser(newUser, (err, user) => {
-        if(err){
-            res.json({success: false, msg: 'Falied to register new user'});
-        }else{
-            res.json({success: true, msg: 'User registred'});
+    User.getUserByMobileCheck(req.body.mobile, req.body.email, (err, users) => { 
+        if(err) throw err;
+        if(users){
+            return res.json({success:false, msg: "User mobile or email aleady exist"});
         }
-    });
+        User.addUser(newUser, (err, user) => {
+            if(err){
+                res.json({success: false, msg: 'Falied to register new user'});
+            }else{
+                res.json({success: true, msg: 'User registred'});
+            }
+        });
+    }); 
 });
 
 router.post('/adminregister', (req, res, next) => {
@@ -115,7 +121,8 @@ router.put('/user/:uid', (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         mobile: req.body.mobile,
-        role: req.body.role
+        role: req.body.role,
+        status: req.body.status
     };
     User.updateUser(req.params.uid, updatedUser, (err, result) => {
         if(err){

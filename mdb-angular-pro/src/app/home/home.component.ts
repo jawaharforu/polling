@@ -6,6 +6,7 @@ import { ResultService } from '../services/result.service';
 import { ModalDirective } from '../typescripts/free';
 import {ToastService} from '../typescripts/pro/alerts';
 import { ValidationService } from '../services/validation.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({ 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   ipdetail: any;
   state: any;
   region: any;
+  user: any;
 
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -72,6 +74,7 @@ export class HomeComponent implements OnInit {
     private pollService: PollService,
     private voteduserService: VoteduserService,
     private resultService: ResultService,
+    private userService: UserService,
     meta: Meta,
     title: Title,
     private toast: ToastService,
@@ -84,6 +87,10 @@ export class HomeComponent implements OnInit {
       { name: 'keywords', content: 'angular seo, angular 4 universal, etc'},
       { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
     ]);
+    this.userService.getLoggedInUser().then((res) => {
+      this.user = res;
+      this.mobilenum = this.user.mobile;
+    });
    }
 
   ngOnInit() {
@@ -115,7 +122,6 @@ export class HomeComponent implements OnInit {
   }
 
   putVote(pollId, i, p) {
-
     if (this.polloption[pollId] === undefined) {
       alert('Select Option');
       return false;
@@ -162,7 +168,11 @@ export class HomeComponent implements OnInit {
           for (const prop of data.data) {
             this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
             if (j === data.data.length) {
+              if (this.mobilenum === '') {
               this.isModalForUser = true;
+              } else {
+                this.isModalShown = true;
+              }
               this.chartDisplay = p.result
             }
             j++;

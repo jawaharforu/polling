@@ -8,6 +8,7 @@ import { VoteduserService } from '../services/voteduser.service';
 import { ResultService } from '../services/result.service';
 import {ToastService} from '../typescripts/pro/alerts';
 import { ValidationService } from '../services/validation.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-category-page',
@@ -34,6 +35,7 @@ export class CategoryPageComponent implements OnInit {
   ipdetail: any;
   state: any;
   region: any;
+  user: any;
   // chart start
   chartDisplay: Boolean = true;
   resform: Boolean = true;
@@ -67,6 +69,7 @@ export class CategoryPageComponent implements OnInit {
     private pollService: PollService,
     private voteduserService: VoteduserService,
     private resultService: ResultService,
+    private userService: UserService,
     private toast: ToastService,
     private validationService: ValidationService,
   ) {
@@ -99,6 +102,11 @@ export class CategoryPageComponent implements OnInit {
           this.pollListing = data.data;
         });
       });
+    });
+ 
+    this.userService.getLoggedInUser().then((res) => {
+      this.user = res;
+      this.mobilenum = this.user.mobile;
     });
   }
 
@@ -152,7 +160,7 @@ export class CategoryPageComponent implements OnInit {
           this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
           if (j === data.data.length) {
             this.chartDisplay = p.result
-            if (this.emailnum === '' && this.mobilenum === '') {
+            if (this.mobilenum === '') {
               this.pollform = false;
             } else {
               this.pollform = false;

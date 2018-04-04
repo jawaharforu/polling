@@ -2,7 +2,7 @@
   <div class="card-body">
 
       <!--Table-->
-      <table class="table table-hover table-responsive-md table-fixed">
+      <table *ngIf="userList" datatable class="table table-hover table-responsive-md table-fixed">
 
           <!--Table head-->
           <thead>
@@ -11,6 +11,8 @@
                   <th>Name</th>
                   <th>Mobile</th>
                   <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
                   <th>Action</th>
               </tr>
           </thead>
@@ -23,6 +25,11 @@
                   <td>{{u.name}}</td>
                   <td>{{u.mobile}}</td> 
                   <td>{{u.email}}</td>
+                  <td>{{u.role}}</td>
+                  <td><div class="form-check checkbox-warning-filled">
+                    <input type="checkbox" class="filled-in" id="statuscheckbox{{u._id}}" [checked]="u.status" (change)="updateStatus($event.target.checked,u)">
+                    <label for="statuscheckbox{{u._id}}"></label>
+                </div></td>
                   <td>
                       <button type="button" (click)="showModal(u)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
                       &nbsp;
