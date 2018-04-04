@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 const multer = require('multer');
 var fs = require('fs');
+var http = require('http');
 /*
 var ip2loc = require("ip2location-nodejs");
 ip2loc.IP2Location_init('./routes/IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE-SAMPLE.BIN');
@@ -35,9 +36,8 @@ const contact = require('./routes/contacts');
  
 // Poer number
 //const port = 3000; 
-const port = process.env.PORT || 3000;
-/*
-var https_options = {
+const port = process.env.PORT || 80;
+var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
   ca: [
@@ -46,11 +46,8 @@ var https_options = {
           fs.readFileSync('./COMODORSAExtendedValidationSecureServerCA.crt')
        ]
 }; 
- 
-https.createServer(https_options, app).listen(port, () => {
-  console.log("Server started on port " + port);
-});
-*/
+https.createServer(options, app).listen(443);
+//http.createServer(app).listen(port);
 // COES middleware
 app.use(cors());
  
