@@ -35,6 +35,7 @@ const contact = require('./routes/contacts');
  
 // Poer number
 //const port = 3000; 
+/*
 const port = process.env.PORT || 80;
 var https_options = {
   key: fs.readFileSync("./nationpulse.in.key"),
@@ -49,6 +50,7 @@ var https_options = {
 https.createServer(https_options, app).listen(port, () => {
   console.log("Server started on port " + port);
 });
+*/
 // COES middleware
 app.use(cors());
  
@@ -177,8 +179,8 @@ function checkFileType(file, cb){
     }
 */
 // Start server
-/*
+
 app.listen(port, () => {
     console.log("Server started on port " + port);
 });
-*/
+
