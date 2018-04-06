@@ -14,12 +14,12 @@
 .intelligance-content h1 {
     color: #4064b0;
     font-weight: 800;
-    font-size: 42px;
+    /*font-size: 42px;*/
 }
 .intelligance-content h2 {
     font-weight: 300;
     color: #000;
-    font-size: 39px;
+    /*font-size: 39px;*/
     line-height: 50px;
 }
 .intelligance-content h4 {
@@ -38,4 +38,24 @@
 .btn-danger {
     background-color: #ea0001 !important;
     border-radius: 5px !important;
+}
+
+/*--Mobile Responsive--*/
+@media only screen and (max-width: 767px) {
+    .intelligance-content h1 {
+        font-size: 28px;
+    }
+    .intelligance-content h2 {
+        font-size: 25px;
+        line-height: 36px;
+    }
+    .intelligance-content h4 {
+        font-size: 20px;
+    }
+    .intelligance-bg {
+        padding: 30px 20px;
+    }
+    .main_np_intelligence {
+        background-image: none;
+    }
 }

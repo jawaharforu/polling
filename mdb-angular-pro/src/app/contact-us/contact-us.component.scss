@@ -107,3 +107,25 @@ button.btn.btn-danger {
     background-position: top left, top right;
     background-repeat: no-repeat;
 }
+
+
+/*--Mobile Responsive--*/
+@media only screen and (max-width: 767px) {
+    .content-middle {
+        padding: 30px 0 5px;
+    }
+    .contact_us h4 {
+        font-weight: 400;
+        font-size: 17px;
+    }
+    .contact_us h2 {
+        font-family: sans-serif;
+        font-size: 19px;
+    }
+    .form-check {
+        padding-left: 0px !important;
+    }
+    .main_contact_us {
+        background-image: none;
+    }
+}

@@ -9,7 +9,7 @@ import { ValidationService } from '../services/validation.service';
 import { UserService } from '../services/user.service';
 
 
-@Component({ 
+@Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
             }
             j++;
           }
-        } 
+        }
       });
     });
   }
