@@ -42,6 +42,21 @@ ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {
         cursor: pointer;
         background: red !important;
     }
+    html .navbar-dark .navbar-toggler-icon{
+        background-color: #000;
+    }
+    .navbar.navbar-dark .navbar-toggler {
+        color: #fff;
+        background-color: #000 !important;
+    }
+}
+
+/*--Tablet Responsive--*/
+@media (max-width: 1023px) and (min-width: 768px) { 
+    ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {
+        font-weight: 400;
+        text-align: center;
+    }
 }
 
 /* big landscape tablets, laptops, and desktops */
