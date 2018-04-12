@@ -20,6 +20,7 @@ import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
 import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np-intelligence-manage.component';
 import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
 import { RunApollComponent } from './run-apoll/run-apoll.component';
+import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 
 export const AppRoutes: Routes = [
     {
@@ -45,6 +46,10 @@ export const AppRoutes: Routes = [
     {
         path: 'npintelligence',
         component: NpIntelligenceComponent
+    },
+    {
+        path: 'previouspolls',
+        component: PreviousPollsComponent
     },
     {
         path: 'contactus',

@@ -128,3 +128,28 @@ module.exports.getOptionResultState = function(pollid, state, callback){
          ]
      , callback);
 }
+
+module.exports.getPreviousPolls = function(mobile, callback){
+    Result.aggregate(
+        [
+            {
+                $lookup: {
+                    from: 'votedusers',
+                    localField: 'voteduserid',
+                    foreignField: '_id',
+                    as: 'voterdetail'
+                }
+            },
+            {
+                $match: {
+                    'voterdetail.mobile': mobile
+                }
+            },
+            {
+                $group: {
+                    _id: '$pollid'
+                }
+            },
+        ]
+     , callback);
+}

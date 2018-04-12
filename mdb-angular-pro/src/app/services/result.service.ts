@@ -43,4 +43,10 @@ export class ResultService {
     return this.http.get(this.link + 'api/results/getoptionresultregion/' + pollid + '/' + state, {headers: headers})
     .map(res => res.json());
   }
+  getPreviousPolls(mobile) {
+    const headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/results/getpreviouspolls/' + mobile, {headers: headers})
+    .map(res => res.json());
+  }
 }

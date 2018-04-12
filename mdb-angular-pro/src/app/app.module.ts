@@ -54,6 +54,7 @@ import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-m
 import { LinkService } from './services/link.service';
 import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { DataTablesModule } from 'angular-datatables';
+import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { DataTablesModule } from 'angular-datatables';
     ContactFormComponent,
     NpIntelligenceManageComponent,
     ContactUsManageComponent,
-    RunApollComponent
+    RunApollComponent,
+    PreviousPollsComponent
   ],
   imports: [
     TruncateModule,
