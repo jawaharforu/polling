@@ -1,5 +1,6 @@
 const https = require('https');
 const express = require('express');
+var secure = require('express-force-https');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -26,6 +27,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
+app.use(secure);
 
 const users = require('./routes/users');
 const categorty = require('./routes/categories');
