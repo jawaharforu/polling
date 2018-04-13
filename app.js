@@ -15,7 +15,7 @@ var ip2loc = require("ip2location-nodejs");
 ip2loc.IP2Location_init('./routes/IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE-SAMPLE.BIN');
 */
 
-//Database connect
+//Database connect 
 mongoose.connect(config.database);
 //Connected on
 mongoose.connection.on('connected', () => {
@@ -45,7 +45,7 @@ var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
   ca: [
-          fs.readFileSync('./AddTrustExternalCARoot.crt'),    
+          fs.readFileSync('./AddTrustExternalCARoot.crt'),     
           fs.readFileSync('./COMODORSAAddTrustCA.crt'),
           fs.readFileSync('./COMODORSAExtendedValidationSecureServerCA.crt')
        ]
