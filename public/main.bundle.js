@@ -1940,12 +1940,16 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__services_link_service__ = __webpack_require__("../../../../../src/app/services/link.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__ = __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_angular_datatables__ = __webpack_require__("../../../../angular-datatables/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__previous_polls_previous_polls_component__ = __webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__ = __webpack_require__("../../../../../src/app/published-polls/published-polls.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -2037,7 +2041,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_48__contact_form_contact_form_component__["a" /* ContactFormComponent */],
                 __WEBPACK_IMPORTED_MODULE_50__admin_np_intelligence_manage_np_intelligence_manage_component__["a" /* NpIntelligenceManageComponent */],
                 __WEBPACK_IMPORTED_MODULE_51__admin_contact_us_manage_contact_us_manage_component__["a" /* ContactUsManageComponent */],
-                __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__["a" /* RunApollComponent */]
+                __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__["a" /* RunApollComponent */],
+                __WEBPACK_IMPORTED_MODULE_55__previous_polls_previous_polls_component__["a" /* PreviousPollsComponent */],
+                __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__["a" /* PublishedPollsComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_25_ng2_truncate__["a" /* TruncateModule */],
@@ -2098,6 +2104,10 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__admin_np_intelligence_manage_np_intelligence_manage_component__ = __webpack_require__("../../../../../src/app/admin/np-intelligence-manage/np-intelligence-manage.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__admin_contact_us_manage_contact_us_manage_component__ = __webpack_require__("../../../../../src/app/admin/contact-us-manage/contact-us-manage.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__run_apoll_run_apoll_component__ = __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__previous_polls_previous_polls_component__ = __webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__published_polls_published_polls_component__ = __webpack_require__("../../../../../src/app/published-polls/published-polls.component.ts");
+
+
 
 
 
@@ -2145,12 +2155,20 @@ var AppRoutes = [
         component: __WEBPACK_IMPORTED_MODULE_14__np_intelligence_np_intelligence_component__["a" /* NpIntelligenceComponent */]
     },
     {
+        path: 'previouspolls',
+        component: __WEBPACK_IMPORTED_MODULE_21__previous_polls_previous_polls_component__["a" /* PreviousPollsComponent */]
+    },
+    {
         path: 'contactus',
         component: __WEBPACK_IMPORTED_MODULE_16__contact_us_contact_us_component__["a" /* ContactUsComponent */]
     },
     {
         path: 'poll/:slug',
         component: __WEBPACK_IMPORTED_MODULE_13__poll_poll_component__["a" /* PollComponent */]
+    },
+    {
+        path: 'publishedpolls',
+        component: __WEBPACK_IMPORTED_MODULE_22__published_polls_published_polls_component__["a" /* PublishedPollsComponent */]
     },
     {
         path: 'admin',
@@ -3453,7 +3471,7 @@ var MediaInquiresComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n    <!--Navbar-->\r\n    <mdb-navbar SideClass=\"navbar navbar-expand-lg navbar-dark\">\r\n           \r\n        <!-- Navbar brand -->\r\n        <logo><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></logo>\r\n    \r\n        <!-- Collapsible content -->\r\n        <links>\r\n    \r\n            <!-- Links -->\r\n            <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/runapoll']\">Run a Poll</a>\r\n                </li>\r\n                <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">Previous Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"showModal()\">Sign Up/Login</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"onLogoutClick()\">Log Out</a>\r\n                </li>\r\n            </ul>\r\n            <!-- Links -->\r\n    \r\n            \r\n        </links>\r\n        <!-- Collapsible content -->\r\n    \r\n    </mdb-navbar>\r\n    <!--/.Navbar-->\r\n    \r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
+module.exports = "<header>\r\n    <!--Navbar-->\r\n    <mdb-navbar SideClass=\"navbar navbar-expand-lg navbar-dark\">\r\n           \r\n        <!-- Navbar brand -->\r\n        <logo><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></logo>\r\n    \r\n        <!-- Collapsible content -->\r\n        <links>\r\n    \r\n            <!-- Links -->\r\n            <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/runapoll']\">Run a Poll</a>\r\n                </li>\r\n                <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/previouspolls']\">Previous Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/publishedpolls']\">Published Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"showModal()\">Sign Up/Login</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"onLogoutClick()\">Log Out</a>\r\n                </li>\r\n            </ul>\r\n            <!-- Links -->\r\n    \r\n            \r\n        </links>\r\n        <!-- Collapsible content -->\r\n    \r\n    </mdb-navbar>\r\n    <!--/.Navbar-->\r\n    \r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
 
 /***/ }),
 
@@ -3698,6 +3716,284 @@ var PollComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], PollComponent);
     return PollComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/previous-polls/previous-polls.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\r\n<section *ngIf=\"pollListing\">\r\n\t\t<div class=\"polls-content\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"trending-polls\">\r\n\t\t\t\t\t<h2>Voted <span>Polls</span></h2>\r\n\t\t\t\t\t  <div class=\"row\">\r\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing\">\r\n\t\t\t\t\t\t\t<div></div>\r\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\">\r\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\r\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\r\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\r\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t  </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t</div>\r\n\t\t\t</div> <!-- container -->\r\n\t\t</div> <!-- polls-content -->\r\n  </section>\r\n  <app-footer></app-footer>\r\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t\t<div>\r\n              <div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n                <canvas mdbChart  \r\n                  [chartType]=\"chartType\"\r\n                  [datasets]=\"chartDatasets\" \r\n                  [labels]=\"chartLabels\"\r\n                  [colors]=\"chartColors\"\r\n                  [options]=\"chartOptions\"\r\n                  [legend]=\"true\"\r\n                  (chartHover)=\"chartHovered($event)\" \r\n                  (chartClick)=\"chartClicked($event)\">\r\n                </canvas>\r\n              </div>\r\n              <div *ngIf=\"!chartDisplay\">\r\n                <p>Result will publich later</p>\r\n              </div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/previous-polls/previous-polls.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/previous-polls/previous-polls.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreviousPollsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__typescripts_free__ = __webpack_require__("../../../../../src/app/typescripts/free/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_result_service__ = __webpack_require__("../../../../../src/app/services/result.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PreviousPollsComponent = /** @class */ (function () {
+    // chart end
+    function PreviousPollsComponent(resultService, userService) {
+        var _this = this;
+        this.resultService = resultService;
+        this.userService = userService;
+        this.isModalShown = false;
+        this.polloption = [];
+        this.mobilenum = '';
+        this.emailnum = '';
+        // chart start
+        this.chartDisplay = true;
+        this.resform = true;
+        this.pollform = true;
+        this.chartType = 'bar';
+        this.chartDatasets = [];
+        this.chartLabels = ['Result'];
+        this.chartColors = [];
+        this.chartOptions = {
+            responsive: true
+        };
+        this.userService.getLoggedInUser().then(function (res) {
+            _this.user = res;
+            _this.mobilenum = _this.user.mobile;
+            _this.resultService.getPreviousPolls(_this.mobilenum)
+                .subscribe(function (data) {
+                _this.pollListing = data.data;
+            });
+        });
+    }
+    PreviousPollsComponent.prototype.chartClicked = function () {
+    };
+    PreviousPollsComponent.prototype.chartHovered = function () {
+    };
+    PreviousPollsComponent.prototype.ngOnInit = function () {
+        this.navbar = (this.nav === false) ? false : true;
+    };
+    PreviousPollsComponent.prototype.showPoll = function (p) {
+        var _this = this;
+        this.votingPoll = p;
+        this.resultService.getResult(p._id)
+            .subscribe(function (data) {
+            _this.voted = data.data;
+            var j = 1;
+            for (var _i = 0, _a = data.data; _i < _a.length; _i++) {
+                var prop = _a[_i];
+                _this.chartDatasets.push({ data: [prop.voteCount], label: prop.option });
+                if (j === data.data.length) {
+                    _this.chartDisplay = p.result;
+                    _this.showModal();
+                }
+                j++;
+            }
+        });
+    };
+    PreviousPollsComponent.prototype.showModal = function () {
+        this.isModalShown = true;
+    };
+    PreviousPollsComponent.prototype.hideModal = function () {
+        this.autoShownModal.hide();
+    };
+    PreviousPollsComponent.prototype.onHidden = function () {
+        this.isModalShown = false;
+        this.resform = true;
+        this.pollform = true;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], PreviousPollsComponent.prototype, "nav", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('autoShownModal'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__typescripts_free__["b" /* ModalDirective */])
+    ], PreviousPollsComponent.prototype, "autoShownModal", void 0);
+    PreviousPollsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-previous-polls',
+            template: __webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_result_service__["a" /* ResultService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]])
+    ], PreviousPollsComponent);
+    return PreviousPollsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/published-polls/published-polls.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\n<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<div class=\"trending-polls\">\n\t\t\t\t\t<h2>Published <span>Polls</span></h2>\n\t\t\t\t\t  <div class=\"row\">\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing\">\n\t\t\t\t\t\t\t<div></div>\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t  </div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t</div> <!-- polls-content -->\n  </section>\n  <app-footer></app-footer>\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n\t\t<div class=\"modal-dialog\">\n\t\t\t<div class=\"modal-content\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t\t<div>\n              <div style=\"display: block\" *ngIf=\"chartDisplay\">\n                <canvas mdbChart  \n                  [chartType]=\"chartType\"\n                  [datasets]=\"chartDatasets\" \n                  [labels]=\"chartLabels\"\n                  [colors]=\"chartColors\"\n                  [options]=\"chartOptions\"\n                  [legend]=\"true\"\n                  (chartHover)=\"chartHovered($event)\" \n                  (chartClick)=\"chartClicked($event)\">\n                </canvas>\n              </div>\n              <div *ngIf=\"!chartDisplay\">\n                <p>Result will publich later</p>\n              </div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/published-polls/published-polls.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/published-polls/published-polls.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PublishedPollsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__typescripts_free__ = __webpack_require__("../../../../../src/app/typescripts/free/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_result_service__ = __webpack_require__("../../../../../src/app/services/result.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_poll_service__ = __webpack_require__("../../../../../src/app/services/poll.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var PublishedPollsComponent = /** @class */ (function () {
+    // chart end
+    function PublishedPollsComponent(resultService, userService, pollService) {
+        var _this = this;
+        this.resultService = resultService;
+        this.userService = userService;
+        this.pollService = pollService;
+        this.isModalShown = false;
+        this.polloption = [];
+        this.mobilenum = '';
+        this.emailnum = '';
+        // chart start
+        this.chartDisplay = true;
+        this.resform = true;
+        this.pollform = true;
+        this.chartType = 'bar';
+        this.chartDatasets = [];
+        this.chartLabels = ['Result'];
+        this.chartColors = [];
+        this.chartOptions = {
+            responsive: true
+        };
+        this.userService.getLoggedInUser().then(function (res) {
+            _this.user = res;
+            _this.mobilenum = _this.user.mobile;
+            _this.pollService.getPollByResult()
+                .subscribe(function (data) {
+                _this.pollListing = data.data;
+            });
+        });
+    }
+    PublishedPollsComponent.prototype.chartClicked = function () {
+    };
+    PublishedPollsComponent.prototype.chartHovered = function () {
+    };
+    PublishedPollsComponent.prototype.ngOnInit = function () {
+        this.navbar = (this.nav === false) ? false : true;
+    };
+    PublishedPollsComponent.prototype.showPoll = function (p) {
+        var _this = this;
+        this.votingPoll = p;
+        this.resultService.getResult(p._id)
+            .subscribe(function (data) {
+            _this.voted = data.data;
+            var j = 1;
+            for (var _i = 0, _a = data.data; _i < _a.length; _i++) {
+                var prop = _a[_i];
+                _this.chartDatasets.push({ data: [prop.voteCount], label: prop.option });
+                if (j === data.data.length) {
+                    _this.chartDisplay = p.result;
+                    _this.showModal();
+                }
+                j++;
+            }
+        });
+    };
+    PublishedPollsComponent.prototype.showModal = function () {
+        this.isModalShown = true;
+    };
+    PublishedPollsComponent.prototype.hideModal = function () {
+        this.autoShownModal.hide();
+    };
+    PublishedPollsComponent.prototype.onHidden = function () {
+        this.isModalShown = false;
+        this.resform = true;
+        this.pollform = true;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], PublishedPollsComponent.prototype, "nav", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('autoShownModal'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__typescripts_free__["b" /* ModalDirective */])
+    ], PublishedPollsComponent.prototype, "autoShownModal", void 0);
+    PublishedPollsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-published-polls',
+            template: __webpack_require__("../../../../../src/app/published-polls/published-polls.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/published-polls/published-polls.component.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_result_service__["a" /* ResultService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_poll_service__["a" /* PollService */]])
+    ], PublishedPollsComponent);
+    return PublishedPollsComponent;
 }());
 
 
@@ -4085,7 +4381,7 @@ var PollService = /** @class */ (function () {
     // get ip detail
     PollService.prototype.getIpDetail = function (ip) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        return this.http.get('https://api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', { headers: headers })
+        return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', { headers: headers })
             .map(function (response) { return response; });
     };
     PollService.prototype.upload = function (fileToUpload) {
@@ -4098,6 +4394,12 @@ var PollService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-type', 'application/json');
         return this.http.get(this.link + 'api/polls/pollcategory/' + categoryid, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    PollService.prototype.getPollByResult = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-type', 'application/json');
+        return this.http.get(this.link + 'api/polls/pollstatusresult', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     PollService = __decorate([
@@ -4162,6 +4464,12 @@ var ResultService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-type', 'application/json');
         return this.http.get(this.link + 'api/results/getoptionresultregion/' + pollid + '/' + state, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    ResultService.prototype.getPreviousPolls = function (mobile) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-type', 'application/json');
+        return this.http.get(this.link + 'api/results/getpreviouspolls/' + mobile, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ResultService = __decorate([

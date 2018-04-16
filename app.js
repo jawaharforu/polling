@@ -38,9 +38,9 @@ const contact = require('./routes/contacts');
  
 // Poer number
 //const port = 3000; 
-// const port = process.env.PORT || 80;
+ const port = process.env.PORT || 80;
 
-
+/*
 var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
@@ -51,7 +51,7 @@ var options = {
        ]
 }; 
 https.createServer(options, app).listen(443);
-
+*/
 //http.createServer(app).listen(port);
 // COES middleware
 app.use(cors());
@@ -181,8 +181,7 @@ function checkFileType(file, cb){
     }
 */
 // Start server
-/*
+
 app.listen(port, () => {
     console.log("Server started on port " + port);
 });
-*/

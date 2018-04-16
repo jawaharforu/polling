@@ -69,7 +69,7 @@ export class PollService {
   // get ip detail
   getIpDetail(ip) {
     const headers = new Headers();
-    return this.http.get('https://api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', {headers: headers})
+    return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', {headers: headers})
     .map(response => response);
   }
 
@@ -85,6 +85,13 @@ export class PollService {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this.http.get(this.link + 'api/polls/pollcategory/' + categoryid, {headers: headers})
+    .map(res => res.json());
+  }
+
+  getPollByResult() {
+    const headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/polls/pollstatusresult', {headers: headers})
     .map(res => res.json());
   }
 

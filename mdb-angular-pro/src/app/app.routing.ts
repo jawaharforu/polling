@@ -21,6 +21,7 @@ import { NpIntelligenceManageComponent } from './admin/np-intelligence-manage/np
 import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-manage.component';
 import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
+import { PublishedPollsComponent } from './published-polls/published-polls.component';
 
 export const AppRoutes: Routes = [
     {
@@ -58,6 +59,10 @@ export const AppRoutes: Routes = [
     {
         path: 'poll/:slug',
         component: PollComponent
+    },
+    {
+        path: 'publishedpolls',
+        component: PublishedPollsComponent
     },
     {
         path: 'admin',

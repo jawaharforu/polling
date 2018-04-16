@@ -197,3 +197,30 @@ module.exports.getPollByCategoryFalse = function(categoryid, callback) {
     ], callback);
 };
 
+module.exports.getPollByResult = function(callback) {
+    //Poll.findById(pollid, callback);
+    Poll.aggregate([
+        { 
+            $match: {
+                'result': true
+            }
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        },
+        {
+            $lookup: {
+                from: 'results',
+                localField: '_id',
+                foreignField: 'pollid',
+                as: 'pollcount'
+            }
+        },
+        { $sort: { createdon: -1 } },
+    ], callback);
+};

@@ -106,4 +106,11 @@ router.get('/pollcategory/:categoryid', (req, res, next) => {
     }); 
 });
 
+router.get('/pollstatusresult', (req, res, next) => {
+    Poll.getPollByResult( (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, data: poll});
+    });
+});
+
 module.exports = router;

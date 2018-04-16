@@ -34,6 +34,9 @@
                 <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
                     <a class="nav-link" [routerLink]="['/contactus']">Contact Us</a>
                 </li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                    <a class="nav-link" [routerLink]="['/publishedpolls']">Published Polls</a>
+                </li>
                 <li class="nav-item" *ngIf="!authService.loggedIn()">
                     <a class="nav-link" (click)="showModal()">Sign Up/Login</a>
                 </li>

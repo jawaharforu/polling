@@ -2,13 +2,14 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalDirective } from '../typescripts/free';
 import { ResultService } from '../services/result.service';
 import { UserService } from '../services/user.service';
+import { PollService } from '../services/poll.service';
 
 @Component({
-  selector: 'app-previous-polls',
-  templateUrl: './previous-polls.component.html',
-  styleUrls: ['./previous-polls.component.scss']
+  selector: 'app-published-polls',
+  templateUrl: './published-polls.component.html',
+  styleUrls: ['./published-polls.component.scss']
 })
-export class PreviousPollsComponent implements OnInit {
+export class PublishedPollsComponent implements OnInit {
 
   categorySlug: any;
   @Input()  nav: Boolean;
@@ -58,11 +59,12 @@ export class PreviousPollsComponent implements OnInit {
   constructor(
     private resultService: ResultService,
     private userService: UserService,
+    private pollService: PollService,
   ) {
     this.userService.getLoggedInUser().then((res) => {
       this.user = res;
       this.mobilenum = this.user.mobile;
-      this.resultService.getPreviousPolls(this.mobilenum)
+      this.pollService.getPollByResult()
       .subscribe(data => {
         this.pollListing = data.data;
       });

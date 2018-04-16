@@ -55,6 +55,7 @@ import { LinkService } from './services/link.service';
 import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { DataTablesModule } from 'angular-datatables';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
+import { PublishedPollsComponent } from './published-polls/published-polls.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { PreviousPollsComponent } from './previous-polls/previous-polls.componen
     NpIntelligenceManageComponent,
     ContactUsManageComponent,
     RunApollComponent,
-    PreviousPollsComponent
+    PreviousPollsComponent,
+    PublishedPollsComponent
   ],
   imports: [
     TruncateModule,
