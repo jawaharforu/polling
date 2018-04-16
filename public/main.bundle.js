@@ -3057,8 +3057,10 @@ var HomeComponent = /** @class */ (function () {
             { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
         ]);
         this.userService.getLoggedInUser().then(function (res) {
-            _this.user = res;
-            _this.mobilenum = _this.user.mobile;
+            if (res) {
+                _this.user = res;
+                _this.mobilenum = _this.user.mobile;
+            }
         });
     }
     HomeComponent.prototype.chartClicked = function () {
@@ -4381,7 +4383,7 @@ var PollService = /** @class */ (function () {
     // get ip detail
     PollService.prototype.getIpDetail = function (ip) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', { headers: headers })
+        return this.http.get('http://api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', { headers: headers })
             .map(function (response) { return response; });
     };
     PollService.prototype.upload = function (fileToUpload) {
