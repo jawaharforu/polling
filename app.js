@@ -27,7 +27,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
-app.use(secure);
+//app.use(secure);
 
 const users = require('./routes/users');
 const categorty = require('./routes/categories');
