@@ -88,8 +88,10 @@ export class HomeComponent implements OnInit {
       { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
     ]);
     this.userService.getLoggedInUser().then((res) => {
-      this.user = res;
-      this.mobilenum = this.user.mobile;
+      if (res) {
+        this.user = res;
+        this.mobilenum = this.user.mobile;
+      }
     });
    }
 
