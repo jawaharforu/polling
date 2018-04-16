@@ -1,6 +1,6 @@
 const https = require('https');
 const express = require('express');
-var secure = require('express-force-https');
+//var secure = require('express-force-https');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
