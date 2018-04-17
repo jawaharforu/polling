@@ -2485,7 +2485,7 @@ var CategoryPageComponent = /** @class */ (function () {
             .subscribe(function (data) {
             _this.jsonval = data;
             var getip = JSON.parse(_this.jsonval._body);
-            _this.pollService.getIpDetail(getip.query)
+            _this.pollService.getIpDetail(getip.ip)
                 .subscribe(function (data) {
                 _this.ipdetail = data;
                 var reg = _this.ipdetail._body.split(';');
@@ -3073,7 +3073,7 @@ var HomeComponent = /** @class */ (function () {
             .subscribe(function (data) {
             _this.jsonval = data;
             var getip = JSON.parse(_this.jsonval._body);
-            _this.pollService.getIpDetail(getip.query)
+            _this.pollService.getIpDetail(getip.ip)
                 .subscribe(function (data) {
                 _this.ipdetail = data;
                 var reg = _this.ipdetail._body.split(';');
@@ -4377,7 +4377,7 @@ var PollService = /** @class */ (function () {
     // Get IP Adress using http://freegeoip.net/json/?callback
     PollService.prototype.getIpAddress = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        return this.http.get('http://ip-api.com/json', { headers: headers })
+        return this.http.get('https://api.ipify.org/?format=json', { headers: headers })
             .map(function (response) { return response || {}; });
     };
     // get ip detail
