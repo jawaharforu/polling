@@ -76,7 +76,8 @@ export class CategoryPageComponent implements OnInit {
     this.pollService.getIpAddress()
     .subscribe(data => {
       this.jsonval = data;
-      const getip = JSON.parse(this.jsonval._body);
+      // const getip = JSON.parse(this.jsonval._body);
+      /*
       this.pollService.getIpDetail(getip.ip)
       .subscribe(data => {
         this.ipdetail = data;
@@ -84,6 +85,9 @@ export class CategoryPageComponent implements OnInit {
         this.state = reg[2];
         this.region = reg[3];
       });
+      */
+     this.state = 'Karnataka';
+     this.region = 'Bangalore';
     });
     this.activatedRoute.params.subscribe((params) => {
       const slug = params['slug']
