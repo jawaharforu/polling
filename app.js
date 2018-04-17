@@ -1,6 +1,7 @@
 const https = require('https');
 const express = require('express');
-var secure = require('express-force-https');
+//var secure = require('express-force-https');
+var forceSsl = require('express-force-ssl');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -27,7 +28,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
-app.use(secure);
+//app.use(secure);
 
 const users = require('./routes/users');
 const categorty = require('./routes/categories');
@@ -47,6 +48,7 @@ var options = {
 https.createServer(options, app).listen(443);
 
 //http.createServer(app).listen(port);
+app.use(forceSsl);
 // COES middleware
 app.use(cors());
  
