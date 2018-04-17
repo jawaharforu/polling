@@ -68,7 +68,12 @@ export class PollService {
   }
   // get ip detail
   getIpDetail(ip) {
-    const headers = new Headers();
+    const headers = new Headers({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+      'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+      'Access-Control-Allow-Credentials': true
+  });
     return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', {headers: headers})
     .map(response => response);
   }
