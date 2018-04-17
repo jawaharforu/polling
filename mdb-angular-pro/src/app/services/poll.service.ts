@@ -63,7 +63,7 @@ export class PollService {
   // Get IP Adress using http://freegeoip.net/json/?callback
   getIpAddress() {
     const headers = new Headers();
-    return this.http.get('http://ip-api.com/json', {headers: headers})
+    return this.http.get('https://api.ipify.org/?format=json', {headers: headers})
     .map(response => response || {});
   }
   // get ip detail

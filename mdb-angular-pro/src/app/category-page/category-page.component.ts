@@ -77,7 +77,7 @@ export class CategoryPageComponent implements OnInit {
     .subscribe(data => {
       this.jsonval = data;
       const getip = JSON.parse(this.jsonval._body);
-      this.pollService.getIpDetail(getip.query)
+      this.pollService.getIpDetail(getip.ip)
       .subscribe(data => {
         this.ipdetail = data;
         const reg = this.ipdetail._body.split(';');
