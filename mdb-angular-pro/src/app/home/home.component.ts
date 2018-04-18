@@ -164,13 +164,13 @@ export class HomeComponent implements OnInit {
         state: this.state,
         region: this.region
       }
+      this.chartDatasets = [];
       this.resultService.addResult(newResult)
       .subscribe(data => {
         if (data.success === true) {
           this.voteBtn[i][pollId] = false;
           this.voted = data.data;
           let j = 1;
-          this.chartDatasets = [];
           for (const prop of data.data) {
             this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
             if (j === data.data.length) {
