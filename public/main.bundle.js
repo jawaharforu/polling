@@ -2536,20 +2536,20 @@ var CategoryPageComponent = /** @class */ (function () {
         var newVoteduser;
         if (this.mobilenum === '') {
             newVoteduser = {
-                ip: jsonip.query,
+                ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: '',
-                fullderail: this.ipdetail._body,
+                // fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
         }
         else {
             newVoteduser = {
-                ip: jsonip.query,
+                ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: this.mobilenum,
-                fullderail: this.ipdetail._body,
+                // fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
@@ -3114,20 +3114,20 @@ var HomeComponent = /** @class */ (function () {
         var newVoteduser;
         if (this.mobilenum === '') {
             newVoteduser = {
-                ip: jsonip.query,
+                ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: '',
-                fullderail: this.ipdetail._body,
+                // fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
         }
         else {
             newVoteduser = {
-                ip: jsonip.query,
+                ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: this.mobilenum,
-                fullderail: this.ipdetail._body,
+                // fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
@@ -4383,6 +4383,7 @@ var PollService = /** @class */ (function () {
             .map(function (res) { return res.json(); });
     };
     // Get IP Adress using http://freegeoip.net/json/?callback
+    // http://gd.geobytes.com/GetCityDetails
     PollService.prototype.getIpAddress = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         return this.http.get('https://api.ipify.org/?format=json', { headers: headers })

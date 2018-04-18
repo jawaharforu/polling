@@ -124,24 +124,23 @@ export class CategoryPageComponent implements OnInit {
       alert('Select Option');
       return false;
     }
-
     const jsonip = JSON.parse(this.jsonval._body);
     let newVoteduser;
     if (this.mobilenum === '') {
       newVoteduser = {
-        ip: jsonip.query,
+        ip: jsonip.ip,
         userdetail: jsonip,
         mobile: '',
-        fullderail: this.ipdetail._body,
+        // fullderail: this.ipdetail._body,
         state: this.state,
         region: this.region,
       }
     } else {
       newVoteduser = {
-        ip: jsonip.query,
+        ip: jsonip.ip,
         userdetail: jsonip,
         mobile: this.mobilenum,
-        fullderail: this.ipdetail._body,
+        // fullderail: this.ipdetail._body,
         state: this.state,
         region: this.region,
       }

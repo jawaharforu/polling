@@ -61,6 +61,7 @@ export class PollService {
     .map(res => res.json());
   }
   // Get IP Adress using http://freegeoip.net/json/?callback
+  // http://gd.geobytes.com/GetCityDetails
   getIpAddress() {
     const headers = new Headers();
     return this.http.get('https://api.ipify.org/?format=json', {headers: headers})
