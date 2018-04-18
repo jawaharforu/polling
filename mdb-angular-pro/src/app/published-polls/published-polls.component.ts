@@ -70,12 +70,13 @@ export class PublishedPollsComponent implements OnInit {
   }
 
   showPoll(p) {
+    this.chartDatasets = [];
+    console.log(this.chartDatasets);
     this.votingPoll = p;
     this.resultService.getResult(p._id)
       .subscribe(data => {
         this.voted = data.data;
         let j = 1;
-        this.chartDatasets = [];
         for (const prop of data.data) {
           this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
           if (j === data.data.length) {
