@@ -71,7 +71,6 @@ export class PublishedPollsComponent implements OnInit {
 
   showPoll(p) {
     this.chartDatasets = [];
-    console.log(this.chartDatasets);
     this.votingPoll = p;
     this.resultService.getResult(p._id)
       .subscribe(data => {
