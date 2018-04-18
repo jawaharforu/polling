@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalDirective } from '../typescripts/free';
 import { ResultService } from '../services/result.service';
-import { UserService } from '../services/user.service';
 import { PollService } from '../services/poll.service';
 
 @Component({
@@ -58,16 +57,11 @@ export class PublishedPollsComponent implements OnInit {
 
   constructor(
     private resultService: ResultService,
-    private userService: UserService,
     private pollService: PollService,
   ) {
-    this.userService.getLoggedInUser().then((res) => {
-      this.user = res;
-      this.mobilenum = this.user.mobile;
-      this.pollService.getPollByResult()
-      .subscribe(data => {
-        this.pollListing = data.data;
-      });
+    this.pollService.getPollByResult()
+    .subscribe(data => {
+      this.pollListing = data.data;
     });
   }
 
