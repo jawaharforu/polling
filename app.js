@@ -39,15 +39,14 @@ const contact = require('./routes/contacts');
  
 // Poer number
 //const port = 3000; 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 
 var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
 }; 
 https.createServer(options, app).listen(443);
-
-//http.createServer(app).listen(port);
+http.createServer(app).listen(port);
 app.use(forceSsl);
 
 // COES middleware
