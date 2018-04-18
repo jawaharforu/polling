@@ -170,6 +170,7 @@ export class HomeComponent implements OnInit {
           this.voteBtn[i][pollId] = false;
           this.voted = data.data;
           let j = 1;
+          this.chartDatasets = [];
           for (const prop of data.data) {
             this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
             if (j === data.data.length) {
