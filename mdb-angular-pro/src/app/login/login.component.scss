@@ -9,4 +9,22 @@
   .form-elegant .btn:hover {
     -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
     box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
-                  
+    .modal-content span {
+      background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+      color: white;
+      padding: 1px 8px;
+      border-radius: 50%;
+  }
+  .modal-content .close {
+      position: absolute;
+      right: 0;
+  }
+  .modal-dialog .modal-content {
+   box-shadow: none;
+  }
+  .modal-content {
+    background: transperant !important;
+   }
+   .modal-header {
+        border-bottom: 0 !important;
+   }

@@ -3249,7 +3249,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".form-elegant .font-small {\n  font-size: 0.8rem; }\n\n.form-elegant .z-depth-1a {\n  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }\n\n.form-elegant .z-depth-1-half,\n.form-elegant .btn:hover {\n  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }\n", ""]);
+exports.push([module.i, ".form-elegant .font-small {\n  font-size: 0.8rem; }\n\n.form-elegant .z-depth-1a {\n  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }\n\n.form-elegant .z-depth-1-half,\n.form-elegant .btn:hover {\n  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }\n\n.modal-content span {\n  background: linear-gradient(40deg, #45cafc, #303f9f) !important;\n  color: white;\n  padding: 1px 8px;\n  border-radius: 50%; }\n\n.modal-content .close {\n  position: absolute;\n  right: 0; }\n\n.modal-dialog .modal-content {\n  box-shadow: none; }\n\n.modal-content {\n  background: transperant !important; }\n\n.modal-header {\n  border-bottom: 0 !important; }\n", ""]);
 
 // exports
 
