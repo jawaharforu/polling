@@ -3902,8 +3902,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__typescripts_free__ = __webpack_require__("../../../../../src/app/typescripts/free/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_result_service__ = __webpack_require__("../../../../../src/app/services/result.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_poll_service__ = __webpack_require__("../../../../../src/app/services/poll.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_poll_service__ = __webpack_require__("../../../../../src/app/services/poll.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3917,13 +3916,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var PublishedPollsComponent = /** @class */ (function () {
     // chart end
-    function PublishedPollsComponent(resultService, userService, pollService) {
+    function PublishedPollsComponent(resultService, pollService) {
         var _this = this;
         this.resultService = resultService;
-        this.userService = userService;
         this.pollService = pollService;
         this.isModalShown = false;
         this.polloption = [];
@@ -3940,13 +3937,9 @@ var PublishedPollsComponent = /** @class */ (function () {
         this.chartOptions = {
             responsive: true
         };
-        this.userService.getLoggedInUser().then(function (res) {
-            _this.user = res;
-            _this.mobilenum = _this.user.mobile;
-            _this.pollService.getPollByResult()
-                .subscribe(function (data) {
-                _this.pollListing = data.data;
-            });
+        this.pollService.getPollByResult()
+            .subscribe(function (data) {
+            _this.pollListing = data.data;
         });
     }
     PublishedPollsComponent.prototype.chartClicked = function () {
@@ -4000,8 +3993,7 @@ var PublishedPollsComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/published-polls/published-polls.component.scss")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_result_service__["a" /* ResultService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_poll_service__["a" /* PollService */]])
+            __WEBPACK_IMPORTED_MODULE_3__services_poll_service__["a" /* PollService */]])
     ], PublishedPollsComponent);
     return PublishedPollsComponent;
 }());
