@@ -3952,12 +3952,13 @@ var PublishedPollsComponent = /** @class */ (function () {
     };
     PublishedPollsComponent.prototype.showPoll = function (p) {
         var _this = this;
+        this.chartDatasets = [];
+        console.log(this.chartDatasets);
         this.votingPoll = p;
         this.resultService.getResult(p._id)
             .subscribe(function (data) {
             _this.voted = data.data;
             var j = 1;
-            _this.chartDatasets = [];
             for (var _i = 0, _a = data.data; _i < _a.length; _i++) {
                 var prop = _a[_i];
                 _this.chartDatasets.push({ data: [prop.voteCount], label: prop.option });
