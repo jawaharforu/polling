@@ -7530,11 +7530,342 @@ var TruncateModule = (function () {
 
 /***/ }),
 
+/***/ "../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+	 true ? factory(exports, __webpack_require__("../../../core/esm5/core.js"), __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js")) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', 'rxjs/BehaviorSubject'], factory) :
+	(factory((global['ng4-loading-spinner'] = {}),global.core,global.BehaviorSubject));
+}(this, (function (exports,core,BehaviorSubject) { 'use strict';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Injectable service
+ * @export
+ */
+var Ng4LoadingSpinnerService = (function () {
+    /**
+     * Creates an instance of Ng4LoadingSpinnerService.
+     * @memberof Ng4LoadingSpinnerService
+     */
+    function Ng4LoadingSpinnerService() {
+        /**
+         * \@description spinners BehaviorSubject
+         * \@memberof Ng4LoadingSpinnerService
+         */
+        this.spinnerSubject = new BehaviorSubject.BehaviorSubject(false);
+    }
+    /**
+     * To show spinner
+     * @memberof Ng4LoadingSpinnerService
+     */
+    /**
+     * To show spinner
+     * \@memberof Ng4LoadingSpinnerService
+     * @return {?}
+     */
+    Ng4LoadingSpinnerService.prototype.show = /**
+     * To show spinner
+     * \@memberof Ng4LoadingSpinnerService
+     * @return {?}
+     */
+    function () {
+        this.spinnerSubject.next(true);
+    };
+    /**
+     * To hide spinner
+     * @memberof Ng4LoadingSpinnerService
+     */
+    /**
+     * To hide spinner
+     * \@memberof Ng4LoadingSpinnerService
+     * @return {?}
+     */
+    Ng4LoadingSpinnerService.prototype.hide = /**
+     * To hide spinner
+     * \@memberof Ng4LoadingSpinnerService
+     * @return {?}
+     */
+    function () {
+        this.spinnerSubject.next(false);
+    };
+    /**
+     * @return {?}
+     */
+    Ng4LoadingSpinnerService.prototype.getMessage = /**
+     * @return {?}
+     */
+    function () {
+        return this.spinnerSubject.asObservable();
+    };
+    Ng4LoadingSpinnerService.decorators = [
+        { type: core.Injectable },
+    ];
+    /** @nocollapse */
+    Ng4LoadingSpinnerService.ctorParameters = function () { return []; };
+    return Ng4LoadingSpinnerService;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * \@description
+ * @author Amit Mahida
+ * @export
+ */
+var Ng4LoadingSpinnerComponent = (function () {
+    /**
+     * Constructor
+     * @param {Ng4LoadingSpinnerService} spinnerService Spinner Service
+     * @memberof Ng4LoadingSpinnerComponent
+     */
+    function Ng4LoadingSpinnerComponent(spinnerService) {
+        this.spinnerService = spinnerService;
+        /**
+         * \@description Default loading spinner template
+         * \@memberof Ng4LoadingSpinnerComponent
+         */
+        this._template = "\n  <div class=\"lds-roller\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>";
+        /**
+         * \@description Loading text
+         * \@memberof Ng4LoadingSpinnerComponent
+         */
+        this._loadingText = '';
+        /**
+         * \@description Defines threhold for not to diplay if time is less than 500ms
+         * \@memberof Ng4LoadingSpinnerComponent
+         */
+        this._threshold = 500;
+        /**
+         * \@description Defines z-index property of the loading text
+         * \@memberof Ng4LoadingSpinnerComponent
+         */
+        this._zIndex = 9999;
+        /**
+         * \@description Show/hide spinner
+         * \@memberof Ng4LoadingSpinnerComponent
+         */
+        this.showSpinner = false;
+        this.createServiceSubscription();
+    }
+    Object.defineProperty(Ng4LoadingSpinnerComponent.prototype, "zIndex", {
+        get: /**
+         * \@description returns z-index for input text
+         * \@readonly
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @return {?}
+         */
+        function () {
+            return this._zIndex;
+        },
+        set: /**
+         * \@description Sets z-index for input text
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._zIndex = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Ng4LoadingSpinnerComponent.prototype, "template", {
+        get: /**
+         * \@description Gives the current template
+         * \@readonly
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @return {?}
+         */
+        function () {
+            return this._template;
+        },
+        set: /**
+         * \@description Accepts custom template
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._template = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Ng4LoadingSpinnerComponent.prototype, "loadingText", {
+        get: /**
+         * \@description Gives loading text
+         * \@readonly
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @return {?}
+         */
+        function () {
+            return this._loadingText;
+        },
+        set: /**
+         * \@description Accepts loading text string
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._loadingText = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Ng4LoadingSpinnerComponent.prototype, "threshold", {
+        get: /**
+         * \@description
+         * \@readonly
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @return {?}
+         */
+        function () {
+            return this._threshold;
+        },
+        set: /**
+         * \@description Accepts external threshold
+         * \@memberof Ng4LoadingSpinnerComponent
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._threshold = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Destroy function
+     * @memberof Ng4LoadingSpinnerComponent
+     */
+    /**
+     * Destroy function
+     * \@memberof Ng4LoadingSpinnerComponent
+     * @return {?}
+     */
+    Ng4LoadingSpinnerComponent.prototype.ngOnDestroy = /**
+     * Destroy function
+     * \@memberof Ng4LoadingSpinnerComponent
+     * @return {?}
+     */
+    function () {
+        this.subscription.unsubscribe();
+    };
+    /**
+     * Create service subscription
+     * @memberof Ng4LoadingSpinnerComponent
+     */
+    /**
+     * Create service subscription
+     * \@memberof Ng4LoadingSpinnerComponent
+     * @return {?}
+     */
+    Ng4LoadingSpinnerComponent.prototype.createServiceSubscription = /**
+     * Create service subscription
+     * \@memberof Ng4LoadingSpinnerComponent
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        var /** @type {?} */ timer;
+        this.subscription =
+            this.spinnerService.getMessage().subscribe(function (show) {
+                if (show) {
+                    if (timer) {
+                        return;
+                    }
+                    timer = setTimeout(function () {
+                        timer = null;
+                        this.showSpinner = show;
+                    }.bind(_this), _this.threshold);
+                }
+                else {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    _this.showSpinner = false;
+                }
+            });
+    };
+    Ng4LoadingSpinnerComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'ng4-loading-spinner',
+                    template: "<div #spinnerContainer [class]=\"showSpinner ? 'visible spinner center' : 'hidden spinner center'\" [innerHTML]=\"template\">     </div> <h1 [style.zIndex]=\"zIndex\" [class]=\"showSpinner ? 'visible loading-text' : 'hidden loading-text'\"> {{loadingText}} </h1> ",
+                    styles: [".spinner { position: fixed; padding: 0px; top: 0; left: 0; height: 100%; width: 100%; z-index: 9998; background: #000; opacity: 0.6; transition: opacity 0.3s linear; } .center { margin: auto; width: 100%; } .loading-text { position: fixed; top: 0; width: 100%; height: 100%; left: 0; padding: 0; margin: 0; color: #FFF; font-family: sans-serif; background: transparent; text-align: center; padding-top: 33%; } .spinner img { position: fixed; padding: 0px; /* height: 100%; width: 100%; top: 0; left: 0; */ z-index: 10; background: #000; opacity: 0.6; transition: opacity 0.3s linear; } .hidden { visibility: hidden; opacity: 0; transition: visibility 0s 0.3s, opacity 0.3s linear; } .visible { visibility: visible; } .lds-roller { display: inline-block; position: relative; width: 64px; height: 64px; left: 48%; top: 47%; } .lds-roller div { animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; transform-origin: 32px 32px; } .lds-roller div:after { content: \" \"; display: block; position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff; margin: -3px 0 0 -3px; } .lds-roller div:nth-child(1) { animation-delay: -0.036s; } .lds-roller div:nth-child(1):after { top: 50px; left: 50px; } .lds-roller div:nth-child(2) { animation-delay: -0.072s; } .lds-roller div:nth-child(2):after { top: 54px; left: 45px; } .lds-roller div:nth-child(3) { animation-delay: -0.108s; } .lds-roller div:nth-child(3):after { top: 57px; left: 39px; } .lds-roller div:nth-child(4) { animation-delay: -0.144s; } .lds-roller div:nth-child(4):after { top: 58px; left: 32px; } .lds-roller div:nth-child(5) { animation-delay: -0.18s; } .lds-roller div:nth-child(5):after { top: 57px; left: 25px; } .lds-roller div:nth-child(6) { animation-delay: -0.216s; } .lds-roller div:nth-child(6):after { top: 54px; left: 19px; } .lds-roller div:nth-child(7) { animation-delay: -0.252s; } .lds-roller div:nth-child(7):after { top: 50px; left: 14px; } .lds-roller div:nth-child(8) { animation-delay: -0.288s; } .lds-roller div:nth-child(8):after { top: 45px; left: 10px; } @keyframes lds-roller { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }"],
+                    encapsulation: core.ViewEncapsulation.None
+                },] },
+    ];
+    /** @nocollapse */
+    Ng4LoadingSpinnerComponent.ctorParameters = function () { return [
+        { type: Ng4LoadingSpinnerService, },
+    ]; };
+    Ng4LoadingSpinnerComponent.propDecorators = {
+        "zIndex": [{ type: core.Input },],
+        "template": [{ type: core.Input },],
+        "loadingText": [{ type: core.Input },],
+        "threshold": [{ type: core.Input },],
+    };
+    return Ng4LoadingSpinnerComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var Ng4LoadingSpinnerModule = (function () {
+    function Ng4LoadingSpinnerModule() {
+    }
+    /**
+     * @return {?}
+     */
+    Ng4LoadingSpinnerModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return {
+            ngModule: Ng4LoadingSpinnerModule,
+            providers: [Ng4LoadingSpinnerService]
+        };
+    };
+    Ng4LoadingSpinnerModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [],
+                    declarations: [Ng4LoadingSpinnerComponent],
+                    exports: [Ng4LoadingSpinnerComponent],
+                    providers: [Ng4LoadingSpinnerService]
+                },] },
+    ];
+    /** @nocollapse */
+    Ng4LoadingSpinnerModule.ctorParameters = function () { return []; };
+    return Ng4LoadingSpinnerModule;
+}());
+
+exports.Ng4LoadingSpinnerModule = Ng4LoadingSpinnerModule;
+exports.Ng4LoadingSpinnerService = Ng4LoadingSpinnerService;
+exports.Ng4LoadingSpinnerComponent = Ng4LoadingSpinnerComponent;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+
+/***/ }),
+
 /***/ "../../../../rxjs/_esm5/BehaviorSubject.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BehaviorSubject; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return BehaviorSubject; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_ObjectUnsubscribedError__ = __webpack_require__("../../../../rxjs/_esm5/util/ObjectUnsubscribedError.js");
 /** PURE_IMPORTS_START ._Subject,._util_ObjectUnsubscribedError PURE_IMPORTS_END */
@@ -102455,11 +102786,11 @@ var RouterState = /** @class */ (function (_super) {
  */
 function createEmptyState(urlTree, rootComponent) {
     var /** @type {?} */ snapshot = createEmptyStateSnapshot(urlTree, rootComponent);
-    var /** @type {?} */ emptyUrl = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]([new UrlSegment('', {})]);
-    var /** @type {?} */ emptyParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ emptyData = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ emptyQueryParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ fragment = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]('');
+    var /** @type {?} */ emptyUrl = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]([new UrlSegment('', {})]);
+    var /** @type {?} */ emptyParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ emptyData = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ emptyQueryParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ fragment = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]('');
     var /** @type {?} */ activated = new ActivatedRoute(emptyUrl, emptyParams, emptyQueryParams, fragment, emptyData, PRIMARY_OUTLET, rootComponent, snapshot.root);
     activated.snapshot = snapshot.root;
     return new RouterState(new TreeNode(activated, []), snapshot);
@@ -102956,7 +103287,7 @@ function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
  * @return {?}
  */
 function createActivatedRoute(c) {
-    return new ActivatedRoute(new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.url), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.params), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.queryParams), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.fragment), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.data), c.outlet, c.component, c);
+    return new ActivatedRoute(new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.url), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.params), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.queryParams), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.fragment), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.data), c.outlet, c.component, c);
 }
 
 /**
@@ -104538,7 +104869,7 @@ var Router = /** @class */ (function () {
         this.rootContexts = rootContexts;
         this.location = location;
         this.config = config;
-        this.navigations = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](/** @type {?} */ ((null)));
+        this.navigations = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](/** @type {?} */ ((null)));
         this.navigationId = 0;
         this.events = new __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__["a" /* Subject */]();
         /**

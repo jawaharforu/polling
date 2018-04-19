@@ -5,6 +5,7 @@ import { PollService } from '../../services/poll.service';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { ModalDirective } from '../../typescripts/free';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-poll-manage',
@@ -27,10 +28,12 @@ export class PollManageComponent implements OnInit {
     private categoryService: CategoryService,
     private pollService: PollService,
     private _fb: FormBuilder,
+    private spinnerService: Ng4LoadingSpinnerService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.spinnerService.show();
     this.pollType = [
       { value: 'Single', label: 'Single' },
       { value: 'Multiple', label: 'Multiple' },
@@ -38,6 +41,7 @@ export class PollManageComponent implements OnInit {
     this.pollService.getPoll()
     .subscribe(data => {
       this.pollList = data.data;
+      this.spinnerService.hide();
     });
     this.pollCreateForm = this._fb.group({
       pollname: this._fb.control(null),

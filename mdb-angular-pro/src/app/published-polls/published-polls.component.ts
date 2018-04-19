@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalDirective } from '../typescripts/free';
 import { ResultService } from '../services/result.service';
 import { PollService } from '../services/poll.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-published-polls',
@@ -58,11 +59,15 @@ export class PublishedPollsComponent implements OnInit {
   constructor(
     private resultService: ResultService,
     private pollService: PollService,
+    private spinnerService: Ng4LoadingSpinnerService,
   ) {
+    this.spinnerService.show();
     this.pollService.getPollByResult()
     .subscribe(data => {
       this.pollListing = data.data;
+      this.spinnerService.hide();
     });
+    
   }
 
   ngOnInit() {
