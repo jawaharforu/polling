@@ -7,6 +7,7 @@ import { ModalDirective } from '../typescripts/free';
 import {ToastService} from '../typescripts/pro/alerts';
 import { ValidationService } from '../services/validation.service';
 import { UserService } from '../services/user.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 
 @Component({
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit {
     private voteduserService: VoteduserService,
     private resultService: ResultService,
     private userService: UserService,
+    private spinnerService: Ng4LoadingSpinnerService,
     meta: Meta,
     title: Title,
     private toast: ToastService,
@@ -93,6 +95,7 @@ export class HomeComponent implements OnInit {
         this.mobilenum = this.user.mobile;
       }
     });
+    this.spinnerService.show();
    }
 
   ngOnInit() {
@@ -121,6 +124,7 @@ export class HomeComponent implements OnInit {
         this.voteBtn.push( btnid );
         if (i === data.data.length) {
           this.pollList = data.data;
+          this.spinnerService.hide();
         }
         i++;
       }

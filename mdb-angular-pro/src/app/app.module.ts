@@ -56,6 +56,7 @@ import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { DataTablesModule } from 'angular-datatables';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { PublishedPollsComponent } from './published-polls/published-polls.compo
     RouterModule.forRoot(AppRoutes),
     ToastModule.forRoot(),
     MDBBootstrapModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot(),
     MDBBootstrapModulePro.forRoot(),
     FlashMessagesModule.forRoot(),
     ToastModule.forRoot(),

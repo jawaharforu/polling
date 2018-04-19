@@ -9,6 +9,7 @@ import { ResultService } from '../services/result.service';
 import {ToastService} from '../typescripts/pro/alerts';
 import { ValidationService } from '../services/validation.service';
 import { UserService } from '../services/user.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-category-page',
@@ -72,7 +73,9 @@ export class CategoryPageComponent implements OnInit {
     private userService: UserService,
     private toast: ToastService,
     private validationService: ValidationService,
+    private spinnerService: Ng4LoadingSpinnerService,
   ) {
+    this.spinnerService.show();
     this.pollService.getIpAddress()
     .subscribe(data => {
       this.jsonval = data;
@@ -104,6 +107,7 @@ export class CategoryPageComponent implements OnInit {
         // tslint:disable-next-line:no-shadowed-variable
         .subscribe(data => {
           this.pollListing = data.data;
+          this.spinnerService.hide();
         });
       });
     });

@@ -9,13 +9,14 @@
 							<div></div>
 						 	<div class="trending-polls-content">
 								<div class="img-span">
-									<img width="260" height="203" [src]="p.image" alt="image_1">
-									<span>Vote: ({{p.pollcount.length}})</span>
+									<img (click)="showPoll(p)" width="260" height="203" [src]="p.image" alt="image_1">
+									<!--<span>Vote: ({{p.pollcount.length}})</span>-->
 								</div>
 								<a (click)="showPoll(p)"><p>{{p.name}}</p></a>
+								<!--
 								<div class="date-time">
 									<i class="fa fa-clock-o" aria-hidden="true"></i> {{p.createdon | date}}
-								</div>
+								</div>-->
 							</div>
 						  </div>
 					  </div>

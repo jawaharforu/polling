@@ -852,6 +852,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__typescripts_free__ = __webpack_require__("../../../../../src/app/typescripts/free/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -868,17 +870,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PollManageComponent = /** @class */ (function () {
-    function PollManageComponent(_flashMessagesService, categoryService, pollService, _fb, router) {
+    function PollManageComponent(_flashMessagesService, categoryService, pollService, _fb, spinnerService, router) {
         this._flashMessagesService = _flashMessagesService;
         this.categoryService = categoryService;
         this.pollService = pollService;
         this._fb = _fb;
+        this.spinnerService = spinnerService;
         this.router = router;
         this.isModalShown = false;
     }
     PollManageComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.pollType = [
             { value: 'Single', label: 'Single' },
             { value: 'Multiple', label: 'Multiple' },
@@ -886,6 +891,7 @@ var PollManageComponent = /** @class */ (function () {
         this.pollService.getPoll()
             .subscribe(function (data) {
             _this.pollList = data.data;
+            _this.spinnerService.hide();
         });
         this.pollCreateForm = this._fb.group({
             pollname: this._fb.control(null),
@@ -1101,6 +1107,7 @@ var PollManageComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2__services_category_service__["a" /* CategoryService */],
             __WEBPACK_IMPORTED_MODULE_3__services_poll_service__["a" /* PollService */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
             __WEBPACK_IMPORTED_MODULE_6__angular_router__["e" /* Router */]])
     ], PollManageComponent);
     return PollManageComponent;
@@ -1843,7 +1850,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet> "
+module.exports = "<ng4-loading-spinner> </ng4-loading-spinner>\r\n<router-outlet></router-outlet> "
 
 /***/ }),
 
@@ -1942,12 +1949,15 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_angular_datatables__ = __webpack_require__("../../../../angular-datatables/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__previous_polls_previous_polls_component__ = __webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__ = __webpack_require__("../../../../../src/app/published-polls/published-polls.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2057,6 +2067,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__angular_router__["g" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_14__app_routing__["a" /* AppRoutes */]),
                 __WEBPACK_IMPORTED_MODULE_0__typescripts_pro_alerts__["a" /* ToastModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_7__typescripts_free__["a" /* MDBBootstrapModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner__["Ng4LoadingSpinnerModule"].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_8__typescripts_pro_index__["a" /* MDBBootstrapModulePro */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_17_angular2_flash_messages__["FlashMessagesModule"].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_0__typescripts_pro_alerts__["a" /* ToastModule */].forRoot(),
@@ -2396,7 +2407,7 @@ var CategoryNavComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/category-page/category-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\r\n<section *ngIf=\"pollListing\">\r\n\t\t<div class=\"polls-content\">\r\n\t\t\t<div class=\"container\">\r\n                <div class=\"row\">\r\n                    <div class=\"col col-sm-12\">\r\n                        <h3>{{categorySlug.name}}</h3>\r\n                        <p [innerHtml]=\"categorySlug.content | newline\"></p>\r\n                    </div>\r\n                </div>\r\n\t\t\t\t<div class=\"trending-polls\">\r\n\t\t\t\t\t<h2>TRENDING <span>POLLS</span></h2>\r\n\t\t\t\t\t  <div class=\"row\">\r\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.trending\">\r\n\t\t\t\t\t\t\t<div></div>\r\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\" *ngIf=\"p.trending\">\r\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\r\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\r\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\r\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t  </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t</div>\r\n\t\t\t</div> <!-- container -->\r\n\t\t</div> <!-- polls-content -->\r\n\t</section>\r\n\t<section *ngIf=\"pollListing\">\r\n\t\t<div class=\"polls-content-middle\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<h2>OTHER <span>POLLS</span></h2>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.others\">\r\n\t\t\t\t\t\t\t<div class=\"trending-polls-content\" *ngIf=\"!p.trending\">\r\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\r\n\t\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"image_1\">\r\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\r\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t</div> <!-- container -->\r\n\t\t\t\r\n\t\t</div> <!-- polls-content -->\r\n\t</section>\r\n\t<app-footer></app-footer>\r\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<div *ngIf=\"resform\">\r\n\t\t\t\t\t\t<form *ngIf=\"pollform\" class=\"form-inline\" (submit)=\"putVote(votingPoll._id,votingPoll)\" >\r\n\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of votingPoll.options; let i = index\">\r\n\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[votingPoll._id]\" id=\"{{votingPoll._id+i}}\">\r\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{votingPoll._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" >VOTE</button>\r\n\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t<form *ngIf=\"!pollform\">\r\n\t\t\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div *ngIf=\"!resform\">\r\n\t\t\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t\t\t</canvas>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
+module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\r\n<section *ngIf=\"pollListing\">\r\n\t\t<div class=\"polls-content\">\r\n\t\t\t<div class=\"container\">\r\n                <div class=\"row\">\r\n                    <div class=\"col col-sm-12\">\r\n                        <h3>{{categorySlug.name}}</h3>\r\n                        <p [innerHtml]=\"categorySlug.content | newline\"></p>\r\n                    </div>\r\n                </div>\r\n\t\t\t\t<div class=\"trending-polls\">\r\n\t\t\t\t\t<h2>TRENDING <span>POLLS</span></h2>\r\n\t\t\t\t\t  <div class=\"row\">\r\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.trending\">\r\n\t\t\t\t\t\t\t<div></div>\r\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\" *ngIf=\"p.trending\">\r\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\r\n\t\t\t\t\t\t\t\t\t<img (click)=\"showPoll(p)\" width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\r\n\t\t\t\t\t\t\t\t\t<!--<span>Vote: ({{p.pollcount.length}})</span>-->\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\r\n\t\t\t\t\t\t\t\t<!--<div class=\"date-time\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\r\n\t\t\t\t\t\t\t\t</div>-->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t  </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t</div>\r\n\t\t\t</div> <!-- container -->\r\n\t\t</div> <!-- polls-content -->\r\n\t</section>\r\n\t<section *ngIf=\"pollListing\">\r\n\t\t<div class=\"polls-content-middle\">\r\n\t\t\t<div class=\"container\" *ngIf=\"pollListing.others.length > 0\">\r\n\t\t\t\t<h2>OTHER <span>POLLS</span></h2>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing.others\">\r\n\t\t\t\t\t\t\t<div class=\"trending-polls-content\" *ngIf=\"!p.trending\">\r\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\r\n\t\t\t\t\t\t\t\t\t<img (click)=\"showPoll(p)\" [src]=\"p.image\" alt=\"image_1\">\r\n\t\t\t\t\t\t\t\t\t<!--<span>Vote: ({{p.pollcount.length}})</span>-->\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\r\n\t\t\t\t\t\t\t\t<!--\r\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\r\n\t\t\t\t\t\t\t\t</div>-->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t</div> <!-- container -->\r\n\t\t\t\r\n\t\t</div> <!-- polls-content -->\r\n\t</section>\r\n\t<app-footer></app-footer>\r\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<div *ngIf=\"resform\">\r\n\t\t\t\t\t\t<form *ngIf=\"pollform\" class=\"form-inline\" (submit)=\"putVote(votingPoll._id,votingPoll)\" >\r\n\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of votingPoll.options; let i = index\">\r\n\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[votingPoll._id]\" id=\"{{votingPoll._id+i}}\">\r\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{votingPoll._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" >VOTE</button>\r\n\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t<form *ngIf=\"!pollform\">\r\n\t\t\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</form>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div *ngIf=\"!resform\">\r\n\t\t\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t\t\t</canvas>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
 
 /***/ }),
 
@@ -2434,6 +2445,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__typescripts_pro_alerts__ = __webpack_require__("../../../../../src/app/typescripts/pro/alerts/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_validation_service__ = __webpack_require__("../../../../../src/app/services/validation.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2454,9 +2467,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CategoryPageComponent = /** @class */ (function () {
     // chart end
-    function CategoryPageComponent(activatedRoute, categoryService, meta, title, pollService, voteduserService, resultService, userService, toast, validationService) {
+    function CategoryPageComponent(activatedRoute, categoryService, meta, title, pollService, voteduserService, resultService, userService, toast, validationService, spinnerService) {
         var _this = this;
         this.activatedRoute = activatedRoute;
         this.categoryService = categoryService;
@@ -2466,6 +2480,7 @@ var CategoryPageComponent = /** @class */ (function () {
         this.userService = userService;
         this.toast = toast;
         this.validationService = validationService;
+        this.spinnerService = spinnerService;
         this.isModalShown = false;
         this.polloption = [];
         this.mobilenum = '';
@@ -2481,6 +2496,7 @@ var CategoryPageComponent = /** @class */ (function () {
         this.chartOptions = {
             responsive: true
         };
+        this.spinnerService.show();
         this.pollService.getIpAddress()
             .subscribe(function (data) {
             _this.jsonval = data;
@@ -2511,6 +2527,7 @@ var CategoryPageComponent = /** @class */ (function () {
                 _this.pollService.getPollByCategory(_this.categorySlug._id)
                     .subscribe(function (data) {
                     _this.pollListing = data.data;
+                    _this.spinnerService.hide();
                 });
             });
         });
@@ -2653,7 +2670,8 @@ var CategoryPageComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_7__services_result_service__["a" /* ResultService */],
             __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_8__typescripts_pro_alerts__["b" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_validation_service__["a" /* ValidationService */]])
+            __WEBPACK_IMPORTED_MODULE_9__services_validation_service__["a" /* ValidationService */],
+            __WEBPACK_IMPORTED_MODULE_11_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], CategoryPageComponent);
     return CategoryPageComponent;
 }());
@@ -2962,7 +2980,7 @@ var AuthGuard = /** @class */ (function () {
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar></app-nav-bar>\r\n<app-category-nav [type]=\"'category'\"></app-category-nav>\r\n\r\n\r\n\t<section>\r\n\t\t<div class=\"content-middle\">\r\n\t\t\t<div class=\"text container\">\r\n\t\t\t\t<h4>Polls, Analytics & intelligence</h4>\r\n\t\t\t\t<h1>Shape your decision-making strategy</h1>\r\n\t\t\t\t<h4>Know Your Voters, Customers, Audiences</h4>\r\n\t\t\t\t<h1> Comprehensive & Critical Intelligence Reports</h1>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"polls-tab\">\r\n\t\t\t\t<div class=\"polls-tab-img\"></div>\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t<!-- Nav tabs -->\r\n\t\t\t\t<ul class=\"nav nav-tabs nav-justified indigo\" role=\"tablist\">\r\n\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t<a class=\"nav-link active\" data-toggle=\"tab\" role=\"tab\">Featured Polls</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- Tab panels -->\r\n\t\t\t\t<div class=\"tab-repeat\" *ngFor=\"let p of pollList; let i = index\">\r\n\t\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-7 col-12\">\r\n\t\t\t\t\t\t<div class=\"tab-content\">\r\n\t\t\t\t\t\t\t<!--Panel 1-->\r\n\t\t\t\t\t\t\t<div class=\"tab-pane fade in show active\" role=\"tabpanel\">\r\n\t\t\t\t\t\t\t\t<br>\r\n\t\t\t\t\t\t\t\t<p>{{p.name}}</p>\r\n\t\t\t\t\t\t\t\t<form class=\"form-inline\" (submit)=\"putVote(p._id,i,p)\" >\r\n\t\t\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of p.options; let i = index\">\r\n\t\t\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[p._id]\" id=\"{{p._id+i}}\">\r\n\t\t\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{p._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" *ngIf=\"voteBtn[i][p._id]\">VOTE</button>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\r\n\t\t\t\t\t\t\t\t<div class=\"share-vote\">\r\n\t\t\t\t\t\t\t\t\t<ul class=\"share-vote-icons\"><span>Share Your Vote</span>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [facebook]=\"{u: repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [twitter]=\"{url:repoUrl, text:'Checkout this awesome Poll site', hashtags:'poll'}\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [googlePlus]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a ceiboShare  [linkedIn]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-linkedin\"></i></a></li>\r\n\t\t\t\t\t\t\t\t   </ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!--/.Panel 1-->\r\n\t\t\t\t\t\t<div class=\"col-md-5\">\r\n\t\t\t\t\t\t\t<div class=\"polls-image\">\r\n\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"poll\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t<div class=\"impact-view-more\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"view-more-view\">\r\n\t\t\t\t\t<h2>Views & Opinions Of The Country’s People\r\n\t\t\t\t\t\tUnderstanding people and what matters most to them in their life</h2>\r\n\t\t\t\t\t<button type=\"button\" [routerLink]=\"['/poll/politics']\" class=\"btn\">View more</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<hr>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t</section>\r\n\t\r\n\t<section>\r\n\t\t\r\n\t</section>\r\n\r\n\r\n<app-category-content></app-category-content>\t\r\n<app-footer></app-footer>\r\n<div *ngIf=\"isModalForUser\" [config]=\"{ show: true }\" (onHidden)=\"onHiddenuser()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n\t\t\t\t<h4 class=\"modal-title pull-left\">Successfully Voted</h4>\r\n\t\t\t\t<p>Please fill the given details to get your polling result</p>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHiddenuser()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"mobile\">Mobile</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"orangeForm-email\">Email</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title pull-left\">Poll Result</h4>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t</canvas>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<google-chart *ngIf=\"piechart\" [data]=\"pieChartData\"></google-chart>       \r\n        \r\n\t\t\r\n"
+module.exports = "<app-nav-bar></app-nav-bar>\r\n<app-category-nav [type]=\"'category'\"></app-category-nav>\r\n\r\n\r\n\t<section>\r\n\t\t<div class=\"content-middle\">\r\n\t\t\t<div class=\"text container\">\r\n\t\t\t\t<h4>Polls, Analytics & intelligence</h4>\r\n\t\t\t\t<h1>Shape your decision-making strategy</h1>\r\n\t\t\t\t<h4>Know Your Voters, Customers, Audiences</h4>\r\n\t\t\t\t<h1> Comprehensive & Critical Intelligence Reports</h1>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"polls-tab\">\r\n\t\t\t\t<div class=\"polls-tab-img\"></div>\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t<!-- Nav tabs -->\r\n\t\t\t\t<ul class=\"nav nav-tabs nav-justified indigo\" role=\"tablist\">\r\n\t\t\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t\t\t<a class=\"nav-link active\" data-toggle=\"tab\" role=\"tab\">Featured Polls</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- Tab panels -->\r\n\t\t\t\t<div class=\"tab-repeat\" *ngFor=\"let p of pollList; let i = index\">\r\n\t\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-7 col-12\">\r\n\t\t\t\t\t\t<div class=\"tab-content\">\r\n\t\t\t\t\t\t\t<!--Panel 1-->\r\n\t\t\t\t\t\t\t<div class=\"tab-pane fade in show active\" role=\"tabpanel\">\r\n\t\t\t\t\t\t\t\t<br>\r\n\t\t\t\t\t\t\t\t<p>{{p.name}}</p>\r\n\t\t\t\t\t\t\t\t<form class=\"form-inline\" (submit)=\"putVote(p._id,i,p)\" >\r\n\t\t\t\t\t\t\t\t\t<div class=\"form-check\" *ngFor=\"let o of p.options; let i = index\">\r\n\t\t\t\t\t\t\t\t\t\t<input class=\"form-check-input\" name=\"polloption\" type=\"radio\" [value]=\"o.itemname\" [(ngModel)]=\"polloption[p._id]\" id=\"{{p._id+i}}\">\r\n\t\t\t\t\t\t\t\t\t\t<label class=\"form-check-label\" for=\"{{p._id+i}}\">{{o.itemname}}</label>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn purple-gradient btn-rounded\"  type=\"submit\" *ngIf=\"voteBtn[i][p._id]\">VOTE</button>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\r\n\t\t\t\t\t\t\t\t<div class=\"share-vote\">\r\n\t\t\t\t\t\t\t\t\t<ul class=\"share-vote-icons\"><span>Share Your Vote</span>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [facebook]=\"{u: repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-facebook\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [twitter]=\"{url:repoUrl, text:'Checkout this awesome Poll site', hashtags:'poll'}\"><i aria-hidden=\"true\" class=\"fa fa-twitter\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li><a ceiboShare  [googlePlus]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-google-plus\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t  <li class=\"last_icon\"><a ceiboShare  [linkedIn]=\"{url:repoUrl}\"><i aria-hidden=\"true\" class=\"fa fa-linkedin\"></i></a></li>\r\n\t\t\t\t\t\t\t\t   </ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!--/.Panel 1-->\r\n\t\t\t\t\t\t<div class=\"col-md-5\">\r\n\t\t\t\t\t\t\t<div class=\"polls-image\">\r\n\t\t\t\t\t\t\t\t<img [src]=\"p.image\" alt=\"poll\">\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t<div class=\"impact-view-more\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"view-more-view\">\r\n\t\t\t\t\t<h2>Views & Opinions Of The Country’s People\r\n\t\t\t\t\t\tUnderstanding people and what matters most to them in their life</h2>\r\n\t\t\t\t\t<button type=\"button\" [routerLink]=\"['/poll/politics']\" class=\"btn\">View more</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<hr>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t</section>\r\n\t\r\n\t<section>\r\n\t\t\r\n\t</section>\r\n\r\n\r\n<app-category-content></app-category-content>\t\r\n<app-footer></app-footer>\r\n<div *ngIf=\"isModalForUser\" [config]=\"{ show: true }\" (onHidden)=\"onHiddenuser()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n\t\t\t\t<h4 class=\"modal-title pull-left\">Successfully Voted</h4>\r\n\t\t\t\t<p>Please fill the given details to get your polling result</p>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHiddenuser()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <form>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-mobile prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input  name=\"mobile\" [(ngModel)]=\"mobile\" type=\"text\" id=\"mobile\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"mobile\">Please Provide Your Mobile</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"md-form\">\r\n\t\t\t\t\t\t<i class=\"fa fa-envelope prefix grey-text\"></i>\r\n\t\t\t\t\t\t<input [(ngModel)]=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\r\n\t\t\t\t\t\t<label for=\"orangeForm-email\">Please Provide Your Email</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"text-center\">\r\n\t\t\t\t\t\t<button type=\"button\" (click)=\"updateVoter()\" class=\"btn btn-deep-orange waves-light\" mdbRippleRadius>Update</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <h4 class=\"modal-title pull-left\">Poll Result</h4>\r\n                <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\r\n                    <span aria-hidden=\"true\">×</span>\r\n                </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n\t\t\t\t<div style=\"display: block\" *ngIf=\"chartDisplay\">\r\n\t\t\t\t\t<canvas mdbChart  \r\n\t\t\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t\t\t[datasets]=\"chartDatasets\" \r\n\t\t\t\t\t\t[labels]=\"chartLabels\"\r\n\t\t\t\t\t\t[colors]=\"chartColors\"\r\n\t\t\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t\t\t[legend]=\"true\"\r\n\t\t\t\t\t\t(chartHover)=\"chartHovered($event)\" \r\n\t\t\t\t\t\t(chartClick)=\"chartClicked($event)\">\r\n\t\t\t\t\t</canvas>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div *ngIf=\"!chartDisplay\">\r\n\t\t\t\t\t<p>Result will publich later</p>\r\n\t\t\t\t</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<google-chart *ngIf=\"piechart\" [data]=\"pieChartData\"></google-chart>       \r\n        \r\n\t\t\r\n"
 
 /***/ }),
 
@@ -2998,6 +3016,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__typescripts_pro_alerts__ = __webpack_require__("../../../../../src/app/typescripts/pro/alerts/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_validation_service__ = __webpack_require__("../../../../../src/app/services/validation.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3016,14 +3036,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = /** @class */ (function () {
     // chart end
-    function HomeComponent(pollService, voteduserService, resultService, userService, meta, title, toast, validationService) {
+    function HomeComponent(pollService, voteduserService, resultService, userService, spinnerService, meta, title, toast, validationService) {
         var _this = this;
         this.pollService = pollService;
         this.voteduserService = voteduserService;
         this.resultService = resultService;
         this.userService = userService;
+        this.spinnerService = spinnerService;
         this.toast = toast;
         this.validationService = validationService;
         this.polloption = [];
@@ -3066,6 +3088,7 @@ var HomeComponent = /** @class */ (function () {
                 _this.mobilenum = _this.user.mobile;
             }
         });
+        this.spinnerService.show();
     }
     HomeComponent.prototype.chartClicked = function () {
     };
@@ -3099,6 +3122,7 @@ var HomeComponent = /** @class */ (function () {
                 _this.voteBtn.push(btnid);
                 if (i === data.data.length) {
                     _this.pollList = data.data;
+                    _this.spinnerService.hide();
                 }
                 i++;
             }
@@ -3222,6 +3246,7 @@ var HomeComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_3__services_voteduser_service__["a" /* VoteduserService */],
             __WEBPACK_IMPORTED_MODULE_4__services_result_service__["a" /* ResultService */],
             __WEBPACK_IMPORTED_MODULE_8__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_9_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["d" /* Meta */],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["e" /* Title */],
             __WEBPACK_IMPORTED_MODULE_6__typescripts_pro_alerts__["b" /* ToastService */],
@@ -3873,7 +3898,7 @@ var PreviousPollsComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/published-polls/published-polls.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\n<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<div class=\"trending-polls\">\n\t\t\t\t\t<h2>Published <span>Polls</span></h2>\n\t\t\t\t\t  <div class=\"row\">\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing\">\n\t\t\t\t\t\t\t<div></div>\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<span>Vote: ({{p.pollcount.length}})</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t  </div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t</div> <!-- polls-content -->\n  </section>\n  <app-footer></app-footer>\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n\t\t<div class=\"modal-dialog\">\n\t\t\t<div class=\"modal-content\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t\t<div>\n              <div style=\"display: block\" *ngIf=\"chartDisplay\">\n                <canvas mdbChart  \n                  [chartType]=\"chartType\"\n                  [datasets]=\"chartDatasets\" \n                  [labels]=\"chartLabels\"\n                  [colors]=\"chartColors\"\n                  [options]=\"chartOptions\"\n                  [legend]=\"true\"\n                  (chartHover)=\"chartHovered($event)\" \n                  (chartClick)=\"chartClicked($event)\">\n                </canvas>\n              </div>\n              <div *ngIf=\"!chartDisplay\">\n                <p>Result will publich later</p>\n              </div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
+module.exports = "<app-nav-bar *ngIf=\"navbar\"></app-nav-bar>\n<section *ngIf=\"pollListing\">\n\t\t<div class=\"polls-content\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<div class=\"trending-polls\">\n\t\t\t\t\t<h2>Published <span>Polls</span></h2>\n\t\t\t\t\t  <div class=\"row\">\n\t\t\t\t\t\t <div class=\"col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3\" *ngFor=\"let p of pollListing\">\n\t\t\t\t\t\t\t<div></div>\n\t\t\t\t\t\t \t<div class=\"trending-polls-content\">\n\t\t\t\t\t\t\t\t<div class=\"img-span\">\n\t\t\t\t\t\t\t\t\t<img (click)=\"showPoll(p)\" width=\"260\" height=\"203\" [src]=\"p.image\" alt=\"image_1\">\n\t\t\t\t\t\t\t\t\t<!--<span>Vote: ({{p.pollcount.length}})</span>-->\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<a (click)=\"showPoll(p)\"><p>{{p.name}}</p></a>\n\t\t\t\t\t\t\t\t<!--\n\t\t\t\t\t\t\t\t<div class=\"date-time\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> {{p.createdon | date}}\n\t\t\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t  </div>\n\t\t\t\t\t  </div>\n\t\t\t\t</div>\n\t\t\t</div> <!-- container -->\n\t\t</div> <!-- polls-content -->\n  </section>\n  <app-footer></app-footer>\n\t<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n\t\t<div class=\"modal-dialog\">\n\t\t\t<div class=\"modal-content\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<h4 class=\"modal-title pull-left\">{{votingPoll.name}}</h4>\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"onHidden()\">\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body\">\n\t\t\t\t\t\t<div>\n              <div style=\"display: block\" *ngIf=\"chartDisplay\">\n                <canvas mdbChart  \n                  [chartType]=\"chartType\"\n                  [datasets]=\"chartDatasets\" \n                  [labels]=\"chartLabels\"\n                  [colors]=\"chartColors\"\n                  [options]=\"chartOptions\"\n                  [legend]=\"true\"\n                  (chartHover)=\"chartHovered($event)\" \n                  (chartClick)=\"chartClicked($event)\">\n                </canvas>\n              </div>\n              <div *ngIf=\"!chartDisplay\">\n                <p>Result will publich later</p>\n              </div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
 
 /***/ }),
 
@@ -3904,6 +3929,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__typescripts_free__ = __webpack_require__("../../../../../src/app/typescripts/free/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_result_service__ = __webpack_require__("../../../../../src/app/services/result.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_poll_service__ = __webpack_require__("../../../../../src/app/services/poll.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3917,12 +3944,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PublishedPollsComponent = /** @class */ (function () {
     // chart end
-    function PublishedPollsComponent(resultService, pollService) {
+    function PublishedPollsComponent(resultService, pollService, spinnerService) {
         var _this = this;
         this.resultService = resultService;
         this.pollService = pollService;
+        this.spinnerService = spinnerService;
         this.isModalShown = false;
         this.polloption = [];
         this.mobilenum = '';
@@ -3938,9 +3967,11 @@ var PublishedPollsComponent = /** @class */ (function () {
         this.chartOptions = {
             responsive: true
         };
+        this.spinnerService.show();
         this.pollService.getPollByResult()
             .subscribe(function (data) {
             _this.pollListing = data.data;
+            _this.spinnerService.hide();
         });
     }
     PublishedPollsComponent.prototype.chartClicked = function () {
@@ -3995,7 +4026,8 @@ var PublishedPollsComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/published-polls/published-polls.component.scss")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_result_service__["a" /* ResultService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_poll_service__["a" /* PollService */]])
+            __WEBPACK_IMPORTED_MODULE_3__services_poll_service__["a" /* PollService */],
+            __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], PublishedPollsComponent);
     return PublishedPollsComponent;
 }());
