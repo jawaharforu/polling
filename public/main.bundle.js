@@ -4416,10 +4416,7 @@ var PollService = /** @class */ (function () {
     // get ip detail
     PollService.prototype.getIpDetail = function (ip) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-            'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
-            'Access-Control-Allow-Credentials': true
+            'Access-Control-Allow-Origin': '*'
         });
         return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3', { headers: headers })
             .map(function (response) { return response; });
