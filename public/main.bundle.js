@@ -3099,18 +3099,16 @@ var HomeComponent = /** @class */ (function () {
         this.pollService.getIpAddress()
             .subscribe(function (data) {
             _this.jsonval = data;
-            // const getip = JSON.parse(this.jsonval._body);
-            /*
-            this.pollService.getIpDetail(getip.ip)
-            .subscribe(data => {
-              this.ipdetail = data;
-              const reg = this.ipdetail._body.split(';');
-              this.state = reg[2];
-              this.region = reg[3];
+            var getip = JSON.parse(_this.jsonval._body);
+            _this.pollService.getIpDetail(getip.ip)
+                .subscribe(function (data) {
+                _this.ipdetail = data;
+                var reg = _this.ipdetail._body.split(';');
+                _this.state = reg[2];
+                _this.region = reg[3];
             });
-            */
-            _this.state = 'Karnataka';
-            _this.region = 'Bangalore';
+            //  this.state = 'Karnataka';
+            //  this.region = 'Bangalore';
         });
         this.pollService.getPollByStatusHome()
             .subscribe(function (data) {
