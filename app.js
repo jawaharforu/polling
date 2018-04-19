@@ -45,12 +45,12 @@ var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
 };  
-https.createServer(options, app).listen(443);
 const server = http.createServer((req, res) => {
   res.writeHead(301,{Location: `https://${req.headers.host}${req.url}`});
   res.end();
 });
 server.listen(80);
+https.createServer(options, app).listen(443);
 app.use(forceSsl);
 
 // COES middleware
