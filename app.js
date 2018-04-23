@@ -11,6 +11,7 @@ const config = require('./config/database');
 const multer = require('multer');
 var fs = require('fs');
 var http = require('http');
+const request = require('request');
 /*
 var ip2loc = require("ip2location-nodejs");
 ip2loc.IP2Location_init('./routes/IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE-SAMPLE.BIN');
@@ -180,6 +181,17 @@ function checkFileType(file, cb){
         console.log(key + ": " + ipresult[key]);
     }
 */
+app.get('/ipdetail/:ip', (req, res) => {
+  request('https://api.ip2location.com/?ip=' + req.params.ip + '&key=0FF79BE7E0&package=WS3', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      //console.log(body);
+      res.json({success: true, data: body});
+    } else {
+      res.json({success: true, data: 'IN;India;Karnataka;Bangalore'});
+    }
+  });
+});
+
 // Start server
 /*
 app.listen(port, () => {

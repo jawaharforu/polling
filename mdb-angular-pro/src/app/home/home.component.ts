@@ -105,13 +105,12 @@ export class HomeComponent implements OnInit {
       const getip = JSON.parse(this.jsonval._body);
       this.pollService.getIpDetail(getip.ip)
       .subscribe(data => {
+        // console.log(data.data);
         this.ipdetail = data;
-        const reg = this.ipdetail._body.split(';');
+        const reg = this.ipdetail.data.split(';');
         this.state = reg[2];
         this.region = reg[3];
       });
-    //  this.state = 'Karnataka';
-    //  this.region = 'Bangalore';
     });
     this.pollService.getPollByStatusHome()
     .subscribe(data => {
@@ -142,7 +141,7 @@ export class HomeComponent implements OnInit {
         ip: jsonip.ip,
         userdetail: jsonip,
         mobile: '',
-        // fullderail: this.ipdetail._body,
+        fullderail: this.ipdetail._body,
         state: this.state,
         region: this.region,
       }
@@ -151,7 +150,7 @@ export class HomeComponent implements OnInit {
         ip: jsonip.ip,
         userdetail: jsonip,
         mobile: this.mobilenum,
-        // fullderail: this.ipdetail._body,
+        fullderail: this.ipdetail._body,
         state: this.state,
         region: this.region,
       }

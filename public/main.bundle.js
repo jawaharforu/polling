@@ -2500,18 +2500,15 @@ var CategoryPageComponent = /** @class */ (function () {
         this.pollService.getIpAddress()
             .subscribe(function (data) {
             _this.jsonval = data;
-            // const getip = JSON.parse(this.jsonval._body);
-            /*
-            this.pollService.getIpDetail(getip.ip)
-            .subscribe(data => {
-              this.ipdetail = data;
-              const reg = this.ipdetail._body.split(';');
-              this.state = reg[2];
-              this.region = reg[3];
+            var getip = JSON.parse(_this.jsonval._body);
+            _this.pollService.getIpDetail(getip.ip)
+                .subscribe(function (data) {
+                // console.log(data.data);
+                _this.ipdetail = data;
+                var reg = _this.ipdetail.data.split(';');
+                _this.state = reg[2];
+                _this.region = reg[3];
             });
-            */
-            _this.state = 'Karnataka';
-            _this.region = 'Bangalore';
         });
         this.activatedRoute.params.subscribe(function (params) {
             var slug = params['slug'];
@@ -2556,7 +2553,7 @@ var CategoryPageComponent = /** @class */ (function () {
                 ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: '',
-                // fullderail: this.ipdetail._body,
+                fullderail: this.ipdetail.data,
                 state: this.state,
                 region: this.region,
             };
@@ -2566,7 +2563,7 @@ var CategoryPageComponent = /** @class */ (function () {
                 ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: this.mobilenum,
-                // fullderail: this.ipdetail._body,
+                fullderail: this.ipdetail.data,
                 state: this.state,
                 region: this.region,
             };
@@ -3102,13 +3099,12 @@ var HomeComponent = /** @class */ (function () {
             var getip = JSON.parse(_this.jsonval._body);
             _this.pollService.getIpDetail(getip.ip)
                 .subscribe(function (data) {
+                // console.log(data.data);
                 _this.ipdetail = data;
-                var reg = _this.ipdetail._body.split(';');
+                var reg = _this.ipdetail.data.split(';');
                 _this.state = reg[2];
                 _this.region = reg[3];
             });
-            //  this.state = 'Karnataka';
-            //  this.region = 'Bangalore';
         });
         this.pollService.getPollByStatusHome()
             .subscribe(function (data) {
@@ -3139,7 +3135,7 @@ var HomeComponent = /** @class */ (function () {
                 ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: '',
-                // fullderail: this.ipdetail._body,
+                fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
@@ -3149,7 +3145,7 @@ var HomeComponent = /** @class */ (function () {
                 ip: jsonip.ip,
                 userdetail: jsonip,
                 mobile: this.mobilenum,
-                // fullderail: this.ipdetail._body,
+                fullderail: this.ipdetail._body,
                 state: this.state,
                 region: this.region,
             };
@@ -4421,8 +4417,10 @@ var PollService = /** @class */ (function () {
         //   'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         //   'Access-Control-Allow-Credentials': true
         // });
-        return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3')
-            .map(function (response) { return response; });
+        // return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3')
+        // .map(response => response);
+        return this.http.get(this.link + 'ipdetail/' + ip)
+            .map(function (res) { return res.json(); });
     };
     PollService.prototype.upload = function (fileToUpload) {
         var input = new FormData();
