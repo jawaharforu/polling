@@ -75,8 +75,10 @@ export class PollService {
     //   'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
     //   'Access-Control-Allow-Credentials': true
     // });
-    return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3')
-    .map(response => response);
+    // return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3')
+    // .map(response => response);
+    return this.http.get(this.link + 'ipdetail/' + ip )
+    .map(res => res.json());
   }
 
   upload(fileToUpload: any) {
