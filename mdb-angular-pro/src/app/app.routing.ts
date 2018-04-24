@@ -22,6 +22,7 @@ import { ContactUsManageComponent } from './admin/contact-us-manage/contact-us-m
 import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
+import { LifestyleComponent } from './lifestyle/lifestyle.component';
 
 export const AppRoutes: Routes = [
     {
@@ -47,6 +48,10 @@ export const AppRoutes: Routes = [
     {
         path: 'npintelligence',
         component: NpIntelligenceComponent
+    },
+    {
+        path: 'lifestyle',
+        component: LifestyleComponent
     },
     {
         path: 'previouspolls',

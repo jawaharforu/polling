@@ -1951,12 +1951,14 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__ = __webpack_require__("../../../../../src/app/published-polls/published-polls.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_57_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__lifestyle_lifestyle_component__ = __webpack_require__("../../../../../src/app/lifestyle/lifestyle.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2053,7 +2055,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_51__admin_contact_us_manage_contact_us_manage_component__["a" /* ContactUsManageComponent */],
                 __WEBPACK_IMPORTED_MODULE_53__run_apoll_run_apoll_component__["a" /* RunApollComponent */],
                 __WEBPACK_IMPORTED_MODULE_55__previous_polls_previous_polls_component__["a" /* PreviousPollsComponent */],
-                __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__["a" /* PublishedPollsComponent */]
+                __WEBPACK_IMPORTED_MODULE_56__published_polls_published_polls_component__["a" /* PublishedPollsComponent */],
+                __WEBPACK_IMPORTED_MODULE_58__lifestyle_lifestyle_component__["a" /* LifestyleComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_25_ng2_truncate__["a" /* TruncateModule */],
@@ -2117,6 +2120,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__run_apoll_run_apoll_component__ = __webpack_require__("../../../../../src/app/run-apoll/run-apoll.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__previous_polls_previous_polls_component__ = __webpack_require__("../../../../../src/app/previous-polls/previous-polls.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__published_polls_published_polls_component__ = __webpack_require__("../../../../../src/app/published-polls/published-polls.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__lifestyle_lifestyle_component__ = __webpack_require__("../../../../../src/app/lifestyle/lifestyle.component.ts");
+
 
 
 
@@ -2164,6 +2169,10 @@ var AppRoutes = [
     {
         path: 'npintelligence',
         component: __WEBPACK_IMPORTED_MODULE_14__np_intelligence_np_intelligence_component__["a" /* NpIntelligenceComponent */]
+    },
+    {
+        path: 'lifestyle',
+        component: __WEBPACK_IMPORTED_MODULE_23__lifestyle_lifestyle_component__["a" /* LifestyleComponent */]
     },
     {
         path: 'previouspolls',
@@ -3253,6 +3262,78 @@ var HomeComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/lifestyle/lifestyle.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-nav-bar></app-nav-bar>\n\n    <div class=\"what-we-do\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-7 content-lft\">\n                    <p>Do you prefer to live in downtown or in the suburbs? Do you follow the latest trends in fashion? Do you prefer to live-in with your partner for sometime before you marry them? Coffee or tea, what’s your indulgence? Do you prefer to live in a joint family or nuclear family? At what age should one start responsible finance planning in life? How important is family time when compared to work, friends and me time? What kind of music do you like? Which is your favorite holiday destination?</p>   \n                    <p>From peoples’ living preferences to their choice of music, from their favorite cuisines to preferred holiday destinations. Nation Pulse Lifestyle Polls is the stage for the citizens of the country to put forth their opinions on all aspects concerning and affecting their lifestyles. This insight gives policy makers and every business leader to bring out programs that give citizens a better living environment, thus enriching their lifestyles.</p>\n                </div>\n                <div class=\"col-md-5 img-rgt\">\n                   <div class=\"img-rgt-first\"> <img src=\"img/what_we_do_2.jpg\" alt=\"what_we_do_2\"></div>\n                    <div class=\"img-rgt-second\"><img src=\"img/what_we_do_1.jpg\" alt=\"what_we_do_1\"></div> \n                </div>\n            </div>\n        </div>\n    </div>\n    <app-footer></app-footer>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/lifestyle/lifestyle.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/lifestyle/lifestyle.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LifestyleComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LifestyleComponent = /** @class */ (function () {
+    function LifestyleComponent(meta, title) {
+        // tslint:disable-next-line:max-line-length
+        title.setTitle('Nation Pulse Lifestyle Polls: Lifestyle Polls That Shed A Light On The Choices Of The People Of The Country');
+        meta.addTags([
+            { name: 'author', content: 'www.nationpulse.in' },
+            // tslint:disable-next-line:max-line-length
+            { name: 'keywords', content: 'Lifestyle polls, living styles, choices of people, wants of people, people’s opinion, lifestyle of Indians, stats, how Indians live, peoples’ choice, what Indians like, India’s choice, life choices of indians' },
+            { name: 'description', content: 'Get to know the lifestyle choices of the citizens of the country. Helping policy makers and every business leader to bring out programs that give citizens a better living environment, thus enriching their lifestyles.' }
+        ]);
+    }
+    LifestyleComponent.prototype.ngOnInit = function () {
+    };
+    LifestyleComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-lifestyle',
+            template: __webpack_require__("../../../../../src/app/lifestyle/lifestyle.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/lifestyle/lifestyle.component.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["d" /* Meta */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["e" /* Title */]])
+    ], LifestyleComponent);
+    return LifestyleComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
@@ -3501,7 +3582,7 @@ var MediaInquiresComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n    <!--Navbar-->\r\n    <mdb-navbar SideClass=\"navbar navbar-expand-lg navbar-dark\">\r\n           \r\n        <!-- Navbar brand -->\r\n        <logo><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></logo>\r\n    \r\n        <!-- Collapsible content -->\r\n        <links>\r\n    \r\n            <!-- Links -->\r\n            <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/runapoll']\">Run a Poll</a>\r\n                </li><!--\r\n                <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/previouspolls']\">Previous Polls</a>\r\n                </li>-->\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/publishedpolls']\">Published Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"showModal()\">Sign Up/Login</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"onLogoutClick()\">Log Out</a>\r\n                </li>\r\n            </ul>\r\n            <!-- Links -->\r\n    \r\n            \r\n        </links>\r\n        <!-- Collapsible content -->\r\n    \r\n    </mdb-navbar>\r\n    <!--/.Navbar-->\r\n    \r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
+module.exports = "<header>\r\n    <!--Navbar-->\r\n    <mdb-navbar SideClass=\"navbar navbar-expand-lg navbar-dark\">\r\n           \r\n        <!-- Navbar brand -->\r\n        <logo><img src=\"img/nation_pulse_logo_2018.png\" [routerLink]=\"['/']\" alt=\"nation_pulse_logo\"></logo>\r\n    \r\n        <!-- Collapsible content -->\r\n        <links>\r\n    \r\n            <!-- Links -->\r\n            <ul class=\"navbar-nav ml-md-auto menus-main\">\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\"  [routerLink]=\"['/']\">Home</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/whatwedo']\">What We Do</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/poll/politics']\">Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/npintelligence']\">NP Intelligence</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/runapoll']\">Run a Poll</a>\r\n                </li><!--\r\n                <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/previouspolls']\">Previous Polls</a>\r\n                </li>-->\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/mediainquires']\">Media Inquires</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/lifestyle']\">Lifestyle Poll</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/contactus']\">Contact Us</a>\r\n                </li>\r\n                <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/publishedpolls']\">Published Polls</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"showModal()\">Sign Up/Login</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n                    <a class=\"nav-link\" (click)=\"onLogoutClick()\">Log Out</a>\r\n                </li>\r\n            </ul>\r\n            <!-- Links -->\r\n    \r\n            \r\n        </links>\r\n        <!-- Collapsible content -->\r\n    \r\n    </mdb-navbar>\r\n    <!--/.Navbar-->\r\n    \r\n    <div style=\"display: none;\" class=\"img-logo\"><img src=\"img/nation_pulse_logo_2018.png\" alt=\"nation_pulse_logo\"></div>\r\n\r\n<!--/.Navbar-->\r\n\r\n</header>\r\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\r\n\t\t<div class=\"modal-dialog\">\r\n\t\t\t<div class=\"modal-content\">\r\n\t\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\r\n\t\t\t\t\t\t<span aria-hidden=\"true\">×</span>\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t\t<app-login></app-login>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>"
 
 /***/ }),
 
@@ -3513,7 +3594,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*.header-main {\r\n    background-color: transparent !important;\r\n    border-bottom: 1px solid #E7EAF4;\r\n    box-shadow: 0px 0px 5px 2px #ccc !important;\r\n}\r\n.menus-main li {\r\n    padding: 0 2px !important;\r\n}\r\n.menus-main li a.nav-link {\r\n    font-size: 16px !important;\r\n    font-weight: 400;\r\n    color: #544d4d;\r\n}\r\n.menus-main li.nav-item.active a.nav-link {\r\n    color: #517fe4 !important;\r\n    font-size: 16px !important;\r\n}\r\n.img-logo img {\r\n    cursor: pointer;\r\n    width: 230px;\r\n}*/\nlogo img {\n  width: 200px; }\n\n.menus-main li.nav-item.active a.nav-link {\n  color: #344cd0 !important; }\n\nul.navbar-nav.ml-md-auto.menus-main li {\n  padding: 0 4px; }\n\nul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n  font-size: 15px !important; }\n\n/*--Mobile Responsive--*/\n@media only screen and (max-width: 767px) {\n  ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n    font-weight: 400;\n    text-align: center; }\n  .navbar-toggler:not(:disabled):not(.disabled) {\n    cursor: pointer;\n    background: red !important; }\n  html .navbar-dark .navbar-toggler-icon {\n    background-color: #000; }\n  .navbar.navbar-dark .navbar-toggler {\n    color: #fff;\n    background-color: #000 !important; } }\n\n/*--Tablet Responsive--*/\n@media (max-width: 1023px) and (min-width: 768px) {\n  ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n    font-weight: 400;\n    text-align: center; } }\n\n/* big landscape tablets, laptops, and desktops */\n@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {\n  .menus-main l a.nav-link {\n    font-size: 15px !important;\n    font-weight: 400;\n    color: #544d4d;\n    padding: 8px; }\n  .menus-main li {\n    padding: 0 0px !important; } }\n", ""]);
+exports.push([module.i, "/*.header-main {\r\n    background-color: transparent !important;\r\n    border-bottom: 1px solid #E7EAF4;\r\n    box-shadow: 0px 0px 5px 2px #ccc !important;\r\n}\r\n.menus-main li {\r\n    padding: 0 2px !important;\r\n}\r\n.menus-main li a.nav-link {\r\n    font-size: 16px !important;\r\n    font-weight: 400;\r\n    color: #544d4d;\r\n}\r\n.menus-main li.nav-item.active a.nav-link {\r\n    color: #517fe4 !important;\r\n    font-size: 16px !important;\r\n}\r\n.img-logo img {\r\n    cursor: pointer;\r\n    width: 230px;\r\n}*/\nlogo img {\n  width: 200px; }\n\n.menus-main li.nav-item.active a.nav-link {\n  color: #344cd0 !important; }\n\nul.navbar-nav.ml-md-auto.menus-main li {\n  padding: 0 4px; }\n\nul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n  font-size: 15px !important; }\n\n/*--Mobile Responsive--*/\n@media only screen and (max-width: 767px) {\n  ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n    font-weight: 400;\n    text-align: center; }\n  .navbar-toggler:not(:disabled):not(.disabled) {\n    cursor: pointer;\n    background: red !important; }\n  html .navbar-dark .navbar-toggler-icon {\n    background-color: #000; }\n  .navbar.navbar-dark .navbar-toggler {\n    color: #fff;\n    background-color: #000 !important; } }\n\n/*--Tablet Responsive--*/\n@media (max-width: 1023px) and (min-width: 768px) {\n  ul.navbar-nav.ml-md-auto.menus-main li a.nav-link {\n    font-weight: 400;\n    text-align: center; } }\n\n/* big landscape tablets, laptops, and desktops */\n@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {\n  .menus-main l a.nav-link {\n    font-size: 13px !important;\n    font-weight: 400;\n    color: #544d4d;\n    padding: 8px; }\n  .menus-main li {\n    padding: 0 0px !important; } }\n", ""]);
 
 // exports
 
