@@ -57,6 +57,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LifestyleComponent } from './lifestyle/lifestyle.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     ContactUsManageComponent,
     RunApollComponent,
     PreviousPollsComponent,
-    PublishedPollsComponent
+    PublishedPollsComponent,
+    LifestyleComponent
   ],
   imports: [
     TruncateModule,
