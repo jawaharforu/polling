@@ -181,8 +181,11 @@ function checkFileType(file, cb){
         console.log(key + ": " + ipresult[key]);
     }
 */
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '/public', 'index.html'));
+});
 app.get('*', function(req, res) {
-  res.sendfile('./public/index.html');
+  res.sendfile('/public/index.html');
 });
 app.get('/ipdetail/:ip', (req, res) => {
   request('https://api.ip2location.com/?ip=' + req.params.ip + '&key=0FF79BE7E0&package=WS3', function (error, response, body) {
