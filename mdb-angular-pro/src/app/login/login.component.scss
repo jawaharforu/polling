@@ -16,8 +16,12 @@
       border-radius: 50%;
   }
   .modal-content .close {
-      position: absolute;
-      right: 0;
+    position: absolute;
+    right: 15px;
+    z-index: 99;
+    top: 16px;
+    border-radius: 50%;
+    padding: 1px 7px;
   }
   .modal-dialog .modal-content {
    box-shadow: none;
@@ -27,4 +31,5 @@
    }
    .modal-header {
         border-bottom: 0 !important;
+        padding: 0;
    }

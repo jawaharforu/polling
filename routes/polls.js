@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
 const Poll = require('../models/poll');
+const request = require('request');
 
 // Get polls
 router.get('/polls', (req, res, next) => {
@@ -110,6 +111,17 @@ router.get('/pollstatusresult', (req, res, next) => {
     Poll.getPollByResult( (err, poll) => {
         if(err) throw err;
         res.json({success: true, data: poll});
+    });
+});
+
+router.get('/ipdetail/:ip', (req, res) => {
+    request('https://api.ip2location.com/?ip=' + req.params.ip + '&key=0FF79BE7E0&package=WS3', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        //console.log(body);
+        res.json({success: true, data: body});
+      } else {
+        res.json({success: true, data: 'IN;India;Karnataka;Bangalore'});
+      }
     });
 });
 
