@@ -187,16 +187,7 @@ app.use(function(req, res) {
 app.get('*', function(req, res) {
   res.sendfile('/public/index.html');
 });
-app.get('/ipdetail/:ip', (req, res) => {
-  request('https://api.ip2location.com/?ip=' + req.params.ip + '&key=0FF79BE7E0&package=WS3', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      //console.log(body);
-      res.json({success: true, data: body});
-    } else {
-      res.json({success: true, data: 'IN;India;Karnataka;Bangalore'});
-    }
-  });
-});
+
 
 // Start server
 /*

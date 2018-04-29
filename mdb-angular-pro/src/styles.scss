@@ -47,14 +47,14 @@ li.nav-item.signin a.nav-link.waves-effect.waves-light {
 	padding-top: 15px;
 }
 
-.diff-industry .card::after {
+/*.diff-industry .card::after {
     content: '';
     position: absolute;
     width: 190px;
     height: 8px;
     background: #DEE7EC;
     border-radius: 3px;
-}
+}*/
 .content-middle .text {
     text-align: center;
     padding-bottom: 30px;
@@ -63,8 +63,8 @@ li.nav-item.signin a.nav-link.waves-effect.waves-light {
     font-size: 40px;
 }
 .card-deck.diff-industry {
-    padding: 30px 0;
-    margin: 30px 0;
+    padding: 55px 0;
+    margin: 50px 0px;
 }
 .polls-tab {
     height: auto;
@@ -75,6 +75,7 @@ li.nav-item.signin a.nav-link.waves-effect.waves-light {
     background-image: url("img/bg.png"), url("img/bg-2.png");
     background-position: top left, top right;
     background-repeat: no-repeat;
+    height: 400px;
    /* border-bottom: 4px solid rgba(204, 204, 204, 0.33);
     border-radius: 2px;
     box-shadow: 0px 1px 2px 0px rgb(197, 200, 204);*/
@@ -262,7 +263,7 @@ div#panel5 p span, .imp-season p span {
     background: #fff;
     z-index: 1;
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding-bottom: 30px;
 }
 /*.imp-season {
@@ -320,7 +321,13 @@ span.check-circle {
 .content-bottom {
     background-image: url("img/bg_02.png");
     background-repeat: no-repeat;
-    padding-bottom: 80px;
+    /*padding-bottom: 80px;*/
+    background-position: left;
+    background-size: 360px 400px;
+}
+.col-md-6.col-sm-6.img-des.mb-2 {
+    margin-bottom: 25px !important;
+    padding-bottom: 15px;
 }
 .container.padding-left {
     padding-left: 325px;
@@ -345,7 +352,6 @@ button.btn.cnt-btm {
     box-shadow: none;
 }
 .text.container h1 {
-    font-size: 42px;
     color: rgba(45, 45, 45, 0.91);
 }
 /*.discription p {
@@ -377,7 +383,7 @@ button.btn.cnt-btm {
 }
 .container.padding-left .row {
     padding-bottom: 30px;
-    margin-bottom: 25px;
+   /* margin-bottom: 25px;*/
 }
 /*.discription h3 {
     font-weight: 400;
@@ -482,8 +488,26 @@ li.link_li::before {
 }
 
 
-
-
+.polls-content h3::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: #3F62AD;
+    bottom: 0;
+}
+.polls-content h3 {
+    color: #3F62AD;
+    font-weight: 600;
+    position: relative;
+}
+.politics-content {
+    /* border: 1px solid; */
+    box-shadow: 0 0px 4px 3px rgba(208, 199, 199, 0.92);
+    margin: 20px 10px 30px 10px;
+    padding: 15px 20px 5px 20px;
+    background: rgba(255, 255, 255, 0.8509803921568627);
+}
 
 
 

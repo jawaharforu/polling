@@ -77,7 +77,7 @@ export class PollService {
     // });
     // return this.http.get('//api.ip2location.com/?ip=' + ip + '&key=0FF79BE7E0&package=WS3')
     // .map(response => response);
-    return this.http.get(this.link + 'ipdetail/' + ip )
+    return this.http.get(this.link + 'api/polls/ipdetail/' + ip )
     .map(res => res.json());
   }
 
