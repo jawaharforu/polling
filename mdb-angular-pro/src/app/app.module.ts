@@ -58,6 +58,7 @@ import { PreviousPollsComponent } from './previous-polls/previous-polls.componen
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LifestyleComponent } from './lifestyle/lifestyle.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { LifestyleComponent } from './lifestyle/lifestyle.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
     HttpModule,
     RouterModule.forRoot(AppRoutes),
     ToastModule.forRoot(),

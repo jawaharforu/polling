@@ -31,12 +31,14 @@ export class CategoryPageComponent implements OnInit {
   email: String;
   mobilenum: String = '';
   emailnum: String = '';
+  searchvalue: String = '';
   voterid: any;
   voted: any;
   ipdetail: any;
   state: any;
   region: any;
   user: any;
+  pollListFull: any;
   // chart start
   chartDisplay: Boolean = true;
   resform: Boolean = true;
@@ -117,6 +119,10 @@ export class CategoryPageComponent implements OnInit {
 
   ngOnInit() {
     this.navbar = (this.nav === false) ? false : true;
+    this.pollService.getPoll()
+    .subscribe(data => {
+      this.pollListFull = data.data;
+    });
   }
  
   putVote(pollId, p) {
