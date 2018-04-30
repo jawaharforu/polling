@@ -7084,6 +7084,85 @@ var Ng2GoogleChartsModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../ng2-search-filter/ng2-search-filter.es5.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ng2SearchPipeModule; });
+/* unused harmony export Ng2SearchPipe */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+
+var Ng2SearchPipe = /** @class */ (function () {
+    function Ng2SearchPipe() {
+    }
+    /**
+     * @param {?} items object from array
+     * @param {?} term term's search
+     * @return {?}
+     */
+    Ng2SearchPipe.prototype.transform = function (items, term) {
+        if (!term || !items)
+            return items;
+        return Ng2SearchPipe.filter(items, term);
+    };
+    /**
+     *
+     * @param {?} items List of items to filter
+     * @param {?} term  a string term to compare with every property of the list
+     *
+     * @return {?}
+     */
+    Ng2SearchPipe.filter = function (items, term) {
+        var /** @type {?} */ toCompare = term.toLowerCase();
+        return items.filter(function (item) {
+            for (var /** @type {?} */ property in item) {
+                if (item[property] === null) {
+                    continue;
+                }
+                if (item[property].toString().toLowerCase().includes(toCompare)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    };
+    return Ng2SearchPipe;
+}());
+Ng2SearchPipe.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"], args: [{
+                name: 'filter',
+                pure: false
+            },] },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+Ng2SearchPipe.ctorParameters = function () { return []; };
+var Ng2SearchPipeModule = /** @class */ (function () {
+    function Ng2SearchPipeModule() {
+    }
+    return Ng2SearchPipeModule;
+}());
+Ng2SearchPipeModule.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
+                declarations: [Ng2SearchPipe],
+                exports: [Ng2SearchPipe]
+            },] },
+];
+/**
+ * @nocollapse
+ */
+Ng2SearchPipeModule.ctorParameters = function () { return []; };
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+//# sourceMappingURL=ng2-search-filter.es5.js.map
+
+
+/***/ }),
+
 /***/ "../../../../ng2-social-share/src/facebookParams.js":
 /***/ (function(module, exports, __webpack_require__) {
 

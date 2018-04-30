@@ -1,5 +1,40 @@
 <app-nav-bar *ngIf="navbar"></app-nav-bar>
-<section *ngIf="pollListing">
+<section>
+	<div class="">
+		<div class="container">
+				<div class="input-group md-form form-sm form-1 pl-0">
+					<div class="input-group-prepend">
+						<span class="input-group-text purple lighten-3" id="basic-text1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
+					</div>
+					<input class="form-control my-0 py-1" [(ngModel)]="searchvalue" type="text" placeholder="Search Poll" aria-label="Search">
+				</div>
+		</div>
+	</div>
+</section>
+<section *ngIf="searchvalue && searchvalue.length >= 3">
+	<div class="polls-content">
+		<div class="container">
+			<div class="trending-polls">
+					<div class="row">
+						<div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" *ngFor="let term of pollListFull | filter:searchvalue">
+						<div></div>
+						<div class="trending-polls-content">
+							<div class="img-span">
+								<img (click)="showPoll(term)" width="260" height="203" [src]="term.image" alt="image_1">
+								<!--<span>Vote: ({{p.pollcount.length}})</span>-->
+							</div>
+							<a (click)="showPoll(term)"><p>{{term.name}}</p></a>
+							<!--<div class="date-time">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> {{p.createdon | date}}
+							</div>-->
+						</div>
+						</div>
+					</div>
+			</div>
+		</div> <!-- container -->
+	</div> <!-- polls-content -->
+</section>
+<section *ngIf="pollListing && (searchvalue.length < 2)">
 		<div class="polls-content">
 			<div class="container">
                 <div class="row">
