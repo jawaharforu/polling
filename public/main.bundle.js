@@ -3091,11 +3091,11 @@ var HomeComponent = /** @class */ (function () {
         this.chartOptions = {
             responsive: true
         };
-        title.setTitle('NATION PULSE');
+        title.setTitle('Nation Pulse: Polls, Analytics & intelligence: Shape your decision-making strategy – Nation Pulse');
         meta.addTags([
-            { name: 'author', content: 'Coursetro.com' },
-            { name: 'keywords', content: 'angular seo, angular 4 universal, etc' },
-            { name: 'description', content: 'This is my Angular SEO-based App, enjoy it!' }
+            { name: 'author', content: 'nationpulse.in' },
+            // tslint:disable-next-line:max-line-length
+            { name: 'description', content: 'Advice about everything that matters. Shape your decision-making strategy with access to data that is sourced from a targeted audience. We gather the opinions of voters, customers, youth, audiences and citizens on a wide range of issues. Make better decisions by accessing the data from our polls or make a custom poll with your questions' }
         ]);
         this.userService.getLoggedInUser().then(function (res) {
             if (res) {
