@@ -1,0 +1,74 @@
+[type="radio"] + label, [type="checkbox"] + label {
+    padding-left: 26px;
+}
+.polls-image img {
+    width: 100%;
+    margin-top: 30%;
+}
+.col-md-6.col-sm-6.img-des.mb-2 {
+    margin-bottom: 2.5rem !important;
+}
+.content-bottom {
+    padding-bottom: 20px;
+}
+
+/*--Mobile Responsive--*/
+@media only screen and (max-width: 767px) {
+    .content-middle {
+        padding: 20px 0;
+    }
+    
+    .card-deck.diff-industry {
+        padding: 0px !important;
+        margin: 0 !important;
+    }
+    [type="radio"] + label, [type="checkbox"] + label {
+        margin: 8px;
+    }
+    .tab-repeat {
+        padding: 0;
+    }
+    .form-inline .form-check {
+        padding-left: 5px;
+    }
+    .polls-tab {
+        height: auto !important;
+    }
+    .polls-image img {
+        margin-top: 0;
+    }
+    .view-more-view h2 {
+        font-size: 24px;
+    }
+    .tab-content {
+        padding: 0;
+    }
+    .polls-tab .nav-tabs .nav-item {
+        margin-bottom: 0;
+    }
+    .text.container h1 {
+        font-size: 25px !important;
+    }
+    .polls-image {
+        margin-bottom: 35px;
+    }
+    .header-col.right.header_top {
+        float: none !important;
+        width: 80% !important;
+        margin: 0 auto !important;
+    }
+    
+}
+
+/*--tablet Responsive--*/
+@media (min-width: 768px) and (max-width: 1024px) { 
+    .container.padding-left {
+        padding-left: 0 !important;
+    }
+    .content-bottom {
+        background-image: none;
+    }
+}
+
+
+

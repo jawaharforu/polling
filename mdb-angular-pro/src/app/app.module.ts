@@ -59,6 +59,7 @@ import { PublishedPollsComponent } from './published-polls/published-polls.compo
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LifestyleComponent } from './lifestyle/lifestyle.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SinglepollComponent } from './singlepoll/singlepoll.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     RunApollComponent,
     PreviousPollsComponent,
     PublishedPollsComponent,
-    LifestyleComponent
+    LifestyleComponent,
+    SinglepollComponent
   ],
   imports: [
     TruncateModule,

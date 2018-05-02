@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Pollid</th>
                         <th>Category</th>
                         <th>Poll</th>
                         <th>Status</th>
@@ -23,6 +24,7 @@
                 <tbody>
                     <tr *ngFor="let p of pollList; let i = index">
                         <td scope="row">{{i+1}}</td>
+                        <td>{{p._id}}</td>
                         <td>{{p.categoryname[0].name}}</td>
                         <td>{{p.name}}</td>
                         <td><div class="form-check checkbox-warning-filled">
