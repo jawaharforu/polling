@@ -31,7 +31,7 @@ export class CategoryPageComponent implements OnInit {
   email: String;
   mobilenum: String = '';
   emailnum: String = '';
-  searchvalue: String = '';
+  @Input() searchvalue: String = '';
   voterid: any;
   voted: any;
   ipdetail: any;

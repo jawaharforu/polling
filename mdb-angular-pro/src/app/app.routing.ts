@@ -23,6 +23,7 @@ import { RunApollComponent } from './run-apoll/run-apoll.component';
 import { PreviousPollsComponent } from './previous-polls/previous-polls.component';
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
 import { LifestyleComponent } from './lifestyle/lifestyle.component';
+import { SinglepollComponent } from './singlepoll/singlepoll.component';
 
 export const AppRoutes: Routes = [
     {
@@ -68,6 +69,10 @@ export const AppRoutes: Routes = [
     {
         path: 'publishedpolls',
         component: PublishedPollsComponent
+    },
+    {
+        path: 'singlepoll/:pollid',
+        component: SinglepollComponent
     },
     {
         path: 'admin',

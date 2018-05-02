@@ -1,0 +1,106 @@
+<app-nav-bar></app-nav-bar>
+<app-category-nav [type]="'poll'"></app-category-nav>
+<section>
+  <div class="polls-content">
+    <div class="container">
+      <div class="trending-polls">
+          <div class="row"> 
+              <div class="tab-repeat" *ngFor="let p of pollList; let i = index">
+                  <div class="container">
+                  <div class="row">
+                  <div class="col-md-7 col-12">
+                    <div class="tab-content">
+                        <br>
+                        <p>{{p.name}}</p>
+                        <form class="form-inline" (submit)="putVote(p._id,i,p)" >
+                          <div class="form-check" *ngFor="let o of p.options; let i = index">
+                            <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[p._id]" id="{{p._id+i}}">
+                            <label class="form-check-label" for="{{p._id+i}}">{{o.itemname}}</label>
+                          </div>
+                          {{i}}
+                            <button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[i][p._id]">VOTE</button>
+                        </form>
+          
+                        <div class="share-vote">
+                          <ul class="share-vote-icons"><span>Share Your Vote</span>
+                            <li><a ceiboShare  [facebook]="{u: repoUrl}"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                            <li><a ceiboShare  [twitter]="{url:repoUrl, text:'Checkout this awesome Poll site', hashtags:'poll'}"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                            <li><a ceiboShare  [googlePlus]="{url:repoUrl}"><i aria-hidden="true" class="fa fa-google-plus"></i></a></li>
+                            <li class="last_icon"><a ceiboShare  [linkedIn]="{url:repoUrl}"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                           </ul>
+                        </div>                     
+                    </div>
+                  </div>
+                    <div class="col-md-5">
+                      <div class="polls-image">
+                        <img [src]="p.image" alt="poll">
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+    </div> 
+  </div> 
+</section>
+<app-footer></app-footer>
+<div *ngIf="isModalForUser" [config]="{ show: true }" (onHidden)="onHiddenuser()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title pull-left">Successfully Voted</h4>
+				<p>Please fill the given details to get your polling result</p>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onHiddenuser()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+					<div class="md-form">
+						<i class="fa fa-mobile prefix grey-text"></i>
+						<input  name="mobile" [(ngModel)]="mobile" type="text" id="mobile" class="form-control" mdbActive>
+						<label for="mobile">Please Provide Your Mobile</label>
+					</div>
+					<div class="md-form">
+						<i class="fa fa-envelope prefix grey-text"></i>
+						<input [(ngModel)]="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+						<label for="orangeForm-email">Please Provide Your Email</label>
+					</div>
+					<div class="text-center">
+						<button type="button" (click)="updateVoter()" class="btn btn-deep-orange waves-light" mdbRippleRadius>Update</button>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title pull-left">Poll Result</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="onHidden()">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+      <div style="display: block" *ngIf="chartDisplay">
+        <canvas mdbChart  
+          [chartType]="chartType"
+          [datasets]="chartDatasets" 
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)" 
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!chartDisplay">
+        <p>Result will publich later</p>
+      </div>
+          </div>
+      </div>
+  </div>
+</div>
