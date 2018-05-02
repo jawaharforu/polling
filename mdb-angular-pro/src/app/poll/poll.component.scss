@@ -2,15 +2,28 @@
     width: 300px;
     float: right;
     margin-top: 22px;
-    padding-top: 25px;
     border-radius: 2px;
 }
 .search-polls {
     overflow: auto;
 }
+/*
 .search-search input {
     border: 1px solid #bdbdbd;
 }
 .search-search .purple.lighten-3 {
     border: 1px saddlebrown;
+}
+*/
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #3F62AD;
+    box-shadow: 0 1px 0 0 #3F62AD;
+}
+.active-cyan input[type=text] {
+    border-bottom: 1px solid #3F62AD;
+    box-shadow: 0 1px 0 0 #3F62AD;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+    color: #3F62AD;
+    margin-top: auto;
 }

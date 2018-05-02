@@ -107,7 +107,7 @@ export class PollManageComponent implements OnInit {
     const pollid = this.pollCreateForm.value.updatepollid;
     const updatePoll = {
       name: this.pollCreateForm.value.pollname,
-      type: this.pollCreateForm.value.selectedPollType,
+      type: 'Single', // this.pollCreateForm.value.selectedPollType,
       status: this.pollCreateForm.value.pollStatus,
       trending: this.pollCreateForm.value.trending,
       home: this.pollCreateForm.value.displayhome,

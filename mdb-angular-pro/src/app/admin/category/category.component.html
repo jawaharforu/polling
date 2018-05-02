@@ -41,6 +41,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>ID</th>
                     <th>Category</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -52,6 +53,7 @@
             <tbody>
                 <tr *ngFor="let c of categotylist; let i = index">
                     <th scope="row">{{i+1}}</th>
+                    <td>{{c._id}}</td>
                     <td>{{c.name}}</td>
                     <td><div class="form-group">
                         <input type="checkbox" class="filled-in" id="checkbox{{c._id}}" [checked]="c.status" (change)="updateStatus($event.target.checked,c)">

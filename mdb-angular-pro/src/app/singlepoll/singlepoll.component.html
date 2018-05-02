@@ -17,7 +17,6 @@
                             <input class="form-check-input" name="polloption" type="radio" [value]="o.itemname" [(ngModel)]="polloption[p._id]" id="{{p._id+i}}">
                             <label class="form-check-label" for="{{p._id+i}}">{{o.itemname}}</label>
                           </div>
-                          {{i}}
                             <button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[i][p._id]">VOTE</button>
                         </form>
           
