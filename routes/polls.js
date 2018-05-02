@@ -6,6 +6,8 @@ const config = require('../config/database');
 
 const Poll = require('../models/poll');
 const request = require('request');
+const multer = require('multer');
+var xlsx = require('node-xlsx');
 
 // Get polls
 router.get('/polls', (req, res, next) => {
@@ -124,5 +126,61 @@ router.get('/ipdetail/:ip', (req, res) => {
       }
     });
 });
+
+var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+    }
+});
+
+var upload = multer({ //multer settings
+    storage: storage
+}).single('file');
+/** API path that will upload the files */
+
+router.post('/upload', function(req, res) {
+    upload(req,res,function(err){
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+        var obj = xlsx.parse(req.file.path); // parses a file
+        var data = obj[0].data;
+        for(var i = 0; i < data.length; i++) {
+            if(data[i]) {
+                var name = data[i][0];
+                var options = data[i].splice(0, 1);
+                let newPoll = new Poll({
+                    name: name,
+                    type: 'Single',
+                    status: true,
+                    categoryid: '5ae020b66bcade45dee12e33',
+                    options: options,
+                    trending: true,
+                    home: false,
+                    image: '',
+                    result: true
+                }); 
+                Poll.addPoll(newPoll, (err, poll) => {
+                    if(err){
+                        //res.json({success: false, msg: 'Failed to add Poll'});
+                        console.log('error '+i);
+                    }else{
+                        //res.json({success: true, msg: 'Poll Add', data: poll});
+                        console.log('success '+i);
+                    }
+                });
+            }
+        } 
+        //res.json({error_code:obj});
+        //res.json({error_code:0,err_desc:null});
+    });
+});
+
+
 
 module.exports = router;

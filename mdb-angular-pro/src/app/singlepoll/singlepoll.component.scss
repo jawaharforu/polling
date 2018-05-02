@@ -3,7 +3,7 @@
 }
 .polls-image img {
     width: 100%;
-    margin-top: 30%;
+    margin-top: 10%;
 }
 .col-md-6.col-sm-6.img-des.mb-2 {
     margin-bottom: 2.5rem !important;
@@ -11,6 +11,23 @@
 .content-bottom {
     padding-bottom: 20px;
 }
+.tab-repeat::after {
+    display: none;
+}
+.tab-content p {
+    font-weight: bold;
+    font-size: 20px;
+}
+.tab-repeat {
+    padding: 10px 0 40px 0;
+}
+.tab-content  {
+    padding: 0;
+}
+label.form-check-label, ul.share-vote-icons {
+    font-weight: 400;
+}
+
 
 /*--Mobile Responsive--*/
 @media only screen and (max-width: 767px) {
