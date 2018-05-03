@@ -129,7 +129,7 @@ export class CategoryPageComponent implements OnInit {
   putVote(pollId, p) {
 
     if (this.polloption[pollId] === undefined) {
-      alert('Select Option');
+      this.toast.error('Select Option');
       return false;
     }
     const jsonip = JSON.parse(this.jsonval._body);

@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
 
   putVote(pollId, i, p) {
     if (this.polloption[pollId] === undefined) {
-      alert('Select Option');
+      this.toast.error('Select Option');
       return false;
     }
 

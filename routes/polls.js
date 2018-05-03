@@ -167,12 +167,13 @@ router.post('/upload', function(req, res) {
                     name: name,
                     type: 'Single',
                     status: true,
-                    categoryid: '5ae020b66bcade45dee12e33',
+                    categoryid: '5abe0c5743a6be45131f55b9',
                     options: alloption,
                     trending: true,
                     home: false,
                     image: imageUrl,
-                    result: true
+                    result: true,
+                    todate: '2018-05-10'
                 }); 
                 tempData.push( newPoll );
                i++;
