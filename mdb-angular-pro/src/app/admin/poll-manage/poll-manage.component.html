@@ -119,6 +119,19 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group row">
+                            <div class="switch">
+                                <label>
+                                    Result Off
+                                    <input formControlName="result" name="result" type="checkbox">
+                                    <span class="lever"></span>
+                                    Result On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">  
+                            <mdb-date-picker name="todate" [options]="myDatePickerOptions" [placeholder]="'Select Publich date'" formControlName="todate" required></mdb-date-picker>
+                         </div> 
                       <div class="form-group row">
                           <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
                       </div>

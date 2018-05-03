@@ -39,6 +39,7 @@ export class CategoryPageComponent implements OnInit {
   region: any;
   user: any;
   pollListFull: any;
+  publishdate: String = 'later';
   // chart start
   chartDisplay: Boolean = true;
   resform: Boolean = true;
@@ -169,7 +170,17 @@ export class CategoryPageComponent implements OnInit {
         for (const prop of data.data) {
           this.chartDatasets.push({data: [prop.voteCount], label: prop.option});
           if (j === data.data.length) {
-            this.chartDisplay = p.result
+            if ( p.categoryname[0].name === 'Politics' ) {
+              if ( new Date(p.todate) <=  new Date(Date.now()) ) {
+                this.chartDisplay = true;
+              } else {
+                const date = new Date(p.todate);
+                this.publishdate = date.getFullYear() + '-' + ( date.getMonth() + 1 ) + '-' + date.getDate();
+                this.chartDisplay = false;
+              }
+            } else {
+              this.chartDisplay = p.result
+            }
             if (this.mobilenum === '') {
               this.pollform = false;
             } else {
