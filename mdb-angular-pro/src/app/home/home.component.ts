@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   state: any;
   region: any;
   user: any;
+  publishdate: String = 'later';
 
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
@@ -180,7 +181,17 @@ export class HomeComponent implements OnInit {
               } else {
                 this.isModalShown = true;
               }
-              this.chartDisplay = p.result
+              if ( p.categoryname[0].name === 'Politics' ) {
+                if ( new Date(p.todate) <=  new Date(Date.now()) ) {
+                  this.chartDisplay = true;
+                } else {
+                  const date = new Date(p.todate);
+                  this.publishdate = date.getFullYear() + '-' + ( date.getMonth() + 1 ) + '-' + date.getDate();
+                  this.chartDisplay = false;
+                }
+              } else {
+                this.chartDisplay = p.result
+              }
             }
             j++;
           }

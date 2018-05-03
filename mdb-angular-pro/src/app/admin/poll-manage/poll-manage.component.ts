@@ -6,6 +6,7 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { ModalDirective } from '../../typescripts/free';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { IMyOptions } from '../../typescripts/pro/date-picker/index';
 
 @Component({
   selector: 'app-poll-manage',
@@ -23,6 +24,9 @@ export class PollManageComponent implements OnInit {
   pollCreateForm: FormGroup;
   updatePolls: any;
   imageUrl: String;
+  public myDatePickerOptions: IMyOptions = {
+    
+  };
   constructor(
     private _flashMessagesService: FlashMessagesService,
     private categoryService: CategoryService,
@@ -48,9 +52,11 @@ export class PollManageComponent implements OnInit {
       selectedPollType: this._fb.control(null),
       pollStatus: this._fb.control(false),
       trending: this._fb.control(false),
+      result: this._fb.control(false),
       displayhome: this._fb.control(false),
       pollCategoryid: this._fb.control(null),
       pollOption: this._fb.array([]),
+      todate: this._fb.control(null),
       updatepollid: this._fb.control(null)
     });
     this.categoryService.getCategory()
@@ -110,10 +116,12 @@ export class PollManageComponent implements OnInit {
       type: 'Single', // this.pollCreateForm.value.selectedPollType,
       status: this.pollCreateForm.value.pollStatus,
       trending: this.pollCreateForm.value.trending,
+      result: this.pollCreateForm.value.result,
       home: this.pollCreateForm.value.displayhome,
       categoryid: this.pollCreateForm.value.pollCategoryid,
       options: this.pollCreateForm.value.pollOption,
-      image: this.imageUrl
+      image: this.imageUrl,
+      todate: this.pollCreateForm.value.todate
     };
     if (updatePoll.name.length === 0 || updatePoll.options[0].itemname === ''
     || updatePoll.type.length === 0 || updatePoll.categoryid.length === 0) {
@@ -136,7 +144,8 @@ export class PollManageComponent implements OnInit {
           categoryid: p.categoryid,
           options: p.options,
           image: p.image,
-          result: p.result
+          result: p.result,
+          todate: p.todate
         };
         break;
       case 'trending':
@@ -149,7 +158,8 @@ export class PollManageComponent implements OnInit {
           categoryid: p.categoryid,
           options: p.options,
           image: p.image,
-          result: p.result
+          result: p.result,
+          todate: p.todate
         };
         break;
       case 'home':
@@ -162,7 +172,8 @@ export class PollManageComponent implements OnInit {
           categoryid: p.categoryid,
           options: p.options,
           image: p.image,
-          result: p.result
+          result: p.result,
+          todate: p.todate
         };
         break;
       case 'result':
@@ -175,7 +186,8 @@ export class PollManageComponent implements OnInit {
           categoryid: p.categoryid,
           options: p.options,
           image: p.image,
-          result: event
+          result: event,
+          todate: p.todate
         };
         break;
       default:
@@ -187,7 +199,9 @@ export class PollManageComponent implements OnInit {
           home: p.home,
           categoryid: p.categoryid,
           options: p.options,
-          image: p.image
+          image: p.image,
+          result: p.result,
+          todate: p.todate
         };
     }
 
@@ -200,10 +214,12 @@ export class PollManageComponent implements OnInit {
       selectedPollType: this._fb.control(null),
       pollStatus: this._fb.control(false),
       trending: this._fb.control(false),
+      result: this._fb.control(false),
       displayhome: this._fb.control(false),
       pollCategoryid: this._fb.control(null),
       pollOption: this._fb.array([]),
-      updatepollid: this._fb.control(null)
+      updatepollid: this._fb.control(null),
+      todate: this._fb.control(null)
     });
     for (let i = 1; i <= p.options.length; i++) {
       this.addNewRow();
@@ -214,10 +230,12 @@ export class PollManageComponent implements OnInit {
           selectedPollType: p.type,
           pollStatus: p.status,
           trending: p.trending,
+          result: p.result,
           displayhome: p.home,
           pollCategoryid: p.categoryid,
           pollOption: p.options,
-          updatepollid: p._id
+          updatepollid: p._id,
+          todate: (p.todate === null) ? new Date() : p.todate
         });
       }
     }
