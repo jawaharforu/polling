@@ -41,7 +41,7 @@ const contact = require('./routes/contacts');
 // Poer number
 //const port = 3000; 
 const port = process.env.PORT || 3000;
-/*
+
 var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
@@ -53,7 +53,7 @@ const server = http.createServer((req, res) => {
 server.listen(80);
 https.createServer(options, app).listen(443);
 app.use(forceSsl);
-*/
+
 // COES middleware
 app.use(cors());
  
@@ -190,7 +190,8 @@ app.get('*', function(req, res) {
 
 
 // Start server
-
+/*
 app.listen(port, () => {
     console.log("Server started on port " + port);
 });
+*/
