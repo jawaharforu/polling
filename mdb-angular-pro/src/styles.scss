@@ -513,6 +513,9 @@ li.link_li::before {
 
 /*--Mobile Responsive--*/
 @media only screen and (max-width: 767px) {
+    .bg-img {
+        height: auto !important;
+    }
 	.polls-tab {
     	height: 600px;
 	}
@@ -528,7 +531,8 @@ li.link_li::before {
 	}
 	.diff-industry {
 		width: 100%;
-		margin: 13px 0px;
+        margin: 13px 0px;
+        padding: 0 !important;
 	}
 	.diff-industry::after {
 		width: 0px;	
