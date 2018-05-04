@@ -1,0 +1,13 @@
+/*--Mobile Responsive--*/
+@media only screen and (max-width: 767px) {
+    .polls-content {
+        margin-top: 30px;
+    }
+    .img-span img {
+        width: 100%;
+    }
+    .trending-polls-content {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+}

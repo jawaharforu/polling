@@ -176,6 +176,12 @@ li.link_li::before {
 
 /*--Mobile Responsive--*/
 @media only screen and (max-width: 767px) {
+    .trending-polls-content {
+         margin-bottom: 40px !important;
+    }
+    .polls-content-middle {
+        padding: 0;
+    }
 	.img-span img {
 		width: 100%;
 	}
