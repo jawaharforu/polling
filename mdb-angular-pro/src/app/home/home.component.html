@@ -134,7 +134,7 @@
 					</canvas>
 				</div>
 				<div *ngIf="!chartDisplay">
-					<p>Result will publich on {{publishdate}}</p>
+					<p>Result will publish on {{publishdate | date:'dd MMMM yyyy' }}</p>
 				</div>
             </div>
         </div>
