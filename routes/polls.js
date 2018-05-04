@@ -37,7 +37,7 @@ router.post('/poll', (req, res, next) => {
         fromdate: req.body.fromdate,
         todate: req.body.todate,
         image: req.body.image,
-        result: false
+        result: true
     }); 
     Poll.addPoll(newPoll, (err, poll) => {
         if(err){
