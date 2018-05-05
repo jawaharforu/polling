@@ -1,4 +1,13 @@
 <app-nav-bar *ngIf="navbar"></app-nav-bar>
+<section *ngIf="pollListing.length==0">
+	<div class="polls-content">
+		<div class="container">
+			<div class="trending-polls">
+				<h2>Result will publish on 10th May 2018</h2>
+			</div>
+		</div>
+	</div>
+</section>
 <section *ngIf="pollListing">
 		<div class="polls-content">
 			<div class="container">
