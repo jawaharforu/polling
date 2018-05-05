@@ -202,7 +202,12 @@ module.exports.getPollByResult = function(callback) {
     Poll.aggregate([
         { 
             $match: {
-                'result': true
+                $and: [ 
+                    {status: true}, 
+                    {result: true},
+                    {todate: {$gte:new Date()}}
+                ]
+
             }
         },
         {

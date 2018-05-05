@@ -44,6 +44,9 @@
                 <li class="nav-item" *ngIf="!authService.loggedIn()">
                     <a class="nav-link" (click)="showModal()">Sign Up/Login</a>
                 </li>
+                <li class="nav-item" *ngIf="authService.loggedIn() && user.role=='admin'">
+                    <a class="nav-link" [routerLink]="['/admin', {outlets: {adminchild: ['pollmanage']}}]">Dashboard</a>
+                </li>
                 <li class="nav-item" *ngIf="authService.loggedIn()">
                     <a class="nav-link" (click)="onLogoutClick()">Log Out</a>
                 </li>
