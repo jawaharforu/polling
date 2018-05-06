@@ -1,0 +1,36 @@
+<div class="card mt-5 mb-5">
+  <div class="card-body">
+
+      <!--Table-->
+      <table *ngIf="votersList" datatable class="table table-hover table-responsive-md table-fixed">
+
+          <!--Table head-->
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>State</th>
+                  <th>Region</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+              <tr *ngFor="let p of votersList; let i = index">
+                  <td scope="row">{{i+1}}</td>
+                  <td scope="row">{{p.name}}</td>
+                  <td scope="row">{{p.mobile}}</td>
+                  <td scope="row">{{p.email}}</td>
+                  <td scope="row">{{p.state}}</td>
+                  <td scope="row">{{p.region}}</td>
+              </tr>
+          </tbody>
+          <!--Table body-->
+
+      </table>
+      <!--Table-->
+  </div>
+</div>

@@ -60,6 +60,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LifestyleComponent } from './lifestyle/lifestyle.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SinglepollComponent } from './singlepoll/singlepoll.component';
+import { VoterslistComponent } from './admin/voterslist/voterslist.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { SinglepollComponent } from './singlepoll/singlepoll.component';
     PreviousPollsComponent,
     PublishedPollsComponent,
     LifestyleComponent,
-    SinglepollComponent
+    SinglepollComponent,
+    VoterslistComponent
   ],
   imports: [
     TruncateModule,

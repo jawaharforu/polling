@@ -153,3 +153,23 @@ module.exports.getPreviousPolls = function(mobile, callback){
         ]
      , callback);
 }
+
+module.exports.getUserPolls = function(pollid, callback){
+    Result.aggregate(
+        [
+            {
+                $match: {
+                    'pollid': mongoose.Types.ObjectId(pollid)
+                }
+            },
+            {
+                $lookup: {
+                    from: 'votedusers',
+                    localField: 'voteduserid',
+                    foreignField: '_id',
+                    as: 'voterdetail'
+                }
+            }
+        ]
+     , callback);
+}

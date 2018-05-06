@@ -24,6 +24,7 @@ import { PreviousPollsComponent } from './previous-polls/previous-polls.componen
 import { PublishedPollsComponent } from './published-polls/published-polls.component';
 import { LifestyleComponent } from './lifestyle/lifestyle.component';
 import { SinglepollComponent } from './singlepoll/singlepoll.component';
+import { VoterslistComponent } from './admin/voterslist/voterslist.component';
 
 export const AppRoutes: Routes = [
     {
@@ -133,6 +134,11 @@ export const AppRoutes: Routes = [
                 component: ContactUsManageComponent,
                 outlet: 'adminchild'
             },
+            {
+                path: 'voterslist',
+                component: VoterslistComponent,
+                outlet: 'adminchild'
+            }
         ],
         canActivate: [AuthGuard]
     },
