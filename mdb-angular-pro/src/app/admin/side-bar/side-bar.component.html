@@ -72,6 +72,17 @@
                             </ul>
                         </mdb-item-body>
                 </mdb-item>
+                <mdb-item>
+                    <mdb-item-head mdbRippleRadius>
+                        <i class="fa fa-chevron-right"></i> Voters</mdb-item-head>
+                        <mdb-item-body>
+                            <ul>
+                                <li>
+                                    <a [routerLink]="['/admin', {outlets: {adminchild: ['voterslist']}}]" class="waves-effect" mdbRippleRadius>Voters List</a>
+                                </li>
+                            </ul>
+                        </mdb-item-body>
+                </mdb-item>
                   </mdb-squeezebox>
               </ul>
 

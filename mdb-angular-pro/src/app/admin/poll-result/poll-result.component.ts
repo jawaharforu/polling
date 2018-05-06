@@ -17,8 +17,10 @@ export class PollResultComponent implements OnInit {
   statewiselist: any;
   pollId: String;
   regionwiselist: any;
+  userwiselist: any;
   @ViewChild('autoShownModal') public autoShownModal: ModalDirective;
   public isModalShown: Boolean = false;
+  public isModalShownuser: Boolean = false;
   // chart start
   public chartType: String = 'pie';
 
@@ -88,6 +90,14 @@ export class PollResultComponent implements OnInit {
     .subscribe(data => {
       this.regionwiselist = data.data;
       this.isModalShown = true;
+    });
+  }
+
+  getUserWise() {
+    this.resultService.getUserPolls(this.pollId)
+    .subscribe(data => {
+      this.userwiselist = data.data;
+      this.isModalShownuser = true;
     });
   }
 

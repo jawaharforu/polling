@@ -46,7 +46,9 @@
                       </li>
                     </ul>
                   </td>
-                  <td><button type="button" (click)="getRegionWise(r._id)" class="btn btn-success waves-light" mdbRippleRadius>Get Region Wise <i class="fa fa-pie-chart fa-lg" aria-hidden="true"></i></button></td>
+                  <td><button type="button" (click)="getRegionWise(r._id)" class="btn btn-success waves-light" mdbRippleRadius>Get Region Wise <i class="fa fa-pie-chart fa-lg" aria-hidden="true"></i></button>
+                    <button type="button" (click)="getUserWise(r._id)" class="btn btn-primary waves-light" mdbRippleRadius>Get User Wise <i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
+                </td>
               </tr>
           </tbody>
       </table>
@@ -91,3 +93,41 @@
       </div>
   </div>
 </div>
+<div *ngIf="isModalShownuser" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #style="mdb-modal" id="centralModalSuccess" style="overflow: auto;">
+    <div class="modal-dialog modal-notify modal-info modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Update Poll</p>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-hover table-responsive-md table-fixed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>State</th>
+                        <th>Region</th>
+                        <th>Voted to</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of userwiselist; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{r.voterdetail[0].name}}</td>
+                        <td>{{r.voterdetail[0].mobile}}</td>
+                        <td>{{r.voterdetail[0].email}}</td>
+                        <td>{{r.state}}</td>
+                        <td>{{r.region}}</td>
+                        <td>{{r.votedto}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+  </div>

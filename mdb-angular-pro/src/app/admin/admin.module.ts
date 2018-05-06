@@ -33,6 +33,7 @@ import { LinkService } from '../services/link.service';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ToastModule } from '../typescripts/pro/alerts';
 import { AuthGuard } from '../guards/auth.guard';
+import { VoterslistComponent } from './voterslist/voterslist.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { AuthGuard } from '../guards/auth.guard';
     AllowedpollsComponent,
     PollResultComponent,
     NpIntelligenceManageComponent,
-    ContactUsManageComponent
+    ContactUsManageComponent,
+    VoterslistComponent
   ],
   // tslint:disable-next-line:max-line-length
   providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService, LinkService],

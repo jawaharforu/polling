@@ -85,4 +85,11 @@ router.get('/getpreviouspolls/:mobile', (req, res, next) => {
         res.json({success: true, msg: 'Result', data: poll});
     });
 });
+
+router.get('/getuserpolls/:pollid', (req, res, next) => {
+    Result.getUserPolls(req.params.pollid, (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, msg: 'Result', data: poll});
+    });
+});
 module.exports = router;
