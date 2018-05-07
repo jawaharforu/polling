@@ -15,6 +15,13 @@ router.get('/users', (req, res, next) => {
     });
 });
 
+router.get('/votedusers', (req, res, next) => {
+    User.getAllVotedUser((err, user) => {
+        if(err) throw err;
+        res.json({success: true, data: user});
+    });
+});
+
 // Registration
 router.post('/register', (req, res, next) => {
     //res.send('registration');

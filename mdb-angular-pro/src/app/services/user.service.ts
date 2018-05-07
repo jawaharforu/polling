@@ -30,6 +30,12 @@ export class UserService {
     return this.http.get(this.link + 'api/users/users', {headers: headers})
       .map(res => res.json());
   }
+  getAllVotedUser() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.link + 'api/users/votedusers', {headers: headers})
+      .map(res => res.json());
+  }
   updateUser(userid, updateUser) {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
