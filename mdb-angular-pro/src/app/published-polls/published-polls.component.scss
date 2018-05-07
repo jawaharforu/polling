@@ -1,16 +1,226 @@
-/*--Mobile Responsive--*/
-@media only screen and (max-width: 767px) {
-    .polls-content {
-        margin-top: 30px;
-    }
-    .img-span img {
-        width: 100%;
-    }
-    .trending-polls-content {
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-    }
+/*--Header--*/
+body {
+    background: #F7F8FC;
+}
+a.navbar-brand img {
+    width: 220px;
+}
+.header-top {
+    background: #FBFCFE;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+}
+.polls-all {
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: 1px solid #E7EAF4;
+    padding: 5px;
+}
+.polls-all ul li a.nav-link.waves-effect.waves-light {
+    color: #9C9C9C!important;
+    font-weight: 400;
+}
+/*--Content--*/
+.polls-heading-and-select {
+    text-align: center;
+	padding: 12px 0;
+}
+.polls-heading-and-select h4 {
+	color: rgba(63, 99, 172, 0.92);
+    font-weight: 500;
+    font-size: 22px;
+}
+.polls-heading-and-select select.mdb-select {
+    width: 306px;
+    padding: 7px 6px;
+    background: rgba(255, 255, 255, 0.75);
+    color: #909193;
+    border-color: rgba(144, 145, 147, 0.35);
+}
+.polls-heading-and-select label {
+    color: #909193;
+    font-weight: 400;
+}
+.polls-content {
+    background: #F5F6FA;
+    padding: 30px 0;
+}
+.polls-content select.mdb-select {
+    width: 100%;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.75);
+    color: #909193;
+    border-color: rgba(144, 145, 147, 0.35);
+}
+.polls-content .justify-content-end {
+    padding-bottom: 30px;
+}
+.trending-polls h2 span, .polls-content-middle h2 span {
+    color: #3F62AD;
+    font-weight: 600;
+}
+.trending-polls h2, .polls-content-middle h2 {
+    color: #4A4A4A;
+	padding-bottom: 10px;
+}
+.trending-polls-content a p {
+    color: #454749;
+    font-weight: 400;
+}
+.trending-polls-content span {
+    background: #048B42;
+    color: white;
+    padding: 4px 14px;
+    font-size: 13px;
 }
 .trending-polls-content .img-span {
+    position: relative;
+    margin-bottom: 18px;
+    padding-bottom: 0px;
     cursor: pointer;
+}
+.trending-polls-content span {
+    background: #048B42;
+    color: white;
+    padding: 2px 18px 2px 8px;
+    font-size: 13px;
+    position: absolute;
+    bottom: -7px;
+}
+.date-time {
+    color: #9B9DA2;
+    font-size: 14px;
+    font-weight: 500;
+}
+.trending-polls-content a p:hover {
+    color: #6BC0E3;
+}
+.polls-content-middle {
+    background: #F7F8FC;
+    padding: 40px 0;
+}
+.load-button {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.load-button .btn-red {
+    padding: 7px 25px;
+    font-size: 17px;
+    font-weight: 300;
+    background: #EA0001;
+    text-transform: capitalize;
+}
+/*--Footer--*/
+.header-tools>ul>li {
+    position: relative;
+    display: block;
+    float: left;
+    vertical-align: middle;
+}
+.header-tools>ul>li>a {
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 0 8px;
+    display: inline-block;
+	color: #6F6F6F;
+}
+/*.footer-content p {
+    width: 50%;
+    float: left;
+}*/
+.header-col.right.header_top {
+    float: right;
+}
+footer .container {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+ul.icons {
+    margin: 0;
+}
+li.link_li::before {
+    content: '';
+    border-right: 1px solid gray;
+    width: 2px;
+    height: 13px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+.footer-content {
+    padding-top: 15px;
+}
+
+
+.input-group.md-form.form-sm.form-1 input{
+    border: 1px solid #bdbdbd;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input.red-border  {
+    border: 1px solid #ef9a9a;
+}
+.input-group.md-form.form-sm.form-2 input.lime-border  {
+    border: 1px solid #cddc39;
+}
+.input-group.md-form.form-sm.form-2 input.amber-border  {
+    border: 1px solid #ffca28;
+}
+                
+
+/*--Mobile Responsive--*/
+@media only screen and (max-width: 767px) {
+    .trending-polls-content {
+         margin-bottom: 40px !important;
+    }
+    .polls-content-middle {
+        padding: 0;
+    }
+	.img-span img {
+		width: 100%;
+	}
+	.load-button {
+		margin-top: 20px;
+		padding-top: 10px;
+	}
+	.polls-all .navbar-toggler {
+		background-color: rgb(63, 98, 173);
+   		padding: 0.15rem 0.3rem;
+	}
+	.polls-all {
+		padding: 10px 15px;
+	}
+	ul.icons {
+		overflow: auto;
+		padding: 0 11px;
+	}
+	.header-col.right.header_top {
+		float: none;
+	}
+	.footer-content p {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.polls-heading-and-select select.mdb-select {
+    	width: 100%;
+	}
+}
+
+/*-- For Tablet --*/
+@media (min-width: 768px) and (max-width: 991px) { 
+	.img-span img {
+		width: 100%;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+	.img-span img {
+		width: 100%;
+	}
 }
