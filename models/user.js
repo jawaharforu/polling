@@ -72,6 +72,14 @@ module.exports.getAllUser = function(callback){
     User.find(query, callback);
 };
 
+module.exports.getAllVotedUser = function(callback){
+    const query = {
+        superadmin: 0,
+        role: { $in: [ 'users' ] }
+    }
+    User.find(query, callback);
+};
+
 module.exports.addUser = function(newUser, callback){
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {

@@ -1886,7 +1886,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_voteduser_service__ = __webpack_require__("../../../../../src/app/services/voteduser.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1900,14 +1900,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var VoterslistComponent = /** @class */ (function () {
-    function VoterslistComponent(spinnerService, voteduserService) {
+    function VoterslistComponent(spinnerService, userService) {
         this.spinnerService = spinnerService;
-        this.voteduserService = voteduserService;
+        this.userService = userService;
     }
     VoterslistComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.spinnerService.show();
-        this.voteduserService.getVotersList()
+        this.userService.getAllVotedUser()
             .subscribe(function (data) {
             _this.votersList = data.data;
             _this.spinnerService.hide();
@@ -1920,7 +1920,7 @@ var VoterslistComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/admin/voterslist/voterslist.component.scss")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
-            __WEBPACK_IMPORTED_MODULE_2__services_voteduser_service__["a" /* VoteduserService */]])
+            __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]])
     ], VoterslistComponent);
     return VoterslistComponent;
 }());
@@ -4153,7 +4153,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*--Mobile Responsive--*/\n@media only screen and (max-width: 767px) {\n  .polls-content {\n    margin-top: 30px; }\n  .img-span img {\n    width: 100%; }\n  .trending-polls-content {\n    margin-bottom: 20px;\n    padding-bottom: 10px; } }\n", ""]);
+exports.push([module.i, "/*--Mobile Responsive--*/\n@media only screen and (max-width: 767px) {\n  .polls-content {\n    margin-top: 30px; }\n  .img-span img {\n    width: 100%; }\n  .trending-polls-content {\n    margin-bottom: 20px;\n    padding-bottom: 10px; } }\n\n.trending-polls-content .img-span {\n  cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -4828,6 +4828,12 @@ var UserService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         return this.http.get(this.link + 'api/users/users', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getAllVotedUser = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get(this.link + 'api/users/votedusers', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateUser = function (userid, updateUser) {

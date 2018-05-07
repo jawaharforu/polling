@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { VoteduserService } from '../../services/voteduser.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-voterslist',
@@ -13,12 +13,12 @@ export class VoterslistComponent implements OnInit {
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
-    private voteduserService: VoteduserService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.spinnerService.show();
-    this.voteduserService.getVotersList()
+    this.userService.getAllVotedUser()
     .subscribe(data => {
       this.votersList = data.data;
       this.spinnerService.hide();
