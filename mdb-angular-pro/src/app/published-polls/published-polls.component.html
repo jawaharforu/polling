@@ -1,5 +1,5 @@
 <app-nav-bar *ngIf="navbar"></app-nav-bar>
-<section *ngIf="pollListing.length==0">
+<section *ngIf="pollListing && pollListing.length==0">
 	<div class="polls-content">
 		<div class="container">
 			<div class="trending-polls">
