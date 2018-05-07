@@ -93,7 +93,9 @@ export class HomeComponent implements OnInit {
     this.userService.getLoggedInUser().then((res) => {
       if (res) {
         this.user = res;
-        this.mobilenum = this.user.mobile;
+        if ( this.user ) {
+          this.mobilenum = this.user.mobile;
+        }
       }
     });
     this.spinnerService.show();

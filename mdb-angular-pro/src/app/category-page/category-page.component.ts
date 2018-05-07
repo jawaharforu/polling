@@ -27,7 +27,7 @@ export class CategoryPageComponent implements OnInit {
   votingPoll: any;
   polloption: any[] = [];
   jsonval: any;
-  mobile: String;
+  mobile: String = '';
   email: String;
   mobilenum: String = '';
   emailnum: String = '';
@@ -114,7 +114,9 @@ export class CategoryPageComponent implements OnInit {
  
     this.userService.getLoggedInUser().then((res) => {
       this.user = res;
-      this.mobilenum = this.user.mobile;
+      if ( this.user ) {
+        this.mobilenum = this.user.mobile;
+      }
     });
   }
 
@@ -219,7 +221,7 @@ export class CategoryPageComponent implements OnInit {
       mobile: this.mobile,
       email: this.email
     }
-    if (this.mobile === undefined || this.email === undefined) {
+    if (this.mobile === undefined || this.email === undefined || this.mobile === '') {
       this.toast.error('All Fields Required');
       return false;
     }
