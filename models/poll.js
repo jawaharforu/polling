@@ -205,7 +205,7 @@ module.exports.getPollByResult = function(callback) {
                 $and: [ 
                     {status: true}, 
                     {result: true},
-                    {todate: {$gte:new Date()}}
+                    {todate: {$lte:new Date()}}
                 ]
 
             }
