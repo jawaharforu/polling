@@ -134,6 +134,7 @@ export class CategoryPageComponent implements OnInit {
       this.toast.error('Select Option');
       return false;
     }
+    this.spinnerService.show();
     const jsonip = JSON.parse(this.jsonval._body);
     let newVoteduser;
     if (this.mobilenum === '') {
@@ -192,6 +193,7 @@ export class CategoryPageComponent implements OnInit {
           }
           j++;
         }
+        this.spinnerService.hide();
       });
     });
   }
