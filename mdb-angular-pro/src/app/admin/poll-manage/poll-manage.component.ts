@@ -43,7 +43,7 @@ export class PollManageComponent implements OnInit {
       for (const prop of data.data) {
         this.categotylist.push({ value: prop._id, label: prop.name });
         if ( j === data.data.length ) {
-          this.getCategoryList(this.categotylist[0].value);
+          // this.getCategoryList(this.categotylist[0].value);
         }
         j++;
       }
@@ -56,13 +56,13 @@ export class PollManageComponent implements OnInit {
       { value: 'Single', label: 'Single' },
       { value: 'Multiple', label: 'Multiple' },
     ];
-    /*
+    
     this.pollService.getPoll()
     .subscribe(data => {
-      // this.pollList = data.data;
+      this.pollList = data.data;
       this.spinnerService.hide();
     });
-    */
+    
     
     this.pollCreateForm = this._fb.group({
       pollname: this._fb.control(null),
@@ -123,18 +123,22 @@ export class PollManageComponent implements OnInit {
   }
 
   updateFunction(pollid, updateCategory, num) {
+    this.spinnerService.show();
     this.pollService.updatePoll(pollid, updateCategory)
       .subscribe(data => {
         if (data.success) {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
           if ( num === 1) {
-            this.router.navigate(['/admin', {outlets: {'adminchild': ['pollmanage']}}]);
+            // this.router.navigate(['/admin', {outlets: {'adminchild': ['pollmanage']}}]);
+            location.reload();
           } else {
             this.pollList = data.data;
           }
           this.pollCreateForm.reset();
+          this.spinnerService.hide();
         } else {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
+          this.spinnerService.hide();
         }
     });
   }
