@@ -77,4 +77,10 @@ export class UserService {
       resolve(JSON.parse(localStorage.getItem('user')));
     });
   }
+  Forgotpassword(email) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.link + 'api/users/forgotpass', email, {headers: headers})
+      .map(res => res.json());
+  }
 }

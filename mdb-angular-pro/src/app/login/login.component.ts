@@ -5,6 +5,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ValidationService } from '../services/validation.service';
 import { UserService } from '../services/user.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ export class LoginComponent implements OnInit {
   mobile: Number;
   password: String;
   show: Boolean = true;
+  forgot: Boolean = false;
   userCreateForm: FormGroup;
+  forgotemail: String;
 
   constructor(
     private authService: AuthService,
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _fb: FormBuilder,
     private validationService: ValidationService,
+    private spinnerService: Ng4LoadingSpinnerService,
     private userService: UserService
   ) { }
 
@@ -56,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.authService.storeUserData(data.token, data.user);
           this._flashMessagesService.show('You are now logged in', {cssClass: 'alert-success', timeout: 3000});
           if (data.user.role === 'users') {
-            this.router.navigate(['/']);
+            location.reload();
           } else {
             this.router.navigate(['/admin', {outlets: {'adminchild': ['pollmanage']}}]);
           }
@@ -117,6 +121,27 @@ export class LoginComponent implements OnInit {
       } else {
         this._flashMessagesService.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
       }
+    });
+  }
+
+  forgotPassword() {
+    if (this.forgotemail === '' || this.forgotemail === undefined) {
+      this._flashMessagesService.show('Enter Your Email', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+    const forgotemail = {
+      email: this.forgotemail
+    }
+    this.spinnerService.show();
+    this.userService.Forgotpassword(forgotemail)
+    .subscribe(data => {
+      if (data.success) {
+        this._flashMessagesService.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+        this.forgot = false;
+      } else {
+        this._flashMessagesService.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+      }
+      this.spinnerService.hide();
     });
   }
 }

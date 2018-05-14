@@ -2,7 +2,8 @@
 <section class="form-elegant">
 
     <!--Form without header-->
-    <div class="card" *ngIf="show">
+
+    <div class="card" *ngIf="show && !forgot">
 
         <div class="card-body mx-4">
 
@@ -22,7 +23,7 @@
             <div class="md-form pb-3">
                 <input type="password" [(ngModel)]="password" id="Form-pass1" class="form-control" mdbActive>
                 <label for="Form-pass1">Your password</label>
-                <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#" class="blue-text ml-1"> Password?</a></p>
+                <p class="font-small blue-text d-flex justify-content-end"><a (click)="forgot = !forgot" class="blue-text ml-1">Forgot Password?</a></p>
             </div>
 
             <div class="text-center mb-3">
@@ -46,7 +47,7 @@
         </div>
 
     </div>
-    <div class="card" *ngIf="!show">
+    <div class="card" *ngIf="!show && !forgot">
 
         <div class="card-body mx-4">
 
@@ -103,6 +104,33 @@
         <!--Footer-->
         <div class="modal-footer mx-5 pt-3 mb-1">
             <p class="font-small grey-text d-flex justify-content-end">Already a member? <a (click)="show = !show" class="blue-text ml-1"> Sign In</a></p>
+        </div>
+
+    </div>
+    <div class="card" *ngIf="forgot">
+
+        <div class="card-body mx-4">
+
+            <!--Header-->
+            <div class="text-center">
+                <h3 class="dark-grey-text mb-5"><strong>Forgot Password</strong></h3>
+            </div>
+            <div class="md-form">
+                <flash-messages></flash-messages>
+            </div>
+            <!--Body-->
+            <div class="md-form">
+                <input type="text" id="Form-email2" [(ngModel)]="forgotemail" class="form-control" mdbActive>
+                <label for="Form-email2">Your Email</label>
+            </div>
+            <div class="text-center mb-3">
+                <button type="button" (click)="forgotPassword()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Reset Password</button>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer mx-5 pt-3 mb-1">
+            <p class="font-small grey-text d-flex justify-content-end">Already a member? <a (click)="forgot = !forgot" class="blue-text ml-1"> Sign In</a></p>
         </div>
 
     </div>

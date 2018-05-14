@@ -24,6 +24,7 @@ export class PollManageComponent implements OnInit {
   pollCreateForm: FormGroup;
   updatePolls: any;
   imageUrl: String;
+  categoty: String;
   public myDatePickerOptions: IMyOptions = {
     
   };
@@ -34,7 +35,20 @@ export class PollManageComponent implements OnInit {
     private _fb: FormBuilder,
     private spinnerService: Ng4LoadingSpinnerService,
     private router: Router
-  ) { }
+  ) { 
+    this.categoryService.getCategory()
+    .subscribe(data => {
+      this.categotylist = [];
+      let j = 1;
+      for (const prop of data.data) {
+        this.categotylist.push({ value: prop._id, label: prop.name });
+        if ( j === data.data.length ) {
+          this.getCategoryList(this.categotylist[0].value);
+        }
+        j++;
+      }
+    });
+  }
 
   ngOnInit() {
     this.spinnerService.show();
@@ -42,11 +56,14 @@ export class PollManageComponent implements OnInit {
       { value: 'Single', label: 'Single' },
       { value: 'Multiple', label: 'Multiple' },
     ];
+    /*
     this.pollService.getPoll()
     .subscribe(data => {
-      this.pollList = data.data;
+      // this.pollList = data.data;
       this.spinnerService.hide();
     });
+    */
+    
     this.pollCreateForm = this._fb.group({
       pollname: this._fb.control(null),
       selectedPollType: this._fb.control(null),
@@ -59,15 +76,24 @@ export class PollManageComponent implements OnInit {
       todate: this._fb.control(null),
       updatepollid: this._fb.control(null)
     });
-    this.categoryService.getCategory()
-    .subscribe(data => {
-      this.categotylist = [];
-      for (const prop of data.data) {
-        this.categotylist.push({ value: prop._id, label: prop.name });
-      }
-    });
   }
 
+  getCategoryList(category) {
+    if (category !== undefined) {
+      this.spinnerService.show();
+      this.categoty = category;
+      this.pollService.getPollByPollCategory(category)
+          // tslint:disable-next-line:no-shadowed-variable
+      .subscribe(data => {
+        this.pollList = data.data;
+        this.spinnerService.hide();
+      });
+    }
+  }
+
+  getCategoryId() {
+    this.getCategoryList(this.categoty);
+  }
   initItemRows() {
     return this._fb.group({
         itemname: ['']
@@ -96,12 +122,16 @@ export class PollManageComponent implements OnInit {
     });
   }
 
-  updateFunction(pollid, updateCategory) {
+  updateFunction(pollid, updateCategory, num) {
     this.pollService.updatePoll(pollid, updateCategory)
       .subscribe(data => {
         if (data.success) {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
-          this.pollList = data.data;
+          if ( num === 1) {
+            this.router.navigate(['/admin', {outlets: {'adminchild': ['pollmanage']}}]);
+          } else {
+            this.pollList = data.data;
+          }
           this.pollCreateForm.reset();
         } else {
           this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
@@ -128,7 +158,7 @@ export class PollManageComponent implements OnInit {
       this._flashMessagesService.show('Please Fill All Mandatory Fields!', { cssClass: 'alert-danger', timeout: 3000 });
       return false;
     }
-    this.updateFunction(pollid, updatePoll);
+    this.updateFunction(pollid, updatePoll, 1);
     this.hideModal();
   }
 
@@ -205,7 +235,7 @@ export class PollManageComponent implements OnInit {
         };
     }
 
-    this.updateFunction(p._id, this.updatePolls);
+    this.updateFunction(p._id, this.updatePolls, 2);
   }
 
   public showModal(p): void {

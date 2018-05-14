@@ -96,6 +96,13 @@ export class PollService {
     .map(res => res.json());
   }
 
+  getPollByPollCategory(categoryid) {
+    const headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.get(this.link + 'api/polls/pollcategories/' + categoryid, {headers: headers})
+    .map(res => res.json());
+  }
+
   getPollByResult() {
     const headers = new Headers();
     headers.append('Content-type', 'application/json');
