@@ -4,6 +4,8 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 
 const User = require('../models/user');
 
@@ -207,6 +209,56 @@ router.get('/userpoll/:uid', (req, res, next) => {
     User.getUserWithPoll(req.params.uid, (err, user) => {
         if(err) throw err;
         res.json({success: true, data: user});
+    });
+});
+
+router.post('/forgotpass', (req, res, next) => {
+    User.getUserByEmailCheck(req.body.email, (err, users) => {
+        if(err) throw err;
+        if(users){
+            let pass = 'P' + Math.floor(Math.random() * 11111) + 1111;
+            let updatedUser = {
+                password: pass
+            };
+            User.updateUserPassword(users._id, updatedUser, (err, result) => {
+                if(err){
+                    res.json({success: false, msg: 'Failed to Reset Your Password'});
+                }else{
+                    const output = `
+                        <p>Your Nationpulse password has been reseted</p>
+                        <ul>  
+                        <li>You New Password: ${pass}</li>
+                        </ul>
+                    `;
+                    const transport = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                            user: 'nationpulseweb@gmail.com',
+                            pass: '%$t2DFS6#k$',
+                        },
+                    });
+
+                    // setup email data with unicode symbols
+                    const mailOptions = {
+                        from: 'nationpulseweb@gmail.com',
+                        to: req.body.email,
+                        subject: 'NationPulse Password Reset',
+                        html: output,
+                    };
+
+                    // send mail with defined transport object
+                    transport.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        return res.json({success:false, msg: 'Your Password has been reseted, Please check your email and Login again'});
+                    });
+                    
+                }
+            });
+        } else {
+            return res.json({success:false, msg: "User email not exist"});
+        }
     });
 });
 module.exports = router;

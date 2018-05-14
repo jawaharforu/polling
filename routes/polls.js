@@ -109,6 +109,13 @@ router.get('/pollcategory/:categoryid', (req, res, next) => {
     }); 
 });
 
+router.get('/pollcategories/:categoryid', (req, res, next) => {
+    Poll.getAllPollsCategory(req.params.categoryid, (err, poll) => {
+        if(err) throw err;
+        res.json({success: true, data: poll}); 
+    });
+});
+
 router.get('/pollstatusresult', (req, res, next) => {
     Poll.getPollByResult( (err, poll) => {
         if(err) throw err;

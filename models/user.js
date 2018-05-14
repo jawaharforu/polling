@@ -56,6 +56,14 @@ module.exports.getUserByMobileCheck = function(mobile, email, callback){
     User.findOne({ $or: [ { mobile: mobile }, { email: email } ] }, callback);
 };
 
+module.exports.getUserByEmailCheck = function(email, callback){
+    const query = {
+        email: email,
+        status: true
+    }
+    User.findOne(query, callback);
+};
+
 module.exports.getUserByMobile = function(mobile, callback){
     const query = {
         mobile: mobile,

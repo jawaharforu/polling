@@ -68,6 +68,24 @@ module.exports.getAllPolls = function(callback) {
     ], callback);
 };
 
+module.exports.getAllPollsCategory = function(categoryid, callback) {
+    Poll.aggregate([
+        { 
+            $match: {
+                'categoryid': mongoose.Types.ObjectId(categoryid)
+            }
+        },
+        {
+            $lookup: {
+                from: 'categories',
+                localField: 'categoryid',
+                foreignField: '_id',
+                as: 'categoryname'
+            }
+        }
+    ], callback);
+};
+
 module.exports.getPollById = function(pollid, callback) {
     //Poll.findById(pollid, callback);
     Poll.aggregate([

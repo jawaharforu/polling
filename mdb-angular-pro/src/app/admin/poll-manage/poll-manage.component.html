@@ -1,6 +1,8 @@
+<div class="card mt-5 mb-5"><div class="card-body">
+    <mdb-select [(ngModel)]="categoty" (ngModelChange)="getCategoryId()" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
+</div></div>
 <div class="card mt-5 mb-5">
         <div class="card-body">
-    
             <!--Table-->
             <table *ngIf="pollList" datatable class="table table-hover table-responsive-md table-fixed">
     
