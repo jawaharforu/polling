@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthServices } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class SideBarComponent implements OnInit {
 
   user: any;
   constructor(
-    private authService: AuthService,
+    private authService: AuthServices,
     private router: Router
   ) {
     this.user = JSON.parse(localStorage.getItem('user'));

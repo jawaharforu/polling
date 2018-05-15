@@ -29,6 +29,8 @@
     "angular2-cookie": "^1.2.6",
     "angular2-flash-messages": "^2.0.5",
     "angular2-jwt": "^0.2.3",
+    "angular5-social-login": "^1.0.9",
+    "angularx-social-login": "^1.1.8",
     "chart.js": "2.5.x",
     "classlist.js": "1.1.x",
     "core-js": "2.4.x",

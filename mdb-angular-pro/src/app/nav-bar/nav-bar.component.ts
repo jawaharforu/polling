@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from '../typescripts/free';
-import { AuthService } from '../services/auth.service';
+import { AuthServices } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   isModalShown: Boolean = false;
   user: any;
   constructor(
-    private authService: AuthService,
+    private authService: AuthServices,
     private router: Router
   ) { 
     this.user = JSON.parse(localStorage.getItem('user'));

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthServices } from '../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ValidationService } from '../services/validation.service';
 import { UserService } from '../services/user.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { AuthService } from 'angular2-social-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
@@ -20,15 +21,17 @@ export class LoginComponent implements OnInit {
   forgot: Boolean = false;
   userCreateForm: FormGroup;
   forgotemail: String;
+  sub: any;
 
   constructor(
-    private authService: AuthService,
+    private authService: AuthServices,
     private _flashMessagesService: FlashMessagesService,
     private router: Router,
     private _fb: FormBuilder,
     private validationService: ValidationService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private userService: UserService
+    private userService: UserService,
+    public _auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -144,4 +147,36 @@ export class LoginComponent implements OnInit {
       this.spinnerService.hide();
     });
   }
+
+  socialLogin(emailid) {
+    const email = {
+      email: emailid
+    }
+    this.userService.socialLogin(email)
+    .subscribe(data => {
+      if (data.success) {
+        this.authService.storeUserData(data.token, data.user);
+        this._flashMessagesService.show('You are now logged in', {cssClass: 'alert-success', timeout: 3000});
+        if (data.user.role === 'users') {
+          location.reload();
+        } else {
+          this.router.navigate(['/admin', {outlets: {'adminchild': ['pollmanage']}}]);
+        }
+      } else {
+        this._flashMessagesService.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+      }
+    });
+  }
+  signIn(provider) {
+    this.sub = this._auth.login(provider).subscribe(
+      (data) => {
+console.log(data);
+                  this.socialLogin(data.email);
+                  // user data
+                  // tslint:disable-next-line:max-line-length
+                  // name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
+                }
+    )
+  }
 }
+
