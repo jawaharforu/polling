@@ -13,6 +13,7 @@ import { AuthService } from 'angular2-social-login';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent implements OnInit {
 
   mobile: Number;
@@ -169,9 +170,12 @@ export class LoginComponent implements OnInit {
   }
   signIn(provider) {
     this.sub = this._auth.login(provider).subscribe(
-      (data) => {
-console.log(data);
-                  this.socialLogin(data.email);
+      (data: any) => {
+        if ( provider === 'google') {
+          this.socialLogin(data.email);
+        } else {
+          console.log(data);
+        }
                   // user data
                   // tslint:disable-next-line:max-line-length
                   // name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
