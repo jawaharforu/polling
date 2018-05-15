@@ -3756,12 +3756,14 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.signIn = function (provider) {
         var _this = this;
         this.sub = this._auth.login(provider).subscribe(function (data) {
-            if (provider === 'google') {
-                _this.socialLogin(data.email);
-            }
-            else {
-                console.log(data);
-            }
+            _this.socialLogin(data.email);
+            _this.userCreateForm.setValue({
+                name: data.name,
+                email: data.email,
+                mobile: '',
+                password: '',
+                passwordre: ''
+            });
             // user data
             // tslint:disable-next-line:max-line-length
             // name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
