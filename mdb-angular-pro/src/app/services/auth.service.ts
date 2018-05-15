@@ -5,7 +5,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { LinkService } from './link.service';
 
 @Injectable()
-export class AuthService {
+export class AuthServices {
 
   // link: String = 'http://localhost:3000/';
   link: String;

@@ -1573,7 +1573,7 @@ var SideBarComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/admin/side-bar/side-bar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/admin/side-bar/side-bar.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthServices */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["e" /* Router */]])
     ], SideBarComponent);
     return SideBarComponent;
@@ -2085,6 +2085,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59_ng2_search_filter__ = __webpack_require__("../../../../ng2-search-filter/ng2-search-filter.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__singlepoll_singlepoll_component__ = __webpack_require__("../../../../../src/app/singlepoll/singlepoll.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__admin_voterslist_voterslist_component__ = __webpack_require__("../../../../../src/app/admin/voterslist/voterslist.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62_angular2_social_login__ = __webpack_require__("../../../../angular2-social-login/dist/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2154,6 +2155,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+var providers = {
+    'google': {
+        'clientId': '1095819018311-2v9a60oik8g9sebsnv5iv5fkr108liii.apps.googleusercontent.com'
+    },
+    /*'linkedin': {
+      'clientId': 'LINKEDIN_CLIENT_ID'
+    },*/
+    'facebook': {
+        'clientId': '575137636205374',
+        'apiVersion': 'v3.0' // like v2.4
+    }
+};
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -2198,6 +2212,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_25_ng2_truncate__["a" /* TruncateModule */],
+                __WEBPACK_IMPORTED_MODULE_62_angular2_social_login__["a" /* Angular2SocialLoginModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_54_angular_datatables__["a" /* DataTablesModule */],
                 __WEBPACK_IMPORTED_MODULE_42_ng2_google_charts__["a" /* Ng2GoogleChartsModule */],
@@ -2219,7 +2234,7 @@ var AppModule = /** @class */ (function () {
                 })
             ],
             // tslint:disable-next-line:max-line-length
-            providers: [__WEBPACK_IMPORTED_MODULE_8__typescripts_pro_index__["b" /* MDBSpinningPreloader */], __WEBPACK_IMPORTED_MODULE_18__services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_20__services_poll_service__["a" /* PollService */], __WEBPACK_IMPORTED_MODULE_27__services_voteduser_service__["a" /* VoteduserService */], __WEBPACK_IMPORTED_MODULE_28__services_result_service__["a" /* ResultService */], __WEBPACK_IMPORTED_MODULE_29__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_31__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_35__services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_36__services_validation_service__["a" /* ValidationService */], __WEBPACK_IMPORTED_MODULE_49__services_contact_service__["a" /* ContactService */], __WEBPACK_IMPORTED_MODULE_52__services_link_service__["a" /* LinkService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_8__typescripts_pro_index__["b" /* MDBSpinningPreloader */], __WEBPACK_IMPORTED_MODULE_18__services_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_20__services_poll_service__["a" /* PollService */], __WEBPACK_IMPORTED_MODULE_27__services_voteduser_service__["a" /* VoteduserService */], __WEBPACK_IMPORTED_MODULE_28__services_result_service__["a" /* ResultService */], __WEBPACK_IMPORTED_MODULE_29__services_auth_service__["a" /* AuthServices */], __WEBPACK_IMPORTED_MODULE_31__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_35__services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_36__services_validation_service__["a" /* ValidationService */], __WEBPACK_IMPORTED_MODULE_49__services_contact_service__["a" /* ContactService */], __WEBPACK_IMPORTED_MODULE_52__services_link_service__["a" /* LinkService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */]],
             schemas: [__WEBPACK_IMPORTED_MODULE_3__angular_core__["NO_ERRORS_SCHEMA"]]
         })
@@ -2227,6 +2242,7 @@ var AppModule = /** @class */ (function () {
     return AppModule;
 }());
 
+__WEBPACK_IMPORTED_MODULE_62_angular2_social_login__["a" /* Angular2SocialLoginModule */].loadProvidersScripts(providers);
 
 
 /***/ }),
@@ -3154,7 +3170,7 @@ var AuthGuard = /** @class */ (function () {
     };
     AuthGuard = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthServices */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["e" /* Router */]])
     ], AuthGuard);
     return AuthGuard;
 }());
@@ -3534,7 +3550,7 @@ var LifestyleComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<section class=\"form-elegant\">\n\n    <!--Form without header-->\n\n    <div class=\"card\" *ngIf=\"show && !forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Sign In</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <div class=\"md-form\">\n                <input type=\"text\" id=\"Form-email1\" [(ngModel)]=\"mobile\" class=\"form-control\" mdbActive>\n                <label for=\"Form-email1\">Your mobile</label>\n            </div>\n\n            <div class=\"md-form pb-3\">\n                <input type=\"password\" [(ngModel)]=\"password\" id=\"Form-pass1\" class=\"form-control\" mdbActive>\n                <label for=\"Form-pass1\">Your password</label>\n                <p class=\"font-small blue-text d-flex justify-content-end\"><a (click)=\"forgot = !forgot\" class=\"blue-text ml-1\">Forgot Password?</a></p>\n            </div>\n\n            <div class=\"text-center mb-3\">\n                <button type=\"button\" (click)=\"onLoginSubmit()\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Sign In</button>\n            </div>\n            <!--\n            <p class=\"font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2\"> or Sign in with:</p>\n\n                <div class=\"row my-3 d-flex justify-content-center\">\n\n                    <button type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-facebook blue-text text-center\"></i></button>\n                    <button type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-twitter blue-text\"></i></button>\n                    <button type=\"button\" class=\"btn btn-white btn-rounded z-depth-1a\"><i class=\"fa fa-google-plus blue-text\"></i></button>\n                </div>\n            -->\n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Not a member? <a (click)=\"show = !show\" class=\"blue-text ml-1\"> Sign Up</a></p>\n        </div>\n\n    </div>\n    <div class=\"card\" *ngIf=\"!show && !forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Sign Up</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <form [formGroup]=\"userCreateForm\" (submit)=\"addUser()\">\n            <div class=\"md-form\">\n                <i class=\"fa fa-user prefix grey-text\"></i>\n                <input formControlName=\"name\" name=\"name\" type=\"text\" id=\"orangeForm-name\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-name\">Your name*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-mobile prefix grey-text\"></i>\n                <input formControlName=\"mobile\" name=\"mobile\" type=\"text\" id=\"orangeForm-mobile\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-mobile\">Your mobile*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-envelope prefix grey-text\"></i>\n                <input formControlName=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-email\">Your email*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-lock prefix grey-text\"></i>\n                <input formControlName=\"password\" name=\"password\" type=\"password\" id=\"orangeForm-pass\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-pass\">Your password*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-lock prefix grey-text\"></i>\n                <input  name=\"passwordre\" type=\"password\" formControlName=\"passwordre\" id=\"passwordre\" class=\"form-control\" mdbActive>\n                <label for=\"passwordre\">Confirm Password</label>\n            </div>\n            <div class=\"text-center mb-3\">\n                <button type=\"submit\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Sign Up</button>\n            </div>\n        </form>\n            <!--\n            <p class=\"font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2\"> or Sign in with:</p>\n\n                <div class=\"row my-3 d-flex justify-content-center\">\n\n                    <button type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-facebook blue-text text-center\"></i></button>\n                    <button type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-twitter blue-text\"></i></button>\n                    <button type=\"button\" class=\"btn btn-white btn-rounded z-depth-1a\"><i class=\"fa fa-google-plus blue-text\"></i></button>\n                </div>\n            -->\n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Already a member? <a (click)=\"show = !show\" class=\"blue-text ml-1\"> Sign In</a></p>\n        </div>\n\n    </div>\n    <div class=\"card\" *ngIf=\"forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Forgot Password</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <div class=\"md-form\">\n                <input type=\"text\" id=\"Form-email2\" [(ngModel)]=\"forgotemail\" class=\"form-control\" mdbActive>\n                <label for=\"Form-email2\">Your Email</label>\n            </div>\n            <div class=\"text-center mb-3\">\n                <button type=\"button\" (click)=\"forgotPassword()\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Reset Password</button>\n            </div>\n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Already a member? <a (click)=\"forgot = !forgot\" class=\"blue-text ml-1\"> Sign In</a></p>\n        </div>\n\n    </div>\n    <!--/Form without header-->\n\n</section>\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\" #style=\"mdb-modal\" id=\"centralModalSuccess\">\n        <div class=\"modal-dialog modal-notify modal-info\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <p class=\"heading lead\">Modal Success</p>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\n                        <span aria-hidden=\"true\" class=\"white-text\">×</span>\n                    </button>\n                </div>\n                <form>\n                <div class=\"modal-body\">\n                    <div class=\"md-form\">\n                        <i class=\"fa fa-envelope prefix grey-text\"></i>\n                        <input [(ngModel)]=\"email\" name=\"email\" type=\"email\" id=\"materialFormCardEmailEx\" class=\"form-control\" mdbActive>\n                        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">*Email</label>\n                    </div>\n                </div>\n                <div class=\"modal-footer justify-content-center\">\n                  <a type=\"button\" (click)=\"updateCategory(updatecategotyid)\" class=\"btn btn-primary-modal waves-light\" mdbRippleRadius>Update <i class=\"fa fa-diamond ml-1\"></i></a>\n                  <a type=\"button\" class=\"btn btn-outline-secondary-modal\" data-dismiss=\"modal\" (click)=\"style.hide()\" mdbRippleRadius>Cancle</a>\n                </div>\n              </form>\n            </div>\n        </div>\n      </div>\n            "
+module.exports = "\n<section class=\"form-elegant\">\n\n    <!--Form without header-->\n\n    <div class=\"card\" *ngIf=\"show && !forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Sign In</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <div class=\"md-form\">\n                <input type=\"text\" id=\"Form-email1\" [(ngModel)]=\"mobile\" class=\"form-control\" mdbActive>\n                <label for=\"Form-email1\">Your mobile</label>\n            </div>\n\n            <div class=\"md-form pb-3\">\n                <input type=\"password\" [(ngModel)]=\"password\" id=\"Form-pass1\" class=\"form-control\" mdbActive>\n                <label for=\"Form-pass1\">Your password</label>\n                <p class=\"font-small blue-text d-flex justify-content-end\"><a (click)=\"forgot = !forgot\" class=\"blue-text ml-1\">Forgot Password?</a></p>\n            </div>\n\n            <div class=\"text-center mb-3\">\n                <button type=\"button\" (click)=\"onLoginSubmit()\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Sign In</button>\n            </div>\n            \n            <p class=\"font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2\"> or Sign in with:</p>\n\n                <div class=\"row my-3 d-flex justify-content-center\">\n\n                    <button style=\"background: #3b5998\" (click)=\"signIn('facebook')\" type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-facebook blue-text text-center\"></i></button>\n                    <button style=\"background: #d34836\" (click)=\"signIn('google')\" type=\"button\" class=\"btn btn-white btn-rounded z-depth-1a\"><i class=\"fa fa-google-plus blue-text\"></i></button>\n                </div>\n            \n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Not a member? <a (click)=\"show = !show\" class=\"blue-text ml-1\"> Sign Up</a></p>\n        </div>\n\n    </div>\n    <div class=\"card\" *ngIf=\"!show && !forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Sign Up</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <form [formGroup]=\"userCreateForm\" (submit)=\"addUser()\">\n            <div class=\"md-form\">\n                <i class=\"fa fa-user prefix grey-text\"></i>\n                <input formControlName=\"name\" name=\"name\" type=\"text\" id=\"orangeForm-name\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-name\">Your name*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-mobile prefix grey-text\"></i>\n                <input formControlName=\"mobile\" name=\"mobile\" type=\"text\" id=\"orangeForm-mobile\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-mobile\">Your mobile*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-envelope prefix grey-text\"></i>\n                <input formControlName=\"email\" name=\"email\" type=\"text\" id=\"orangeForm-email\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-email\">Your email*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-lock prefix grey-text\"></i>\n                <input formControlName=\"password\" name=\"password\" type=\"password\" id=\"orangeForm-pass\" class=\"form-control\" mdbActive>\n                <label for=\"orangeForm-pass\">Your password*</label>\n            </div>\n            <div class=\"md-form\">\n                <i class=\"fa fa-lock prefix grey-text\"></i>\n                <input  name=\"passwordre\" type=\"password\" formControlName=\"passwordre\" id=\"passwordre\" class=\"form-control\" mdbActive>\n                <label for=\"passwordre\">Confirm Password</label>\n            </div>\n            <div class=\"text-center mb-3\">\n                <button type=\"submit\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Sign Up</button>\n            </div>\n        </form>\n            \n            <p class=\"font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2\"> or Sign in with:</p>\n\n                <div class=\"row my-3 d-flex justify-content-center\">\n\n                    <button style=\"background: #3b5998\" (click)=\"signIn('facebook')\" type=\"button\" class=\"btn btn-white btn-rounded mr-md-3 z-depth-1a\"><i class=\"fa fa-facebook blue-text text-center\"></i></button>\n                    <button style=\"background: #d34836\" (click)=\"signIn('google')\" type=\"button\" class=\"btn btn-white btn-rounded z-depth-1a\"><i class=\"fa fa-google-plus blue-text\"></i></button>\n                </div>\n        \n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Already a member? <a (click)=\"show = !show\" class=\"blue-text ml-1\"> Sign In</a></p>\n        </div>\n\n    </div>\n    <div class=\"card\" *ngIf=\"forgot\">\n\n        <div class=\"card-body mx-4\">\n\n            <!--Header-->\n            <div class=\"text-center\">\n                <h3 class=\"dark-grey-text mb-5\"><strong>Forgot Password</strong></h3>\n            </div>\n            <div class=\"md-form\">\n                <flash-messages></flash-messages>\n            </div>\n            <!--Body-->\n            <div class=\"md-form\">\n                <input type=\"text\" id=\"Form-email2\" [(ngModel)]=\"forgotemail\" class=\"form-control\" mdbActive>\n                <label for=\"Form-email2\">Your Email</label>\n            </div>\n            <div class=\"text-center mb-3\">\n                <button type=\"button\" (click)=\"forgotPassword()\" class=\"btn blue-gradient btn-block btn-rounded z-depth-1a\">Reset Password</button>\n            </div>\n        </div>\n\n        <!--Footer-->\n        <div class=\"modal-footer mx-5 pt-3 mb-1\">\n            <p class=\"font-small grey-text d-flex justify-content-end\">Already a member? <a (click)=\"forgot = !forgot\" class=\"blue-text ml-1\"> Sign In</a></p>\n        </div>\n\n    </div>\n    <!--/Form without header-->\n\n</section>\n<div *ngIf=\"isModalShown\" [config]=\"{ show: true }\" (onHidden)=\"onHidden()\" mdbModal #autoShownModal=\"mdb-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\" #style=\"mdb-modal\" id=\"centralModalSuccess\">\n        <div class=\"modal-dialog modal-notify modal-info\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <p class=\"heading lead\">Modal Success</p>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideModal()\">\n                        <span aria-hidden=\"true\" class=\"white-text\">×</span>\n                    </button>\n                </div>\n                <form>\n                <div class=\"modal-body\">\n                    <div class=\"md-form\">\n                        <i class=\"fa fa-envelope prefix grey-text\"></i>\n                        <input [(ngModel)]=\"email\" name=\"email\" type=\"email\" id=\"materialFormCardEmailEx\" class=\"form-control\" mdbActive>\n                        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">*Email</label>\n                    </div>\n                </div>\n                <div class=\"modal-footer justify-content-center\">\n                  <a type=\"button\" (click)=\"updateCategory(updatecategotyid)\" class=\"btn btn-primary-modal waves-light\" mdbRippleRadius>Update <i class=\"fa fa-diamond ml-1\"></i></a>\n                  <a type=\"button\" class=\"btn btn-outline-secondary-modal\" data-dismiss=\"modal\" (click)=\"style.hide()\" mdbRippleRadius>Cancle</a>\n                </div>\n              </form>\n            </div>\n        </div>\n      </div>\n            "
 
 /***/ }),
 
@@ -3571,6 +3587,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_social_login__ = __webpack_require__("../../../../angular2-social-login/dist/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3588,8 +3605,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(authService, _flashMessagesService, router, _fb, validationService, spinnerService, userService) {
+    function LoginComponent(authService, _flashMessagesService, router, _fb, validationService, spinnerService, userService, _auth) {
         this.authService = authService;
         this._flashMessagesService = _flashMessagesService;
         this.router = router;
@@ -3597,6 +3615,7 @@ var LoginComponent = /** @class */ (function () {
         this.validationService = validationService;
         this.spinnerService = spinnerService;
         this.userService = userService;
+        this._auth = _auth;
         this.show = true;
         this.forgot = false;
     }
@@ -3712,19 +3731,56 @@ var LoginComponent = /** @class */ (function () {
             _this.spinnerService.hide();
         });
     };
+    LoginComponent.prototype.socialLogin = function (emailid) {
+        var _this = this;
+        var email = {
+            email: emailid
+        };
+        this.userService.socialLogin(email)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.authService.storeUserData(data.token, data.user);
+                _this._flashMessagesService.show('You are now logged in', { cssClass: 'alert-success', timeout: 3000 });
+                if (data.user.role === 'users') {
+                    location.reload();
+                }
+                else {
+                    _this.router.navigate(['/admin', { outlets: { 'adminchild': ['pollmanage'] } }]);
+                }
+            }
+            else {
+                _this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
+            }
+        });
+    };
+    LoginComponent.prototype.signIn = function (provider) {
+        var _this = this;
+        this.sub = this._auth.login(provider).subscribe(function (data) {
+            if (provider === 'google') {
+                _this.socialLogin(data.email);
+            }
+            else {
+                console.log(data);
+            }
+            // user data
+            // tslint:disable-next-line:max-line-length
+            // name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
+        });
+    };
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-login',
             template: __webpack_require__("../../../../../src/app/login/login.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/login/login.component.scss")]
+            styles: [__webpack_require__("../../../../../src/app/login/login.component.scss")],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthServices */],
             __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"],
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["e" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
             __WEBPACK_IMPORTED_MODULE_5__services_validation_service__["a" /* ValidationService */],
             __WEBPACK_IMPORTED_MODULE_7_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
-            __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */]])
+            __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_8_angular2_social_login__["b" /* AuthService */]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -3884,7 +3940,7 @@ var NavBarComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/nav-bar/nav-bar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/nav-bar/nav-bar.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthServices */],
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["e" /* Router */]])
     ], NavBarComponent);
     return NavBarComponent;
@@ -4430,7 +4486,7 @@ var RunApollComponent = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthServices; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
@@ -4451,42 +4507,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthService = /** @class */ (function () {
-    function AuthService(http, linkService) {
+var AuthServices = /** @class */ (function () {
+    function AuthServices(http, linkService) {
         this.http = http;
         this.linkService = linkService;
         this.link = this.linkService.link;
     }
-    AuthService.prototype.authenticateUser = function (user) {
+    AuthServices.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         return this.http.post(this.link + 'api/users/authendicate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
-    AuthService.prototype.storeUserData = function (token, user) {
+    AuthServices.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
     };
-    AuthService.prototype.loadToken = function () {
+    AuthServices.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
         this.authToken = token;
     };
-    AuthService.prototype.loggedIn = function () {
+    AuthServices.prototype.loggedIn = function () {
         return Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])('id_token');
     };
-    AuthService.prototype.logout = function () {
+    AuthServices.prototype.logout = function () {
         this.authToken = null;
         this.user = null;
         localStorage.clear();
     };
-    AuthService = __decorate([
+    AuthServices = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
             __WEBPACK_IMPORTED_MODULE_4__link_service__["a" /* LinkService */]])
-    ], AuthService);
-    return AuthService;
+    ], AuthServices);
+    return AuthServices;
 }());
 
 
@@ -4949,6 +5005,12 @@ var UserService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         return this.http.post(this.link + 'api/users/forgotpass', email, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.socialLogin = function (email) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.link + 'api/users/sociallogin', email, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([

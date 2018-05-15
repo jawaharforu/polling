@@ -83,4 +83,10 @@ export class UserService {
     return this.http.post(this.link + 'api/users/forgotpass', email, {headers: headers})
       .map(res => res.json());
   }
+  socialLogin(email) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.link + 'api/users/sociallogin', email, {headers: headers})
+      .map(res => res.json());
+  }
 }

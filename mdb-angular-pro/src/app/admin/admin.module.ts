@@ -25,7 +25,7 @@ import { CategoryService } from '../services/category.service';
 import { PollService } from '../services/poll.service';
 import { VoteduserService } from '../services/voteduser.service';
 import { ResultService } from '../services/result.service';
-import { AuthService } from '../services/auth.service';
+import { AuthServices } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ValidationService } from '../services/validation.service';
 import { ContactService } from '../services/contact.service';
@@ -67,7 +67,8 @@ import { VoterslistComponent } from './voterslist/voterslist.component';
     ContactUsManageComponent,
     VoterslistComponent
   ],
-  // tslint:disable-next-line:max-line-length
-  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService, LinkService],
+  // tslint:disable-next-line:max-line-length 
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthServices, AuthGuard, UserService, ValidationService, ContactService, LinkService],
 })
 export class AdminModule { }
+ 

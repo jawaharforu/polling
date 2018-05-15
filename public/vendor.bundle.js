@@ -3806,6 +3806,259 @@ var AuthModule_1;
 
 /***/ }),
 
+/***/ "../../../../angular2-social-login/dist/angular2-social-login.module.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Angular2SocialLoginModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__("../../../../angular2-social-login/dist/auth.service.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var Angular2SocialLoginModule = (function () {
+    function Angular2SocialLoginModule() {
+    }
+    Angular2SocialLoginModule.loadProvidersScripts = function (config) {
+        var loadProvidersScripts = {
+            google: function (info) {
+                var d = document, gJs, ref = d.getElementsByTagName('script')[0];
+                gJs = d.createElement('script');
+                gJs.async = true;
+                gJs.src = "//apis.google.com/js/platform.js";
+                gJs.onload = function () {
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init({
+                            client_id: info["clientId"],
+                            scope: 'email'
+                        });
+                    });
+                };
+                ref.parentNode.insertBefore(gJs, ref);
+            },
+            linkedin: function (info) {
+                var lIN, d = document, ref = d.getElementsByTagName('script')[0];
+                lIN = d.createElement('script');
+                lIN.async = false;
+                lIN.src = "//platform.linkedin.com/in.js";
+                lIN.text = ("api_key: " + info["clientId"]).replace("\"", "");
+                ref.parentNode.insertBefore(lIN, ref);
+            },
+            facebook: function (info) {
+                var d = document, fbJs, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                fbJs = d.createElement('script');
+                fbJs.id = id;
+                fbJs.async = true;
+                fbJs.src = "//connect.facebook.net/en_US/sdk.js";
+                fbJs.onload = function () {
+                    FB.init({
+                        appId: info["clientId"],
+                        status: true,
+                        cookie: true,
+                        xfbml: true,
+                        version: info["apiVersion"]
+                    });
+                };
+                ref.parentNode.insertBefore(fbJs, ref);
+            }
+        };
+        Object.keys(config).forEach(function (provider) {
+            loadProvidersScripts[provider](config[provider]);
+        });
+    };
+    Angular2SocialLoginModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
+        })
+    ], Angular2SocialLoginModule);
+    return Angular2SocialLoginModule;
+}());
+
+//# sourceMappingURL=angular2-social-login.module.js.map
+
+/***/ }),
+
+/***/ "../../../../angular2-social-login/dist/auth.service.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var AuthService = (function () {
+    function AuthService() {
+    }
+    AuthService.prototype.login = function (provider) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            switch (provider) {
+                case "google":
+                    if (typeof (_this.gauth) == "undefined") {
+                        _this.gauth = gapi.auth2.getAuthInstance();
+                    }
+                    if (!_this.gauth.isSignedIn.get()) {
+                        _this.gauth.signIn().then(function () {
+                            localStorage.setItem('_login_provider', 'google');
+                            observer.next(_this._fetchGoogleUserDetails());
+                            observer.complete();
+                        });
+                    }
+                    else {
+                        localStorage.setItem('_login_provider', 'google');
+                        observer.next(_this._fetchGoogleUserDetails());
+                        observer.complete();
+                    }
+                    break;
+                case "facebook":
+                    FB.getLoginStatus(function (response) {
+                        if (response.status === "connected") {
+                            FB.api('/me?fields=name,email,picture', function (res) {
+                                if (!res || res.error) {
+                                    observer.error(res.error);
+                                }
+                                else {
+                                    var userDetails = {
+                                        name: res.name,
+                                        email: res.email,
+                                        uid: res.id,
+                                        provider: "facebook",
+                                        image: res.picture.data.url,
+                                        token: response.authResponse.accessToken
+                                    };
+                                    localStorage.setItem('_login_provider', 'facebook');
+                                    observer.next(userDetails);
+                                    observer.complete();
+                                }
+                            });
+                        }
+                        else {
+                            FB.login(function (response) {
+                                if (response.status === "connected") {
+                                    FB.api('/me?fields=name,email,picture', function (res) {
+                                        if (!res || res.error) {
+                                            observer.error(res.error);
+                                        }
+                                        else {
+                                            var userDetails = {
+                                                name: res.name,
+                                                email: res.email,
+                                                uid: res.id,
+                                                provider: "facebook",
+                                                image: res.picture.data.url,
+                                                token: response.authResponse.accessToken
+                                            };
+                                            localStorage.setItem('_login_provider', 'facebook');
+                                            observer.next(userDetails);
+                                            observer.complete();
+                                        }
+                                    });
+                                }
+                            }, { scope: 'email', auth_type: "rerequest" });
+                        }
+                    });
+                    break;
+                case "linkedin":
+                    IN.User.authorize(function () {
+                        IN.API.Raw("/people/~:(id,first-name,last-name,email-address,picture-url)").result(function (res) {
+                            var userDetails = { name: res.firstName + " " + res.lastName, email: res.emailAddress, uid: res.id, provider: "linkedIN", image: res.pictureUrl };
+                            localStorage.setItem('_login_provider', 'linkedin');
+                            observer.next(userDetails);
+                            observer.complete();
+                        });
+                    });
+                    break;
+            }
+        });
+    };
+    AuthService.prototype.logout = function () {
+        var provider = localStorage.getItem("_login_provider");
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            switch (provider) {
+                case "google":
+                    var gElement = document.getElementById("gSignout");
+                    if (typeof (gElement) != 'undefined' && gElement != null) {
+                        gElement.remove();
+                    }
+                    var d = document, gSignout = void 0;
+                    var ref = d.getElementsByTagName('script')[0];
+                    gSignout = d.createElement('script');
+                    gSignout.src = "https://accounts.google.com/Logout";
+                    gSignout.type = "text/html";
+                    gSignout.id = "gSignout";
+                    localStorage.removeItem('_login_provider');
+                    observer.next(true);
+                    observer.complete();
+                    ref.parentNode.insertBefore(gSignout, ref);
+                    break;
+                case "facebook":
+                    FB.logout(function (res) {
+                        localStorage.removeItem('_login_provider');
+                        observer.next(true);
+                        observer.complete();
+                    });
+                    break;
+                case "linkedin":
+                    IN.User.logout(function () {
+                        localStorage.removeItem('_login_provider');
+                        observer.next(true);
+                        observer.complete();
+                    }, {});
+                    break;
+            }
+        });
+    };
+    AuthService.prototype._fetchGoogleUserDetails = function () {
+        var currentUser = this.gauth.currentUser.get();
+        var profile = currentUser.getBasicProfile();
+        var idToken = currentUser.getAuthResponse().id_token;
+        var accessToken = currentUser.getAuthResponse().access_token;
+        return {
+            token: accessToken,
+            idToken: idToken,
+            uid: profile.getId(),
+            name: profile.getName(),
+            email: profile.getEmail(),
+            image: profile.getImageUrl(),
+            provider: "google"
+        };
+    };
+    AuthService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], AuthService);
+    return AuthService;
+}());
+
+//# sourceMappingURL=auth.service.js.map
+
+/***/ }),
+
+/***/ "../../../../angular2-social-login/dist/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular2_social_login_module__ = __webpack_require__("../../../../angular2-social-login/dist/angular2-social-login.module.js");
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__angular2_social_login_module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__("../../../../angular2-social-login/dist/auth.service.js");
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__auth_service__["a"]; });
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "../../../../css-loader/lib/css-base.js":
 /***/ (function(module, exports) {
 

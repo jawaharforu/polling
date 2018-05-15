@@ -28,7 +28,7 @@ import { TruncateModule } from 'ng2-truncate';
 import { NewlinePipe } from './pipes/newline.pipe';
 import { VoteduserService } from './services/voteduser.service';
 import { ResultService } from './services/result.service';
-import { AuthService } from './services/auth.service';
+import { AuthServices } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CategoryPageComponent } from './category-page/category-page.component';
@@ -61,6 +61,20 @@ import { LifestyleComponent } from './lifestyle/lifestyle.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SinglepollComponent } from './singlepoll/singlepoll.component';
 import { VoterslistComponent } from './admin/voterslist/voterslist.component';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
+
+let providers = {
+  'google': {
+    'clientId': '1095819018311-2v9a60oik8g9sebsnv5iv5fkr108liii.apps.googleusercontent.com'
+  },
+  /*'linkedin': {
+    'clientId': 'LINKEDIN_CLIENT_ID'
+  },*/
+  'facebook': {
+    'clientId': '575137636205374',
+    'apiVersion': 'v3.0' // like v2.4
+  }
+};
 
 
 @NgModule({
@@ -103,6 +117,7 @@ import { VoterslistComponent } from './admin/voterslist/voterslist.component';
   ],
   imports: [
     TruncateModule,
+    Angular2SocialLoginModule,
     BrowserModule,
     DataTablesModule,
     Ng2GoogleChartsModule,
@@ -124,8 +139,9 @@ import { VoterslistComponent } from './admin/voterslist/voterslist.component';
     })
   ],
   // tslint:disable-next-line:max-line-length
-  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthService, AuthGuard, UserService, ValidationService, ContactService, LinkService],
+  providers: [MDBSpinningPreloader, CategoryService, PollService, VoteduserService, ResultService, AuthServices, AuthGuard, UserService, ValidationService, ContactService, LinkService],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
+Angular2SocialLoginModule.loadProvidersScripts(providers);

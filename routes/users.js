@@ -261,4 +261,37 @@ router.post('/forgotpass', (req, res, next) => {
         }
     });
 });
+
+router.post('/sociallogin', (req, res, next) => {
+    User.getUserByEmailCheck(req.body.email, (err, user) => {
+        if(err) throw err;
+        if(user){
+            let userDetail = {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                mobile: user.mobile,
+                role: user.role
+            };
+            const token = jwt.sign(userDetail, config.secret, { 
+                expiresIn: 604800 // 1 week
+            });
+
+            res.json({
+                success: true,
+                token: 'JWT '+token,
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    mobile: user.mobile,
+                    role: user.role
+                }
+            });
+        } else {
+            return res.json({success:false, msg: "User email not exist"});
+        }
+    });
+});
+
 module.exports = router;
