@@ -171,11 +171,14 @@ export class LoginComponent implements OnInit {
   signIn(provider) {
     this.sub = this._auth.login(provider).subscribe(
       (data: any) => {
-        if ( provider === 'google') {
-          this.socialLogin(data.email);
-        } else {
-          console.log(data);
-        }
+        this.socialLogin(data.email);
+        this.userCreateForm.setValue({
+          name: data.name,
+          email: data.email,
+          mobile: '',
+          password: '',
+          passwordre: ''
+        });
                   // user data
                   // tslint:disable-next-line:max-line-length
                   // name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
