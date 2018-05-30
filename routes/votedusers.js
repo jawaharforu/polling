@@ -14,7 +14,8 @@ router.post('/voteduser', (req, res, next) => {
         fullderail: req.body.fullderail,
         state: req.body.state,
         region: req.body.region,
-        mobile: req.body.mobile
+        mobile: req.body.mobile,
+        email: req.body.email
     });
 
     Voteduser.addVoteduser(newVoted, (err, voteduser) => {

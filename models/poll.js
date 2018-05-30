@@ -82,7 +82,8 @@ module.exports.getAllPollsCategory = function(categoryid, callback) {
                 foreignField: '_id',
                 as: 'categoryname'
             }
-        }
+        },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
 
@@ -120,7 +121,8 @@ module.exports.getPollByStatus = function(callback) {
                 foreignField: '_id',
                 as: 'categoryname'
             }
-        }
+        },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
 
@@ -139,7 +141,8 @@ module.exports.getPollByStatusHome = function(callback) {
                 foreignField: '_id',
                 as: 'categoryname'
             }
-        }
+        },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
 
@@ -181,7 +184,7 @@ module.exports.getPollByCategory = function(categoryid, callback) {
                 as: 'pollcount'
             }
         },
-        { $sort: { createdon: -1 } },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
 
@@ -211,7 +214,7 @@ module.exports.getPollByCategoryFalse = function(categoryid, callback) {
                 as: 'pollcount'
             }
         },
-        { $sort: { createdon: -1 } },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
 
@@ -244,6 +247,6 @@ module.exports.getPollByResult = function(callback) {
                 as: 'pollcount'
             }
         },
-        { $sort: { createdon: -1 } },
+        { $sort: { createdon: -1 } }
     ], callback);
 };
