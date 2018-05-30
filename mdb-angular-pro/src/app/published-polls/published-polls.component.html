@@ -34,34 +34,61 @@
 		</div> <!-- polls-content -->
   </section>
   <app-footer></app-footer>
-	<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title pull-left">{{votingPoll.name}}</h4>
-					<button type="button" class="close pull-right" aria-label="Close" (click)="onHidden()">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-						<div>
-              <div style="display: block" *ngIf="chartDisplay">
-                <canvas mdbChart  
-                  [chartType]="chartType"
-                  [datasets]="chartDatasets" 
-                  [labels]="chartLabels"
-                  [colors]="chartColors"
-                  [options]="chartOptions"
-                  [legend]="true"
-                  (chartHover)="chartHovered($event)" 
-                  (chartClick)="chartClicked($event)">
-                </canvas>
-              </div>
-              <div *ngIf="!chartDisplay">
-                <p>Result will publish {{publishdate | date:'dd MMMM yyyy'}}</p>
-              </div>
-						</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div *ngIf="isModalForUser" [config]="{ show: true }" (onHidden)="onHiddenuser()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+				<p>Please fill the given details to get your polling result</p>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onHiddenuser()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+					<div class="md-form">
+						<i class="fa fa-mobile prefix grey-text"></i>
+						<input  name="mobile" [(ngModel)]="mobile" type="text" id="mobile" class="form-control" mdbActive>
+						<label for="mobile">Please Provide Your Mobile</label>
+					</div>
+					<div class="md-form">
+						<i class="fa fa-envelope prefix grey-text"></i>
+						<input [(ngModel)]="email" name="email" type="text" id="orangeForm-email" class="form-control" mdbActive>
+						<label for="orangeForm-email">Please Provide Your Email</label>
+					</div>
+					<div class="text-center">
+						<button type="button" (click)="updateVoter()" class="btn btn-deep-orange waves-light" mdbRippleRadius>Update</button>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title pull-left">Poll Result</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="onHidden()">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+      <div style="display: block" *ngIf="chartDisplay">
+        <canvas mdbChart  
+          [chartType]="chartType"
+          [datasets]="chartDatasets" 
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)" 
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div *ngIf="!chartDisplay">
+        <p>Result will publich later</p>
+      </div>
+          </div>
+      </div>
+  </div>
+</div>
