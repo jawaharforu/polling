@@ -63,7 +63,7 @@ export class PollResultComponent implements OnInit {
       .subscribe(data => {
         let j = 1;
         for (const prop of data.data) {
-          this.chartData.push(prop.voteCount);
+          this.chartData.push(prop.percent);
           this.chartLabels.push(prop.option);
           if (j === data.data.length) {
             this.piechart = true;

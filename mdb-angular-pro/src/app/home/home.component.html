@@ -16,7 +16,7 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs nav-justified indigo" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" role="tab">Featured Polls</a>
+						<a style="cursor: default;" class="nav-link active" data-toggle="tab" role="tab">Featured Polls</a>
 					</li>
 				</ul>
 				</div>
@@ -37,7 +37,7 @@
 									</div>
 										<button class="btn purple-gradient btn-rounded"  type="submit" *ngIf="voteBtn[i][p._id]">VOTE</button>
 								</form>
-	
+
 								<div class="share-vote">
 									<ul class="share-vote-icons"><span>Share Your Vote</span>
 									  <li><a ceiboShare  [facebook]="{u: repoUrl}"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
@@ -73,13 +73,13 @@
 
 
 	</section>
-	
+
 	<section>
-		
+
 	</section>
 
 
-<app-category-content></app-category-content>	
+<app-category-content></app-category-content>
 <app-footer></app-footer>
 <div *ngIf="isModalForUser" [config]="{ show: true }" (onHidden)="onHiddenuser()" mdbModal #autoShownModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,14 +122,14 @@
             </div>
             <div class="modal-body">
 				<div style="display: block" *ngIf="chartDisplay">
-					<canvas mdbChart  
+					<canvas mdbChart
 						[chartType]="chartType"
-						[datasets]="chartDatasets" 
+						[datasets]="chartDatasets"
 						[labels]="chartLabels"
 						[colors]="chartColors"
 						[options]="chartOptions"
 						[legend]="true"
-						(chartHover)="chartHovered($event)" 
+						(chartHover)="chartHovered($event)"
 						(chartClick)="chartClicked($event)">
 					</canvas>
 				</div>
@@ -140,6 +140,6 @@
         </div>
     </div>
 </div>
-<google-chart *ngIf="piechart" [data]="pieChartData"></google-chart>       
-        
-		
+<google-chart *ngIf="piechart" [data]="pieChartData"></google-chart>
+
+

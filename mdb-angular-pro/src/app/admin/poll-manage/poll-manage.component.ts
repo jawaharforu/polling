@@ -21,12 +21,13 @@ export class PollManageComponent implements OnInit {
   pollType: Array<any>;
   pollCategoryid: String;
   categotylist: Array<any>;
+  categorySelectList: any;
   pollCreateForm: FormGroup;
   updatePolls: any;
   imageUrl: String;
   categoty: String;
   public myDatePickerOptions: IMyOptions = {
-    
+
   };
   constructor(
     private _flashMessagesService: FlashMessagesService,
@@ -35,15 +36,16 @@ export class PollManageComponent implements OnInit {
     private _fb: FormBuilder,
     private spinnerService: Ng4LoadingSpinnerService,
     private router: Router
-  ) { 
+  ) {
     this.categoryService.getCategory()
     .subscribe(data => {
       this.categotylist = [];
+      this.categorySelectList = data.data;
       let j = 1;
       for (const prop of data.data) {
         this.categotylist.push({ value: prop._id, label: prop.name });
         if ( j === data.data.length ) {
-          // this.getCategoryList(this.categotylist[0].value);
+          this.getCategoryList(this.categotylist[0].value);
         }
         j++;
       }
@@ -56,14 +58,14 @@ export class PollManageComponent implements OnInit {
       { value: 'Single', label: 'Single' },
       { value: 'Multiple', label: 'Multiple' },
     ];
-    
+    /*
     this.pollService.getPoll()
     .subscribe(data => {
       this.pollList = data.data;
       this.spinnerService.hide();
     });
-    
-    
+    */
+
     this.pollCreateForm = this._fb.group({
       pollname: this._fb.control(null),
       selectedPollType: this._fb.control(null),

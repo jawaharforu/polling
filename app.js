@@ -17,13 +17,13 @@ var ip2loc = require("ip2location-nodejs");
 ip2loc.IP2Location_init('./routes/IP-COUNTRY-REGION-CITY-LATITUDE-LONGITUDE-ZIPCODE-TIMEZONE-ISP-DOMAIN-NETSPEED-AREACODE-WEATHER-MOBILE-ELEVATION-USAGETYPE-SAMPLE.BIN');
 */
 
-//Database connect 
+//Database connect
 mongoose.connect(config.database);
 //Connected on
 mongoose.connection.on('connected', () => {
     console.log('Database connected '+ config.database);
 });
-//DB Error 
+//DB Error
 mongoose.connection.on('error', (err) => {
     console.log('Database '+ err);
 });
@@ -37,18 +37,18 @@ const poll = require('./routes/polls');
 const voteduser = require('./routes/votedusers');
 const result = require('./routes/results');
 const contact = require('./routes/contacts');
- 
+
 // Poer number
-//const port = 3000; 
+//const port = 3000;
 const port = process.env.PORT || 3000;
 
 var options = {
   key: fs.readFileSync("./nationpulse.in.key"),
   cert: fs.readFileSync("./nationpulse_in.crt"),
-};  
+};
 const server = http.createServer((req, res) => {
   res.writeHead(301,{Location: `https://${req.headers.host}${req.url}`});
-  res.end(); 
+  res.end();
 });
 server.listen(80);
 https.createServer(options, app).listen(443);
@@ -56,7 +56,7 @@ app.use(forceSsl);
 
 // COES middleware
 app.use(cors());
- 
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -68,13 +68,13 @@ app.use(bodyParser.json({limit: '50mb'}));
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport); 
+require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/categories', categorty);
 app.use('/api/polls', poll);
 app.use('/api/votedusers', voteduser);
-app.use('/api/results', result); 
+app.use('/api/results', result);
 app.use('/api/contacts', contact);
 
 // Index router
@@ -92,7 +92,7 @@ const upload = multer({
       }
     })
   });
-   
+
   app.post('/upload', upload.any(), (req, res) => {
     res.json(req.files.map(file => {
       let ext = path.extname(file.originalname);
@@ -123,7 +123,7 @@ const upload = multer({
       if (err) {
         return res.end(err.toString());
       }
-   
+
       res.end('File is uploaded');
     });
   });
@@ -169,7 +169,7 @@ function checkFileType(file, cb){
       if(req.file == undefined){
         res.json({success: true, data: 'error in'});
       } else {
-        res.json({success: true, data: 'success in'}); 
+        res.json({success: true, data: 'success in'});
       }
     }
   });

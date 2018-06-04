@@ -58,10 +58,34 @@ router.delete('/result/:resultid', (req, res, next) => {
     });
 });
 
+function percentage(num, tot)
+{
+  return parseInt((num/tot)*100);
+}
+
+
 router.get('/getresult/:pollid', (req, res, next) => {
     Result.getResult(req.params.pollid, (err, poll) => {
         if(err) throw err;
-        res.json({success: true, msg: 'Result', data: poll});
+        Array.prototype.sum = function (prop) {
+          var total = 0
+          for ( var i = 0, _len = this.length; i < _len; i++ ) {
+              total += this[i][prop]
+          }
+          return total;
+        }
+        if(poll.length == 0){
+          res.json({success: true, msg: 'Result', data: poll});
+        }
+        var totpoll = poll.sum("voteCount");
+        for(var i=0; i<poll.length; i++) {
+          poll[i].percent = percentage(poll[i].voteCount, totpoll);
+          if(i == poll.length-1){
+            res.json({success: true, msg: 'Result', data: poll});
+          }
+        }
+
+
     });
 });
 
