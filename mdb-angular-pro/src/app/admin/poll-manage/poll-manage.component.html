@@ -1,11 +1,17 @@
-<!--<div class="card mt-5 mb-5"><div class="card-body">
-    <mdb-select [(ngModel)]="categoty" (ngModelChange)="getCategoryId()" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select> 
-</div></div>-->
+<div class="card mt-5 mb-5"><div class="card-body">
+  <label for="defaultFormCardDesiEx" class="grey-text font-weight-light">Categoty</label>
+  <select class="browser-default form-control" id="defaultFormCardDesiEx" [(ngModel)]="categoty" name="categoty" (change)="getCategoryId()">
+    <option *ngFor="let ctg of categorySelectList"
+    [value]="ctg._id">
+  {{ctg.name}}
+</option>
+  </select>
+</div></div>
 <div class="card mt-5 mb-5">
         <div class="card-body">
             <!--Table-->
             <table *ngIf="pollList" datatable class="table table-hover table-responsive-md table-fixed">
-    
+
                 <!--Table head-->
                 <thead>
                     <tr>
@@ -21,7 +27,7 @@
                     </tr>
                 </thead>
                 <!--Table head-->
-    
+
                 <!--Table body-->
                 <tbody>
                     <tr *ngFor="let p of pollList; let i = index">
@@ -40,11 +46,11 @@
                         <td><div class="form-check checkbox-warning-filled">
                             <input type="checkbox" class="filled-in" id="homecheckbox{{p._id}}" [checked]="p.home" (change)="updateStatus($event.target.checked,p,'home')">
                             <label for="homecheckbox{{p._id}}"></label>
-                        </div></td> 
+                        </div></td>
                         <td><div class="form-check checkbox-warning-filled">
                             <input type="checkbox" class="filled-in" id="resultcheckbox{{p._id}}" [checked]="p.result" (change)="updateStatus($event.target.checked,p,'result')">
                             <label for="resultcheckbox{{p._id}}"></label>
-                        </div></td> 
+                        </div></td>
                         <td>
                             <button type="button" (click)="showModal(p)" class="btn btn-primary waves-light" mdbRippleRadius>Edit <i class="fa fa-edit fa-lg" aria-hidden="true"></i></button>
                             &nbsp;
@@ -55,7 +61,7 @@
                     </tr>
                 </tbody>
                 <!--Table body-->
-    
+
             </table>
             <!--Table-->
         </div>
@@ -79,12 +85,12 @@
                                     <img [src]="imageUrl" width="200" height="200">
                                 </div>
                       <div class="file-field">
-                        
+
                         <div class="btn btn-primary btn-sm waves-light" mdbRippleRadius>
                             <span>Choose file</span>
                             <input type="file" (change)="fileEvent($event)">
                         </div>
-                        
+
                     </div>
                 </div>
                 <!--
@@ -131,9 +137,9 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group row">  
+                        <div class="form-group row">
                             <mdb-date-picker name="todate" [options]="myDatePickerOptions" [placeholder]="'Select Publich date'" formControlName="todate" required></mdb-date-picker>
-                         </div> 
+                         </div>
                       <div class="form-group row">
                           <mdb-select formControlName="pollCategoryid" name="pollCategoryid" [options]="categotylist" placeholder="Choose Category *" class="colorful-select dropdown-primary"></mdb-select>
                       </div>
@@ -141,7 +147,7 @@
                       <div formArrayName="pollOption">
                           <div *ngFor="let itemrow of pollCreateForm.controls.pollOption.controls; let i=index"  [formGroupName]="i">
                               <div class="form-group">
-                                  <i *ngIf="pollCreateForm.controls.pollOption.controls.length > 1" (click)="deleteRow(i)" class="fa fa-remove prefix grey-text"></i> 
+                                  <i *ngIf="pollCreateForm.controls.pollOption.controls.length > 1" (click)="deleteRow(i)" class="fa fa-remove prefix grey-text"></i>
                                   <input formControlName="itemname" placeholder="Option {{ i + 1 }}" class="form-control">
                               </div>
                           </div>
@@ -157,4 +163,3 @@
           </div>
       </div>
     </div>
-      
