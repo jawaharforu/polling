@@ -42,7 +42,7 @@
     "gulp-rename": "1.2.x",
     "gulp-run": "1.7.x",
     "hammerjs": "2.0.x",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ng-html-util": "1.0.x",
     "ng2-charts": "^1.6.0",
     "ng2-file-upload": "*",
