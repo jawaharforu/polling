@@ -38,7 +38,7 @@
     "del": "3.0.x",
     "easy-pie-chart": "2.1.x",
     "font-awesome": "4.7.x",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-rename": "1.2.x",
     "gulp-run": "1.7.x",
     "hammerjs": "2.0.x",
